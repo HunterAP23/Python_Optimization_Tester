@@ -55,28 +55,18 @@ if __name__ == '__main__':
     for k, v in returnDict.items():
         if k == "Default":
             myDefault = open('default_total_time.txt', 'a')
-            myDefault.write(str(k) + " took " + str(v) + " seconds, or\n")
-            myDefault.write(str(v / 60) + " minutes, or\n")
-            myDefault.write(str(v / 3600) + " hours.")
+            myDefault.write(str(k) + " took " + str(v / 3600) + "H:" + str(v / 60) + "M:" + str(v) + "S")
             myDefault.close()
         elif k == "Compiled":
             myCompiled = open('compiled_total_time.txt', 'a')
-            myCompiled.write(str(k) + " took " + str(v) + " seconds, or\n")
-            myCompiled.write(str(v / 60) + " minutes, or\n")
-            myCompiled.write(str(v / 3600) + " hours.")
+            myCompiled.write(str(k) + " took " + str(v / 3600) + "H:" + str(v / 60) + "M:" + str(v) + "S")
             myCompiled.close()
         else:
             myOptimized = open('optimized_total_time.txt', 'a')
-            myOptimized.write(str(k) + " took " + str(v) + " seconds, or\n")
-            myOptimized.write(str(v / 60) + " minutes, or\n")
-            myOptimized.write(str(v / 3600) + " hours.")
+            myOptimized.write(str(k) + " took " + str(v / 3600) + "H:" + str(v / 60) + "M:" + str(v) + "S")
             myOptimized.close()
         print("-"*80)
-        print(str(k) + " took " + str(v) + " seconds, or")
-        print(str(v / 60) + " minutes, or")
-        print(str(v / 3600) + " hours.")
+        print(str(k) + " took " + str(v / 3600) + "H:" + str(v / 60) + "M:" + str(v) + "S")
 
     print("-"*80)
-    print("Total Run Time was " + str(testing_Total) + " seconds, or")
-    print(str(testing_Total / 60) + " minutes, or")
-    print(str(testing_Total / 3600) + " hours.")
+    print("Total Run Time was " + str(testing_Total / 3600) + "H:" + str(testing_Total / 60) + "M:" + str(testing_Total) + "S")
