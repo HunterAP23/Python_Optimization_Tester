@@ -28,13 +28,13 @@
   Cython implementation of the program, with manual optimizations
   like static typing of variables.
 
-#master1.py
+## master1.py
   Used by Cython to compile the Find_Nth_Prime1.pyx file.
 
-#master2.py
+## master2.py
   Used by Cython to compile the Find_Nth_Prime2.pyx file.
 
-#tester.py
+## tester.py
   Python wrapper for calling the programs.
   It's handles the multiprocessing/threading of the other programs,
   which involves creating a process for each one of the different tests
