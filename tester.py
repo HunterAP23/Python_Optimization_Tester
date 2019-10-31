@@ -43,7 +43,7 @@ if __name__ == '__main__':
 
     testing_Start = time.time()
 
-    funcs = [Find_Nth_Prime.main, Find_Nth_Prime1.main, Find_Nth_Prime2.main]
+    funcs = [Find_Nth_Prime_Default.main, Find_Nth_Prime_Compiled.main, Find_Nth_Optimized.main]
     #funcs = [Find_Nth_Prime.main, Find_Nth_Prime1.main,]
     arguments = [userMax, numLoops, returnDict]
 
