@@ -4,8 +4,6 @@ import math
 import time
 import datetime
 #import tqdm
-# cimport cython
-import cython
 from functools import reduce
 import sys
 
@@ -74,27 +72,27 @@ def is_prime_sqrt(a):
         return [True, checks]
 
 def main(myMax, numLoops):
-    print("Compiled started.")
+    print("Default started.")
 
-    myFile = "compiled_main_time.txt"
-    myFile2 = "compiled_main_divisions.txt"
+    myFile = "non-compiled_main_time.txt"
+    myFile2 = "non-compiled_main_divisions.txt"
     txt_output = open(myFile, 'a')
     txt_output2 = open(myFile2, 'a')
     timeList = []
     divisionsList = []
 
-    #loopNum1 = tqdm.tqdm(total=numLoops, desc="Compiled Main Loops", unit=" loops", position=4)
+    #loopNum1 = tqdm.tqdm(total=numLoops, desc="Non-Compiled Main Loops", unit=" loops", position=0)
     for j in range(numLoops):
         global table
-        #loopMax1 = tqdm.tqdm(total=myMax, desc="Compiled Main Numbers", unit=" nums", position=5, leave=False)
+        #loopMax1 = tqdm.tqdm(total=myMax, desc="Non-Compiled Main Numbers", unit=" nums", position=1, leave=False)
         main_Time_Start = time.time()
         for i in range(myMax):
             tmp = is_prime(i)
             if tmp[0] == True:
                 #data1 = str("is_prime(" + str(i) + ") = " + str(tmp[0]) + "\n")
-                data1 = str(str(i) +'\n')
+                data1 = str(str(i))
                 #data2 = str("There are " + str(len(table) - 1) + " many primes less than " + str(i) + "\n")
-                data3 = str("This took " + str(tmp[1]) + " divisions by previous primes to complete!" + "\n\n")
+                data3 = str("This took " + str(tmp[1]) + " divisions by previous primes to complete!" + "\n")
                 #myData = data1 + data2 + data3
                 myData = data1 + data3
                 divisionsList.append(myData)
@@ -107,7 +105,7 @@ def main(myMax, numLoops):
         main_Time_End = time.time()
         main_Time_Overall = (main_Time_End - main_Time_Start)
 
-        timerCount = str("Compiled Normal Pass " + str(j + 1) + ": " + str(main_Time_Overall) + " seconds.\n")
+        timerCount = str("Non-Compiled Normal Pass " + str(j + 1) + ": " + str(main_Time_Overall) + " seconds.\n")
         txt_output.write(timerCount)
         timeList.append(main_Time_Overall)
         main_Time_Overall = 0
@@ -119,7 +117,7 @@ def main(myMax, numLoops):
         txt_output2.write(item)
 
     timerAverage = reduce(lambda a, b: a + b, timeList) / len(timeList)
-    txt_output.write("The average time it took to calulcate " + str(numLoops) + " compiled normal passes  was " + str(timerAverage))
+    txt_output.write("The average time it took to calulcate " + str(numLoops) + " non-compiled normal passes was " + str(timerAverage))
     timerAverage = 0
     timeList = []
     divisionsList = []
@@ -127,15 +125,15 @@ def main(myMax, numLoops):
     txt_output2.close()
 
     #2nd Attempt with Half function
-    myFile = "compiled_half_time.txt"
-    myFile2 = "compiled_half_division.txt"
+    myFile = "non-compiled_half_time.txt"
+    myFile2 = "non-compiled_half_division.txt"
     txt_output = open(myFile, 'a')
     txt_output2 = open(myFile2, 'a')
 
-    #loopNum2 = tqdm.tqdm(total=numLoops, desc="Compiled Half Loops", unit=" loops", position=5)
+    #loopNum2 = tqdm.tqdm(total=numLoops, desc="Non-Compiled Half Loops", unit=" loops", position=1)
     for j in range(numLoops):
         global table2
-        #loopMax2 = tqdm.tqdm(total=myMax, desc="Compiled Half Numbers", unit=" nums", position=6, leave=False)
+        #loopMax2 = tqdm.tqdm(total=myMax, desc="Non-Compiled Half Numbers", unit=" nums", position=2, leave=False)
         main_Time1_Start = time.time()
         for i in range(myMax):
             tmp = is_prime_half(i)
@@ -155,9 +153,9 @@ def main(myMax, numLoops):
 
         main_Time1_End = time.time()
         main_Time1_Overall = (main_Time1_End - main_Time1_Start)
-        #print("Compiled Half Pass " + str(j + 1) + ": " + str(main_Time1_Overall) + " seconds.")
+        #print("Non-Compiled Half Pass " + str(j + 1) + ": " + str(main_Time1_Overall) + " seconds.")
 
-        timerCount1 = str("Compiled Half Pass " + str(j + 1) + ": " + str(main_Time1_Overall) + " seconds.\n")
+        timerCount1 = str("Non-Compiled Half Pass " + str(j + 1) + ": " + str(main_Time1_Overall) + " seconds.\n")
         txt_output.write(timerCount1)
         timeList.append(main_Time1_Overall)
         main_Time1_Overall = 0
@@ -169,7 +167,7 @@ def main(myMax, numLoops):
         txt_output2.write(item)
 
     timerAverage = reduce(lambda a, b: a + b, timeList) / len(timeList)
-    txt_output.write("The average time it took to calulcate " + str(numLoops) + " compiled half passes  was " + str(timerAverage))
+    txt_output.write("The average time it took to calulcate " + str(numLoops) + " non-compiled half passes was " + str(timerAverage))
     timerAverage = 0
     timeList = []
     divisionsList = []
@@ -177,15 +175,15 @@ def main(myMax, numLoops):
     txt_output2.close()
 
     #3rd Attempt with Sqrt function
-    myFile = "compiled_sqrt_time.txt"
-    myFile2 = "compiled_sqrt_divisions.txt"
+    myFile = "non-compiled_sqrt_time.txt"
+    myFile2 = "non-compiled_sqrt_divisions.txt"
     txt_output = open(myFile, 'a')
     txt_output2 = open(myFile2, 'a')
 
-    #loopNum3 = tqdm.tqdm(total=numLoops, desc="Compiled Sqrt Loops", unit=" loops", position=6)
+    #loopNum3 = tqdm.tqdm(total=numLoops, desc="Non-Compiled Sqrt Loops", unit=" loops", position=2)
     for j in range(numLoops):
         global table3
-        #loopMax3 = tqdm.tqdm(total=myMax, desc="Compiled Sqrt Numbers", unit=" nums", position=7, leave=False)
+        #loopMax3 = tqdm.tqdm(total=myMax, desc="Non-Compiled Sqrt Numbers", unit=" nums", position=3, leave=False)
         main_Time2_Start = time.time()
         for i in range(myMax):
             tmp = is_prime_sqrt(i)
@@ -205,9 +203,9 @@ def main(myMax, numLoops):
 
         main_Time2_End = time.time()
         main_Time2_Overall = (main_Time2_End - main_Time2_Start)
-        #print("Compiled Sqrt Pass " + str(j + 1) + ": " + str(main_Time2_Overall) + " seconds.")
+        #print("Non-Compiled Sqrt Pass " + str(j + 1) + ": " + str(main_Time2_Overall) + " seconds.")
 
-        timerCount2 = str("Compiled Sqrt Pass " + str(j + 1) + ": " + str(main_Time2_Overall) + " seconds.\n")
+        timerCount2 = str("Non-Compiled Sqrt Pass " + str(j + 1) + ": " + str(main_Time2_Overall) + " seconds.\n")
         txt_output.write(timerCount2)
         timeList.append(main_Time2_Overall)
         main_Time2_Overall = 0
@@ -219,7 +217,7 @@ def main(myMax, numLoops):
         txt_output2.write(item)
 
     timerAverage = reduce(lambda a, b: a + b, timeList) / len(timeList)
-    txt_output.write("The average time it took to calulcate " + str(numLoops) + " compiled square root passes  was " + str(timerAverage))
+    txt_output.write("The average time it took to calulcate " + str(numLoops) + " non-compiled square root passes was " + str(timerAverage))
     timerAverage = 0
     timeList = []
     divisionsList = []
@@ -228,7 +226,7 @@ def main(myMax, numLoops):
 
     nowTime = datetime.datetime.now()
     #loopNum3.write("-"*80)
-    #loopNum3.write("Compiled Finished at " + str(nowTime.year) + "/" + str(nowTime.month) + "/" + str(nowTime.day) + " " + str(nowTime.hour) + ":" + str(nowTime.minute) + ":" + str(nowTime.second) + ":" + str(nowTime.microsecond))
-    print("Compiled Finished at " + str(nowTime.year) + "/" + str(nowTime.month) + "/" + str(nowTime.day) + " " + str(nowTime.hour) + ":" + str(nowTime.minute) + ":" + str(nowTime.second) + ":" + str(nowTime.microsecond))
+    #loopNum3.write("Default Finished at " + str(nowTime.year) + "/" + str(nowTime.month) + "/" + str(nowTime.day) + " " + str(nowTime.hour) + ":" + str(nowTime.minute) + ":" + str(nowTime.second) + ":" + str(nowTime.microsecond))
+    print("Default Finished at " + str(nowTime.year) + "/" + str(nowTime.month) + "/" + str(nowTime.day) + " " + str(nowTime.hour) + ":" + str(nowTime.minute) + ":" + str(nowTime.second) + ":" + str(nowTime.microsecond))
 
 main(int(sys.argv[1]), int(sys.argv[2]))

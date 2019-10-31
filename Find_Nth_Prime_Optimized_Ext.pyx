@@ -4,8 +4,10 @@ import math
 import time
 import datetime
 #import tqdm
-cimport cython
+# cimport cython
+import cython
 from functools import reduce
+import sys
 
 global table
 table = []
@@ -207,3 +209,5 @@ def main(int myMax, int numLoops):
     nowTime = datetime.datetime.now()
     print("-"*80)
     print("Optimized Finished at " + str(nowTime.year) + "/" + str(nowTime.month) + "/" + str(nowTime.day) + " " + str(nowTime.hour) + ":" + str(nowTime.minute) + ":" + str(nowTime.second) + ":" + str(nowTime.microsecond))
+
+main(int(sys.argv[1]), int(sys.argv[2]))

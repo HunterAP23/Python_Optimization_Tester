@@ -1,5 +1,5 @@
-import Find_Nth_Prime
-import Find_Nth_Prime1
+import Find_Nth_Prime_Default
+import Find_Nth_Prime_Compiled
 #import Find_Nth_Prime2
 import time
 import os
