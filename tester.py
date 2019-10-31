@@ -55,18 +55,18 @@ if __name__ == '__main__':
     for k, v in returnDict.items():
         if k == "Default":
             myDefault = open('default_total_time.txt', 'a')
-            myDefault.write(str(k) + " took " + str(v / 3600) + "H:" + str(v / 60) + "M:" + str(v) + "S")
+            myDefault.write(str(k) + " took {0}H:{1}M:{2:0.2f}S".format(int(v / 3600), int(v / 60), v))
             myDefault.close()
         elif k == "Compiled":
             myCompiled = open('compiled_total_time.txt', 'a')
-            myCompiled.write(str(k) + " took " + str(v / 3600) + "H:" + str(v / 60) + "M:" + str(v) + "S")
+            myCompiled.write(str(k) + " took {0}H:{1}M:{2:0.2f}S".format(int(v / 3600), int(v / 60), v))
             myCompiled.close()
         else:
             myOptimized = open('optimized_total_time.txt', 'a')
-            myOptimized.write(str(k) + " took " + str(v / 3600) + "H:" + str(v / 60) + "M:" + str(v) + "S")
+            myOptimized.write(str(k) + " took {0}H:{1}M:{2:0.2f}S".format(int(v / 3600), int(v / 60), v))
             myOptimized.close()
         print("-"*80)
-        print(str(k) + " took " + str(v / 3600) + "H:" + str(v / 60) + "M:" + str(v) + "S")
+        print(str(k) + " took {0}H:{1}M:{2:0.2f}S".format(int(v / 3600), int(v / 60), v))
 
     print("-"*80)
-    print("Total Run Time was " + str(testing_Total / 3600) + "H:" + str(testing_Total / 60) + "M:" + str(testing_Total) + "S")
+    print("Total Run Time was {0}H:{1}M:{2:0.2f}S".format(int(testing_Total / 3600), int(testing_Total / 60), testing_Total))
