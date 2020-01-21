@@ -5,7 +5,7 @@ import functools as ft
 import math
 import numbers
 import time
-#import tqdm
+
 
 global table
 table = []
@@ -74,142 +74,113 @@ def is_prime_sqrt(int a):
         table3.append(a)
         return [True, checks]
 
-def main(int myMax, int numLoops):
+def main(int my_max, int num_loops):
     print("Optimized LRU started.")
 
-    myFile = "files_runs/optimized_LRU_main_time.txt"
-    myFile2 = "files_runs/optimized_LRU_main_divisions.txt"
-    txt_output = open(myFile, 'a')
-    txt_output2 = open(myFile2, 'a')
-    timeList = []
-    divisionsList = []
+    my_file = "files_runs/optimized_LRU_main_time.txt"
+    my_file2 = "files_runs/optimized_LRU_main_divisions.txt"
+    txt_output = open(my_file, 'a')
+    txt_output2 = open(my_file2, 'a')
+    time_list = []
+    divisions_list = []
 
-    for j in range(0, numLoops, 1):
+    for j in range(0, num_loops, 1):
         global table
-        main_Time_Start = time.time()
-        for i in range(myMax):
+        tmp_time_start = time.time()
+        for i in range(my_max):
             tmp = is_prime(i)
             if tmp[0] == True:
-                #data1 = str("is_prime(" + str(i) + ") = " + str(tmp[0]) + "\n")
-                data1 = str(str(i) +'\n')
-                #data2 = str("There are " + str(len(table) - 1) + " many primes less than " + str(i) + "\n")
-                data3 = str("This took " + str(tmp[1]) + " divisions by previous primes to complete!" + "\n\n")
-                #myData = data1 + data2 + data3
-                myData = data1 + data3
-                divisionsList.append(myData)
+                divisions_list.append("{0} took {1} divisions by previous primes to complete!\n\n".format(i, tmp[1]))
 
+        tmp_time_total = time.time() - tmp_time_start
 
-        main_Time_End = time.time()
-        main_Time_Overall = (main_Time_End - main_Time_Start)
-
-        timerCount = str("Optimized LRU Normal Pass " + str(j + 1) + ": " + str(main_Time_Overall) + " seconds.\n")
-        txt_output.write(timerCount)
-        timeList.append(main_Time_Overall)
-        main_Time_Overall = 0
-        main_Time_End = 0
-        main_Time_Start = 0
+        txt_output.write("Optimized LRU Normal Pass {0} took {1} seconds.\n".format(j + 1, tmp_time_total))
+        time_list.append(tmp_time_total)
+        tmp_time_total = 0
+        tmp_time_start = 0
         table = []
 
-    for item in divisionsList:
+    for item in divisions_list:
         txt_output2.write(item)
 
-    timerAverage = ft.reduce(lambda a, b: a + b, timeList) / len(timeList)
-    txt_output.write("The average time it took to calulcate " + str(numLoops) + " optimized LRU normal passes was " + str(timerAverage))
-    timerAverage = 0
-    timeList = []
-    divisionsList = []
+    average_time = ft.reduce(lambda a, b: a + b, time_list) / len(time_list)
+    txt_output.write("The average time it took to calculate {0} optimized LRU normal passes was {1}.".format(num_loops, average_time))
+    average_time = 0
+    time_list = []
+    divisions_list = []
     txt_output.close()
     txt_output2.close()
 
-    #2nd Attempt with Half function
-    myFile = "files_runs/optimized_LRU_half_time.txt"
-    myFile2 = "files_runs/optimized_LRU_half_division.txt"
-    txt_output = open(myFile, 'a')
-    txt_output2 = open(myFile2, 'a')
+    # 2nd Attempt with Half function
+    my_file = "files_runs/optimized_LRU_half_time.txt"
+    my_file2 = "files_runs/optimized_LRU_half_division.txt"
+    txt_output = open(my_file, 'a')
+    txt_output2 = open(my_file2, 'a')
 
-    for j in range(0, numLoops, 1):
+    for j in range(0, num_loops, 1):
         global table2
-        main_Time1_Start = time.time()
-        for i in range(myMax):
+        tmp_time_start = time.time()
+        for i in range(my_max):
             tmp = is_prime_half(i)
             if tmp[0] == True:
-                #data1 = str("is_prime(" + str(i) + ") = " + str(tmp[0]) + "\n")
-                data1 = str(str(i) +'\n')
-                #data2 = str("There are " + str(len(table2) - 1) + " many primes less than " + str(i) + "\n")
-                data3 = str("This took " + str(tmp[1]) + " divisions by previous primes to complete!" + "\n\n")
-                #myData = data1 + data2 + data3
-                myData = data1 + data3
-                divisionsList.append(myData)
+                divisions_list.append("{0} took {1} divisions by previous primes to complete!\n\n".format(i, tmp[1]))
 
-        main_Time1_End = time.time()
-        main_Time1_Overall = (main_Time1_End - main_Time1_Start)
-        #print("Compiled Half Pass " + str(j + 1) + ": " + str(main_Time1_Overall) + " seconds.")
+        tmp_time_total = time.time() - tmp_time_start
 
-        timerCount1 = str("Optimized LRU Half Pass " + str(j + 1) + ": " + str(main_Time1_Overall) + " seconds.\n")
-        txt_output.write(timerCount1)
-        timeList.append(main_Time1_Overall)
-        main_Time1_Overall = 0
-        main_Time1_End = 0
-        main_Time1_Start = 0
+        txt_output.write("Optimized LRU Half Pass {0} took {1} seconds.\n".format(j + 1, tmp_time_total))
+        time_list.append(tmp_time_total)
+        tmp_time_total = 0
+        tmp_time_start = 0
         table2 = []
 
-    for item in divisionsList:
+    for item in divisions_list:
         txt_output2.write(item)
 
-    timerAverage = ft.reduce(lambda a, b: a + b, timeList) / len(timeList)
-    txt_output.write("The average time it took to calulcate " + str(numLoops) + " optimized LRU half passes was " + str(timerAverage))
-    timerAverage = 0
-    timeList = []
-    divisionsList = []
+    average_time = ft.reduce(lambda a, b: a + b, time_list) / len(time_list)
+    txt_output.write("The average time it took to calculate {0} optimized LRU half passes was {1}.".format(num_loops, average_time))
+    average_time = 0
+    time_list = []
+    divisions_list = []
     txt_output.close()
     txt_output2.close()
 
-    #3rd Attempt with Sqrt function
-    myFile = "files_runs/optimized_LRU_sqrt_time.txt"
-    myFile2 = "files_runs/optimized_LRU_sqrt_divisions.txt"
-    txt_output = open(myFile, 'a')
-    txt_output2 = open(myFile2, 'a')
+    # 3rd Attempt with Sqrt function
+    my_file = "files_runs/optimized_LRU_sqrt_time.txt"
+    my_file2 = "files_runs/optimized_LRU_sqrt_divisions.txt"
+    txt_output = open(my_file, 'a')
+    txt_output2 = open(my_file2, 'a')
 
-    for j in range(numLoops):
+    for j in range(num_loops):
         global table3
-        main_Time2_Start = time.time()
-        for i in range(myMax):
+        tmp_time_start = time.time()
+        for i in range(my_max):
             tmp = is_prime_sqrt(i)
             if tmp[0] == True:
-                #data1 = str("is_prime(" + str(i) + ") = " + str(tmp[0]) + "\n")
-                data1 = str(str(i) +'\n')
-                #data2 = str("There are " + str(len(table3) - 1) + " many primes less than " + str(i) + "\n")
-                data3 = str("This took " + str(tmp[1]) + " divisions by previous primes to complete!" + "\n\n")
-                #myData = data1 + data2 + data3
-                myData = data1 + data3
-                divisionsList.append(myData)
+                divisions_list.append("{0} took {1} divisions by previous primes to complete!\n\n".format(i, tmp[1]))
 
-        main_Time2_End = time.time()
-        main_Time2_Overall = (main_Time2_End - main_Time2_Start)
-        #print("Compiled Sqrt Pass " + str(j + 1) + ": " + str(main_Time2_Overall) + " seconds.")
+        tmp_time_total = time.time() - tmp_time_start
 
-        timerCount2 = str("Optimized LRU Sqrt Pass " + str(j + 1) + ": " + str(main_Time2_Overall) + " seconds.\n")
-        txt_output.write(timerCount2)
-        timeList.append(main_Time2_Overall)
-        main_Time2_Overall = 0
-        main_Time2_End = 0
-        main_Time2_Start = 0
+        txt_output.write("Optimized LRU Sqrt Pass {0} took {1} seconds.\n".format(j + 1, tmp_time_total))
+        time_list.append(tmp_time_total)
+        tmp_time_total = 0
+        tmp_time_start = 0
         table3 = []
 
-    for item in divisionsList:
+    for item in divisions_list:
         txt_output2.write(item)
 
-    timerAverage = ft.reduce(lambda a, b: a + b, timeList) / len(timeList)
-    txt_output.write("The average time it took to calulcate " + str(numLoops) + " optimized LRU square root passes was " + str(timerAverage))
-    timerAverage = 0
-    timeList = []
-    divisionsList = []
+    average_time = ft.reduce(lambda a, b: a + b, time_list) / len(time_list)
+    txt_output.write("The average time it took to calculate {0} optimized LRU square root passes was {1}.".format(num_loops, average_time))
+
+    del average_time
+    del time_list
+    del divisions_list
     txt_output.close()
     txt_output2.close()
 
-    nowTime = dt.datetime.now()
+    time_now = dt.datetime.now()
     print("-"*80)
-    print("Optimized LRU Finished at " + str(nowTime.year) + "/" + str(nowTime.month) + "/" + str(nowTime.day) + " " + str(nowTime.hour) + ":" + str(nowTime.minute) + ":" + str(nowTime.second) + ":" + str(nowTime.microsecond))
+    print("Optimized LRU Finished at {0}/{1}/{2} {3}:{4}:{5}:{6}".format(time_now.year, time_now.month, time_now.day, time_now.hour, time_now.minute, time_now.second, time_now.microsecond))
     print("Optimized is_prime.cache_info(): {0}".format(is_prime.cache_info()))
     print("Optimized is_prime_half.cache_info(): {0}".format(is_prime_half.cache_info()))
     print("Optimized is_prime_sqrt.cache_info(): {0}".format(is_prime_sqrt.cache_info()))

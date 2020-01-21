@@ -5,7 +5,7 @@ import functools as ft
 import math
 import numbers
 import time
-#import tqdm
+
 
 global table
 table = []
@@ -71,161 +71,110 @@ def is_prime_sqrt(a):
         table3.append(a)
         return [True, checks]
 
-def main(myMax, numLoops):
+def main(my_max, num_loops):
     print("Compiled started.")
 
-    myFile = "files_runs/compiled_main_time.txt"
-    myFile2 = "files_runs/compiled_main_divisions.txt"
-    txt_output = open(myFile, 'a')
-    txt_output2 = open(myFile2, 'a')
-    timeList = []
-    divisionsList = []
+    my_file = "files_runs/compiled_main_time.txt"
+    my_file2 = "files_runs/compiled_main_divisions.txt"
+    txt_output = open(my_file, 'a')
+    txt_output2 = open(my_file2, 'a')
+    time_list = []
+    divisions_list = []
 
-    #loopNum1 = tqdm.tqdm(total=numLoops, desc="Compiled Main Loops", unit=" loops", position=4)
-    for j in range(numLoops):
+    for j in range(num_loops):
         global table
-        #loopMax1 = tqdm.tqdm(total=myMax, desc="Compiled Main Numbers", unit=" nums", position=5, leave=False)
-        main_Time_Start = time.time()
-        for i in range(myMax):
+        tmp_time_start = time.time()
+        for i in range(my_max):
             tmp = is_prime(i)
             if tmp[0] == True:
-                #data1 = str("is_prime(" + str(i) + ") = " + str(tmp[0]) + "\n")
-                data1 = str(str(i) +'\n')
-                #data2 = str("There are " + str(len(table) - 1) + " many primes less than " + str(i) + "\n")
-                data3 = str("This took " + str(tmp[1]) + " divisions by previous primes to complete!" + "\n\n")
-                #myData = data1 + data2 + data3
-                myData = data1 + data3
-                divisionsList.append(myData)
-            #loopMax1.update(1)
-            #loopNum1.update(1 / myMax)
+                divisions_list.append("{0} took {1} divisions by previous primes to complete!\n\n".format(i, tmp[1]))
 
-        #loopMax1.clear()
-        #loopMax1.close()
+        tmp_time_total = time.time() - tmp_time_start
 
-        main_Time_End = time.time()
-        main_Time_Overall = (main_Time_End - main_Time_Start)
-
-        timerCount = str("Compiled Normal Pass " + str(j + 1) + ": " + str(main_Time_Overall) + " seconds.\n")
-        txt_output.write(timerCount)
-        timeList.append(main_Time_Overall)
-        main_Time_Overall = 0
-        main_Time_End = 0
-        main_Time_Start = 0
+        txt_output.write("Compiled Normal Pass {0} took {1} seconds.\n".format(j + 1, tmp_time_total))
+        time_list.append(tmp_time_total)
+        tmp_time_total = 0
+        tmp_time_start = 0
         table = []
 
-    for item in divisionsList:
+    for item in divisions_list:
         txt_output2.write(item)
 
-    timerAverage = ft.reduce(lambda a, b: a + b, timeList) / len(timeList)
-    txt_output.write("The average time it took to calulcate " + str(numLoops) + " compiled normal passes  was " + str(timerAverage))
-    timerAverage = 0
-    timeList = []
-    divisionsList = []
+    average_time = ft.reduce(lambda a, b: a + b, time_list) / len(time_list)
+    txt_output.write("The average time it took to calculate {0} compiled normal passes was {1}.".format(num_loops, average_time))
+    average_time = 0
+    time_list = []
+    divisions_list = []
     txt_output.close()
     txt_output2.close()
 
-    #2nd Attempt with Half function
-    myFile = "files_runs/compiled_half_time.txt"
-    myFile2 = "files_runs/compiled_half_division.txt"
-    txt_output = open(myFile, 'a')
-    txt_output2 = open(myFile2, 'a')
+    # 2nd Attempt with Half function
+    my_file = "files_runs/compiled_half_time.txt"
+    my_file2 = "files_runs/compiled_half_division.txt"
+    txt_output = open(my_file, 'a')
+    txt_output2 = open(my_file2, 'a')
 
-    #loopNum2 = tqdm.tqdm(total=numLoops, desc="Compiled Half Loops", unit=" loops", position=5)
-    for j in range(numLoops):
+    for j in range(num_loops):
         global table2
-        #loopMax2 = tqdm.tqdm(total=myMax, desc="Compiled Half Numbers", unit=" nums", position=6, leave=False)
-        main_Time1_Start = time.time()
-        for i in range(myMax):
+        tmp_time_start = time.time()
+        for i in range(my_max):
             tmp = is_prime_half(i)
             if tmp[0] == True:
-                #data1 = str("is_prime(" + str(i) + ") = " + str(tmp[0]) + "\n")
-                data1 = str(str(i) +'\n')
-                #data2 = str("There are " + str(len(table2) - 1) + " many primes less than " + str(i) + "\n")
-                data3 = str("This took " + str(tmp[1]) + " divisions by previous primes to complete!" + "\n\n")
-                #myData = data1 + data2 + data3
-                myData = data1 + data3
-                divisionsList.append(myData)
-            #loopMax2.update(1)
-            #loopNum2.update(1 / myMax)
+                divisions_list.append("{0} took {1} divisions by previous primes to complete!\n\n".format(i, tmp[1]))
 
-        #loopMax2.clear()
-        #loopMax2.close()
+        tmp_time_total = time.time() - tmp_time_start
 
-        main_Time1_End = time.time()
-        main_Time1_Overall = (main_Time1_End - main_Time1_Start)
-        #print("Compiled Half Pass " + str(j + 1) + ": " + str(main_Time1_Overall) + " seconds.")
-
-        timerCount1 = str("Compiled Half Pass " + str(j + 1) + ": " + str(main_Time1_Overall) + " seconds.\n")
-        txt_output.write(timerCount1)
-        timeList.append(main_Time1_Overall)
-        main_Time1_Overall = 0
-        main_Time1_End = 0
-        main_Time1_Start = 0
+        txt_output.write("Compiled Half Pass {0} took {1} seconds.\n".format(j + 1, tmp_time_total))
+        time_list.append(tmp_time_total)
+        tmp_time_total = 0
+        tmp_time_start = 0
         table2 = []
 
-    for item in divisionsList:
+    for item in divisions_list:
         txt_output2.write(item)
 
-    timerAverage = ft.reduce(lambda a, b: a + b, timeList) / len(timeList)
-    txt_output.write("The average time it took to calulcate " + str(numLoops) + " compiled half passes  was " + str(timerAverage))
-    timerAverage = 0
-    timeList = []
-    divisionsList = []
+    average_time = ft.reduce(lambda a, b: a + b, time_list) / len(time_list)
+    txt_output.write("The average time it took to calculate {0} compiled half passes was {1}.".format(num_loops, average_time))
+    average_time = 0
+    time_list = []
+    divisions_list = []
     txt_output.close()
     txt_output2.close()
 
-    #3rd Attempt with Sqrt function
-    myFile = "files_runs/compiled_sqrt_time.txt"
-    myFile2 = "files_runs/compiled_sqrt_divisions.txt"
-    txt_output = open(myFile, 'a')
-    txt_output2 = open(myFile2, 'a')
+    # 3rd Attempt with Sqrt function
+    my_file = "files_runs/compiled_sqrt_time.txt"
+    my_file2 = "files_runs/compiled_sqrt_divisions.txt"
+    txt_output = open(my_file, 'a')
+    txt_output2 = open(my_file2, 'a')
 
-    #loopNum3 = tqdm.tqdm(total=numLoops, desc="Compiled Sqrt Loops", unit=" loops", position=6)
-    for j in range(numLoops):
+    for j in range(num_loops):
         global table3
-        #loopMax3 = tqdm.tqdm(total=myMax, desc="Compiled Sqrt Numbers", unit=" nums", position=7, leave=False)
-        main_Time2_Start = time.time()
-        for i in range(myMax):
+        tmp_time_start = time.time()
+        for i in range(my_max):
             tmp = is_prime_sqrt(i)
             if tmp[0] == True:
-                #data1 = str("is_prime(" + str(i) + ") = " + str(tmp[0]) + "\n")
-                data1 = str(str(i) +'\n')
-                #data2 = str("There are " + str(len(table3) - 1) + " many primes less than " + str(i) + "\n")
-                data3 = str("This took " + str(tmp[1]) + " divisions by previous primes to complete!" + "\n\n")
-                #myData = data1 + data2 + data3
-                myData = data1 + data3
-                divisionsList.append(myData)
-            #loopMax3.update(1)
-            #loopNum3.update(1 / myMax)
+                divisions_list.append("{0} took {1} divisions by previous primes to complete!\n\n".format(i, tmp[1]))
 
-        #loopMax3.clear()
-        #loopMax3.close()
+        tmp_time_total = time.time() - tmp_time_start
 
-        main_Time2_End = time.time()
-        main_Time2_Overall = (main_Time2_End - main_Time2_Start)
-        #print("Compiled Sqrt Pass " + str(j + 1) + ": " + str(main_Time2_Overall) + " seconds.")
-
-        timerCount2 = str("Compiled Sqrt Pass " + str(j + 1) + ": " + str(main_Time2_Overall) + " seconds.\n")
-        txt_output.write(timerCount2)
-        timeList.append(main_Time2_Overall)
-        main_Time2_Overall = 0
-        main_Time2_End = 0
-        main_Time2_Start = 0
+        txt_output.write("Compiled Sqrt Pass {0} took {1} seconds.\n".format(j + 1, tmp_time_total))
+        time_list.append(tmp_time_total)
+        tmp_time_total = 0
+        tmp_time_start = 0
         table3 = []
 
-    for item in divisionsList:
+    for item in divisions_list:
         txt_output2.write(item)
 
-    timerAverage = ft.reduce(lambda a, b: a + b, timeList) / len(timeList)
-    txt_output.write("The average time it took to calulcate " + str(numLoops) + " compiled square root passes  was " + str(timerAverage))
-    timerAverage = 0
-    timeList = []
-    divisionsList = []
+    average_time = ft.reduce(lambda a, b: a + b, time_list) / len(time_list)
+    txt_output.write("The average time it took to calculate {0} compiled square root passes was {1}.".format(num_loops, average_time))
+
+    del average_time
+    del time_list
+    del divisions_list
     txt_output.close()
     txt_output2.close()
 
-    nowTime = dt.datetime.now()
-    #loopNum3.write("-"*80)
-    #loopNum3.write("Compiled Finished at " + str(nowTime.year) + "/" + str(nowTime.month) + "/" + str(nowTime.day) + " " + str(nowTime.hour) + ":" + str(nowTime.minute) + ":" + str(nowTime.second) + ":" + str(nowTime.microsecond))
+    time_now = dt.datetime.now()
     print("-"*80)
-    print("Compiled Finished at " + str(nowTime.year) + "/" + str(nowTime.month) + "/" + str(nowTime.day) + " " + str(nowTime.hour) + ":" + str(nowTime.minute) + ":" + str(nowTime.second) + ":" + str(nowTime.microsecond))
+    print("Compiled Finished at {0}/{1}/{2} {3}:{4}:{5}:{6}".format(time_now.year, time_now.month, time_now.day, time_now.hour, time_now.minute, time_now.second, time_now.microsecond))
