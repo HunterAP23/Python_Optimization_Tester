@@ -1,11 +1,18 @@
 @echo off
 
-for %%c in (*.txt) do (
+for /R %%c in (files_compile\*.txt files_runs\*.txt) do (
 	del "%%c"
 )
 
-"D:\Downloads\CompTools\Media\ptime-10\ptime.exe" python.exe master1.py build_ext --inplace >> compile_time1.txt
+mkdir "files_compile" 2>nul
 
-"D:\Downloads\CompTools\Media\ptime-10\ptime.exe" python.exe master2.py build_ext --inplace >> compile_time2.txt
+rem C:\Python37\python.exe
+"D:\Downloads\CompTools\Media\ptime-10\ptime.exe" python.exe master1.py build_ext --inplace >> files_compile\compile_time1.txt
 
-python.exe tester.py
+"D:\Downloads\CompTools\Media\ptime-10\ptime.exe" python.exe master1_LRU.py build_ext --inplace >> files_compile\compile_time1_LRU.txt
+
+"D:\Downloads\CompTools\Media\ptime-10\ptime.exe" python.exe master2.py build_ext --inplace >> files_compile\compile_time2.txt
+
+"D:\Downloads\CompTools\Media\ptime-10\ptime.exe" python.exe master2_LRU.py build_ext --inplace >> files_compile\compile_time2_LRU.txt
+
+python.exe "tester.py"

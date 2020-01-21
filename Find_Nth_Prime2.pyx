@@ -1,11 +1,11 @@
-import numbers
-import decimal
-import math
-import time
-import datetime
-#import tqdm
 cimport cython
-from functools import reduce
+import datetime as dt
+import decimal
+import functools as ft
+import math
+import numbers
+import time
+#import tqdm
 
 global table
 table = []
@@ -74,8 +74,8 @@ def is_prime_sqrt(int a):
 def main(int myMax, int numLoops):
     print("Optimized started.")
 
-    myFile = "optimized_main_time.txt"
-    myFile2 = "optimized_main_divisions.txt"
+    myFile = "files_runs/optimized_main_time.txt"
+    myFile2 = "files_runs/optimized_main_divisions.txt"
     txt_output = open(myFile, 'a')
     txt_output2 = open(myFile2, 'a')
     timeList = []
@@ -110,7 +110,7 @@ def main(int myMax, int numLoops):
     for item in divisionsList:
         txt_output2.write(item)
 
-    timerAverage = reduce(lambda a, b: a + b, timeList) / len(timeList)
+    timerAverage = ft.reduce(lambda a, b: a + b, timeList) / len(timeList)
     txt_output.write("The average time it took to calulcate " + str(numLoops) + " optimized normal passes was " + str(timerAverage))
     timerAverage = 0
     timeList = []
@@ -119,8 +119,8 @@ def main(int myMax, int numLoops):
     txt_output2.close()
 
     #2nd Attempt with Half function
-    myFile = "optimized_half_time.txt"
-    myFile2 = "optimized_half_division.txt"
+    myFile = "files_runs/optimized_half_time.txt"
+    myFile2 = "files_runs/optimized_half_division.txt"
     txt_output = open(myFile, 'a')
     txt_output2 = open(myFile2, 'a')
 
@@ -153,7 +153,7 @@ def main(int myMax, int numLoops):
     for item in divisionsList:
         txt_output2.write(item)
 
-    timerAverage = reduce(lambda a, b: a + b, timeList) / len(timeList)
+    timerAverage = ft.reduce(lambda a, b: a + b, timeList) / len(timeList)
     txt_output.write("The average time it took to calulcate " + str(numLoops) + " optimized half passes was " + str(timerAverage))
     timerAverage = 0
     timeList = []
@@ -162,8 +162,8 @@ def main(int myMax, int numLoops):
     txt_output2.close()
 
     #3rd Attempt with Sqrt function
-    myFile = "optimized_sqrt_time.txt"
-    myFile2 = "optimized_sqrt_divisions.txt"
+    myFile = "files_runs/optimized_sqrt_time.txt"
+    myFile2 = "files_runs/optimized_sqrt_divisions.txt"
     txt_output = open(myFile, 'a')
     txt_output2 = open(myFile2, 'a')
 
@@ -196,7 +196,7 @@ def main(int myMax, int numLoops):
     for item in divisionsList:
         txt_output2.write(item)
 
-    timerAverage = reduce(lambda a, b: a + b, timeList) / len(timeList)
+    timerAverage = ft.reduce(lambda a, b: a + b, timeList) / len(timeList)
     txt_output.write("The average time it took to calulcate " + str(numLoops) + " optimized square root passes was " + str(timerAverage))
     timerAverage = 0
     timeList = []
@@ -204,6 +204,6 @@ def main(int myMax, int numLoops):
     txt_output.close()
     txt_output2.close()
 
-    nowTime = datetime.datetime.now()
+    nowTime = dt.datetime.now()
     print("-"*80)
     print("Optimized Finished at " + str(nowTime.year) + "/" + str(nowTime.month) + "/" + str(nowTime.day) + " " + str(nowTime.hour) + ":" + str(nowTime.minute) + ":" + str(nowTime.second) + ":" + str(nowTime.microsecond))

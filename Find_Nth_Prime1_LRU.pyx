@@ -16,6 +16,7 @@ table2 = []
 global table3
 table3 = []
 
+@ft.lru_cache(maxsize=None)
 def is_prime(a):
     global table
     checks = 0
@@ -33,6 +34,7 @@ def is_prime(a):
         table.append(a)
         return [True, checks]
 
+@ft.lru_cache(maxsize=None)
 def is_prime_half(a):
     global table2
     checks = 0
@@ -52,6 +54,7 @@ def is_prime_half(a):
         table2.append(a)
         return [True, checks]
 
+@ft.lru_cache(maxsize=None)
 def is_prime_sqrt(a):
     global table3
     checks = 0
@@ -72,10 +75,10 @@ def is_prime_sqrt(a):
         return [True, checks]
 
 def main(myMax, numLoops):
-    print("Compiled started.")
+    print("Compiled LRU started.")
 
-    myFile = "files_runs/compiled_main_time.txt"
-    myFile2 = "files_runs/compiled_main_divisions.txt"
+    myFile = "files_runs/compiled_LRU_main_time.txt"
+    myFile2 = "files_runs/compiled_LRU_main_divisions.txt"
     txt_output = open(myFile, 'a')
     txt_output2 = open(myFile2, 'a')
     timeList = []
@@ -105,7 +108,7 @@ def main(myMax, numLoops):
         main_Time_End = time.time()
         main_Time_Overall = (main_Time_End - main_Time_Start)
 
-        timerCount = str("Compiled Normal Pass " + str(j + 1) + ": " + str(main_Time_Overall) + " seconds.\n")
+        timerCount = str("Compiled LRU Normal Pass " + str(j + 1) + ": " + str(main_Time_Overall) + " seconds.\n")
         txt_output.write(timerCount)
         timeList.append(main_Time_Overall)
         main_Time_Overall = 0
@@ -117,7 +120,7 @@ def main(myMax, numLoops):
         txt_output2.write(item)
 
     timerAverage = ft.reduce(lambda a, b: a + b, timeList) / len(timeList)
-    txt_output.write("The average time it took to calulcate " + str(numLoops) + " compiled normal passes  was " + str(timerAverage))
+    txt_output.write("The average time it took to calulcate " + str(numLoops) + " compiled LRU normal passes  was " + str(timerAverage))
     timerAverage = 0
     timeList = []
     divisionsList = []
@@ -125,8 +128,8 @@ def main(myMax, numLoops):
     txt_output2.close()
 
     #2nd Attempt with Half function
-    myFile = "files_runs/compiled_half_time.txt"
-    myFile2 = "files_runs/compiled_half_division.txt"
+    myFile = "files_runs/compiled_LRU_half_time.txt"
+    myFile2 = "files_runs/compiled_LRU_half_division.txt"
     txt_output = open(myFile, 'a')
     txt_output2 = open(myFile2, 'a')
 
@@ -155,7 +158,7 @@ def main(myMax, numLoops):
         main_Time1_Overall = (main_Time1_End - main_Time1_Start)
         #print("Compiled Half Pass " + str(j + 1) + ": " + str(main_Time1_Overall) + " seconds.")
 
-        timerCount1 = str("Compiled Half Pass " + str(j + 1) + ": " + str(main_Time1_Overall) + " seconds.\n")
+        timerCount1 = str("Compiled LRU Half Pass " + str(j + 1) + ": " + str(main_Time1_Overall) + " seconds.\n")
         txt_output.write(timerCount1)
         timeList.append(main_Time1_Overall)
         main_Time1_Overall = 0
@@ -167,7 +170,7 @@ def main(myMax, numLoops):
         txt_output2.write(item)
 
     timerAverage = ft.reduce(lambda a, b: a + b, timeList) / len(timeList)
-    txt_output.write("The average time it took to calulcate " + str(numLoops) + " compiled half passes  was " + str(timerAverage))
+    txt_output.write("The average time it took to calulcate " + str(numLoops) + " compiled LRU half passes  was " + str(timerAverage))
     timerAverage = 0
     timeList = []
     divisionsList = []
@@ -175,8 +178,8 @@ def main(myMax, numLoops):
     txt_output2.close()
 
     #3rd Attempt with Sqrt function
-    myFile = "files_runs/compiled_sqrt_time.txt"
-    myFile2 = "files_runs/compiled_sqrt_divisions.txt"
+    myFile = "files_runs/compiled_LRU_sqrt_time.txt"
+    myFile2 = "files_runs/compiled_LRU_sqrt_divisions.txt"
     txt_output = open(myFile, 'a')
     txt_output2 = open(myFile2, 'a')
 
@@ -205,7 +208,7 @@ def main(myMax, numLoops):
         main_Time2_Overall = (main_Time2_End - main_Time2_Start)
         #print("Compiled Sqrt Pass " + str(j + 1) + ": " + str(main_Time2_Overall) + " seconds.")
 
-        timerCount2 = str("Compiled Sqrt Pass " + str(j + 1) + ": " + str(main_Time2_Overall) + " seconds.\n")
+        timerCount2 = str("Compiled LRU Sqrt Pass " + str(j + 1) + ": " + str(main_Time2_Overall) + " seconds.\n")
         txt_output.write(timerCount2)
         timeList.append(main_Time2_Overall)
         main_Time2_Overall = 0
@@ -217,7 +220,7 @@ def main(myMax, numLoops):
         txt_output2.write(item)
 
     timerAverage = ft.reduce(lambda a, b: a + b, timeList) / len(timeList)
-    txt_output.write("The average time it took to calulcate " + str(numLoops) + " compiled square root passes  was " + str(timerAverage))
+    txt_output.write("The average time it took to calulcate " + str(numLoops) + " compiled LRU square root passes  was " + str(timerAverage))
     timerAverage = 0
     timeList = []
     divisionsList = []
@@ -228,4 +231,7 @@ def main(myMax, numLoops):
     #loopNum3.write("-"*80)
     #loopNum3.write("Compiled Finished at " + str(nowTime.year) + "/" + str(nowTime.month) + "/" + str(nowTime.day) + " " + str(nowTime.hour) + ":" + str(nowTime.minute) + ":" + str(nowTime.second) + ":" + str(nowTime.microsecond))
     print("-"*80)
-    print("Compiled Finished at " + str(nowTime.year) + "/" + str(nowTime.month) + "/" + str(nowTime.day) + " " + str(nowTime.hour) + ":" + str(nowTime.minute) + ":" + str(nowTime.second) + ":" + str(nowTime.microsecond))
+    print("Compiled LRU Finished at " + str(nowTime.year) + "/" + str(nowTime.month) + "/" + str(nowTime.day) + " " + str(nowTime.hour) + ":" + str(nowTime.minute) + ":" + str(nowTime.second) + ":" + str(nowTime.microsecond))
+    print("Compiled is_prime.cache_info(): {0}".format(is_prime.cache_info()))
+    print("Compiled is_prime_half.cache_info(): {0}".format(is_prime_half.cache_info()))
+    print("Compiled is_prime_sqrt.cache_info(): {0}".format(is_prime_sqrt.cache_info()))

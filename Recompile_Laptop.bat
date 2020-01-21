@@ -12,6 +12,6 @@ for %%c in (*.pyd, *.c) do (
 
 "C:\Users\etgar\Downloads\CompTools\Media\ptime-10\ptime.exe" python master2.py build_ext --inplace >> compile_time2.txt
 
-python tester.py
+python "tester.py"
 
 pause

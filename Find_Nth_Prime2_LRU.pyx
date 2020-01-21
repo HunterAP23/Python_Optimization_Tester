@@ -16,9 +16,10 @@ table2 = []
 global table3
 table3 = []
 
-def is_prime(a):
+@ft.lru_cache(maxsize=None)
+def is_prime(int a):
     global table
-    checks = 0
+    cdef int checks = 0
 
     if a <= 1:
         return [False, 0]
@@ -33,9 +34,10 @@ def is_prime(a):
         table.append(a)
         return [True, checks]
 
-def is_prime_half(a):
+@ft.lru_cache(maxsize=None)
+def is_prime_half(int a):
     global table2
-    checks = 0
+    cdef int checks = 0
 
     if a <= 1:
         return [False, 0]
@@ -52,9 +54,10 @@ def is_prime_half(a):
         table2.append(a)
         return [True, checks]
 
-def is_prime_sqrt(a):
+@ft.lru_cache(maxsize=None)
+def is_prime_sqrt(int a):
     global table3
-    checks = 0
+    cdef int checks = 0
 
     if a <= 1:
         return [False, 0]
@@ -71,20 +74,18 @@ def is_prime_sqrt(a):
         table3.append(a)
         return [True, checks]
 
-def main(myMax, numLoops):
-    print("Compiled started.")
+def main(int myMax, int numLoops):
+    print("Optimized LRU started.")
 
-    myFile = "files_runs/compiled_main_time.txt"
-    myFile2 = "files_runs/compiled_main_divisions.txt"
+    myFile = "files_runs/optimized_LRU_main_time.txt"
+    myFile2 = "files_runs/optimized_LRU_main_divisions.txt"
     txt_output = open(myFile, 'a')
     txt_output2 = open(myFile2, 'a')
     timeList = []
     divisionsList = []
 
-    #loopNum1 = tqdm.tqdm(total=numLoops, desc="Compiled Main Loops", unit=" loops", position=4)
-    for j in range(numLoops):
+    for j in range(0, numLoops, 1):
         global table
-        #loopMax1 = tqdm.tqdm(total=myMax, desc="Compiled Main Numbers", unit=" nums", position=5, leave=False)
         main_Time_Start = time.time()
         for i in range(myMax):
             tmp = is_prime(i)
@@ -96,16 +97,12 @@ def main(myMax, numLoops):
                 #myData = data1 + data2 + data3
                 myData = data1 + data3
                 divisionsList.append(myData)
-            #loopMax1.update(1)
-            #loopNum1.update(1 / myMax)
 
-        #loopMax1.clear()
-        #loopMax1.close()
 
         main_Time_End = time.time()
         main_Time_Overall = (main_Time_End - main_Time_Start)
 
-        timerCount = str("Compiled Normal Pass " + str(j + 1) + ": " + str(main_Time_Overall) + " seconds.\n")
+        timerCount = str("Optimized LRU Normal Pass " + str(j + 1) + ": " + str(main_Time_Overall) + " seconds.\n")
         txt_output.write(timerCount)
         timeList.append(main_Time_Overall)
         main_Time_Overall = 0
@@ -117,7 +114,7 @@ def main(myMax, numLoops):
         txt_output2.write(item)
 
     timerAverage = ft.reduce(lambda a, b: a + b, timeList) / len(timeList)
-    txt_output.write("The average time it took to calulcate " + str(numLoops) + " compiled normal passes  was " + str(timerAverage))
+    txt_output.write("The average time it took to calulcate " + str(numLoops) + " optimized LRU normal passes was " + str(timerAverage))
     timerAverage = 0
     timeList = []
     divisionsList = []
@@ -125,15 +122,13 @@ def main(myMax, numLoops):
     txt_output2.close()
 
     #2nd Attempt with Half function
-    myFile = "files_runs/compiled_half_time.txt"
-    myFile2 = "files_runs/compiled_half_division.txt"
+    myFile = "files_runs/optimized_LRU_half_time.txt"
+    myFile2 = "files_runs/optimized_LRU_half_division.txt"
     txt_output = open(myFile, 'a')
     txt_output2 = open(myFile2, 'a')
 
-    #loopNum2 = tqdm.tqdm(total=numLoops, desc="Compiled Half Loops", unit=" loops", position=5)
-    for j in range(numLoops):
+    for j in range(0, numLoops, 1):
         global table2
-        #loopMax2 = tqdm.tqdm(total=myMax, desc="Compiled Half Numbers", unit=" nums", position=6, leave=False)
         main_Time1_Start = time.time()
         for i in range(myMax):
             tmp = is_prime_half(i)
@@ -145,17 +140,12 @@ def main(myMax, numLoops):
                 #myData = data1 + data2 + data3
                 myData = data1 + data3
                 divisionsList.append(myData)
-            #loopMax2.update(1)
-            #loopNum2.update(1 / myMax)
-
-        #loopMax2.clear()
-        #loopMax2.close()
 
         main_Time1_End = time.time()
         main_Time1_Overall = (main_Time1_End - main_Time1_Start)
         #print("Compiled Half Pass " + str(j + 1) + ": " + str(main_Time1_Overall) + " seconds.")
 
-        timerCount1 = str("Compiled Half Pass " + str(j + 1) + ": " + str(main_Time1_Overall) + " seconds.\n")
+        timerCount1 = str("Optimized LRU Half Pass " + str(j + 1) + ": " + str(main_Time1_Overall) + " seconds.\n")
         txt_output.write(timerCount1)
         timeList.append(main_Time1_Overall)
         main_Time1_Overall = 0
@@ -167,7 +157,7 @@ def main(myMax, numLoops):
         txt_output2.write(item)
 
     timerAverage = ft.reduce(lambda a, b: a + b, timeList) / len(timeList)
-    txt_output.write("The average time it took to calulcate " + str(numLoops) + " compiled half passes  was " + str(timerAverage))
+    txt_output.write("The average time it took to calulcate " + str(numLoops) + " optimized LRU half passes was " + str(timerAverage))
     timerAverage = 0
     timeList = []
     divisionsList = []
@@ -175,15 +165,13 @@ def main(myMax, numLoops):
     txt_output2.close()
 
     #3rd Attempt with Sqrt function
-    myFile = "files_runs/compiled_sqrt_time.txt"
-    myFile2 = "files_runs/compiled_sqrt_divisions.txt"
+    myFile = "files_runs/optimized_LRU_sqrt_time.txt"
+    myFile2 = "files_runs/optimized_LRU_sqrt_divisions.txt"
     txt_output = open(myFile, 'a')
     txt_output2 = open(myFile2, 'a')
 
-    #loopNum3 = tqdm.tqdm(total=numLoops, desc="Compiled Sqrt Loops", unit=" loops", position=6)
     for j in range(numLoops):
         global table3
-        #loopMax3 = tqdm.tqdm(total=myMax, desc="Compiled Sqrt Numbers", unit=" nums", position=7, leave=False)
         main_Time2_Start = time.time()
         for i in range(myMax):
             tmp = is_prime_sqrt(i)
@@ -195,17 +183,12 @@ def main(myMax, numLoops):
                 #myData = data1 + data2 + data3
                 myData = data1 + data3
                 divisionsList.append(myData)
-            #loopMax3.update(1)
-            #loopNum3.update(1 / myMax)
-
-        #loopMax3.clear()
-        #loopMax3.close()
 
         main_Time2_End = time.time()
         main_Time2_Overall = (main_Time2_End - main_Time2_Start)
         #print("Compiled Sqrt Pass " + str(j + 1) + ": " + str(main_Time2_Overall) + " seconds.")
 
-        timerCount2 = str("Compiled Sqrt Pass " + str(j + 1) + ": " + str(main_Time2_Overall) + " seconds.\n")
+        timerCount2 = str("Optimized LRU Sqrt Pass " + str(j + 1) + ": " + str(main_Time2_Overall) + " seconds.\n")
         txt_output.write(timerCount2)
         timeList.append(main_Time2_Overall)
         main_Time2_Overall = 0
@@ -217,7 +200,7 @@ def main(myMax, numLoops):
         txt_output2.write(item)
 
     timerAverage = ft.reduce(lambda a, b: a + b, timeList) / len(timeList)
-    txt_output.write("The average time it took to calulcate " + str(numLoops) + " compiled square root passes  was " + str(timerAverage))
+    txt_output.write("The average time it took to calulcate " + str(numLoops) + " optimized LRU square root passes was " + str(timerAverage))
     timerAverage = 0
     timeList = []
     divisionsList = []
@@ -225,7 +208,8 @@ def main(myMax, numLoops):
     txt_output2.close()
 
     nowTime = dt.datetime.now()
-    #loopNum3.write("-"*80)
-    #loopNum3.write("Compiled Finished at " + str(nowTime.year) + "/" + str(nowTime.month) + "/" + str(nowTime.day) + " " + str(nowTime.hour) + ":" + str(nowTime.minute) + ":" + str(nowTime.second) + ":" + str(nowTime.microsecond))
     print("-"*80)
-    print("Compiled Finished at " + str(nowTime.year) + "/" + str(nowTime.month) + "/" + str(nowTime.day) + " " + str(nowTime.hour) + ":" + str(nowTime.minute) + ":" + str(nowTime.second) + ":" + str(nowTime.microsecond))
+    print("Optimized LRU Finished at " + str(nowTime.year) + "/" + str(nowTime.month) + "/" + str(nowTime.day) + " " + str(nowTime.hour) + ":" + str(nowTime.minute) + ":" + str(nowTime.second) + ":" + str(nowTime.microsecond))
+    print("Optimized is_prime.cache_info(): {0}".format(is_prime.cache_info()))
+    print("Optimized is_prime_half.cache_info(): {0}".format(is_prime_half.cache_info()))
+    print("Optimized is_prime_sqrt.cache_info(): {0}".format(is_prime_sqrt.cache_info()))

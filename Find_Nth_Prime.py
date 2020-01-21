@@ -1,10 +1,10 @@
-import numbers
+import datetime as dt
 import decimal
+import functools as ft
 import math
+import numbers
 import time
-import datetime
 #import tqdm
-from functools import reduce
 
 global table
 table = []
@@ -73,8 +73,8 @@ def is_prime_sqrt(a):
 def main(myMax, numLoops):
     print("Default started.")
 
-    myFile = "non-compiled_main_time.txt"
-    myFile2 = "non-compiled_main_divisions.txt"
+    myFile = "files_runs/non-compiled_main_time.txt"
+    myFile2 = "files_runs/non-compiled_main_divisions.txt"
     txt_output = open(myFile, 'a')
     txt_output2 = open(myFile2, 'a')
     timeList = []
@@ -115,7 +115,7 @@ def main(myMax, numLoops):
     for item in divisionsList:
         txt_output2.write(item)
 
-    timerAverage = reduce(lambda a, b: a + b, timeList) / len(timeList)
+    timerAverage = ft.reduce(lambda a, b: a + b, timeList) / len(timeList)
     txt_output.write("The average time it took to calulcate " + str(numLoops) + " non-compiled normal passes was " + str(timerAverage))
     timerAverage = 0
     timeList = []
@@ -124,8 +124,8 @@ def main(myMax, numLoops):
     txt_output2.close()
 
     #2nd Attempt with Half function
-    myFile = "non-compiled_half_time.txt"
-    myFile2 = "non-compiled_half_division.txt"
+    myFile = "files_runs/non-compiled_half_time.txt"
+    myFile2 = "files_runs/non-compiled_half_division.txt"
     txt_output = open(myFile, 'a')
     txt_output2 = open(myFile2, 'a')
 
@@ -165,7 +165,7 @@ def main(myMax, numLoops):
     for item in divisionsList:
         txt_output2.write(item)
 
-    timerAverage = reduce(lambda a, b: a + b, timeList) / len(timeList)
+    timerAverage = ft.reduce(lambda a, b: a + b, timeList) / len(timeList)
     txt_output.write("The average time it took to calulcate " + str(numLoops) + " non-compiled half passes was " + str(timerAverage))
     timerAverage = 0
     timeList = []
@@ -174,8 +174,8 @@ def main(myMax, numLoops):
     txt_output2.close()
 
     #3rd Attempt with Sqrt function
-    myFile = "non-compiled_sqrt_time.txt"
-    myFile2 = "non-compiled_sqrt_divisions.txt"
+    myFile = "files_runs/non-compiled_sqrt_time.txt"
+    myFile2 = "files_runs/non-compiled_sqrt_divisions.txt"
     txt_output = open(myFile, 'a')
     txt_output2 = open(myFile2, 'a')
 
@@ -215,7 +215,7 @@ def main(myMax, numLoops):
     for item in divisionsList:
         txt_output2.write(item)
 
-    timerAverage = reduce(lambda a, b: a + b, timeList) / len(timeList)
+    timerAverage = ft.reduce(lambda a, b: a + b, timeList) / len(timeList)
     txt_output.write("The average time it took to calulcate " + str(numLoops) + " non-compiled square root passes was " + str(timerAverage))
     timerAverage = 0
     timeList = []
@@ -223,7 +223,8 @@ def main(myMax, numLoops):
     txt_output.close()
     txt_output2.close()
 
-    nowTime = datetime.datetime.now()
+    nowTime = dt.datetime.now()
     #loopNum3.write("-"*80)
     #loopNum3.write("Default Finished at " + str(nowTime.year) + "/" + str(nowTime.month) + "/" + str(nowTime.day) + " " + str(nowTime.hour) + ":" + str(nowTime.minute) + ":" + str(nowTime.second) + ":" + str(nowTime.microsecond))
+    print("-"*80)
     print("Default Finished at " + str(nowTime.year) + "/" + str(nowTime.month) + "/" + str(nowTime.day) + " " + str(nowTime.hour) + ":" + str(nowTime.minute) + ":" + str(nowTime.second) + ":" + str(nowTime.microsecond))
