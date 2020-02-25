@@ -5,6 +5,12 @@ echo Cleaning...
 del /Q __pycache__ 2>NUL
 rmdir __pycache__ 2>NUL
 
+del /Q files_compile 2>NUL
+rmdir files_compile 2>NUL
+
+del /Q files_runs 2>NUL
+rmdir files_runs 2>NUL
+
 for %%a in (*.c) do (
 	del "%%a"
 )

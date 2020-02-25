@@ -6,87 +6,93 @@ import math
 import numbers
 import time
 
-
-global table
 table = []
-
-global table2
 table2 = []
-
-global table3
 table3 = []
 
-@ft.lru_cache(maxsize=None)
-def is_prime(int a):
-    global table
-    cdef int checks = 0
 
-    if a <= 1:
+def print_lock(msg, rlock):
+    rlock.acquire()
+    print(msg)
+    rlock.release()
+
+
+@ft.lru_cache(maxsize=None)
+def is_prime(num):
+    global table
+    checks = 0
+
+    if num <= 1:
         return [False, 0]
     else:
         checks = checks + 1
         for j in range(0, len(table), 1):
             checks = checks + 1
-            if a % table[j] == 0:
+            if num % table[j] == 0:
                 return [False, checks]
             else:
                 continue
-        table.append(a)
+        table.append(num)
         return [True, checks]
 
-@ft.lru_cache(maxsize=None)
-def is_prime_half(int a):
-    global table2
-    cdef int checks = 0
 
-    if a <= 1:
+@ft.lru_cache(maxsize=None)
+def is_prime_half(num):
+    global table2
+    checks = 0
+
+    if num <= 1:
         return [False, 0]
     else:
         checks = checks + 1
-        boundary = math.floor(a / 2)
+        boundary = math.floor(num / 2)
         for j in range(0, len(table2), 1):
             if table2[j] <= boundary:
                 checks = checks + 1
-                if a % table2[j] == 0:
+                if num % table2[j] == 0:
                     return [False, checks]
                 else:
                     continue
-        table2.append(a)
+        table2.append(num)
         return [True, checks]
 
-@ft.lru_cache(maxsize=None)
-def is_prime_sqrt(int a):
-    global table3
-    cdef int checks = 0
 
-    if a <= 1:
+@ft.lru_cache(maxsize=None)
+def is_prime_sqrt(num):
+    global table3
+    checks = 0
+
+    if num <= 1:
         return [False, 0]
     else:
         checks = checks + 1
-        boundary = int(math.floor(math.sqrt(a)))
+        boundary = int(math.floor(math.sqrt(num)))
         for j in range(0, len(table3), 1):
             if table3[j] <= boundary:
                 checks = checks + 1
-                if a % table3[j] == 0:
+                if num % table3[j] == 0:
                     return [False, checks]
                 else:
                     continue
-        table3.append(a)
+        table3.append(num)
         return [True, checks]
 
-def main(int my_max, int num_loops):
-    print("Optimized LRU started.")
 
-    my_file = "files_runs/optimized_LRU_main_time.txt"
-    my_file2 = "files_runs/optimized_LRU_main_divisions.txt"
+def main_def(int my_max, int num_loops, rlock):
+    msg = ("-" * 80) + "\n"
+    msg += "Optimized Default LRU started."
+    print_lock(msg, rlock)
+
+    my_file = "files_runs/optimized_default_LRU_main_time.txt"
+    my_file2 = "files_runs/optimized_default_LRU_main_divisions.txt"
     txt_output = open(my_file, 'a')
     txt_output2 = open(my_file2, 'a')
     time_list = []
     divisions_list = []
 
-    for j in range(0, num_loops, 1):
-        global table
+    for j in range(num_loops):
         tmp_time_start = time.time()
+        table = []
         for i in range(my_max):
             tmp = is_prime(i)
             if tmp[0] == True:
@@ -94,32 +100,40 @@ def main(int my_max, int num_loops):
 
         tmp_time_total = time.time() - tmp_time_start
 
-        txt_output.write("Optimized LRU Normal Pass {0} took {1} seconds.\n".format(j + 1, tmp_time_total))
+        txt_output.write("Optimized Default LRU Pass {0} took {1} seconds.\n".format(j + 1, tmp_time_total))
         time_list.append(tmp_time_total)
-        tmp_time_total = 0
-        tmp_time_start = 0
-        table = []
 
     for item in divisions_list:
         txt_output2.write(item)
+    txt_output2.close()
+
+    time_now = dt.datetime.now()
+    msg = ("-" * 80) + "\n"
+    msg += "Optimized Default LRU Finished at {0}/{1}/{2} {3}:{4}:{5}:{6}".format(time_now.year, time_now.month, time_now.day, time_now.hour, time_now.minute, time_now.second, time_now.microsecond)
+    # msg += "Optimized is_prime.cache_info(): {0}".format(is_prime.cache_info())
+
+    print_lock(msg, rlock)
 
     average_time = ft.reduce(lambda a, b: a + b, time_list) / len(time_list)
     txt_output.write("The average time it took to calculate {0} optimized LRU normal passes was {1}.".format(num_loops, average_time))
-    average_time = 0
-    time_list = []
-    divisions_list = []
     txt_output.close()
-    txt_output2.close()
 
-    # 2nd Attempt with Half function
-    my_file = "files_runs/optimized_LRU_half_time.txt"
-    my_file2 = "files_runs/optimized_LRU_half_division.txt"
+
+def main_half(int my_max, int num_loops, rlock):
+    msg = ("-" * 80) + "\n"
+    msg += "Optimized Half started."
+    print_lock(msg, rlock)
+
+    my_file = "files_runs/optimized_half_LRU_time.txt"
+    my_file2 = "files_runs/optimized_half_LRU__division.txt"
     txt_output = open(my_file, 'a')
     txt_output2 = open(my_file2, 'a')
+    time_list = []
+    divisions_list = []
 
-    for j in range(0, num_loops, 1):
-        global table2
+    for j in range(num_loops):
         tmp_time_start = time.time()
+        table = []
         for i in range(my_max):
             tmp = is_prime_half(i)
             if tmp[0] == True:
@@ -127,32 +141,40 @@ def main(int my_max, int num_loops):
 
         tmp_time_total = time.time() - tmp_time_start
 
-        txt_output.write("Optimized LRU Half Pass {0} took {1} seconds.\n".format(j + 1, tmp_time_total))
+        txt_output.write("Optimized Half LRU  Pass {0} took {1} seconds.\n".format(j + 1, tmp_time_total))
         time_list.append(tmp_time_total)
-        tmp_time_total = 0
-        tmp_time_start = 0
-        table2 = []
 
     for item in divisions_list:
         txt_output2.write(item)
-
-    average_time = ft.reduce(lambda a, b: a + b, time_list) / len(time_list)
-    txt_output.write("The average time it took to calculate {0} optimized LRU half passes was {1}.".format(num_loops, average_time))
-    average_time = 0
-    time_list = []
-    divisions_list = []
-    txt_output.close()
     txt_output2.close()
 
-    # 3rd Attempt with Sqrt function
-    my_file = "files_runs/optimized_LRU_sqrt_time.txt"
-    my_file2 = "files_runs/optimized_LRU_sqrt_divisions.txt"
+    time_now = dt.datetime.now()
+    msg = ("-" * 80) + "\n"
+    msg += "Optimized Half LRU Finished at {0}/{1}/{2} {3}:{4}:{5}:{6}".format(time_now.year, time_now.month, time_now.day, time_now.hour, time_now.minute, time_now.second, time_now.microsecond)
+    # msg += "Optimized is_prime_half.cache_info(): {0}".format(is_prime_half.cache_info())
+
+    print_lock(msg, rlock)
+
+    average_time = ft.reduce(lambda a, b: a + b, time_list) / len(time_list)
+    txt_output.write("The average time it took to calculate {0} optimized half LRU passes was {1}.".format(num_loops, average_time))
+    txt_output.close()
+
+
+def main_sqrt(int my_max, int num_loops, rlock):
+    msg = ("-" * 80) + "\n"
+    msg += "Optimized Sqrt LRU started."
+    print_lock(msg, rlock)
+
+    my_file = "files_runs/optimized_sqrt_LRU_time.txt"
+    my_file2 = "files_runs/optimized_sqrt_LRU_divisions.txt"
     txt_output = open(my_file, 'a')
     txt_output2 = open(my_file2, 'a')
+    time_list = []
+    divisions_list = []
 
     for j in range(num_loops):
-        global table3
         tmp_time_start = time.time()
+        table = []
         for i in range(my_max):
             tmp = is_prime_sqrt(i)
             if tmp[0] == True:
@@ -160,27 +182,20 @@ def main(int my_max, int num_loops):
 
         tmp_time_total = time.time() - tmp_time_start
 
-        txt_output.write("Optimized LRU Sqrt Pass {0} took {1} seconds.\n".format(j + 1, tmp_time_total))
+        txt_output.write("Optimized Sqrt LRU Pass {0} took {1} seconds.\n".format(j + 1, tmp_time_total))
         time_list.append(tmp_time_total)
-        tmp_time_total = 0
-        tmp_time_start = 0
-        table3 = []
 
     for item in divisions_list:
         txt_output2.write(item)
-
-    average_time = ft.reduce(lambda a, b: a + b, time_list) / len(time_list)
-    txt_output.write("The average time it took to calculate {0} optimized LRU square root passes was {1}.".format(num_loops, average_time))
-
-    del average_time
-    del time_list
-    del divisions_list
-    txt_output.close()
     txt_output2.close()
 
     time_now = dt.datetime.now()
-    print("-"*80)
-    print("Optimized LRU Finished at {0}/{1}/{2} {3}:{4}:{5}:{6}".format(time_now.year, time_now.month, time_now.day, time_now.hour, time_now.minute, time_now.second, time_now.microsecond))
-    print("Optimized is_prime.cache_info(): {0}".format(is_prime.cache_info()))
-    print("Optimized is_prime_half.cache_info(): {0}".format(is_prime_half.cache_info()))
-    print("Optimized is_prime_sqrt.cache_info(): {0}".format(is_prime_sqrt.cache_info()))
+    msg = ("-" * 80) + "\n"
+    msg += "Optimized Sqrt LRU Finished at {0}/{1}/{2} {3}:{4}:{5}:{6}".format(time_now.year, time_now.month, time_now.day, time_now.hour, time_now.minute, time_now.second, time_now.microsecond)
+    # msg += "Optimized is_prime_sqrt.cache_info(): {0}".format(is_prime_sqrt.cache_info())
+
+    print_lock(msg, rlock)
+
+    average_time = ft.reduce(lambda a, b: a + b, time_list) / len(time_list)
+    txt_output.write("The average time it took to calculate {0} optimized LRU square root passes was {1}.".format(num_loops, average_time))
+    txt_output.close()
