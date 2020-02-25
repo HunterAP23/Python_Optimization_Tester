@@ -3,11 +3,12 @@ import decimal
 import functools as ft
 import math
 import numbers
+import numpy as np
 import time
 
-table = []
-table2 = []
-table3 = []
+table = np.empty(1, dtype=int)
+table2 = np.empty(1, dtype=int)
+table3 = np.empty(1, dtype=int)
 
 
 def print_lock(msg, rlock):
@@ -31,7 +32,7 @@ def is_prime(num):
                 return [False, checks]
             else:
                 continue
-        table.append(num)
+        table.append([num])
         return [True, checks]
 
 
@@ -52,7 +53,7 @@ def is_prime_half(num):
                     return [False, checks]
                 else:
                     continue
-        table2.append(num)
+        table2.append([num])
         return [True, checks]
 
 
@@ -73,7 +74,7 @@ def is_prime_sqrt(num):
                     return [False, checks]
                 else:
                     continue
-        table3.append(num)
+        table3.append([num])
         return [True, checks]
 
 
@@ -86,7 +87,7 @@ def main_def(my_max, num_loops, rlock):
     my_file2 = "files_runs/normal_default_lru_divisions.txt"
     txt_output = open(my_file, 'a')
     txt_output2 = open(my_file2, 'a')
-    time_list = []
+    time_list = np.empty(1, dtype="datetime64")
     divisions_list = []
 
     for j in range(num_loops):
