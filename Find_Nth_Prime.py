@@ -24,7 +24,7 @@ def is_prime(num):
         return [False, 0]
     else:
         checks = checks + 1
-        for j in range(0, len(table), 1):
+        for j in range(len(table)):
             checks = checks + 1
             if num % table[j] == 0:
                 return [False, checks]

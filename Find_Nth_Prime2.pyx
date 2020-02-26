@@ -10,6 +10,7 @@ table = []
 table2 = []
 table3 = []
 
+
 def print_lock(msg, rlock):
     rlock.acquire()
     print(msg)
@@ -24,7 +25,7 @@ def is_prime(num):
         return [False, 0]
     else:
         checks = checks + 1
-        for j in range(0, len(table), 1):
+        for j in range(len(table)):
             checks = checks + 1
             if num % table[j] == 0:
                 return [False, checks]
@@ -43,7 +44,7 @@ def is_prime_half(num):
     else:
         checks = checks + 1
         boundary = math.floor(num / 2)
-        for j in range(0, len(table2), 1):
+        for j in range(len(table2)):
             if table2[j] <= boundary:
                 checks = checks + 1
                 if num % table2[j] == 0:
@@ -63,7 +64,7 @@ def is_prime_sqrt(num):
     else:
         checks = checks + 1
         boundary = int(math.floor(math.sqrt(num)))
-        for j in range(0, len(table3), 1):
+        for j in range(len(table3)):
             if table3[j] <= boundary:
                 checks = checks + 1
                 if num % table3[j] == 0:
