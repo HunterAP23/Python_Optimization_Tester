@@ -31,11 +31,12 @@ for %%a in (*.so) do (
 	del "%%a"
 )
 
+echo Compiling...
+
 for %%a in (*.py) do (
+	echo Compiling %%a
 	python -m py_compile "%%a"
 )
-
-echo Compiling...
 
 mkdir files_compile
 

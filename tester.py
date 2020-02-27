@@ -3,7 +3,6 @@ import argparse as argp
 import multiprocessing as mp
 import os
 import time
-import uuid
 
 # Custom Funcs
 import Find_Nth_Prime
@@ -13,6 +12,7 @@ import Find_Nth_Prime_LRU
 import Find_Nth_Prime1_LRU
 import Find_Nth_Prime2_LRU
 
+
 def time_function(func, argoos, name, sema, rlock):
     sema.acquire()
     start = time.time()
@@ -21,8 +21,9 @@ def time_function(func, argoos, name, sema, rlock):
     argoos[2][name] = total
     sema.release()
 
+
 def run_in_parallel(fns, args, sema, rlock):
-    proc  = []
+    proc = []
     i = 0
     for fn in fns:
         if i == 0:
@@ -71,6 +72,7 @@ def run_in_parallel(fns, args, sema, rlock):
     for p in proc:
         p.join()
 
+
 def parse_arguments():
     parser = argp.ArgumentParser(description="Cython & LRU Cache Tester", add_help=False)
 
@@ -78,6 +80,7 @@ def parse_arguments():
     optional_args.add_argument('-t', '--threads', default=mp.cpu_count(), type=int, required=False, help="send the email report, skip email prompts.", dest="Threads")
 
     return parser.parse_args()
+
 
 if __name__ == '__main__':
     args = parse_arguments()
@@ -93,7 +96,7 @@ if __name__ == '__main__':
 
     try:
         os.mkdir("files_runs")
-    except FileExistsError as fee:
+    except FileExistsError:
         pass
 
     testing_start = time.time()
@@ -171,8 +174,8 @@ if __name__ == '__main__':
 
         result_file.write("{0} took {1}H:{2}M:{3:0.2f}S".format(k, int(v / 3600), int(v / 60), v))
         result_file.close()
-        print("-"*80)
+        print("-" * 80)
         print(str(k) + " took {0}H:{1}M:{2:0.2f}S".format(int(v / 3600), int(v / 60), v))
 
-    print("-"*80)
+    print("-" * 80)
     print("Total Run Time was {0}H:{1}M:{2:0.2f}S".format(int(testing_total / 3600), int(testing_total / 60), testing_total))
