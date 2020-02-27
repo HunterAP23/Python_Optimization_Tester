@@ -157,15 +157,15 @@
   * Defined in [Find_Nth_Prime_Optimized_LRU.pyx](Find_Nth_Prime_Optimized_LRU.pyx)
   * Uses manual static typing for variables for slightly better performance.
 
-### CPython Optimized with Numpy Arrays
+### CPython Optimized Cython with Numpy Arrays
   * Defined in [Find_Nth_Prime_Optimized_Numpy.pyx](Find_Nth_Prime_Optimized_Numpy.pyx)
   * Uses manual static typing for variables for slightly better performance.
 
-### CPython Optimized with Numpy Arrays and Lambdas
+### CPython Optimized Cython with Numpy Arrays and Lambdas
   * Defined in [Find_Nth_Prime_Optimized_Numpy_Lambda.pyx](Find_Nth_Prime_Optimized_Numpy_Lambda.pyx)
   * Uses manual static typing for variables for slightly better performance.
 
-### CPython Optimized with Numpy Arrays and LRU Caching
+### CPython Optimized Cython with Numpy Arrays and LRU Caching
   * Defined in [Find_Nth_Prime_Optimized_Numpy_LRU.pyx](Find_Nth_Prime_Optimized_Numpy_LRU.pyx)
   * Uses manual static typing for variables for slightly better performance.
 
