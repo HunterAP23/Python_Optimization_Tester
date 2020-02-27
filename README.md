@@ -125,33 +125,33 @@
   * Same as [Python](#cpython), but compiled
   using Cython.
 
-### Cython with Lambdas
+### CPython Cython with Lambdas
   * Defined in [Find_Nth_Prime_Cython_Lambda.pyx](Find_Nth_Prime_Cython_Lambda.pyx)
   * Same as [Python with Lambdas](#cpython-with-lambdas), but compiled using Cython.
 
-### Cython with LRU Caching
+### CPython Cython with LRU Caching
   * Defined in [Find_Nth_Prime_Cython_LRU.pyx](Find_Nth_Prime_Cython_LRU.pyx)
   * Same as [Python with LRU Caching](#cpython-with-lru-caching), but compiled using Cython.
 
-### Cython with Numpy Arrays
+### CPython Cython with Numpy Arrays
   * Defined in [Find_Nth_Prime_Cython_Numpy.pyx](Find_Nth_Prime_Cython_Numpy.pyx)
   * Same as [Cython](#cython), but uses numpy
   arrays instead of Python lists.
 
-### Cython with Numpy Arrays and Lambdas
+### CPython Cython with Numpy Arrays and Lambdas
   * Defined in [Find_Nth_Prime_Cython_Numpy.pyx](Find_Nth_Prime_Cython_Numpy.pyx)
   * Same as [Cython with Lambdas](#cython-with-lambdas),
   but uses numpy arrays instead of Python lists.
 
-### Optimized Cython
+### CPython Optimized Cython
   * Defined in [Find_Nth_Prime_Optimized.pyx](Find_Nth_Prime_Optimized.pyx)
   * Uses manual static typing for variables for slightly better performance.
 
-### Optimized Cython with Lambdas
+### CPython Optimized Cython with Lambdas
   * Defined in [Find_Nth_Prime_Optimized_Lambda.pyx](Find_Nth_Prime_Optimized_Lambda.pyx)
   * Uses manual static typing for variables for slightly better performance.
 
-### Optimized Cython with LRU Caching
+### CPython Optimized Cython with LRU Caching
   * Defined in [Find_Nth_Prime_Optimized_LRU.pyx](Find_Nth_Prime_Optimized_LRU.pyx)
   * Uses manual static typing for variables for slightly better performance.
 
