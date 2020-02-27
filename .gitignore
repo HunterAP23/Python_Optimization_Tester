@@ -9,7 +9,6 @@ __pycache__/
 # Cython Generated Files
 *.c
 *.pyd
-*.txt
 
 # Distribution / packaging
 .Python
@@ -104,3 +103,7 @@ ENV/
 
 # mypy
 .mypy_cache/
+
+# Custom
+files_runs/*.txt
+files_compile_runs/*.txt
