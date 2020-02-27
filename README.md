@@ -2,26 +2,33 @@
   Runtime comparison of different implementations of calculating Prime numbers.
 
 - [Tests](#tests)
-  - [Default](#default)
-  - [Half of N Bounding](#half-of-n-bounding)
-  - [Square Root of N Bounding](#square-root-of-n-bounding)
+  - [Default Test](#default-test)
+  - [Half of N Bounding Test](#half-of-n-bounding-test)
+  - [Square Root of N Bounding Test](#square-root-of-n-bounding-test)
 - [Implementations](#implementations)
   - [Python Implementation](#python-implementation)
   - [Python Implementation with Lambdas](#python-implementation-with-lambdas)
   - [Python Implementation with LRU Caching](#python-implementation-with-lru-caching)
+  - [Cython Implementation](#cython-implementation)
+  - [Cython Implementation with Lambdas](#cython-implementation-with-lambdas)
+  - [Cython Implementation with LRU Caching](#cython-implementation-with-lru-caching)
+  - [Optimized Cython Implementation](#optimized-cython-implementation)
+  - [Optimized Cython Implementation with Lambdas](#optimized-cython-implementation-with-lambdas)
+  - [Optimized Cython Implementation with LRU Caching](#optimized-cython-implementation-with-lru-caching)
 
 # Tests
-Each one of these programs has three different versions of calculating primes.
-For variable `N` as the number currently being checked for being prime:
+  Each one of these programs has three different versions of calculating primes.<br>
+  For variable `N` as the number checked in the primality test:
+
 ## Default
   Check divisibility of `N` by each number less than `N`.
 
-## Half of N Bounding
+## Half of N Bounding Test
   * Check divisibility of `N` by each number less than `math.floor((N / 2))`:
   * This method should theoretically be 2x as fast as the
   [default test method](#default).
 
-## Square Root of N Bounding
+## Square Root of N Bounding Test
   * Check divisibility of `N` by each number less than `math.floor(sqrt(N))`:
   * This method should theoretically be log(N) as fast as the
   [default test method](#default).
@@ -34,8 +41,8 @@ For variable `N` as the number currently being checked for being prime:
   * Calling the test method functions for each value of `N` means we have function
   overhead of `max_num` calls.
 
-## Python Implementation with lambdas
-  * Defined in `Find_Nth_Prime_Python_Lambda.py`
+## Python Implementation with Lambdas
+  * Defined in [Find_Nth_Prime_Python_Lambda.py](Find_Nth_Prime_Python_Lambda.py)
   * Only calls the calculation function once with a `max_num` as a parameter.
   * The calculation function handles all the logic that `Find_Nth_Prime_Python.py`'s the calculation functions have, but all using a single lambda function inside the calculation function.
   * This reduces the function calling overhead, which can lead to significant time
@@ -43,26 +50,29 @@ For variable `N` as the number currently being checked for being prime:
 
 ## Python Implementation with LRU Caching
   * Defined in  `Find_Nth_Prime_Python_LRU.py`
-  * Similar to the [Python Implementation](#python-impl) in that the test methods
-
+  * Similar to the [Python Implementation](#python-implementation) in that the
+  test method functions
 
 ## Cython Implementation
   * Defined in `Find_Nth_Prime_Cython.py`
 
-## Cython Implementation with lambdas
+## Cython Implementation with Lambdas
   * Defined in `Find_Nth_Prime_Cython_Lambda.py`
 
 ## Cython Implementation with LRU Caching
   * Defined in `Find_Nth_Prime_Cython_LRU.py`
 
-## Cython Implementation with manual static typing optimizations
+## Optimized Cython Implementation
   * Defined in `Find_Nth_Prime_Optimized.py`
+  * Uses manual static typing for variables for slightly better performance.
 
-## Cython Implementation with manual static typing optimizations and lambdas
+## Optimized Cython Implementation with Lambdas
   * Defined in `Find_Nth_Prime_Optimized_Lambda.py`
+  * Uses manual static typing for variables for slightly better performance.
 
-## Cython Implementation with manual static typing optimizations and LRU Caching
+## Optimized Cython Implementation with LRU Caching
   * Defined in `Find_Nth_Prime_Optimized_LRU.py`
+  * Uses manual static typing for variables for slightly better performance.
 
 # Related Files:
 ## master1.py
