@@ -11,64 +11,64 @@
     - [Lambdas](#cpython-with-lambdas)
     - [LRU Caching](#cpython-with-lru-caching)
     - [Numpy Arrays](#cpython-with-numpy-arrays)
-    - [Numpy Arrays & Lambdas](#cpython-with-numpy-arrays-&-lambdas)
-    - [Numpy Arrays & LRU Caching](#cpython-with-numpy-arrays-&-lru-caching)
+    - [Numpy Arrays & Lambdas](#cpython-with-numpy-arrays-and-lambdas)
+    - [Numpy Arrays & LRU Caching](#cpython-with-numpy-arrays-and-lru-caching)
     - [Cython](#cpython-cython)
     - [Cython w/ Lambdas](#cpython-cython-with-lambdas)
     - [Cython w/ LRU Caching](#cpython-cython-with-lru-caching)
     - [Cython w/ Numpy Arrays](#cpython-cython-with-numpy-arrays)
-    - [Cython w/ Numpy Arrays & Lambdas](#cpython-cython-with-numpy-arrays-&-lambdas)
-    - [Cython w/ Numpy Arrays & LRU Caching](#cpython-cython-with-numpy-arrays-&-lru-caching)
+    - [Cython w/ Numpy Arrays & Lambdas](#cpython-cython-with-numpy-arrays-and-lambdas)
+    - [Cython w/ Numpy Arrays & LRU Caching](#cpython-cython-with-numpy-arrays-and-lru-caching)
     - [Cython Optimized](#cpython-optimized-cython)
     - [Cython Optimized w/ Lambdas](#cpython-optimized-cython-with-lambdas)
     - [Cython Optimized w/ LRU Caching](#cpython-optimized-cython-with-lru-caching)
     - [Cython Optimized w/ Numpy Arrays](#cpython-optimized-cython-with-numpy-arrays)
-    - [Cython Optimized w/ Numpy Arrays & Lambdas](#cpython-optimized-with-numpy-arrays-&-lambdas)
-    - [Cython Optimized w/ Numpy Arrays & LRU Caching](#cpython-optimized-with-numpy-arrays-&-lru-caching)
+    - [Cython Optimized w/ Numpy Arrays & Lambdas](#cpython-optimized-with-numpy-arrays-and-lambdas)
+    - [Cython Optimized w/ Numpy Arrays & LRU Caching](#cpython-optimized-with-numpy-arrays-and-lru-caching)
   - [Anaconda Variants](#anaconda-variants)
     - [Default](#anaconda)
     - [Lambdas](#anaconda-with-lambdas)
     - [LRU Caching](#anaconda-with-lru-caching)
     - [Numpy Arrays](#anaconda-with-numpy-arrays)
-    - [Numpy Arrays & Lambdas](#anaconda-with-numpy-arrays-&-lambdas)
-    - [Numpy Arrays & LRU Caching](#anaconda-with-numpy-arrays-&-lru-caching)
+    - [Numpy Arrays & Lambdas](#anaconda-with-numpy-arrays-and-lambdas)
+    - [Numpy Arrays & LRU Caching](#anaconda-with-numpy-arrays-and-lru-caching)
     - [Cython](#anaconda-cython)
     - [Cython w/ Lambdas](#anaconda-cython-with-lambdas)
     - [Cython w/ LRU Caching](#anaconda-cython-with-lru-caching)
     - [Cython w/ Numpy Arrays](#anaconda-cython-numpy-arrays)
-    - [Cython w/ Numpy Arrays & Lambdas](#anaconda-cython-with-numpy-arrays-&-lambdas)
-    - [Cython w/ Numpy Arrays & LRU Caching](#anaconda-cython-with-numpy-arrays-&-lru-caching)
+    - [Cython w/ Numpy Arrays & Lambdas](#anaconda-cython-with-numpy-arrays-and-lambdas)
+    - [Cython w/ Numpy Arrays & LRU Caching](#anaconda-cython-with-numpy-arrays-and-lru-caching)
     - [Cython Optimized](#anaconda-optimized-cython)
     - [Cython Optimized w/ Lambdas](#anaconda-optimized-cython-with-lambdas)
     - [Cython Optimized w/ LRU Caching](#anaconda-optimized-cython-with-lru-caching)
     - [Cython Optimized w/ Numpy Arrays](#anaconda-optimized-cython-with-numpy-arrays)
-    - [Cython Optimized w/ Numpy Arrays & Lambdas](#anaconda-optimized-with-numpy-arrays-&-lambdas)
+    - [Cython Optimized w/ Numpy Arrays & Lambdas](#anaconda-optimized-with-numpy-arrays-and-lambdas)
     - [Cython Optimized w/ Numpy Arrays & LRU Caching](#anaconda-optimized-with-numpy-arrays)
   - [PyPy Variants](#pypy-variants)
     - [Default](#pypy)
     - [Lambdas](#pypy-with-lambdas)
     - [LRU Caching](#pypy-with-lru-caching)
     - [Numpy Arrays](#pypy-with-numpy-arrays)
-    - [Numpy Arrays & Lambdas](#pypy-with-numpy-arrays-&-lambdas)
-    - [Numpy Arrays & LRU Caching](#pypy-with-numpy-arrays-&-lru-caching)
+    - [Numpy Arrays & Lambdas](#pypy-with-numpy-arrays-and-lambdas)
+    - [Numpy Arrays & LRU Caching](#pypy-with-numpy-arrays-and-lru-caching)
     - [Cython](#pypy-cython)
     - [Cython w/ Lambdas](#pypy-cython-with-lambdas)
     - [Cython w/ LRU Caching](#pypy-cython-with-lru-caching)
     - [Cython w/ Numpy Arrays](#pypy-cython-numpy-arrays)
-    - [Cython w/ Numpy Arrays & Lambdas](#pypy-cython-with-numpy-arrays-&-lambdas)
-    - [Cython w/ Numpy Arrays & LRU Caching](#pypy-cython-with-numpy-arrays-&-lru-caching)
+    - [Cython w/ Numpy Arrays & Lambdas](#pypy-cython-with-numpy-arrays-and-lambdas)
+    - [Cython w/ Numpy Arrays & LRU Caching](#pypy-cython-with-numpy-arrays-and-lru-caching)
     - [Cython Optimized](#pypy-optimized-cython)
     - [Cython Optimized w/ Lambdas](#pypy-optimized-cython-with-lambdas)
     - [Cython Optimized w/ LRU Caching](#pypy-optimized-cython-with-lru-caching)
     - [Cython Optimized w/ Numpy Arrays](#pypy-optimized-cython-with-numpy-arrays)
-    - [Cython Optimized w/ Numpy Arrays & Lambdas](#pypy-optimized-with-numpy-arrays-&-lambdas)
+    - [Cython Optimized w/ Numpy Arrays & Lambdas](#pypy-optimized-with-numpy-arrays-and-lambdas)
     - [Cython Optimized w/ Numpy Arrays & LRU Caching](#pypy-optimized-with-numpy_arrays)
 
 # Tests
   Each one of these programs has three different versions of calculating primes.<br>
   For variable `N` as the number checked in the primality test:
 
-## Default
+## Default Test
   * Check divisibility of `N` by each number less than `N`.
 
 ## Half of N Bounding Test
@@ -110,12 +110,12 @@
   * Same as [Python](#cpython), but uses numpy
   arrays instead of Python lists.
 
-### CPython with Numpy Arrays & Lambdas
+### CPython with Numpy Arrays and Lambdas
   * Defined in [Find_Nth_Prime_Python_Numpy_Lambdas.py](Find_Nth_Prime_Python_Numpy_Lambdas.py)
   * Same as [Python with Lambdas](#cpython-with-lambdas),
   but uses numpy arrays instead of Python lists.
 
-### CPython with Numpy Arrays & LRU Caching
+### CPython with Numpy Arrays and LRU Caching
   * Defined in [Find_Nth_Prime_Python_Numpy_LRU.py](Find_Nth_Prime_Python_Numpy_LRU.py)
   * Same as [Python with Lambdas](#cpython-with-lambdas),
   but uses numpy arrays instead of Python lists.
@@ -138,7 +138,7 @@
   * Same as [Cython](#cython), but uses numpy
   arrays instead of Python lists.
 
-### Cython with Numpy Arrays & Lambdas
+### Cython with Numpy Arrays and Lambdas
   * Defined in [Find_Nth_Prime_Cython_Numpy.pyx](Find_Nth_Prime_Cython_Numpy.pyx)
   * Same as [Cython with Lambdas](#cython-with-lambdas),
   but uses numpy arrays instead of Python lists.
