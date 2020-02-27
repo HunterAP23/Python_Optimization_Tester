@@ -3,10 +3,10 @@
 
 - [Tests](#tests)
   - [Default Test](#default-test)
-  - [Half of N Bounding Test](#half-of-n-bounding-test)
-  - [Square Root of N Bounding Test](#square-root-of-n-bounding-test)
+  - [N / 2 Bounding Test](#half-of-n-bounding-test)
+  - [sqrt(N) Bounding Test](#square-root-of-n-bounding-test)
 - [Implementations](#implementations)
-  - [Cpython Variants](#cpython-variants)
+  - [CPython Variants](#cpython-variants)
     - [Default](#cpython)
     - [Lambdas](#cpython-with-lambdas)
     - [LRU Caching](#cpython-with-lru-caching)
@@ -140,8 +140,8 @@
   * Same as [Cython with Lambdas](#cython-with-lambdas), but uses Numpy arrays
   instead of Python lists.
 
-### CPython Cython with Numpy Arrays and Lambdas
-  * Defined in [Find_Nth_Prime_Cython_Numpy_LUR.pyx](Find_Nth_Prime_Cython_Numpy_LRU.pyx)
+### CPython Cython with Numpy Arrays and LRU Caching
+  * Defined in [Find_Nth_Prime_Cython_Numpy_LRU.pyx](Find_Nth_Prime_Cython_Numpy_LRU.pyx)
   * Same as [Cython with Lambdas](#cython-with-lambdas), but uses Numpy arrays
     instead of Python lists.
 
