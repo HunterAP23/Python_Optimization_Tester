@@ -23,7 +23,7 @@
   For variable `N` as the number checked in the primality test:
 
 ## Default
-  Check divisibility of `N` by each number less than `N`.
+  * Check divisibility of `N` by each number less than `N`.
 
 ## Half of N Bounding Test
   * Check divisibility of `N` by each number less than `math.floor((N / 2))`:
