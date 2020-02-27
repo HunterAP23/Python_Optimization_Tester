@@ -6,9 +6,9 @@
   - [Bound Half of N](#bound-half-of-n)
   - [Bound Square Root of N](#bound-square-root-of-n)
 - [Implementations](#implementations)
-  - [Python Implementation](python-impl)
-  - [Python Implementation with Lambdas](python-impl-lambda)
-  - [Python Implementation with LRU Caching](python-impl-lru)
+  - [Python Implementation](python-implementation)
+  - [Python Implementation with Lambdas](python-implementation-with-lambdas)
+  - [Python Implementation with LRU Caching](python-implementation-with-lru-caching)
 
 # Tests
 Each one of these programs has three different versions of calculating primes.
@@ -19,12 +19,12 @@ For variable `N` as the number currently being checked for being prime:
 ## Bound - Half
   * Check divisibility of `N` by each number less than `math.floor((N / 2))`:
   * This method should theoretically be 2x as fast as the
-  [default test method](test-default).
+  [default test method](#default).
 
 ## Bound - Square Root
   * Check divisibility of `N` by each number less than `math.floor(sqrt(N))`:
   * This method should theoretically be log(N) as fast as the
-  [default test method](test-default).
+  [default test method](#default).
 
 # Implementations
 ## Python Implementation
