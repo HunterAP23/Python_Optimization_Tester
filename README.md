@@ -107,23 +107,21 @@
 
 ### CPython with Numpy Arrays
   * Defined in [Find_Nth_Prime_Python_Numpy.py](Find_Nth_Prime_Python_Numpy.py)
-  * Same as [Python](#cpython), but uses numpy
-  arrays instead of Python lists.
+  * Same as [Python](#cpython), but uses Numpy arrays instead of Python lists.
 
 ### CPython with Numpy Arrays and Lambdas
   * Defined in [Find_Nth_Prime_Python_Numpy_Lambdas.py](Find_Nth_Prime_Python_Numpy_Lambdas.py)
-  * Same as [Python with Lambdas](#cpython-with-lambdas),
-  but uses numpy arrays instead of Python lists.
+  * Same as [Python with Lambdas](#cpython-with-lambdas), but uses Numpy arrays
+  instead of Python lists.
 
 ### CPython with Numpy Arrays and LRU Caching
   * Defined in [Find_Nth_Prime_Python_Numpy_LRU.py](Find_Nth_Prime_Python_Numpy_LRU.py)
-  * Same as [Python with Lambdas](#cpython-with-lambdas),
-  but uses numpy arrays instead of Python lists.
+  * Same as [Python with Lambdas](#cpython-with-lambdas), but uses Numpy arrays
+  instead of Python lists.
 
 ### CPython Cython
   * Defined in [Find_Nth_Prime_Cython.pyx](Find_Nth_Prime_Cython.pyx)
-  * Same as [Python](#cpython), but compiled
-  using Cython.
+  * Same as [Python](#cpython), but compiled using Cython.
 
 ### CPython Cython with Lambdas
   * Defined in [Find_Nth_Prime_Cython_Lambda.pyx](Find_Nth_Prime_Cython_Lambda.pyx)
@@ -135,13 +133,17 @@
 
 ### CPython Cython with Numpy Arrays
   * Defined in [Find_Nth_Prime_Cython_Numpy.pyx](Find_Nth_Prime_Cython_Numpy.pyx)
-  * Same as [Cython](#cython), but uses numpy
-  arrays instead of Python lists.
+  * Same as [Cython](#cython), but uses Numpy arrays instead of Python lists.
 
 ### CPython Cython with Numpy Arrays and Lambdas
-  * Defined in [Find_Nth_Prime_Cython_Numpy.pyx](Find_Nth_Prime_Cython_Numpy.pyx)
-  * Same as [Cython with Lambdas](#cython-with-lambdas),
-  but uses numpy arrays instead of Python lists.
+  * Defined in [Find_Nth_Prime_Cython_Numpy_Lambda.pyx](Find_Nth_Prime_Cython_Numpy_Lambda.pyx)
+  * Same as [Cython with Lambdas](#cython-with-lambdas), but uses Numpy arrays
+  instead of Python lists.
+
+### CPython Cython with Numpy Arrays and Lambdas
+  * Defined in [Find_Nth_Prime_Cython_Numpy_LUR.pyx](Find_Nth_Prime_Cython_Numpy_LRU.pyx)
+  * Same as [Cython with Lambdas](#cython-with-lambdas), but uses Numpy arrays
+    instead of Python lists.
 
 ### CPython Optimized Cython
   * Defined in [Find_Nth_Prime_Optimized.pyx](Find_Nth_Prime_Optimized.pyx)
@@ -155,7 +157,82 @@
   * Defined in [Find_Nth_Prime_Optimized_LRU.pyx](Find_Nth_Prime_Optimized_LRU.pyx)
   * Uses manual static typing for variables for slightly better performance.
 
+### CPython Optimized with Numpy Arrays
+  * Defined in [Find_Nth_Prime_Optimized_Numpy.pyx](Find_Nth_Prime_Optimized_Numpy.pyx)
+  * Uses manual static typing for variables for slightly better performance.
+
+### CPython Optimized with Numpy Arrays and Lambdas
+  * Defined in [Find_Nth_Prime_Optimized_Numpy_Lambda.pyx](Find_Nth_Prime_Optimized_Numpy_Lambda.pyx)
+  * Uses manual static typing for variables for slightly better performance.
+
+### CPython Optimized with Numpy Arrays and LRU Caching
+  * Defined in [Find_Nth_Prime_Optimized_Numpy_LRU.pyx](Find_Nth_Prime_Optimized_Numpy_LRU.pyx)
+  * Uses manual static typing for variables for slightly better performance.
+
 ## Anaconda Variants
+### Anaconda
+  * No code difference compared to [CPython](#cpython), just tested using Anaconda's
+  Python runtime instead of CPython.
+
+### Anaconda with Lambdas
+  * No code difference compared to [CPython w/ Lambdas](#cpython-with-lambdas),
+  just uses Anaconda's Python runtime instead of CPython.
+
+### Anaconda with LRU Caching
+  * No code difference compared to [CPython w/ LRU Caching](#cpython-with-lru-caching),
+  just uses Anaconda's Python runtime instead of CPython.
+
+### Anaconda with Numpy Arrays
+  * No code difference compared to [CPython w/ Numpy Arrays](#cpython-with-numpy-arrays),
+  just uses Anaconda's Python runtime instead of CPython.
+
+### Anaconda with Numpy Arrays and Lambdas
+  * No code difference compared to [CPython w/ Numpy Arrays & Lambdas](#cpython-with-numpy-arrays-and-lambdas),
+  just uses Anaconda's Python runtime instead of CPython.
+
+### Anaconda Cython
+  * No code difference compared to [CPython Cython](#cpython-cython), just uses
+  Anaconda's Python runtime instead of CPython.
+
+### Anaconda Cython with Lambdas
+  * No code difference compared to [CPython Cython w/ Lambdas](#cpython-cython-with-lambdas),
+  just uses Anaconda's Python runtime instead of CPython.
+
+### Anaconda Cython with LRU Caching
+  * No code difference compared to [CPython Cython w/ LRU Caching](#cpython-cython-with-lru-caching),
+  just uses Anaconda's Python runtime instead of CPython.
+
+### Anaconda Cython with Numpy Arrays
+  * No code difference compared to [CPython Cython w/ Numpy Arrays](#cpython-cython-with-numpy-arrays),
+  just uses Anaconda's Python runtime instead of CPython.
+
+### Anaconda Cython with Numpy Arrays and Lambdas
+  * No code difference compared to [CPython Cython w/ Numpy Arrays & Lambdas](#cpython-cython-with-numpy-arrays-and-lambdas),
+  just uses Anaconda's Python runtime instead of CPython.
+
+### Anaconda Optimized Cython
+  * No code difference compared to [CPython Cython Optimized](#cpython-optimized-cython),
+  just uses Anaconda's Python runtime instead of CPython.
+
+### Anaconda Optimized Cython with Lambdas
+  * No code difference compared to [CPython Cython Optimized w/ Lambdas](#cpython-optimized-cython-with-lambdas),
+  just uses Anaconda's Python runtime instead of CPython.
+
+### Anaconda Optimized Cython with LRU Caching
+  * No code difference compared to [CPython Cython Optimized w/ LRU Caching](#cpython-optimized-cython-with-lru-caching),
+  just uses Anaconda's Python runtime instead of CPython.
+
+### Anaconda Optimized with Numpy Arrays
+  * No code difference compared to [CPython Cython Optimized w/ Numpy Arrays](#cpython-optimized-cython-with-numpy-arrays),
+  just uses Anaconda's Python runtime instead of CPython.
+
+### Anaconda Optimized with Numpy Arrays and Lambdas
+  * No code difference compared to [CPython Cython Optimized w/ Numpy Arrays & Lambdas](#cpython-optimized-cython-with-numpy-arrays-and-lambdas),
+  just uses Anaconda's Python runtime instead of CPython.
+
+### Anaconda Optimized with Numpy Arrays and LRU Caching
+  * No code difference compared to [CPython Cython Optimized w/ Numpy Arrays & LRU Caching](#cpython-optimized-cython-with-numpy-arrays-and-lru-caching),
+  just uses Anaconda's Python runtime instead of CPython.
 
 
 # Related Files:
