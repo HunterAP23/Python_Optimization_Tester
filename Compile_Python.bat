@@ -31,24 +31,31 @@ for %%a in (*.so) do (
 	del "%%a"
 )
 
-echo Compiling...
-
 for %%a in (*.py) do (
-	echo Compiling %%a
+	echo Compiling CPython bytecode for %%a
 	python -m py_compile "%%a"
 )
 
 mkdir files_compile
 
-echo Compiling
-ptime.exe python.exe Compiler_Cython.py build_ext --inplace >> files_compile/compile_time_cython.txt
+rem echo Cythonizing Cython
+rem ptime.exe python.exe Compiler_Cython.py build_ext --inplace >> files_compile/compile_time_cython.txt
 
-ptime.exe python.exe Compiler_Cython_LRU.py build_ext --inplace >> files_compile/compile_time_cython_LRU.txt
+rem echo Cythonizing Cython Lambda
+rem ptime.exe python.exe Compiler_Cython_Lambda.py build_ext --inplace >> files_compile/compile_time_cython_lambda.txt
 
-ptime.exe python.exe Compiler_Optimized.py build_ext --inplace >> files_compile/compile_time_optimized.txt
+rem echo Cythonizing Cython LRU
+rem ptime.exe python.exe Compiler_Cython_LRU.py build_ext --inplace >> files_compile/compile_time_cython_LRU.txt
 
-ptime.exe python.exe Compiler_Optimized_LRU.py build_ext --inplace >> files_compile/compile_time_optimized_LRU.txt
+rem echo Cythonizing Optimized
+rem ptime.exe python.exe Compiler_Optimized.py build_ext --inplace >> files_compile/compile_time_optimized.txt
 
-python.exe tester.py
+rem echo Cythonizing Optimized Lambda
+rem ptime.exe python.exe Compiler_Optimized_Lambda.py build_ext --inplace >> files_compile/compile_time_optimized_lambda.txt
+
+rem echo Cythonizing Optimized LRU
+rem ptime.exe python.exe Compiler_Optimized_LRU.py build_ext --inplace >> files_compile/compile_time_optimized_LRU.txt
+
+python.exe Threader.py
 
 pause

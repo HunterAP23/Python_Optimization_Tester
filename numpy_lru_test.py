@@ -2,8 +2,7 @@ import multiprocessing.dummy as mp
 import os
 import time
 
-import Find_Nth_Prime as func
-import Find_Nth_Prime_Numpy as func1
+import Find_Nth_Prime_Python_Numpy_LRU as func
 
 times = dict()
 
@@ -31,6 +30,7 @@ if __name__ == '__main__':
     #
     # for p in proc:
     #     p.start()
-    time_function(func1.main_def, 50000, 5, rlock)
-    time_function(func1.main_half, 50000, 5, rlock)
-    time_function(func1.main_sqrt, 50000, 5, rlock)
+    # time_function(func.main_def, 50000, 5, rlock)
+    # time_function(func.main_half, 50000, 5, rlock)
+    # time_function(func.main_sqrt, 50000, 5, rlock)
+    func.main_def(50000, 5, rlock)

@@ -1,6 +1,7 @@
 # Cython_test_multiprocess
   Runtime comparison of different implementations of calculating Prime numbers.
 
+- [Setup](#setup)
 - [Tests](#tests)
   - [Default Test](#default-test)
   - [N / 2 Bounding Test](#half-of-n-bounding-test)
@@ -26,45 +27,26 @@
     - [Cython Optimized w/ Numpy Arrays & Lambdas](#cpython-optimized-cython-with-numpy-arrays-and-lambdas)
     - [Cython Optimized w/ Numpy Arrays & LRU Caching](#cpython-optimized-cython-with-numpy-arrays-and-lru-caching)
   - [Anaconda Variants](#anaconda-variants)
-    - Default
-    - Lambdas
-    - LRU Caching
-    - Numpy Arrays
-    - Numpy Arrays & Lambdas
-    - Numpy Arrays & LRU Caching
-    - Cython
-    - Cython w/ Lambdas
-    - Cython w/ LRU Caching
-    - Cython w/ Numpy Arrays
-    - Cython w/ Numpy Arrays & Lambdas
-    - Cython w/ Numpy Arrays & LRU Caching
-    - Cython Optimized
-    - Cython Optimized w/ Lambdas
-    - Cython Optimized w/ LRU Caching
-    - Cython Optimized w/ Numpy Arrays
-    - Cython Optimized w/ Numpy Arrays & Lambdas
-    - Cython Optimized w/ Numpy Arrays & LRU Caching
   - [PyPy Variants](#pypy-variants)
-    - Default
-    - Lambdas
-    - LRU Caching
-    - Numpy Arrays
-    - Numpy Arrays & Lambdas
-    - Numpy Arrays & LRU Caching
-    - Cython
-    - Cython w/ Lambdas
-    - Cython w/ LRU Caching
-    - Cython w/ Numpy Arrays
-    - Cython w/ Numpy Arrays & Lambdas
-    - Cython w/ Numpy Arrays & LRU Caching
-    - Cython Optimized
-    - Cython Optimized w/ Lambdas
-    - Cython Optimized w/ LRU Caching
-    - Cython Optimized w/ Numpy Arrays
-    - Cython Optimized w/ Numpy Arrays & Lambdas
-    - Cython Optimized w/ Numpy Arrays & LRU Caching
 
-# Tests
+## Setup
+1. Download the newest version of PyPy (skip if you're not planning on using PyPy).
+2. Download the newest version of Anaconda (skip if you're not planning on using Anaconda).
+3. Download or clone the repository.
+4. Install the pip requirements with `pip install requirements.txt`
+5. Run the program! I included the related `.bat` and `.sh` files for running
+the different runtimes as needed.
+  * <b>Windows</b>:
+    * [Clean.bat](Clean.bat): Deletes all compiled Python files
+    (`*.c`, `*.pyc`, `*.pyd`, `*.so`) including the `__pycache__` folder, and delete any text files including the `files_runs` and `files_compile` folders.
+    * [Compile_Python.py](Compile_Python.py): Runs [Clean.bat](Clean.bat), then
+    recompiles all `*.py` files using the `py_compile` module, then uses Cython
+    to compile all `*.pyx` files.
+    * [Compile_Conda.py](Compile_Conda.py): Same as [Compile_Python.py](Compile_Python.py),
+    but uses the Anaconda runtime. This will ask you to create an environment,
+    which will use Python 3.7 and install cython and numpy automatically.
+
+## Tests
   Each one of these programs has three different versions of calculating primes.<br>
   For variable `N` as the number checked in the primality test:
 
@@ -170,59 +152,31 @@
   * Uses manual static typing for variables for slightly better performance.
 
 ### Anaconda Variants
-* Anaconda
-  * No code difference compared to [CPython](#cpython), just tested using Anaconda's
-  Python runtime instead of CPython.
-* Anaconda with Lambdas
-  * No code difference compared to [CPython w/ Lambdas](#cpython-with-lambdas),
-  just uses Anaconda's Python runtime instead of CPython.
-* Anaconda with LRU Caching
-  * No code difference compared to [CPython w/ LRU Caching](#cpython-with-lru-caching),
-  just uses Anaconda's Python runtime instead of CPython.
-* Anaconda with Numpy Arrays
-  * No code difference compared to [CPython w/ Numpy Arrays](#cpython-with-numpy-arrays),
-  just uses Anaconda's Python runtime instead of CPython.
-* Anaconda with Numpy Arrays and Lambdas
-  * No code difference compared to [CPython w/ Numpy Arrays & Lambdas](#cpython-with-numpy-arrays-and-lambdas),
-  just uses Anaconda's Python runtime instead of CPython.
-* Anaconda Cython
-  * No code difference compared to [CPython Cython](#cpython-cython), just uses
-  Anaconda's Python runtime instead of CPython.
-* Anaconda Cython with Lambdas
-  * No code difference compared to [CPython Cython w/ Lambdas](#cpython-cython-with-lambdas),
-  just uses Anaconda's Python runtime instead of CPython.
-* Anaconda Cython with LRU Caching
-  * No code difference compared to [CPython Cython w/ LRU Caching](#cpython-cython-with-lru-caching),
-  just uses Anaconda's Python runtime instead of CPython.
-* Anaconda Cython with Numpy Arrays
-  * No code difference compared to [CPython Cython w/ Numpy Arrays](#cpython-cython-with-numpy-arrays),
-  just uses Anaconda's Python runtime instead of CPython.
-* Anaconda Cython with Numpy Arrays and Lambdas
-  * No code difference compared to [CPython Cython w/ Numpy Arrays & Lambdas](#cpython-cython-with-numpy-arrays-and-lambdas),
-  just uses Anaconda's Python runtime instead of CPython.
-* Anaconda Optimized Cython
-  * No code difference compared to [CPython Cython Optimized](#cpython-optimized-cython),
-  just uses Anaconda's Python runtime instead of CPython.
-* Anaconda Optimized Cython with Lambdas
-  * No code difference compared to [CPython Cython Optimized w/ Lambdas](#cpython-optimized-cython-with-lambdas),
-  just uses Anaconda's Python runtime instead of CPython.
-* Anaconda Optimized Cython with LRU Caching
-  * No code difference compared to [CPython Cython Optimized w/ LRU Caching](#cpython-optimized-cython-with-lru-caching),
-  just uses Anaconda's Python runtime instead of CPython.
-* Anaconda Optimized with Numpy Arrays
-  * No code difference compared to [CPython Cython Optimized w/ Numpy Arrays](#cpython-optimized-cython-with-numpy-arrays),
-  just uses Anaconda's Python runtime instead of CPython.
-* Anaconda Optimized with Numpy Arrays and Lambdas
-  * No code difference compared to [CPython Cython Optimized w/ Numpy Arrays & Lambdas](#cpython-optimized-cython-with-numpy-arrays-and-lambdas),
-  just uses Anaconda's Python runtime instead of CPython.
-* Anaconda Optimized with Numpy Arrays and LRU Caching
-  * No code difference compared to [CPython Cython Optimized w/ Numpy Arrays & LRU Caching](#cpython-optimized-cython-with-numpy-arrays-and-lru-caching),
-  just uses Anaconda's Python runtime instead of CPython.
+There are no differences in the code between these implementations and the CPython ones.
+The only difference is that the exact same CPython tests were run with the
+Anaconda Python runtime rather than the default CPython runtime.
+* <b>Anaconda</b>: [CPython](#cpython)
+* <b>Anaconda with Lambdas</b>: [CPython w/ Lambdas](#cpython-with-lambdas),
+* <b>Anaconda with LRU Caching</b>: [CPython w/ LRU Caching](#cpython-with-lru-caching)
+* <b>Anaconda with Numpy Arrays</b>: [CPython w/ Numpy Arrays](#cpython-with-numpy-arrays)
+* <b>Anaconda with Numpy Arrays and Lambdas</b>: [CPython w/ Numpy Arrays & Lambdas](#cpython-with-numpy-arrays-and-lambdas)
+* <b>Anaconda Cython</b>: [CPython Cython](#cpython-cython)
+* <b>Anaconda Cython with Lambdas</b>: [CPython Cython w/ Lambdas](#cpython-cython-with-lambdas)
+* <b>Anaconda Cython with LRU Caching</b>: [CPython Cython w/ LRU Caching](#cpython-cython-with-lru-caching)
+* <b>Anaconda Cython with Numpy Arrays</b>: [CPython Cython w/ Numpy Arrays](#cpython-cython-with-numpy-arrays)
+* <b>Anaconda Cython with Numpy Arrays and Lambdas</b>: [CPython Cython w/ Numpy Arrays & Lambdas](#cpython-cython-with-numpy-arrays-and-lambdas)
+* <b>Anaconda Optimized Cython</b>: [CPython Cython Optimized](#cpython-optimized-cython)
+* <b>Anaconda Optimized Cython with Lambdas</b>: [CPython Cython Optimized w/ Lambdas](#cpython-optimized-cython-with-lambdas)
+* <b>Anaconda Optimized Cython with LRU Caching</b>: [CPython Cython Optimized w/ LRU Caching](#cpython-optimized-cython-with-lru-caching)
+* <b>Anaconda Optimized with Numpy Arrays</b>: [CPython Cython Optimized w/ Numpy Arrays](#cpython-optimized-cython-with-numpy-arrays)
+* <b>Anaconda Optimized with Numpy Arrays and Lambdas</b>: [CPython Cython Optimized w/ Numpy Arrays & Lambdas](#cpython-optimized-cython-with-numpy-arrays-and-lambdas)
+* <b>Anaconda Optimized with Numpy Arrays and LRU Caching</b>: [CPython Cython Optimized w/ Numpy Arrays & LRU Caching](#cpython-optimized-cython-with-numpy-arrays-and-lru-caching)
+
 
 ## Related Files:
 #### Compiling
   * [Compiler_Cython.py](Compiler_Cython.py): Used by Cython to compile the
-  * [Compiler_Cython_LAmbda.py](Compiler_Cython_Lambda.py): Used by Cython to compile the
+  * [Compiler_Cython_Lambda.py](Compiler_Cython_Lambda.py): Used by Cython to compile the
   * [Threader.py](Threader.py):<br>
     * Python wrapper for calling the programs.
     * It's handles the multiprocessing/threading of the other programs,

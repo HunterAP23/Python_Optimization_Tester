@@ -106,4 +106,4 @@ ENV/
 
 # Custom
 files_runs/*.txt
-files_compile_runs/*.txt
+files_compile/*.txt

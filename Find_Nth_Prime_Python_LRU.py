@@ -86,6 +86,7 @@ def main_def(my_max, num_loops, rlock):
     txt_output2 = open(my_file2, 'a')
     my_file3 = "files_runs/normal_default_lru_primes.txt"
     txt_output3 = open(my_file3, 'a')
+
     time_list = []
     divisions_list = []
     primes = []

@@ -31,23 +31,33 @@ for %%a in (*.so) do (
 	del "%%a"
 )
 
-echo Compiling...
+CALL C:\ProgramData\Anaconda3\condabin\activate.bat tester
 
 for %%a in (*.py) do (
-	echo Compiling %%a
+	echo Compiling Anaconda bytecode for %%a
 	python -m py_compile "%%a"
 )
 
 mkdir files_compile
 
-ptime.exe C:\ProgramData\Anaconda3\python.exe master1.py build_ext --inplace >> files_compile/compile_time1.txt
+echo Cythonizing Anaconda Cython
+ptime.exe python.exe Compiler_Cython.py build_ext --inplace >> files_compile/compile_time_conda_cython.txt
 
-ptime.exe C:\ProgramData\Anaconda3\python.exe master1_LRU.py build_ext --inplace >> files_compile/compile_time1_LRU.txt
+echo Cythonizing Anaconda Cython Lambda
+ptime.exe python.exe Compiler_Cython_Lambda.py build_ext --inplace >> files_compile/compile_time_conda_cython_lambda.txt
 
-ptime.exe C:\ProgramData\Anaconda3\python.exe master2.py build_ext --inplace >> files_compile/compile_time2.txt
+echo Cythonizing Anaconda Cython LRU
+ptime.exe python.exe Compiler_Cython_LRU.py build_ext --inplace >> files_compile/compile_time_conda_cython_LRU.txt
 
-ptime.exe C:\ProgramData\Anaconda3\python.exe master2_LRU.py build_ext --inplace >> files_compile/compile_time2_LRU.txt
+echo Cythonizing Anaconda Optimized
+ptime.exe python.exe Compiler_Optimized.py build_ext --inplace >> files_compile/compile_time_conda_optimized.txt
 
-C:\ProgramData\Anaconda3\python.exe tester.py
+echo Cythonizing Anaconda Optimized Lambda
+ptime.exe python.exe Compiler_Optimized_Lambda.py build_ext --inplace >> files_compile/compile_time_conda_optimized_lambda.txt
+
+echo Cythonizing Anaconda Optimized LRU
+ptime.exe python.exe Compiler_Optimized_LRU.py build_ext --inplace >> files_compile/compile_time_conda_optimized_LRU.txt
+
+C:\ProgramData\Anaconda3\python.exe Threader.py
 
 pause

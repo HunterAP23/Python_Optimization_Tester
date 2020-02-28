@@ -1,5 +1,5 @@
 import cProfile
 import re
-import tester
+import Threader
 
-cProfile.run('re.compile("tester")')
+cProfile.run('re.compile("threader")')

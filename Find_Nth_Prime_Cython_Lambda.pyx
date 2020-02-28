@@ -4,10 +4,6 @@ import functools as ft
 import math
 import time
 
-table = []
-table2 = []
-table3 = []
-
 
 def print_lock(msg, rlock):
     rlock.acquire()
@@ -15,62 +11,22 @@ def print_lock(msg, rlock):
     rlock.release()
 
 
-def is_prime(num):
-    global table
-    checks = 0
-
-    if num <= 1:
-        return [False, 0]
-    else:
-        checks = checks + 1
-        for j in range(len(table)):
-            checks = checks + 1
-            if num % table[j] == 0:
-                return [False, checks]
-            else:
-                continue
-        table.append(num)
-        return [True, checks]
+def is_prime(n):
+    if n % 2 == 0 and n > 2:
+        return False
+    return all(n % i for i in range(3, n, 2))
 
 
-def is_prime_half(num):
-    global table2
-    checks = 0
-
-    if num <= 1:
-        return [False, 0]
-    else:
-        checks = checks + 1
-        boundary = math.floor(num / 2)
-        for j in range(len(table2)):
-            if table2[j] <= boundary:
-                checks = checks + 1
-                if num % table2[j] == 0:
-                    return [False, checks]
-                else:
-                    continue
-        table2.append(num)
-        return [True, checks]
+def is_prime_half(n):
+    if n % 2 == 0 and n > 2:
+        return False
+    return all(n % i for i in range(3, math.floor(n / 2), 2))
 
 
-def is_prime_sqrt(num):
-    global table3
-    checks = 0
-
-    if num <= 1:
-        return [False, 0]
-    else:
-        checks = checks + 1
-        boundary = math.floor(math.sqrt(num))
-        for j in range(len(table3)):
-            if table3[j] <= boundary:
-                checks = checks + 1
-                if num % table3[j] == 0:
-                    return [False, checks]
-                else:
-                    continue
-        table3.append(num)
-        return [True, checks]
+def is_prime_sqrt(n):
+    if n % 2 == 0 and n > 2:
+        return False
+    return all(n % i for i in range(3, math.floor(math.sqrt(n)), 2))
 
 
 def main_def(my_max, num_loops, rlock):
@@ -90,7 +46,6 @@ def main_def(my_max, num_loops, rlock):
 
     for j in range(num_loops):
         tmp_time_start = time.time()
-        table = []
         for i in range(my_max):
             tmp = is_prime(i)
             if tmp[0]:
@@ -139,7 +94,6 @@ def main_half(my_max, num_loops, rlock):
 
     for j in range(num_loops):
         tmp_time_start = time.time()
-        table = []
         for i in range(my_max):
             tmp = is_prime_half(i)
             if tmp[0]:
@@ -188,7 +142,6 @@ def main_sqrt(my_max, num_loops, rlock):
 
     for j in range(num_loops):
         tmp_time_start = time.time()
-        table = []
         for i in range(my_max):
             tmp = is_prime_sqrt(i)
             if tmp[0]:

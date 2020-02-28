@@ -19,6 +19,7 @@ def print_lock(msg, rlock):
     rlock.release()
 
 
+@ft.lru_cache(maxsize=None)
 def is_prime(num):
     global table
     checks = 0
@@ -33,7 +34,10 @@ def is_prime(num):
                 return [False, checks]
             else:
                 continue
-        table.append(num)
+        # table.resize((table.size + 1))
+        # table[-1] = num
+        np.append(table, num)
+
         return [True, checks]
 
 
@@ -54,42 +58,48 @@ def main_def(my_max, num_loops, rlock):
     msg += "Normal Default Numpy started."
     print_lock(msg, rlock)
 
-    my_file = "files_runs/normal_default_numpy_time.txt"
+    my_file = "files_runs/normal_default_numpy_lru_time.txt"
     txt_output = open(my_file, 'a')
-    my_file2 = "files_runs/normal_default_numpy_divisions.txt"
+    my_file2 = "files_runs/normal_default_numpy_lru_divisions.txt"
     txt_output2 = open(my_file2, 'a')
+    my_file3 = "files_runs/normal_default_numpy_lru_primes.txt"
+    txt_output3 = open(my_file3, 'a')
+
     time_list = []
     divisions_list = []
+    primes = []
 
     for j in range(num_loops):
+        global table
+        table = np.empty((1,))
         tmp_time_start = time.time()
-        vals = np.arange(1, my_max)
-        foo = np.vectorize(is_prime)
-        pbools = foo(vals)
-        primes = np.extract(pbools, vals)
-        for prime in primes:
-            divisions_list.append("{0}\n".format(prime))
+        for i in range(my_max):
+            tmp = is_prime(i)
+            if tmp[0]:
+                divisions_list.append("{0} took {1} divisions by previous primes to complete!\n\n".format(i, tmp[1]))
+                primes.append(i)
 
         tmp_time_total = time.time() - tmp_time_start
 
-        txt_output.write("Normal Default Numpy Pass {0} took {1} seconds.\n".format(j + 1, tmp_time_total))
+        txt_output.write("Normal Default Numpy LRU Pass {0} took {1} seconds.\n".format(j + 1, tmp_time_total))
         time_list.append(tmp_time_total)
 
     for item in list(set(divisions_list)):
         txt_output2.write(item)
     txt_output2.close()
 
-    # for prime in list(set(primes)):
-    #     txt_output3.write(prime)
-    # txt_output3.close()
+    for prime in list(set(primes)):
+        pr = "{0}\n".format(prime)
+        txt_output3.write(pr)
+    txt_output3.close()
 
     time_now = dt.datetime.now()
     msg = ("-" * 80) + "\n"
-    msg += "Normal Default Numpy Finished at {0}/{1}/{2} {3}:{4}:{5}:{6}".format(time_now.year, time_now.month, time_now.day, time_now.hour, time_now.minute, time_now.second, time_now.microsecond)
+    msg += "Normal Default Numpy LRU Finished at {0}/{1}/{2} {3}:{4}:{5}:{6}".format(time_now.year, time_now.month, time_now.day, time_now.hour, time_now.minute, time_now.second, time_now.microsecond)
     print_lock(msg, rlock)
 
     average_time = ft.reduce(lambda a, b: a + b, time_list) / len(time_list)
-    msg = "The average time it took to calculate {0} normal default numpy passes was {1}.".format(num_loops, average_time)
+    msg = "The average time it took to calculate {0} normal default numpy LRU passes was {1}.".format(num_loops, average_time)
     print_lock(msg, rlock)
     txt_output.write(msg)
     txt_output.close()

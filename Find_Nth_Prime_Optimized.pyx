@@ -24,7 +24,7 @@ cdef (bint, int) is_prime(int num):
         return (False, 0)
     else:
         checks = checks + 1
-        for j in range(len(table)):
+        for j in range(2, len(table)):
             checks = checks + 1
             if num % table[j] == 0:
                 return (False, checks)
@@ -34,7 +34,7 @@ cdef (bint, int) is_prime(int num):
         return (True, checks)
 
 
-cdef (bint,, int) is_prime_half(int num):
+cdef (bint, int) is_prime_half(int num):
     global table2
     cdef int checks = 0
 
@@ -85,13 +85,15 @@ cdef void main_def(int my_max, int num_loops, rlock):
     txt_output2 = open(my_file2, 'a')
     my_file3 = "files_runs/optimized_default_primes.txt"
     txt_output3 = open(my_file3, 'a')
-    time_list = []
-    divisions_list = []
-    primes = []
+
+    cdef list time_list = []
+    cdef list divisions_list = []
+    cdef list primes = []
 
     for j in range(num_loops):
-        tmp_time_start = time.time()
+        global table
         table = []
+        tmp_time_start = time.time()
         for i in range(my_max):
             tmp = is_prime(i)
             if tmp[0]:
@@ -116,7 +118,7 @@ cdef void main_def(int my_max, int num_loops, rlock):
     msg += "Optimized Default Finished at {0}/{1}/{2} {3}:{4}:{5}:{6}".format(time_now.year, time_now.month, time_now.day, time_now.hour, time_now.minute, time_now.second, time_now.microsecond)
     print_lock(msg, rlock)
 
-    average_time = ft.reduce(lambda a, b: a + b, time_list) / len(time_list)
+    cdef double average_time = ft.reduce(lambda a, b: a + b, time_list) / len(time_list)
     msg = "The average time it took to calculate {0} optimized normal passes was {1}.".format(num_loops, average_time)
     txt_output.write(msg)
     print_lock(msg, rlock)
@@ -134,13 +136,15 @@ cdef void main_half(int my_max, int num_loops, rlock):
     txt_output2 = open(my_file2, 'a')
     my_file3 = "files_runs/optimized_half_primes.txt"
     txt_output3 = open(my_file3, 'a')
-    time_list = []
-    divisions_list = []
-    primes = []
+
+    cdef list time_list = []
+    cdef list divisions_list = []
+    cdef list primes = []
 
     for j in range(num_loops):
+        global table2
+        table2 = []
         tmp_time_start = time.time()
-        table = []
         for i in range(my_max):
             tmp = is_prime_half(i)
             if tmp[0]:
@@ -165,7 +169,7 @@ cdef void main_half(int my_max, int num_loops, rlock):
     msg += "Optimized Half Finished at {0}/{1}/{2} {3}:{4}:{5}:{6}".format(time_now.year, time_now.month, time_now.day, time_now.hour, time_now.minute, time_now.second, time_now.microsecond)
     print_lock(msg, rlock)
 
-    average_time = ft.reduce(lambda a, b: a + b, time_list) / len(time_list)
+    cdef double average_time = ft.reduce(lambda a, b: a + b, time_list) / len(time_list)
     msg = "The average time it took to calculate {0} optimized half passes was {1}.".format(num_loops, average_time)
     txt_output.write(msg)
     print_lock(msg, rlock)
@@ -183,13 +187,15 @@ cdef void main_sqrt(int my_max, int num_loops, rlock):
     txt_output2 = open(my_file2, 'a')
     my_file3 = "files_runs/optimized_sqrt_primes.txt"
     txt_output3 = open(my_file3, 'a')
-    time_list = []
-    divisions_list = []
-    primes = []
+
+    cdef list time_list = []
+    cdef list divisions_list = []
+    cdef list primes = []
 
     for j in range(num_loops):
+        global table3
+        table3 = []
         tmp_time_start = time.time()
-        table = []
         for i in range(my_max):
             tmp = is_prime_sqrt(i)
             if tmp[0]:
@@ -200,6 +206,7 @@ cdef void main_sqrt(int my_max, int num_loops, rlock):
 
         txt_output.write("Optimized Sqrt Pass {0} took {1} seconds.\n".format(j + 1, tmp_time_total))
         time_list.append(tmp_time_total)
+
 
     for item in list(set(divisions_list)):
         txt_output2.write(item)
@@ -214,7 +221,7 @@ cdef void main_sqrt(int my_max, int num_loops, rlock):
     msg += "Optimized Sqrt Finished at {0}/{1}/{2} {3}:{4}:{5}:{6}".format(time_now.year, time_now.month, time_now.day, time_now.hour, time_now.minute, time_now.second, time_now.microsecond)
     print_lock(msg, rlock)
 
-    average_time = ft.reduce(lambda a, b: a + b, time_list) / len(time_list)
+    cdef double average_time = ft.reduce(lambda a, b: a + b, time_list) / len(time_list)
     msg = "The average time it took to calculate {0} optimized square root passes was {1}.".format(num_loops, average_time)
     txt_output.write(msg)
     print_lock(msg, rlock)

@@ -18,11 +18,11 @@ def is_prime(num):
     global table
     checks = 0
 
-    if num <= 1:
+    if num <= 1 or (num % 2 == 0 and num > 2):
         return [False, 0]
     else:
         checks = checks + 1
-        for j in range(len(table)):
+        for j in range(2, len(table)):
             checks = checks + 1
             if num % table[j] == 0:
                 return [False, checks]
@@ -36,7 +36,7 @@ def is_prime_half(num):
     global table2
     checks = 0
 
-    if num <= 1:
+    if num <= 1 or (num % 2 == 0 and num > 2):
         return [False, 0]
     else:
         checks = checks + 1
@@ -56,7 +56,7 @@ def is_prime_sqrt(num):
     global table3
     checks = 0
 
-    if num <= 1:
+    if num <= 1 or (num % 2 == 0 and num > 2):
         return [False, 0]
     else:
         checks = checks + 1
@@ -88,7 +88,7 @@ def main_def(my_max, num_loops, rlock):
     divisions_list = []
     primes = []
 
-    for j in range(num_loops):
+    for j in range(2, num_loops):
         tmp_time_start = time.time()
         for i in range(my_max):
             tmp = is_prime(i)
@@ -106,8 +106,9 @@ def main_def(my_max, num_loops, rlock):
         txt_output2.write(item)
     txt_output2.close()
 
-    for prime in list(set(primes)):
-        txt_output3.write(prime)
+    for prime in list(set(table)):
+        pr = "{0}\n".format(prime)
+        txt_output3.write(pr)
     txt_output3.close()
 
     time_now = dt.datetime.now()

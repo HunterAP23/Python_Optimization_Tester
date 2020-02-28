@@ -5,12 +5,29 @@ import os
 import time
 
 # Custom Funcs
-import Find_Nth_Prime
-import Find_Nth_Prime1
-import Find_Nth_Prime2
-import Find_Nth_Prime_LRU
-import Find_Nth_Prime1_LRU
-import Find_Nth_Prime2_LRU
+import Find_Nth_Prime_Python
+import Find_Nth_Prime_Python_Lambda
+import Find_Nth_Prime_Python_LRU
+
+import Find_Nth_Prime_Python_Numpy
+import Find_Nth_Prime_Python_Numpy_Lambda
+import Find_Nth_Prime_Python_Numpy_LRU
+
+# import Find_Nth_Prime_Cython
+# import Find_Nth_Prime_Cython_Lambda
+# import Find_Nth_Prime_Cython_LRU
+
+# import Find_Nth_Prime_Cython_Numpy
+# import Find_Nth_Prime_Cython_Numpy_Lambda
+# import Find_Nth_Prime_Cython_Numpy_LRU
+
+# import Find_Nth_Prime_Optimized
+# import Find_Nth_Prime_Optimized_Lambda
+# import Find_Nth_Prime_Optimized_LRU
+
+# import Find_Nth_Prime_Optimized_Numpy
+# import Find_Nth_Prime_Optimized_Numpy_Lambda
+# import Find_Nth_Prime_Optimized_Numpy_LRU
 
 
 def time_function(func, argoos, name, sema, rlock):
@@ -22,7 +39,7 @@ def time_function(func, argoos, name, sema, rlock):
     sema.release()
 
 
-def run_in_parallel(fns, args, sema, rlock):
+def run_in_parallel(fns, args, rlock):
     proc = []
     i = 0
     for fn in fns:
@@ -62,7 +79,7 @@ def run_in_parallel(fns, args, sema, rlock):
             namer = "Optimized_Half_LRU"
         else:
             namer = "Optimized_Sqrt_LRU"
-        p = mp.Process(target=time_function, args=(fn, args, namer, sema, rlock))
+        p = mp.Process(target=time_function, args=(fn, args, namer, rlock))
         proc.append(p)
         i += 1
 
@@ -87,7 +104,7 @@ if __name__ == '__main__':
 
     manager = mp.Manager()
     return_dict = manager.dict()
-    sema = manager.Semaphore(args.Threads)
+    sema = manager.Semaphore(1)
     rlock = manager.RLock()
     print("Availble CPU Cores: {0}".format(args.Threads))
 
@@ -102,33 +119,56 @@ if __name__ == '__main__':
     testing_start = time.time()
 
     funcs = []
-    funcs.append(Find_Nth_Prime.main_def)
-    funcs.append(Find_Nth_Prime.main_half)
-    funcs.append(Find_Nth_Prime.main_sqrt)
 
-    funcs.append(Find_Nth_Prime1.main_def)
-    funcs.append(Find_Nth_Prime1.main_half)
-    funcs.append(Find_Nth_Prime1.main_sqrt)
+    #CPYTHON
+    funcs.append(Find_Nth_Prime_Python.main_def)
+    funcs.append(Find_Nth_Prime_Python.main_half)
+    funcs.append(Find_Nth_Prime_Python.main_sqrt)
 
-    funcs.append(Find_Nth_Prime2.main_def)
-    funcs.append(Find_Nth_Prime2.main_half)
-    funcs.append(Find_Nth_Prime2.main_sqrt)
+    funcs.append(Find_Nth_Prime_Python_Lambda.main_def)
+    funcs.append(Find_Nth_Prime_Python_Lambda.main_half)
+    funcs.append(Find_Nth_Prime_Python_Lambda.main_sqrt)
 
-    funcs.append(Find_Nth_Prime_LRU.main_def)
-    funcs.append(Find_Nth_Prime_LRU.main_half)
-    funcs.append(Find_Nth_Prime_LRU.main_sqrt)
+    funcs.append(Find_Nth_Prime_Python_LRU.main_def)
+    funcs.append(Find_Nth_Prime_Python_LRU.main_half)
+    funcs.append(Find_Nth_Prime_Python_LRU.main_sqrt)
 
-    funcs.append(Find_Nth_Prime1_LRU.main_def)
-    funcs.append(Find_Nth_Prime1_LRU.main_half)
-    funcs.append(Find_Nth_Prime1_LRU.main_sqrt)
+    # NUMPY
+    # funcs.append(Find_Nth_Prime_Python_Numpy.main_def)
+    # funcs.append(Find_Nth_Prime_Python_Numpy.main_half)
+    # funcs.append(Find_Nth_Prime_Python_Numpy.main_sqrt)
+    #
+    # funcs.append(Find_Nth_Prime_Python_Numpy_Lambda.main_def)
+    # funcs.append(Find_Nth_Prime_Python_Numpy_Lambda.main_half)
+    # funcs.append(Find_Nth_Prime_Python_Numpy_Lambda.main_sqrt)
+    #
+    # funcs.append(Find_Nth_Prime_Python_Numpy_LRU.main_def)
+    # funcs.append(Find_Nth_Prime_Python_Numpy_LRU.main_half)
+    # funcs.append(Find_Nth_Prime_Python_Numpy_LRU.main_sqrt)
 
-    funcs.append(Find_Nth_Prime2_LRU.main_def)
-    funcs.append(Find_Nth_Prime2_LRU.main_half)
-    funcs.append(Find_Nth_Prime2_LRU.main_sqrt)
+    # funcs.append(Find_Nth_Prime1.main_def)
+    # funcs.append(Find_Nth_Prime1.main_half)
+    # funcs.append(Find_Nth_Prime1.main_sqrt)
+    #
+    # funcs.append(Find_Nth_Prime2.main_def)
+    # funcs.append(Find_Nth_Prime2.main_half)
+    # funcs.append(Find_Nth_Prime2.main_sqrt)
+    #
+    # funcs.append(Find_Nth_Prime_LRU.main_def)
+    # funcs.append(Find_Nth_Prime_LRU.main_half)
+    # funcs.append(Find_Nth_Prime_LRU.main_sqrt)
+    #
+    # funcs.append(Find_Nth_Prime1_LRU.main_def)
+    # funcs.append(Find_Nth_Prime1_LRU.main_half)
+    # funcs.append(Find_Nth_Prime1_LRU.main_sqrt)
+    #
+    # funcs.append(Find_Nth_Prime2_LRU.main_def)
+    # funcs.append(Find_Nth_Prime2_LRU.main_half)
+    # funcs.append(Find_Nth_Prime2_LRU.main_sqrt)
 
     arguments = [user_max, num_loops, return_dict]
 
-    run_in_parallel(funcs, arguments, sema, rlock)
+    run_in_parallel(funcs, arguments, rlock)
 
     testing_total = time.time() - testing_start
 
