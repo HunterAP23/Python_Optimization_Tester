@@ -24,9 +24,9 @@ cdef (bint, int) is_prime(int num):
         return (False, 0)
     else:
         checks = checks + 1
-        for j in range(len(table)):
+        for i in range(2, len(table)):
             checks = checks + 1
-            if num % table[j] == 0:
+            if num % table[i] == 0:
                 return (False, checks)
             else:
                 continue
@@ -43,10 +43,10 @@ cdef (bint, int) is_prime_half(int num):
     else:
         checks = checks + 1
         boundary = math.floor(num / 2)
-        for j in range(len(table2)):
-            if table2[j] <= boundary:
+        for i in range(len(table2)):
+            if table[i] <= boundary:
                 checks = checks + 1
-                if num % table2[j] == 0:
+                if num % table[i] == 0:
                     return (False, checks)
                 else:
                     continue
@@ -63,10 +63,10 @@ cdef (bint, int) is_prime_sqrt(int num):
     else:
         checks = checks + 1
         boundary = math.floor(math.sqrt(num))
-        for j in range(len(table3)):
-            if table3[j] <= boundary:
+        for i in range(len(table3)):
+            if table[i] <= boundary:
                 checks = checks + 1
-                if num % table3[j] == 0:
+                if num % table[i] == 0:
                     return (False, checks)
                 else:
                     continue
@@ -80,17 +80,17 @@ cdef void main_def(int my_max, int num_loops, rlock):
     print_lock(msg, rlock)
 
     my_file = "files_runs/optimized_default_time.txt"
-    txt_output = open(my_file, 'a')
+    txt_output = open(my_file, "a")
     my_file2 = "files_runs/optimized_default_divisions.txt"
-    txt_output2 = open(my_file2, 'a')
+    txt_output2 = open(my_file2, "a")
     my_file3 = "files_runs/optimized_default_primes.txt"
-    txt_output3 = open(my_file3, 'a')
+    txt_output3 = open(my_file3, "a")
 
     cdef list time_list = []
     cdef list divisions_list = []
     cdef list primes = []
 
-    for j in range(num_loops):
+    for i in range(num_loops):
         global table
         table = []
         tmp_time_start = time.time()
@@ -102,7 +102,7 @@ cdef void main_def(int my_max, int num_loops, rlock):
 
         tmp_time_total = time.time() - tmp_time_start
 
-        txt_output.write("Optimized Default Pass {0} took {1} seconds.\n".format(j + 1, tmp_time_total))
+        txt_output.write("Optimized Default Pass {0} took {1} seconds.\n".format(i + 1, tmp_time_total))
         time_list.append(tmp_time_total)
 
     for item in list(set(divisions_list)):
@@ -119,7 +119,7 @@ cdef void main_def(int my_max, int num_loops, rlock):
     print_lock(msg, rlock)
 
     cdef double average_time = ft.reduce(lambda a, b: a + b, time_list) / len(time_list)
-    msg = "The average time it took to calculate {0} optimized normal passes was {1}.".format(num_loops, average_time)
+    msg = "Average time it took to calculate {0} optimized normal passes was {1} seconds.".format(num_loops, average_time)
     txt_output.write(msg)
     print_lock(msg, rlock)
     txt_output.close()
@@ -131,17 +131,17 @@ cdef void main_half(int my_max, int num_loops, rlock):
     print_lock(msg, rlock)
 
     my_file = "files_runs/optimized_half_time.txt"
-    txt_output = open(my_file, 'a')
+    txt_output = open(my_file, "a")
     my_file2 = "files_runs/optimized_half_divisions.txt"
-    txt_output2 = open(my_file2, 'a')
+    txt_output2 = open(my_file2, "a")
     my_file3 = "files_runs/optimized_half_primes.txt"
-    txt_output3 = open(my_file3, 'a')
+    txt_output3 = open(my_file3, "a")
 
     cdef list time_list = []
     cdef list divisions_list = []
     cdef list primes = []
 
-    for j in range(num_loops):
+    for i in range(num_loops):
         global table2
         table2 = []
         tmp_time_start = time.time()
@@ -153,7 +153,7 @@ cdef void main_half(int my_max, int num_loops, rlock):
 
         tmp_time_total = time.time() - tmp_time_start
 
-        txt_output.write("Optimized Half Pass {0} took {1} seconds.\n".format(j + 1, tmp_time_total))
+        txt_output.write("Optimized Half Pass {0} took {1} seconds.\n".format(i + 1, tmp_time_total))
         time_list.append(tmp_time_total)
 
     for item in list(set(divisions_list)):
@@ -170,7 +170,7 @@ cdef void main_half(int my_max, int num_loops, rlock):
     print_lock(msg, rlock)
 
     cdef double average_time = ft.reduce(lambda a, b: a + b, time_list) / len(time_list)
-    msg = "The average time it took to calculate {0} optimized half passes was {1}.".format(num_loops, average_time)
+    msg = "Average time it took to calculate {0} optimized half-bound passes was {1} seconds.".format(num_loops, average_time)
     txt_output.write(msg)
     print_lock(msg, rlock)
     txt_output.close()
@@ -182,17 +182,17 @@ cdef void main_sqrt(int my_max, int num_loops, rlock):
     print_lock(msg, rlock)
 
     my_file = "files_runs/optimized_sqrt_time.txt"
-    txt_output = open(my_file, 'a')
+    txt_output = open(my_file, "a")
     my_file2 = "files_runs/optimized_sqrt_divisions.txt"
-    txt_output2 = open(my_file2, 'a')
+    txt_output2 = open(my_file2, "a")
     my_file3 = "files_runs/optimized_sqrt_primes.txt"
-    txt_output3 = open(my_file3, 'a')
+    txt_output3 = open(my_file3, "a")
 
     cdef list time_list = []
     cdef list divisions_list = []
     cdef list primes = []
 
-    for j in range(num_loops):
+    for i in range(num_loops):
         global table3
         table3 = []
         tmp_time_start = time.time()
@@ -204,7 +204,7 @@ cdef void main_sqrt(int my_max, int num_loops, rlock):
 
         tmp_time_total = time.time() - tmp_time_start
 
-        txt_output.write("Optimized Sqrt Pass {0} took {1} seconds.\n".format(j + 1, tmp_time_total))
+        txt_output.write("Optimized Sqrt Pass {0} took {1} seconds.\n".format(i + 1, tmp_time_total))
         time_list.append(tmp_time_total)
 
 
@@ -222,7 +222,7 @@ cdef void main_sqrt(int my_max, int num_loops, rlock):
     print_lock(msg, rlock)
 
     cdef double average_time = ft.reduce(lambda a, b: a + b, time_list) / len(time_list)
-    msg = "The average time it took to calculate {0} optimized square root passes was {1}.".format(num_loops, average_time)
+    msg = "Average time it took to calculate {0} optimized sqrt-bound passes was {1} seconds.".format(num_loops, average_time)
     txt_output.write(msg)
     print_lock(msg, rlock)
     txt_output.close()

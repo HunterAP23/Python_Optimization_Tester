@@ -40,14 +40,14 @@ def main_def(my_max, num_loops, rlock):
     print_lock(msg, rlock)
 
     my_file = "files_runs/normal_default_numpy_time.txt"
-    txt_output = open(my_file, 'a')
+    txt_output = open(my_file, "a")
     my_file2 = "files_runs/normal_default_numpy_divisions.txt"
-    txt_output2 = open(my_file2, 'a')
+    txt_output2 = open(my_file2, "a")
     time_list = []
     divisions_list = []
     primes = []
 
-    for j in range(num_loops):
+    for i in range(num_loops):
         tmp_time_start = time.time()
         vals = np.arange(1, my_max)
         foo = np.vectorize(is_prime)
@@ -58,7 +58,7 @@ def main_def(my_max, num_loops, rlock):
 
         tmp_time_total = time.time() - tmp_time_start
 
-        txt_output.write("Normal Default Numpy Pass {0} took {1} seconds.\n".format(j + 1, tmp_time_total))
+        txt_output.write("Normal Default Numpy Pass {0} took {1} seconds.\n".format(i + 1, tmp_time_total))
         time_list.append(tmp_time_total)
 
     for item in list(set(divisions_list)):
@@ -75,7 +75,7 @@ def main_def(my_max, num_loops, rlock):
     print_lock(msg, rlock)
 
     average_time = ft.reduce(lambda a, b: a + b, time_list) / len(time_list)
-    msg = "The average time it took to calculate {0} normal default numpy passes was {1}.".format(num_loops, average_time)
+    msg = "Average time it took to calculate {0} normal default numpy passes was {1} seconds.".format(num_loops, average_time)
     print_lock(msg, rlock)
     txt_output.write(msg)
     txt_output.close()
@@ -87,14 +87,14 @@ def main_half(my_max, num_loops, rlock):
     print_lock(msg, rlock)
 
     my_file = "files_runs/normal_half_numpy_time.txt"
-    txt_output = open(my_file, 'a')
+    txt_output = open(my_file, "a")
     my_file2 = "files_runs/normal_half_numpy_divisions.txt"
-    txt_output2 = open(my_file2, 'a')
+    txt_output2 = open(my_file2, "a")
     time_list = []
     divisions_list = []
     primes = []
 
-    for j in range(num_loops):
+    for i in range(num_loops):
         tmp_time_start = time.time()
         vals = np.arange(1, my_max)
         foo = np.vectorize(is_prime_half)
@@ -104,7 +104,7 @@ def main_half(my_max, num_loops, rlock):
             divisions_list.append("{0}\n".format(prime))
 
         tmp_time_total = time.time() - tmp_time_start
-        txt_output.write("Normal Half Numpy Pass {0} took {1} seconds.\n".format(j + 1, tmp_time_total))
+        txt_output.write("Normal Half Numpy Pass {0} took {1} seconds.\n".format(i + 1, tmp_time_total))
         time_list.append(tmp_time_total)
 
     for item in list(set(divisions_list)):
@@ -121,7 +121,7 @@ def main_half(my_max, num_loops, rlock):
     print_lock(msg, rlock)
 
     average_time = ft.reduce(lambda a, b: a + b, time_list) / len(time_list)
-    msg = "The average time it took to calculate {0} normal half numpy passes was {1}.".format(num_loops, average_time)
+    msg = "Average time it took to calculate {0} normal half numpy passes was {1} seconds.".format(num_loops, average_time)
     print_lock(msg, rlock)
     txt_output.write(msg)
     txt_output.close()
@@ -133,14 +133,14 @@ def main_sqrt(my_max, num_loops, rlock):
     print_lock(msg, rlock)
 
     my_file = "files_runs/normal_sqrt_numpy_time.txt"
-    txt_output = open(my_file, 'a')
+    txt_output = open(my_file, "a")
     my_file2 = "files_runs/normal_sqrt_numpy_divisions.txt"
-    txt_output2 = open(my_file2, 'a')
+    txt_output2 = open(my_file2, "a")
     time_list = []
     divisions_list = []
     primes = []
 
-    for j in range(num_loops):
+    for i in range(num_loops):
         tmp_time_start = time.time()
         vals = np.arange(1, my_max)
         foo = np.vectorize(is_prime_sqrt)
@@ -150,7 +150,7 @@ def main_sqrt(my_max, num_loops, rlock):
             divisions_list.append("{0}\n".format(prime))
 
         tmp_time_total = time.time() - tmp_time_start
-        txt_output.write("Normal Sqrt Numpy Pass {0} took {1} seconds.\n".format(j + 1, tmp_time_total))
+        txt_output.write("Normal Sqrt Numpy Pass {0} took {1} seconds.\n".format(i + 1, tmp_time_total))
         time_list.append(tmp_time_total)
 
     for item in list(set(divisions_list)):
@@ -167,7 +167,7 @@ def main_sqrt(my_max, num_loops, rlock):
     print_lock(msg, rlock)
 
     average_time = ft.reduce(lambda a, b: a + b, time_list) / len(time_list)
-    msg = "The average time it took to calculate {0} normal square root numpy passes was {1}.".format(num_loops, average_time)
+    msg = "Average time it took to calculate {0} normal sqrt-bound numpy passes was {1} seconds.".format(num_loops, average_time)
     print_lock(msg, rlock)
     txt_output.write(msg)
     txt_output.close()

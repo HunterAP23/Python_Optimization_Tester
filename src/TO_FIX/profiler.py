@@ -2,4 +2,4 @@ import cProfile
 import re
 import Threader
 
-cProfile.run('re.compile("threader")')
+cProfile.run("re.compile(\"threader\")")

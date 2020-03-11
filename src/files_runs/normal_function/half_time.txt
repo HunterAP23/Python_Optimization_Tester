@@ -1,0 +1,6 @@
+Normal Half (Function) Pass 100000 took 3.1480553150177 seconds.
+Normal Half (Function) Pass 100000 took 3.0185129642486572 seconds.
+Normal Half (Function) Pass 100000 took 3.0110561847686768 seconds.
+Normal Half (Function) Pass 100000 took 3.045403242111206 seconds.
+Normal Half (Function) Pass 100000 took 3.130526065826416 seconds.
+Average time it took to calculate 5 normal half-bound (Function) passes was 3.130526065826416 seconds.

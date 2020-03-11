@@ -33,11 +33,11 @@ for %%a in (*.so) do (
 
 ptime python.exe -B lambda_test.py
 
-for %%a in (*.py) do (
-	echo Compiling CPython bytecode for %%a
-	python -m py_compile "%%a"
-)
+rem for %%a in (*.py) do (
+rem 	echo Compiling CPython bytecode for %%a
+rem 	python -m py_compile "%%a"
+rem )
 
-ptime python.exe lambda_test.py
+rem ptime python.exe lambda_test.py
 
 pause

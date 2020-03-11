@@ -1,7 +1,8 @@
-cimport cython
 import datetime as dt
+import decimal
 import functools as ft
 import math
+import numbers
 import time
 
 table = []
@@ -24,9 +25,9 @@ def is_prime(num):
         return [False, 0]
     else:
         checks = checks + 1
-        for j in range(2, len(table)):
+        for i in range(len(table)):
             checks = checks + 1
-            if num % table[j] == 0:
+            if num % table[i] == 0:
                 return [False, checks]
             else:
                 continue
@@ -44,10 +45,10 @@ def is_prime_half(num):
     else:
         checks = checks + 1
         boundary = math.floor(num / 2)
-        for j in range(len(table2)):
-            if table2[j] <= boundary:
+        for i in range(len(table2)):
+            if table[i] <= boundary:
                 checks = checks + 1
-                if num % table2[j] == 0:
+                if num % table[i] == 0:
                     return [False, checks]
                 else:
                     continue
@@ -64,11 +65,11 @@ def is_prime_sqrt(num):
         return [False, 0]
     else:
         checks = checks + 1
-        boundary = math.floor(math.sqrt(num))
-        for j in range(len(table3)):
-            if table3[j] <= boundary:
+        boundary = int(math.floor(math.sqrt(num)))
+        for i in range(len(table3)):
+            if table[i] <= boundary:
                 checks = checks + 1
-                if num % table3[j] == 0:
+                if num % table[i] == 0:
                     return [False, checks]
                 else:
                     continue
@@ -78,101 +79,83 @@ def is_prime_sqrt(num):
 
 def main_def(my_max, num_loops, rlock):
     msg = ("-" * 80) + "\n"
-    msg += "Compiled Default LRU started."
+    msg += "Normal Default LRU started."
     print_lock(msg, rlock)
 
-    my_file = "files_runs/compiled_default_LRU_main_time.txt"
-    txt_output = open(my_file, 'a')
-    my_file2 = "files_runs/compiled_default_LRU_main_divisions.txt"
-    txt_output2 = open(my_file2, 'a')
-    my_file3 = "files_runs/compiled_default_LRU_main_primes.txt"
-    txt_output3 = open(my_file3, 'a')
+    my_file = "files_runs/normal_default_lru_time.txt"
+    my_file2 = "files_runs/normal_default_lru_divisions.txt"
+    txt_output = open(my_file, "a")
+    txt_output2 = open(my_file2, "a")
     time_list = []
     divisions_list = []
-    primes = []
 
-    for j in range(num_loops):
+    for i in range(num_loops):
         tmp_time_start = time.time()
         table = []
         for i in range(my_max):
             tmp = is_prime(i)
-            if tmp[0]:
+            if tmp[0] == True:
                 divisions_list.append("{0} took {1} divisions by previous primes to complete!\n\n".format(i, tmp[1]))
-                primes.append(i)
 
         tmp_time_total = time.time() - tmp_time_start
 
-        txt_output.write("Compiled Default LRU Pass {0} took {1} seconds.\n".format(j + 1, tmp_time_total))
+        txt_output.write("Normal Default LRU Pass {0} took {1} seconds.\n".format(i + 1, tmp_time_total))
         time_list.append(tmp_time_total)
 
-    for item in list(set(divisions_list)):
+    for item in divisions_list:
         txt_output2.write(item)
     txt_output2.close()
 
-    for prime in list(set(primes)):
-        txt_output3.write(prime)
-    txt_output3.close()
-
     time_now = dt.datetime.now()
     msg = ("-" * 80) + "\n"
-    msg += "Compiled Default LRU Finished at {0}/{1}/{2} {3}:{4}:{5}:{6}".format(time_now.year, time_now.month, time_now.day, time_now.hour, time_now.minute, time_now.second, time_now.microsecond)
-    # msg += "Compiled is_prime.cache_info(): {0}".format(is_prime.cache_info())
+    msg += "Normal Default LRU Finished at {0}/{1}/{2} {3}:{4}:{5}:{6}".format(time_now.year, time_now.month, time_now.day, time_now.hour, time_now.minute, time_now.second, time_now.microsecond)
+    # msg += "Normal is_prime.cache_info(): {0}".format(is_prime.cache_info())
+
     print_lock(msg, rlock)
 
     average_time = ft.reduce(lambda a, b: a + b, time_list) / len(time_list)
-    msg = "The average time it took to calculate {0} compiled default LRU passes was {1}.".format(num_loops, average_time)
-    txt_output.write(msg)
-    print_lock(msg, rlock)
+    txt_output.write("Average time it took to calculate {0} normal default LRU passes was {1} seconds.".format(num_loops, average_time))
     txt_output.close()
 
 
 def main_half(my_max, num_loops, rlock):
     msg = ("-" * 80) + "\n"
-    msg += "Compiled Half LRU started."
+    msg += "Normal Half LRU started."
     print_lock(msg, rlock)
 
-    my_file = "files_runs/compiled_half_LRU_time.txt"
-    txt_output = open(my_file, 'a')
-    my_file2 = "files_runs/compiled_half_LRU_divisions.txt"
-    txt_output2 = open(my_file2, 'a')
-    my_file3 = "files_runs/compiled_half_LRU_primes.txt"
-    txt_output3 = open(my_file3, 'a')
+    my_file = "files_runs/normal_half_lru_time.txt"
+    my_file2 = "files_runs/normal_half_lru_division.txt"
+    txt_output = open(my_file, "a")
+    txt_output2 = open(my_file2, "a")
     time_list = []
     divisions_list = []
-    primes = []
 
-    for j in range(num_loops):
+    for i in range(num_loops):
         tmp_time_start = time.time()
         table = []
         for i in range(my_max):
             tmp = is_prime_half(i)
-            if tmp[0]:
+            if tmp[0] == True:
                 divisions_list.append("{0} took {1} divisions by previous primes to complete!\n\n".format(i, tmp[1]))
-                primes.append(i)
 
         tmp_time_total = time.time() - tmp_time_start
 
-        txt_output.write("Compiled Half LRU Pass {0} took {1} seconds.\n".format(j + 1, tmp_time_total))
+        txt_output.write("Normal Half LRU Pass {0} took {1} seconds.\n".format(i + 1, tmp_time_total))
         time_list.append(tmp_time_total)
 
-    for item in list(set(divisions_list)):
+    for item in divisions_list:
         txt_output2.write(item)
     txt_output2.close()
-
-    for prime in list(set(primes)):
-        txt_output3.write(prime)
-    txt_output3.close()
 
     time_now = dt.datetime.now()
     msg = ("-" * 80) + "\n"
     msg += "Normal Half LRU Finished at {0}/{1}/{2} {3}:{4}:{5}:{6}".format(time_now.year, time_now.month, time_now.day, time_now.hour, time_now.minute, time_now.second, time_now.microsecond)
-    # msg += "Compiled is_prime_half.cache_info(): {0}".format(is_prime_half.cache_info())
+    # msg += "Normal is_prime.cache_info(): {0}".format(is_prime.cache_info())
+
     print_lock(msg, rlock)
 
     average_time = ft.reduce(lambda a, b: a + b, time_list) / len(time_list)
-    msg = "The average time it took to calculate {0} compiled half LRU passes was {1}.".format(num_loops, average_time)
-    txt_output.write(msg)
-    print_lock(msg, rlock)
+    txt_output.write("Average time it took to calculate {0} normal half LRU passes was {1} seconds.".format(num_loops, average_time))
     txt_output.close()
 
 
@@ -181,46 +164,37 @@ def main_sqrt(my_max, num_loops, rlock):
     msg += "Normal Sqrt LRU started."
     print_lock(msg, rlock)
 
-    my_file = "files_runs/compiled_sqrt_LRU_time.txt"
-    txt_output = open(my_file, 'a')
-    my_file2 = "files_runs/compiled_sqrt_LRU_divisions.txt"
-    txt_output2 = open(my_file2, 'a')
-    my_file3 = "files_runs/compiled_sqrt_LRU_primes.txt"
-    txt_output3 = open(my_file3, 'a')
+    my_file = "files_runs/normal_sqrt_lru_time.txt"
+    my_file2 = "files_runs/normal_sqrt_lru_divisions.txt"
+    txt_output = open(my_file, "a")
+    txt_output2 = open(my_file2, "a")
     time_list = []
     divisions_list = []
-    primes = []
 
-    for j in range(num_loops):
+    for i in range(num_loops):
         tmp_time_start = time.time()
         table = []
         for i in range(my_max):
             tmp = is_prime_sqrt(i)
-            if tmp[0]:
+            if tmp[0] == True:
                 divisions_list.append("{0} took {1} divisions by previous primes to complete!\n\n".format(i, tmp[1]))
-                primes.append(i)
 
         tmp_time_total = time.time() - tmp_time_start
 
-        txt_output.write("Compiled Sqrt LRU Pass {0} took {1} seconds.\n".format(j + 1, tmp_time_total))
+        txt_output.write("Normal Sqrt LRU Pass {0} took {1} seconds.\n".format(i + 1, tmp_time_total))
         time_list.append(tmp_time_total)
 
-    for item in list(set(divisions_list)):
+    for item in divisions_list:
         txt_output2.write(item)
     txt_output2.close()
 
-    for prime in list(set(primes)):
-        txt_output3.write(prime)
-    txt_output3.close()
-
     time_now = dt.datetime.now()
     msg = ("-" * 80) + "\n"
-    msg += "Compiled Sqrt LRU Finished at {0}/{1}/{2} {3}:{4}:{5}:{6}".format(time_now.year, time_now.month, time_now.day, time_now.hour, time_now.minute, time_now.second, time_now.microsecond)
-    # msg += "Compiled is_prime_sqrt.cache_info(): {0}".format(is_prime_sqrt.cache_info())
+    msg += "Normal Sqrt LRU Finished at {0}/{1}/{2} {3}:{4}:{5}:{6}".format(time_now.year, time_now.month, time_now.day, time_now.hour, time_now.minute, time_now.second, time_now.microsecond)
+    # msg += "Normal is_prime.cache_info(): {0}".format(is_prime.cache_info())
+
     print_lock(msg, rlock)
 
     average_time = ft.reduce(lambda a, b: a + b, time_list) / len(time_list)
-    msg = "The average time it took to calculate {0} compiled sqrt LRU passes was {1}.".format(num_loops, average_time)
-    txt_output.write(msg)
-    print_lock(msg, rlock)
+    txt_output.write("Average time it took to calculate {0} normal sqrt-bound LRU passes was {1} seconds.".format(num_loops, average_time))
     txt_output.close()

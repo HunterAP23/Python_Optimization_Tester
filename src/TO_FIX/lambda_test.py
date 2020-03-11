@@ -2,7 +2,8 @@ import multiprocessing.dummy as mp
 import os
 import time
 
-import Find_Nth_Prime_Python_Numpy_LRU as func
+import Find_Nth_Prime_Python as func
+import Find_Nth_Prime_Python_Lambda as func1
 
 times = dict()
 
@@ -12,7 +13,7 @@ def time_function(func, max_num, num_loops, rlock):
     total = time.time() - start
     times[str(func)] = total
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     try:
         os.mkdir("files_runs")
     except FileExistsError as fee:
@@ -30,7 +31,14 @@ if __name__ == '__main__':
     #
     # for p in proc:
     #     p.start()
-    # time_function(func.main_def, 50000, 5, rlock)
-    # time_function(func.main_half, 50000, 5, rlock)
-    # time_function(func.main_sqrt, 50000, 5, rlock)
-    func.main_def(50000, 5, rlock)
+    # time_function(func.main_def, 49999, 5, rlock)
+    # time_function(func.main_half, 49999, 5, rlock)
+    # time_function(func.main_sqrt, 49999, 5, rlock)
+    # func.main_def(100000, 10, rlock)
+    func1.main_def(100000, 20, rlock)
+    func1.main_def2(100000, 20, rlock)
+    func1.main_half(100000, 20, rlock)
+    func1.main_half2(100000, 20, rlock)
+    func1.main_half3(100000, 20, rlock)
+    func1.main_half4(100000, 20, rlock)
+    func1.main_sqrt(100000, 20, rlock)

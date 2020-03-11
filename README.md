@@ -8,9 +8,11 @@
   - [sqrt(N) Bounding Test](#square-root-of-n-bounding-test)
 - [Implementations](#implementations)
   - [CPython Variants](#cpython-variants)
-    - [Default](#cpython)
-    - [Lambdas](#cpython-with-lambdas)
-    - [LRU Caching](#cpython-with-lru-caching)
+    - [Default through function calls](#cpython-through-functions)
+    - [Default locally](#cpython-locally)
+    - [Lambdas within function calls](#cpython-with-lambdas-through-functions)
+    - [Lambdas locally](#cpython-with-lambdas-through-functions)
+    - [Function Calls with LRU Caching](#cpython-with-lru-caching)
     - [Numpy Arrays](#cpython-with-numpy-arrays)
     - [Numpy Arrays & Lambdas](#cpython-with-numpy-arrays-and-lambdas)
     - [Numpy Arrays & LRU Caching](#cpython-with-numpy-arrays-and-lru-caching)
@@ -48,7 +50,12 @@ the different runtimes as needed.
 
 ## Tests
   Each one of these programs has three different versions of calculating primes.<br>
-  For variable `N` as the number checked in the primality test:
+  Using variable `N` as the number being tested for primality:<br>
+  For prime numbers, we already know the following:
+  * All prime numbers are odd numbers, except for 2.
+  * All even numbers are divisible by 2, and therefore not prime.
+  * We only need to start with 2 as the first prime number, then loop from 3
+    to `N`, incrementing by 2 for each iteration to test only odd numbers.
 
 #### Default Test
   * Check divisibility of `N` by each number less than `N`.
@@ -65,15 +72,29 @@ the different runtimes as needed.
 
 # Implementations
 ### Cpython Variants
-#### CPython
+#### CPython through Functions
   * Defined in [Find_Nth_Prime_Python.py](Find_Nth_Prime_Python.py)
   * Loops over all numbers from `0` to `max_num` as variable `N`, calls
   the test method functions for each of those numbers.
   * Since we're calling the each test method functions `N` times each, this means
   we have function call overhead of `max_num` calls per test method.
 
-#### CPython with Lambdas
+#### CPython Locally
+  * Defined in [Find_Nth_Prime_Python_Local.py](Find_Nth_Prime_Python_Local.py)
+  * Loops over all numbers from `0` to `max_num` as variable `N`, calls
+  the test method functions for each of those numbers.
+  * Since we're calling the each test method functions `N` times each, this means
+  we have function call overhead of `max_num` calls per test method.
+
+#### CPython through Functions with Lambdas
   * Defined in [Find_Nth_Prime_Python_Lambda.py](Find_Nth_Prime_Python_Lambda.py)
+  * Only calls the calculation function once with a `max_num` as a parameter.
+  * The calculation function handles all the logic that `Find_Nth_Prime_Python.py`'s the calculation functions have, but all using a single lambda function inside the calculation function.
+  * This reduces the function call overhead, which can lead to significant time
+  savings.
+
+#### CPython through Functions with Lambdas
+  * Defined in [Find_Nth_Prime_Python_Local_Lambda.py](Find_Nth_Prime_Python_Local_Lambda.py)
   * Only calls the calculation function once with a `max_num` as a parameter.
   * The calculation function handles all the logic that `Find_Nth_Prime_Python.py`'s the calculation functions have, but all using a single lambda function inside the calculation function.
   * This reduces the function call overhead, which can lead to significant time

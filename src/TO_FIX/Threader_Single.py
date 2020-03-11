@@ -93,13 +93,13 @@ def run_in_parallel(fns, args, rlock):
 def parse_arguments():
     parser = argp.ArgumentParser(description="Cython & LRU Cache Tester", add_help=False)
 
-    optional_args = parser.add_argument_group('optional arguments')
-    optional_args.add_argument('-t', '--threads', default=mp.cpu_count(), type=int, required=False, help="send the email report, skip email prompts.", dest="Threads")
+    optional_args = parser.add_argument_group("optional arguments")
+    optional_args.add_argument("-t", "--threads", default=mp.cpu_count(), type=int, required=False, help="send the email report, skip email prompts.", dest="Threads")
 
     return parser.parse_args()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     args = parse_arguments()
 
     manager = mp.Manager()
@@ -176,41 +176,41 @@ if __name__ == '__main__':
         result_file = None
 
         if k == "Normal_Default":
-            result_file = open('files_runs/normal_default_time.txt', 'a')
+            result_file = open("files_runs/normal_default_time.txt", "w")
         elif k == "Normal_Half":
-            result_file = open('files_runs/normal_half_time.txt', 'a')
+            result_file = open("files_runs/normal_half_time.txt", "w")
         elif k == "Normal_Sqrt":
-            result_file = open('files_runs/normal_sqrt_time.txt', 'a')
+            result_file = open("files_runs/normal_sqrt_time.txt", "w")
         elif k == "Compiled_Default":
-            result_file = open('files_runs/compiled_default_time.txt', 'a')
+            result_file = open("files_runs/compiled_default_time.txt", "w")
         elif k == "Compiled_Half":
-            result_file = open('files_runs/compiled_half_time.txt', 'a')
+            result_file = open("files_runs/compiled_half_time.txt", "w")
         elif k == "Compiled_Sqrt":
-            result_file = open('files_runs/compiled_sqrt_time.txt', 'a')
+            result_file = open("files_runs/compiled_sqrt_time.txt", "w")
         elif k == "Optimized_Default":
-            result_file = open('files_runs/optimized_default_time.txt', 'a')
+            result_file = open("files_runs/optimized_default_time.txt", "w")
         elif k == "Optimized_Half":
-            result_file = open('files_runs/optimized_half_time.txt', 'a')
+            result_file = open("files_runs/optimized_half_time.txt", "w")
         elif k == "Optimized_Sqrt":
-            result_file = open('files_runs/optimized_sqrt_time.txt', 'a')
+            result_file = open("files_runs/optimized_sqrt_time.txt", "w")
         elif k == "Normal_Default_LRU":
-            result_file = open('files_runs/normal_default_LRU_time.txt', 'a')
+            result_file = open("files_runs/normal_default_LRU_time.txt", "w")
         elif k == "Normal_Half_LRU":
-            result_file = open('files_runs/normal_half_LRU_time.txt', 'a')
+            result_file = open("files_runs/normal_half_LRU_time.txt", "w")
         elif k == "Normal_Sqrt_LRU":
-            result_file = open('files_runs/normal_sqrt_LRU_time.txt', 'a')
+            result_file = open("files_runs/normal_sqrt_LRU_time.txt", "w")
         elif k == "Compiled_Default_LRU":
-            result_file = open('files_runs/compiled_default_LRU_time.txt', 'a')
+            result_file = open("files_runs/compiled_default_LRU_time.txt", "w")
         elif k == "Compiled_Half_LRU":
-            result_file = open('files_runs/compiled_half_LRU_time.txt', 'a')
+            result_file = open("files_runs/compiled_half_LRU_time.txt", "w")
         elif k == "Compiled_Sqrt_LRU":
-            result_file = open('files_runs/compiled_sqrt_LRU_time.txt', 'a')
+            result_file = open("files_runs/compiled_sqrt_LRU_time.txt", "w")
         elif k == "Optimized_Default_LRU":
-            result_file = open('files_runs/optimized_default_LRU_time.txt', 'a')
+            result_file = open("files_runs/optimized_default_LRU_time.txt", "w")
         elif k == "Optimized_Half_LRU":
-            result_file = open('files_runs/optimized_half_LRU_time.txt', 'a')
+            result_file = open("files_runs/optimized_half_LRU_time.txt", "w")
         elif k == "Optimized_Sqrt_LRU":
-            result_file = open('files_runs/optimized_sqrt_LRU_time.txt', 'a')
+            result_file = open("files_runs/optimized_sqrt_LRU_time.txt", "w")
 
         result_file.write("{0} took {1}H:{2}M:{3:0.2f}S".format(k, int(v / 3600), int(v / 60), v))
         result_file.close()

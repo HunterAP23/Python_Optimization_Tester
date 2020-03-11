@@ -1,0 +1,21 @@
+- [ ] CPython Variants
+  - [ ] Default
+  - [ ] Lambdas
+  - [ ] LRU Caching
+  - [ ] Numpy Arrays
+  - [ ] Numpy Arrays & Lambdas
+  - [ ] Numpy Arrays & LRU Caching
+  - [ ] Cython
+  - [ ] Cython w/ Lambdas
+  - [ ] Cython w/ LRU Caching
+  - [ ] Cython w/ Numpy Arrays
+  - [ ] Cython w/ Numpy Arrays & Lambdas
+  - [ ] Cython w/ Numpy Arrays & LRU Caching
+  - [ ] Cython Optimized
+  - [ ] Cython Optimized w/ Lambdas
+  - [ ] Cython Optimized w/ LRU Caching
+  - [ ] Cython Optimized w/ Numpy Arrays
+  - [ ] Cython Optimized w/ Numpy Arrays & Lambdas
+  - [ ] Cython Optimized w/ Numpy Arrays & LRU Caching
+- [ ] Anaconda Runtime
+- [ ] PyPy Runtime

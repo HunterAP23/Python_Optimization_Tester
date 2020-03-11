@@ -13,7 +13,7 @@ def time_function(func, max_num, num_loops, rlock):
     total = time.time() - start
     times[str(func)] = total
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     try:
         os.mkdir("files_runs")
     except FileExistsError as fee:

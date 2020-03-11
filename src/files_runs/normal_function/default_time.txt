@@ -1,0 +1,11 @@
+Normal Default (Function) Pass 100000 took 4.544057130813599 seconds.
+
+Normal Default (Function) Pass 100000 took 4.583568334579468 seconds.
+
+Normal Default (Function) Pass 100000 took 4.483402490615845 seconds.
+
+Normal Default (Function) Pass 100000 took 4.459833383560181 seconds.
+
+Normal Default (Function) Pass 100000 took 4.523055076599121 seconds.
+
+Average time it took to calculate 5 normal default (Function) passes was 4.523055076599121 seconds.
