@@ -11,63 +11,17 @@ def print_lock(msg, rlock):
 
 
 def is_prime(n, table):
-    checks = 0
-
-    if n <= 1:
-        checks = 1
-        return (False, checks)
-    else:
-        if len(table) == 0:
-            for i in range(2, n):
-                if n % table[i] == 0:
-                    return (False, checks)
-                else:
-                    checks += 1
-        else:
-            for i in range(len(table)):
-                if n % table[i] == 0:
-                    return (False, checks)
-                else:
-                    checks += 1
-        return (True, checks)
+    return all(n % table[i] for i in range(len(table)))
 
 
 def is_prime_half(n, table):
-    checks = 0
-
-    if n <= 1:
-        checks = 1
-        return (False, checks)
-    else:
-        boundary = math.floor(n / 2)
-        for i in range(len(table)):
-            if table[i] <= boundary:
-                if n % table[i] == 0:
-                    return (False, checks)
-                else:
-                    checks += 1
-            else:
-                break
-        return (True, checks)
+    boundary = math.floor(n / 2)
+    return all(n % table[i] for i in range(len(table)) if table[i] <= boundary)
 
 
 def is_prime_sqrt(n, table):
-    checks = 0
-
-    if n <= 1:
-        checks = 1
-        return (False, checks)
-    else:
-        boundary = math.floor(math.sqrt(n))
-        for i in range(len(table)):
-            if table[i] <= boundary:
-                if n % table[i] == 0:
-                    return (False, checks)
-                else:
-                    checks += 1
-            else:
-                break
-        return (True, checks)
+    boundary = math.floor(math.sqrt(n))
+    return all(n % table[i] for i in range(len(table)) if table[i] <= boundary)
 
 
 def main_def(my_max, num_loops, rlock):
@@ -80,31 +34,32 @@ def main_def(my_max, num_loops, rlock):
     div_list = []
     primes_list = []
 
-    time_output = open("files_runs/normal_function_lambda/default_time.txt", "w")
+    time_output = open("files_runs//normal_function_lambda//default_time.txt", "w")
 
     for i in range(num_loops):
         # Clear the lists before a run
         time_list = []
         div_list = []
         primes_list = []
+        primes_list.append(2)
 
         tmp_time_start = time.time()
-        for i in range(2, my_max):
-            tmp = is_prime(i, primes_list)
-            if tmp[0]:
-                div_list.append("Primality Test for {0} took {1} divisions.\n\n".format(i, tmp[1]))
-                primes_list.append(i)
+        for j in range(3, my_max, 2):
+            tmp = is_prime(j, primes_list)
+            if tmp:
+                div_list.append("Primality Test for {0} took {1} divisions.\n\n".format(j, 1))
+                primes_list.append(j)
 
         tmp_time_total = time.time() - tmp_time_start
 
         time_output.write("Normal Default (Function Lambda) Pass {0} took {1} seconds.\n\n".format(i + 1, tmp_time_total))
         time_list.append(tmp_time_total)
 
-    with open("files_runs/normal_function_lambda/default_divisions.txt", "w") as div_output:
+    with open("files_runs//normal_function_lambda//default_divisions.txt", "w") as div_output:
         for div in div_list:
             div_output.write(div)
 
-    with open("files_runs/normal_function_lambda/default_primes.txt", "w") as primes_output:
+    with open("files_runs//normal_function_lambda//default_primes.txt", "w") as primes_output:
         for prime in primes_list:
             primes_output.write("{0}\n".format(prime))
 
@@ -130,31 +85,32 @@ def main_half(my_max, num_loops, rlock):
     div_list = []
     primes_list = []
 
-    time_output = open("files_runs/normal_function_lambda/half_time.txt", "w")
+    time_output = open("files_runs//normal_function_lambda//half_time.txt", "w")
 
     for i in range(num_loops):
         # Clear the lists before a run
         time_list = []
         div_list = []
         primes_list = []
+        primes_list.append(2)
 
         tmp_time_start = time.time()
-        for i in range(2, my_max):
-            tmp = is_prime_half(i, primes_list)
-            if tmp[0]:
-                div_list.append("Primality Test for {0} took {1} divisions.\n\n".format(i, tmp[1]))
-                primes_list.append(i)
+        for j in range(3, my_max, 2):
+            tmp = is_prime_half(j, primes_list)
+            if tmp:
+                div_list.append("Primality Test for {0} took {1} divisions.\n\n".format(j, 1))
+                primes_list.append(j)
 
         tmp_time_total = time.time() - tmp_time_start
 
         time_output.write("Normal Half (Function Lambda) Pass {0} took {1} seconds.\n".format(i + 1, tmp_time_total))
         time_list.append(tmp_time_total)
 
-    with open("files_runs/normal_function_lambda/half_divisions.txt", "w") as div_output:
+    with open("files_runs//normal_function_lambda//half_divisions.txt", "w") as div_output:
         for div in div_list:
             div_output.write(div)
 
-    with open("files_runs/normal_function_lambda/half_primes.txt", "w") as primes_output:
+    with open("files_runs//normal_function_lambda//half_primes.txt", "w") as primes_output:
         for prime in primes_list:
             primes_output.write("{0}\n".format(prime))
 
@@ -180,31 +136,32 @@ def main_sqrt(my_max, num_loops, rlock):
     div_list = []
     primes_list = []
 
-    time_output = open("files_runs/normal_function_lambda/sqrt_time.txt", "w")
+    time_output = open("files_runs//normal_function_lambda//sqrt_time.txt", "w")
 
     for i in range(num_loops):
         # Clear the lists before a run
         time_list = []
         div_list = []
         primes_list = []
+        primes_list.append(2)
 
         tmp_time_start = time.time()
-        for i in range(2, my_max):
-            tmp = is_prime_sqrt(i, primes_list)
-            if tmp[0]:
-                div_list.append("Primality Test for {0} took {1} divisions.\n\n".format(i, tmp[1]))
-                primes_list.append(i)
+        for j in range(3, my_max, 2):
+            tmp = is_prime_sqrt(j, primes_list)
+            if tmp:
+                div_list.append("Primality Test for {0} took {1} divisions.\n\n".format(j, 1))
+                primes_list.append(j)
 
         tmp_time_total = time.time() - tmp_time_start
 
         time_output.write("Normal Sqrt (Function Lambda) Pass {0} took {1} seconds.\n".format(i + 1, tmp_time_total))
         time_list.append(tmp_time_total)
 
-    with open("files_runs/normal_function_lambda/sqrt_divisions.txt", "w") as div_output:
+    with open("files_runs//normal_function_lambda//sqrt_divisions.txt", "w") as div_output:
         for div in div_list:
             div_output.write(div)
 
-    with open("files_runs/normal_function_lambda/sqrt_primes.txt", "w") as primes_output:
+    with open("files_runs//normal_function_lambda//sqrt_primes.txt", "w") as primes_output:
         for prime in primes_list:
             primes_output.write("{0}\n".format(prime))
 

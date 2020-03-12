@@ -1,0 +1,11 @@
+Normal Sqrt (Local Lambda) Pass 1 took 0.8750002384185791 seconds.
+Normal Sqrt (Local Lambda) Pass 2 took 0.8740262985229492 seconds.
+Normal Sqrt (Local Lambda) Pass 3 took 0.8431284427642822 seconds.
+Normal Sqrt (Local Lambda) Pass 4 took 0.8810005187988281 seconds.
+Normal Sqrt (Local Lambda) Pass 5 took 0.8620421886444092 seconds.
+Normal Sqrt (Local Lambda) Pass 6 took 0.8300621509552002 seconds.
+Normal Sqrt (Local Lambda) Pass 7 took 0.8580477237701416 seconds.
+Normal Sqrt (Local Lambda) Pass 8 took 0.8192892074584961 seconds.
+Normal Sqrt (Local Lambda) Pass 9 took 0.8680539131164551 seconds.
+Normal Sqrt (Local Lambda) Pass 10 took 0.8431365489959717 seconds.
+Average time it took to calculate 10 normal sqrt-bound (Local Lambda) passes was 0.8431365489959717 seconds.

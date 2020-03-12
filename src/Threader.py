@@ -5,8 +5,10 @@ import os
 import time
 
 # Custom Funcs
-import Primes.Find_Nth_Prime_Python_Function as Find_Nth_Prime_Python_Function
-# import Find_Nth_Prime_Python_Lambda
+import Primes.Find_Nth_Prime_Python_Function as Prime_Normal_Func
+import Primes.Find_Nth_Prime_Python_Local as Prime_Normal_Loc
+import Primes.Find_Nth_Prime_Python_Function_Lambda as Prime_Normal_Func_Lambda
+import Primes.Find_Nth_Prime_Python_Local_Lambda as Prime_Normal_Loc_Lambda
 # import Find_Nth_Prime_Python_LRU
 #
 # import Find_Nth_Prime_Python_Numpy
@@ -126,17 +128,33 @@ if __name__ == "__main__":
         os.mkdir("files_runs/normal_function")
     except FileExistsError:
         pass
-    funcs["Normal_Default_Function"] = Find_Nth_Prime_Python_Function.main_def
-    funcs["Normal_Half_Function"] = Find_Nth_Prime_Python_Function.main_half
-    funcs["Normal_Sqrt_Function"] = Find_Nth_Prime_Python_Function.main_sqrt
+    funcs["Normal_Default_Function"] = Prime_Normal_Func.main_def
+    funcs["Normal_Half_Function"] = Prime_Normal_Func.main_half
+    funcs["Normal_Sqrt_Function"] = Prime_Normal_Func.main_sqrt
 
-    # try:
-    #     os.mkdir("files_runs/normal_lambda")
-    # except FileExistsError:
-    #     pass
-    # funcs.append(Find_Nth_Prime_Python_Lambda.main_def)
-    # funcs.append(Find_Nth_Prime_Python_Lambda.main_half)
-    # funcs.append(Find_Nth_Prime_Python_Lambda.main_sqrt)
+    try:
+        os.mkdir("files_runs/normal_local")
+    except FileExistsError:
+        pass
+    funcs["Normal_Default_Local"] = Prime_Normal_Loc.main_def
+    funcs["Normal_Half_Local"] = Prime_Normal_Loc.main_half
+    funcs["Normal_Sqrt_Local"] = Prime_Normal_Loc.main_sqrt
+
+    try:
+        os.mkdir("files_runs/normal_function_lambda")
+    except FileExistsError:
+        pass
+    funcs["Normal_Default_Function_Lambda"] = Prime_Normal_Func_Lambda.main_def
+    funcs["Normal_Half_Function_Lambda"] = Prime_Normal_Func_Lambda.main_half
+    funcs["Normal_Sqrt_Function_Lambda"] = Prime_Normal_Func_Lambda.main_sqrt
+
+    try:
+        os.mkdir("files_runs/normal_local_lambda")
+    except FileExistsError:
+        pass
+    funcs["Normal_Default_Local_Lambda"] = Prime_Normal_Loc_Lambda.main_def
+    funcs["Normal_Half_Local_Lambda"] = Prime_Normal_Loc_Lambda.main_half
+    funcs["Normal_Sqrt_Local_Lambda"] = Prime_Normal_Loc_Lambda.main_sqrt
     #
     # try:
     #     os.mkdir("files_runs/normal_lru")

@@ -14,12 +14,11 @@ def is_prime(n, table):
     checks = 0
 
     if n <= 1:
-        checks = 1
-        return (False, checks)
+        return (False, 0)
     else:
         if len(table) == 0:
-            for i in range(2, n):
-                if n % table[i] == 0:
+            for i in range(3, n, 2):
+                if n % i == 0:
                     return (False, checks)
                 else:
                     checks += 1
@@ -36,18 +35,27 @@ def is_prime_half(n, table):
     checks = 0
 
     if n <= 1:
-        checks = 1
-        return (False, checks)
+        return (False, 0)
     else:
         boundary = math.floor(n / 2)
-        for i in range(len(table)):
-            if table[i] <= boundary:
-                if n % table[i] == 0:
-                    return (False, checks)
+        if len(table) == 0:
+            for i in range(3, n, 2):
+                if i <= boundary:
+                    if n % i == 0:
+                        return (False, checks)
+                    else:
+                        checks += 1
                 else:
-                    checks += 1
-            else:
-                break
+                    break
+        else:
+            for i in range(len(table)):
+                if table[i] <= boundary:
+                    if n % table[i] == 0:
+                        return (False, checks)
+                    else:
+                        checks += 1
+                else:
+                    break
         return (True, checks)
 
 
@@ -55,18 +63,27 @@ def is_prime_sqrt(n, table):
     checks = 0
 
     if n <= 1:
-        checks = 1
-        return (False, checks)
+        return (False, 1)
     else:
         boundary = math.floor(math.sqrt(n))
-        for i in range(len(table)):
-            if table[i] <= boundary:
-                if n % table[i] == 0:
-                    return (False, checks)
+        if len(table) == 0:
+            for i in range(3, boundary, 2):
+                if table[i] <= boundary:
+                    if n % i == 0:
+                        return (False, checks)
+                    else:
+                        checks += 1
                 else:
-                    checks += 1
-            else:
-                break
+                    break
+        else:
+            for i in range(len(table)):
+                if table[i] <= boundary:
+                    if n % table[i] == 0:
+                        return (False, checks)
+                    else:
+                        checks += 1
+                else:
+                    break
         return (True, checks)
 
 
@@ -87,13 +104,14 @@ def main_def(my_max, num_loops, rlock):
         time_list = []
         div_list = []
         primes_list = []
+        primes_list.append(2)
 
         tmp_time_start = time.time()
-        for i in range(2, my_max):
-            tmp = is_prime(i, primes_list)
+        for j in range(3, my_max, 2):
+            tmp = is_prime(j, primes_list)
             if tmp[0]:
-                div_list.append("Primality Test for {0} took {1} divisions.\n\n".format(i, tmp[1]))
-                primes_list.append(i)
+                div_list.append("Primality Test for {0} took {1} divisions.\n\n".format(j, tmp[1]))
+                primes_list.append(j)
 
         tmp_time_total = time.time() - tmp_time_start
 
@@ -137,13 +155,14 @@ def main_half(my_max, num_loops, rlock):
         time_list = []
         div_list = []
         primes_list = []
+        primes_list.append(2)
 
         tmp_time_start = time.time()
-        for i in range(2, my_max):
-            tmp = is_prime_half(i, primes_list)
+        for j in range(3, my_max, 2):
+            tmp = is_prime_half(j, primes_list)
             if tmp[0]:
-                div_list.append("Primality Test for {0} took {1} divisions.\n\n".format(i, tmp[1]))
-                primes_list.append(i)
+                div_list.append("Primality Test for {0} took {1} divisions.\n\n".format(j, tmp[1]))
+                primes_list.append(j)
 
         tmp_time_total = time.time() - tmp_time_start
 
@@ -187,13 +206,14 @@ def main_sqrt(my_max, num_loops, rlock):
         time_list = []
         div_list = []
         primes_list = []
+        primes_list.append(2)
 
         tmp_time_start = time.time()
-        for i in range(2, my_max):
-            tmp = is_prime_sqrt(i, primes_list)
+        for j in range(3, my_max, 2):
+            tmp = is_prime_sqrt(j, primes_list)
             if tmp[0]:
-                div_list.append("Primality Test for {0} took {1} divisions.\n\n".format(i, tmp[1]))
-                primes_list.append(i)
+                div_list.append("Primality Test for {0} took {1} divisions.\n\n".format(j, tmp[1]))
+                primes_list.append(j)
 
         tmp_time_total = time.time() - tmp_time_start
 

@@ -1,0 +1,21 @@
+Normal Default (Local Lambda) Pass 1 took 1.8090267181396484 seconds.
+
+Normal Default (Local Lambda) Pass 2 took 1.8161277770996094 seconds.
+
+Normal Default (Local Lambda) Pass 3 took 1.6791143417358398 seconds.
+
+Normal Default (Local Lambda) Pass 4 took 1.781158685684204 seconds.
+
+Normal Default (Local Lambda) Pass 5 took 1.7693572044372559 seconds.
+
+Normal Default (Local Lambda) Pass 6 took 1.616999626159668 seconds.
+
+Normal Default (Local Lambda) Pass 7 took 1.6680827140808105 seconds.
+
+Normal Default (Local Lambda) Pass 8 took 1.7151720523834229 seconds.
+
+Normal Default (Local Lambda) Pass 9 took 1.4865171909332275 seconds.
+
+Normal Default (Local Lambda) Pass 10 took 1.5285801887512207 seconds.
+
+Average time it took to calculate 10 normal default (Local Lambda) passes was 1.5285801887512207 seconds.

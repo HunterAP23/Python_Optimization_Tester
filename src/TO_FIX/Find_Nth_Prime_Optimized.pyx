@@ -16,7 +16,7 @@ cdef void print_lock(msg, rlock):
     rlock.release()
 
 
-cdef (bint, int) is_prime(int num):
+cdef (bint, int) is_prime(jnt num):
     global table
     cdef int checks = 0
 
@@ -34,7 +34,7 @@ cdef (bint, int) is_prime(int num):
         return (True, checks)
 
 
-cdef (bint, int) is_prime_half(int num):
+cdef (bint, int) is_prime_half(jnt num):
     global table2
     cdef int checks = 0
 
@@ -54,7 +54,7 @@ cdef (bint, int) is_prime_half(int num):
         return (True, checks)
 
 
-cdef (bint, int) is_prime_sqrt(int num):
+cdef (bint, int) is_prime_sqrt(jnt num):
     global table3
     cdef int checks = 0
 
@@ -95,7 +95,7 @@ cdef void main_def(int my_max, int num_loops, rlock):
         table = []
         tmp_time_start = time.time()
         for i in range(my_max):
-            tmp = is_prime(i)
+            tmp = is_prime(j)
             if tmp[0]:
                 divisions_list.append("{0} took {1} divisions by previous primes to complete!\n\n".format(i, tmp[1]))
                 primes.append(i)
@@ -146,7 +146,7 @@ cdef void main_half(int my_max, int num_loops, rlock):
         table2 = []
         tmp_time_start = time.time()
         for i in range(my_max):
-            tmp = is_prime_half(i)
+            tmp = is_prime_half(j)
             if tmp[0]:
                 divisions_list.append("{0} took {1} divisions by previous primes to complete!\n\n".format(i, tmp[1]))
                 primes.append(i)
@@ -197,7 +197,7 @@ cdef void main_sqrt(int my_max, int num_loops, rlock):
         table3 = []
         tmp_time_start = time.time()
         for i in range(my_max):
-            tmp = is_prime_sqrt(i)
+            tmp = is_prime_sqrt(j)
             if tmp[0]:
                 divisions_list.append("{0} took {1} divisions by previous primes to complete!\n\n".format(i, tmp[1]))
                 primes.append(i)

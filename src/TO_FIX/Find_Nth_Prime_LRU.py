@@ -93,7 +93,7 @@ def main_def(my_max, num_loops, rlock):
         tmp_time_start = time.time()
         table = []
         for i in range(my_max):
-            tmp = is_prime(i)
+            tmp = is_prime(j)
             if tmp[0] == True:
                 divisions_list.append("{0} took {1} divisions by previous primes to complete!\n\n".format(i, tmp[1]))
 
@@ -134,7 +134,7 @@ def main_half(my_max, num_loops, rlock):
         tmp_time_start = time.time()
         table = []
         for i in range(my_max):
-            tmp = is_prime_half(i)
+            tmp = is_prime_half(j)
             if tmp[0] == True:
                 divisions_list.append("{0} took {1} divisions by previous primes to complete!\n\n".format(i, tmp[1]))
 
@@ -175,7 +175,7 @@ def main_sqrt(my_max, num_loops, rlock):
         tmp_time_start = time.time()
         table = []
         for i in range(my_max):
-            tmp = is_prime_sqrt(i)
+            tmp = is_prime_sqrt(j)
             if tmp[0] == True:
                 divisions_list.append("{0} took {1} divisions by previous primes to complete!\n\n".format(i, tmp[1]))
 

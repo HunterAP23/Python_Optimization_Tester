@@ -1,6 +1,11 @@
-Normal Sqrt (Function) Pass 100000 took 0.17099928855895996 seconds.
-Normal Sqrt (Function) Pass 100000 took 0.1529998779296875 seconds.
-Normal Sqrt (Function) Pass 100000 took 0.15000009536743164 seconds.
-Normal Sqrt (Function) Pass 100000 took 0.15703368186950684 seconds.
-Normal Sqrt (Function) Pass 100000 took 0.16900110244750977 seconds.
-Average time it took to calculate 5 normal sqrt-bound (Function) passes was 0.16900110244750977 seconds.
+Normal Sqrt (Function) Pass 1 took 0.07999587059020996 seconds.
+Normal Sqrt (Function) Pass 2 took 0.0820016860961914 seconds.
+Normal Sqrt (Function) Pass 3 took 0.08000063896179199 seconds.
+Normal Sqrt (Function) Pass 4 took 0.08099865913391113 seconds.
+Normal Sqrt (Function) Pass 5 took 0.07900166511535645 seconds.
+Normal Sqrt (Function) Pass 6 took 0.0800015926361084 seconds.
+Normal Sqrt (Function) Pass 7 took 0.08100008964538574 seconds.
+Normal Sqrt (Function) Pass 8 took 0.08299899101257324 seconds.
+Normal Sqrt (Function) Pass 9 took 0.0820009708404541 seconds.
+Normal Sqrt (Function) Pass 10 took 0.08300018310546875 seconds.
+Average time it took to calculate 10 normal sqrt-bound (Function) passes was 0.08300018310546875 seconds.

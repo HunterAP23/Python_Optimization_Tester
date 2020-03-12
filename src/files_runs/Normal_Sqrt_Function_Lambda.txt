@@ -1,0 +1,1 @@
+Normal_Sqrt_Function_Lambda took 0H:0M:21.94S
