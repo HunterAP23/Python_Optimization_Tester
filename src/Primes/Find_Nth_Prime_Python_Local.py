@@ -33,8 +33,8 @@ def main_def(my_max, num_loops, rlock):
         for n in range(3, my_max, 2):
             checks = 0
 
-            for i in range(len(primes_list)):
-                if n % primes_list[i] == 0:
+            for j in range(len(primes_list)):
+                if n % primes_list[j] == 0:
                     continue
                 else:
                     checks += 1
@@ -90,9 +90,9 @@ def main_half(my_max, num_loops, rlock):
             checks = 0
 
             boundary = math.floor(n / 2)
-            for i in range(len(primes_list)):
-                if primes_list[i] <= boundary:
-                    if n % primes_list[i] == 0:
+            for j in range(len(primes_list)):
+                if primes_list[j] <= boundary:
+                    if n % primes_list[j] == 0:
                         continue
                     else:
                         checks += 1
@@ -150,9 +150,9 @@ def main_sqrt(my_max, num_loops, rlock):
             checks = 0
 
             boundary = math.floor(math.sqrt(n))
-            for i in range(len(primes_list)):
-                if primes_list[i] <= boundary:
-                    if n % primes_list[i] == 0:
+            for j in range(len(primes_list)):
+                if primes_list[j] <= boundary:
+                    if n % primes_list[j] == 0:
                         continue
                     else:
                         checks += 1

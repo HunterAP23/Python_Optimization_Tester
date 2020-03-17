@@ -71,11 +71,11 @@ def main_def(my_max, num_loops, rlock):
         primes_list.append(2)
 
         tmp_time_start = time.time()
-        for j in range(3, my_max, 2):
-            tmp = is_prime(j, tuple(primes_list))
+        for n in range(3, my_max, 2):
+            tmp = is_prime(n, tuple(primes_list))
             if tmp[0]:
-                div_list.append("Primality Test for {0} took {1} divisions.\n\n".format(j, tmp[1]))
-                primes_list.append(j)
+                div_list.append("Primality Test for {0} took {1} divisions.\n\n".format(n, tmp[1]))
+                primes_list.append(n)
 
         tmp_time_total = time.time() - tmp_time_start
 
@@ -122,11 +122,11 @@ def main_half(my_max, num_loops, rlock):
         primes_list.append(2)
 
         tmp_time_start = time.time()
-        for j in range(3, my_max, 2):
-            tmp = is_prime_half(j, tuple(primes_list))
+        for n in range(3, my_max, 2):
+            tmp = is_prime_half(n, tuple(primes_list))
             if tmp[0]:
-                div_list.append("Primality Test for {0} took {1} divisions.\n\n".format(j, tmp[1]))
-                primes_list.append(j)
+                div_list.append("Primality Test for {0} took {1} divisions.\n\n".format(n, tmp[1]))
+                primes_list.append(n)
 
         tmp_time_total = time.time() - tmp_time_start
 
@@ -173,11 +173,11 @@ def main_sqrt(my_max, num_loops, rlock):
         primes_list.append(2)
 
         tmp_time_start = time.time()
-        for j in range(3, my_max, 2):
-            tmp = is_prime_sqrt(j, tuple(primes_list))
+        for n in range(3, my_max, 2):
+            tmp = is_prime_sqrt(n, tuple(primes_list))
             if tmp[0]:
-                div_list.append("Primality Test for {0} took {1} divisions.\n\n".format(j, tmp[1]))
-                primes_list.append(j)
+                div_list.append("Primality Test for {0} took {1} divisions.\n\n".format(n, tmp[1]))
+                primes_list.append(n)
 
         tmp_time_total = time.time() - tmp_time_start
 
