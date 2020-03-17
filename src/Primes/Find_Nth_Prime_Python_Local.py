@@ -33,23 +33,13 @@ def main_def(my_max, num_loops, rlock):
         for n in range(3, my_max, 2):
             checks = 0
 
-            if n <= 1:
-                continue
-            else:
-                if len(primes_list) == 0:
-                    for i in range(3, n, 2):
-                        if n % i == 0:
-                            continue
-                        else:
-                            checks += 1
+            for i in range(len(primes_list)):
+                if n % primes_list[i] == 0:
+                    continue
                 else:
-                    for i in range(len(primes_list)):
-                        if n % primes_list[i] == 0:
-                            continue
-                        else:
-                            checks += 1
-                    div_list.append("Primality Test for {0} took {1} divisions.\n\n".format(n, checks))
-                    primes_list.append(n)
+                    checks += 1
+            div_list.append("Primality Test for {0} took {1} divisions.\n\n".format(n, checks))
+            primes_list.append(n)
 
         tmp_time_total = time.time() - tmp_time_start
 
@@ -99,30 +89,17 @@ def main_half(my_max, num_loops, rlock):
         for n in range(3, my_max, 2):
             checks = 0
 
-            if n <= 1:
-                continue
-            else:
-                boundary = math.floor(n / 2)
-                if len(primes_list) == 0:
-                    for i in range(3, n, 2):
-                        if i <= boundary:
-                            if n % i == 0:
-                                continue
-                            else:
-                                checks += 1
-                        else:
-                            break
+            boundary = math.floor(n / 2)
+            for i in range(len(primes_list)):
+                if primes_list[i] <= boundary:
+                    if n % primes_list[i] == 0:
+                        continue
+                    else:
+                        checks += 1
                 else:
-                    for i in range(len(primes_list)):
-                        if primes_list[i] <= boundary:
-                            if n % primes_list[i] == 0:
-                                continue
-                            else:
-                                checks += 1
-                        else:
-                            break
-                div_list.append("Primality Test for {0} took {1} divisions.\n\n".format(n, checks))
-                primes_list.append(n)
+                    break
+            div_list.append("Primality Test for {0} took {1} divisions.\n\n".format(n, checks))
+            primes_list.append(n)
 
         tmp_time_total = time.time() - tmp_time_start
 
@@ -172,30 +149,17 @@ def main_sqrt(my_max, num_loops, rlock):
         for n in range(3, my_max, 2):
             checks = 0
 
-            if n <= 1:
-                continue
-            else:
-                boundary = math.floor(math.sqrt(n))
-                if len(primes_list) == 0:
-                    for i in range(3, boundary, 2):
-                        if primes_list[i] <= boundary:
-                            if n % i == 0:
-                                continue
-                            else:
-                                checks += 1
-                        else:
-                            break
+            boundary = math.floor(math.sqrt(n))
+            for i in range(len(primes_list)):
+                if primes_list[i] <= boundary:
+                    if n % primes_list[i] == 0:
+                        continue
+                    else:
+                        checks += 1
                 else:
-                    for i in range(len(primes_list)):
-                        if primes_list[i] <= boundary:
-                            if n % primes_list[i] == 0:
-                                continue
-                            else:
-                                checks += 1
-                        else:
-                            break
-                div_list.append("Primality Test for {0} took {1} divisions.\n\n".format(n, checks))
-                primes_list.append(n)
+                    break
+            div_list.append("Primality Test for {0} took {1} divisions.\n\n".format(n, checks))
+            primes_list.append(n)
 
         tmp_time_total = time.time() - tmp_time_start
 

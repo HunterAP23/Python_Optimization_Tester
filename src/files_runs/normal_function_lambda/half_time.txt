@@ -1,11 +1,6 @@
-Normal Half (Function Lambda) Pass 1 took 1.7370274066925049 seconds.
-Normal Half (Function Lambda) Pass 2 took 1.6861274242401123 seconds.
-Normal Half (Function Lambda) Pass 3 took 1.566559076309204 seconds.
-Normal Half (Function Lambda) Pass 4 took 1.6238045692443848 seconds.
-Normal Half (Function Lambda) Pass 5 took 1.6177196502685547 seconds.
-Normal Half (Function Lambda) Pass 6 took 1.5665488243103027 seconds.
-Normal Half (Function Lambda) Pass 7 took 1.5330007076263428 seconds.
-Normal Half (Function Lambda) Pass 8 took 1.5426363945007324 seconds.
-Normal Half (Function Lambda) Pass 9 took 1.50361967086792 seconds.
-Normal Half (Function Lambda) Pass 10 took 1.4640955924987793 seconds.
-Average time it took to calculate 10 normal half-bound (Function Lambda) passes was 1.4640955924987793 seconds.
+Normal Half (Function Lambda) Pass 1 took 0.5259983539581299 seconds.
+Normal Half (Function Lambda) Pass 2 took 0.46900200843811035 seconds.
+Normal Half (Function Lambda) Pass 3 took 0.4649991989135742 seconds.
+Normal Half (Function Lambda) Pass 4 took 0.44652462005615234 seconds.
+Normal Half (Function Lambda) Pass 5 took 0.5245273113250732 seconds.
+Average time it took to calculate 5 normal half-bound (Function Lambda) passes was 0.5245273113250732 seconds.

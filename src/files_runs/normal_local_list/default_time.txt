@@ -1,0 +1,11 @@
+Normal Default (Local List) Pass 1 took 6.291929006576538 seconds.
+
+Normal Default (Local List) Pass 2 took 6.0909271240234375 seconds.
+
+Normal Default (Local List) Pass 3 took 5.476910829544067 seconds.
+
+Normal Default (Local List) Pass 4 took 6.128160238265991 seconds.
+
+Normal Default (Local List) Pass 5 took 5.650902271270752 seconds.
+
+Average time it took to calculate 5 normal default (Local List) passes was 5.650902271270752 seconds.

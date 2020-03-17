@@ -1,0 +1,11 @@
+Normal Default (Local Lambda) Pass 1229 took 0.7989969253540039 seconds.
+
+Normal Default (Local Lambda) Pass 1229 took 0.7130002975463867 seconds.
+
+Normal Default (Local Lambda) Pass 1229 took 0.7025260925292969 seconds.
+
+Normal Default (Local Lambda) Pass 1229 took 0.6713893413543701 seconds.
+
+Normal Default (Local Lambda) Pass 1229 took 0.6364634037017822 seconds.
+
+Average time it took to calculate 5 normal default (Local Lambda) passes was 0.6364634037017822 seconds.

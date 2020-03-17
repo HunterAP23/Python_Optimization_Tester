@@ -1,1 +1,1 @@
-Normal_Half_Function_Lambda took 0H:0M:40.95S
+Normal_Half_Function_Lambda took 0H:0M:2.44S

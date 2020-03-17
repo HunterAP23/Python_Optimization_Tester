@@ -1,11 +1,6 @@
-Normal Sqrt (Function Lambda) Pass 1 took 0.896000862121582 seconds.
-Normal Sqrt (Function Lambda) Pass 2 took 0.8980269432067871 seconds.
-Normal Sqrt (Function Lambda) Pass 3 took 0.8441276550292969 seconds.
-Normal Sqrt (Function Lambda) Pass 4 took 0.902000904083252 seconds.
-Normal Sqrt (Function Lambda) Pass 5 took 0.8590419292449951 seconds.
-Normal Sqrt (Function Lambda) Pass 6 took 0.8480589389801025 seconds.
-Normal Sqrt (Function Lambda) Pass 7 took 0.888092041015625 seconds.
-Normal Sqrt (Function Lambda) Pass 8 took 0.8740811347961426 seconds.
-Normal Sqrt (Function Lambda) Pass 9 took 0.8847301006317139 seconds.
-Normal Sqrt (Function Lambda) Pass 10 took 0.892625093460083 seconds.
-Average time it took to calculate 10 normal sqrt-bound (Function Lambda) passes was 0.892625093460083 seconds.
+Normal Sqrt (Function Lambda) Pass 1 took 0.04499983787536621 seconds.
+Normal Sqrt (Function Lambda) Pass 2 took 0.046003103256225586 seconds.
+Normal Sqrt (Function Lambda) Pass 3 took 0.04599642753601074 seconds.
+Normal Sqrt (Function Lambda) Pass 4 took 0.04600191116333008 seconds.
+Normal Sqrt (Function Lambda) Pass 5 took 0.044000864028930664 seconds.
+Average time it took to calculate 5 normal sqrt-bound (Function Lambda) passes was 0.044000864028930664 seconds.

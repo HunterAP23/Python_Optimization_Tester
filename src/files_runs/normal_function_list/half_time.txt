@@ -1,0 +1,6 @@
+Normal Half (Function List) Pass 1 took 0.5849976539611816 seconds.
+Normal Half (Function List) Pass 2 took 0.5520017147064209 seconds.
+Normal Half (Function List) Pass 3 took 0.6020097732543945 seconds.
+Normal Half (Function List) Pass 4 took 0.578038215637207 seconds.
+Normal Half (Function List) Pass 5 took 0.5109071731567383 seconds.
+Average time it took to calculate 5 normal half-bound (Function List) passes was 0.5109071731567383 seconds.

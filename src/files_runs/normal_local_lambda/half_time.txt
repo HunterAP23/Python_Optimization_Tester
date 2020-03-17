@@ -1,11 +1,6 @@
-Normal Half (Local Lambda) Pass 1 took 1.7280244827270508 seconds.
-Normal Half (Local Lambda) Pass 2 took 1.6991322040557861 seconds.
-Normal Half (Local Lambda) Pass 3 took 1.6425528526306152 seconds.
-Normal Half (Local Lambda) Pass 4 took 1.6338417530059814 seconds.
-Normal Half (Local Lambda) Pass 5 took 1.5456836223602295 seconds.
-Normal Half (Local Lambda) Pass 6 took 1.5295498371124268 seconds.
-Normal Half (Local Lambda) Pass 7 took 1.4439976215362549 seconds.
-Normal Half (Local Lambda) Pass 8 took 1.4896411895751953 seconds.
-Normal Half (Local Lambda) Pass 9 took 1.4386134147644043 seconds.
-Normal Half (Local Lambda) Pass 10 took 1.5311000347137451 seconds.
-Average time it took to calculate 10 normal half-bound (Local Lambda) passes was 1.5311000347137451 seconds.
+Normal Half (Local Lambda) Pass 670 took 3.9563772678375244 seconds.
+Normal Half (Local Lambda) Pass 670 took 2.8265628814697266 seconds.
+Normal Half (Local Lambda) Pass 670 took 3.003221273422241 seconds.
+Normal Half (Local Lambda) Pass 670 took 3.385694980621338 seconds.
+Normal Half (Local Lambda) Pass 670 took 3.111643075942993 seconds.
+Average time it took to calculate 5 normal half-bound (Local Lambda) passes was 3.111643075942993 seconds.

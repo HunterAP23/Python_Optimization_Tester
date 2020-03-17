@@ -1,21 +1,11 @@
-Normal Default (Function Lambda) Pass 1 took 1.8560259342193604 seconds.
+Normal Default (Function Lambda) Pass 1 took 0.8309969902038574 seconds.
 
-Normal Default (Function Lambda) Pass 2 took 1.7921278476715088 seconds.
+Normal Default (Function Lambda) Pass 2 took 0.6830008029937744 seconds.
 
-Normal Default (Function Lambda) Pass 3 took 1.7841136455535889 seconds.
+Normal Default (Function Lambda) Pass 3 took 0.7670538425445557 seconds.
 
-Normal Default (Function Lambda) Pass 4 took 1.769162893295288 seconds.
+Normal Default (Function Lambda) Pass 4 took 0.7193245887756348 seconds.
 
-Normal Default (Function Lambda) Pass 5 took 1.7533555030822754 seconds.
+Normal Default (Function Lambda) Pass 5 took 0.6489996910095215 seconds.
 
-Normal Default (Function Lambda) Pass 6 took 1.5650005340576172 seconds.
-
-Normal Default (Function Lambda) Pass 7 took 1.5800824165344238 seconds.
-
-Normal Default (Function Lambda) Pass 8 took 1.607170581817627 seconds.
-
-Normal Default (Function Lambda) Pass 9 took 1.5900020599365234 seconds.
-
-Normal Default (Function Lambda) Pass 10 took 1.48109769821167 seconds.
-
-Average time it took to calculate 10 normal default (Function Lambda) passes was 1.48109769821167 seconds.
+Average time it took to calculate 5 normal default (Function Lambda) passes was 0.6489996910095215 seconds.

@@ -7,9 +7,12 @@ import time
 # Custom Funcs
 import Primes.Find_Nth_Prime_Python_Function as Prime_Normal_Func
 import Primes.Find_Nth_Prime_Python_Local as Prime_Normal_Loc
+import Primes.Find_Nth_Prime_Python_Function_List as Prime_Normal_Func_List
+import Primes.Find_Nth_Prime_Python_Local_List as Prime_Normal_Loc_List
 import Primes.Find_Nth_Prime_Python_Function_Lambda as Prime_Normal_Func_Lambda
 import Primes.Find_Nth_Prime_Python_Local_Lambda as Prime_Normal_Loc_Lambda
-# import Find_Nth_Prime_Python_LRU
+# import Primes.Find_Nth_Prime_Python_Function_LRU as Prime_Normal_Func_LRU
+# import Primes.Find_Nth_Prime_Python_Function_Lambda_LRU as Prime_Normal_Func_Lambda_LRU
 #
 # import Find_Nth_Prime_Python_Numpy
 # import Find_Nth_Prime_Python_Numpy_Lambda
@@ -124,45 +127,71 @@ if __name__ == "__main__":
     funcs = dict()
 
     # CPYTHON
-    try:
-        os.mkdir("files_runs/normal_function")
-    except FileExistsError:
-        pass
-    funcs["Normal_Default_Function"] = Prime_Normal_Func.main_def
-    funcs["Normal_Half_Function"] = Prime_Normal_Func.main_half
-    funcs["Normal_Sqrt_Function"] = Prime_Normal_Func.main_sqrt
-
-    try:
-        os.mkdir("files_runs/normal_local")
-    except FileExistsError:
-        pass
-    funcs["Normal_Default_Local"] = Prime_Normal_Loc.main_def
-    funcs["Normal_Half_Local"] = Prime_Normal_Loc.main_half
-    funcs["Normal_Sqrt_Local"] = Prime_Normal_Loc.main_sqrt
-
-    try:
-        os.mkdir("files_runs/normal_function_lambda")
-    except FileExistsError:
-        pass
-    funcs["Normal_Default_Function_Lambda"] = Prime_Normal_Func_Lambda.main_def
-    funcs["Normal_Half_Function_Lambda"] = Prime_Normal_Func_Lambda.main_half
-    funcs["Normal_Sqrt_Function_Lambda"] = Prime_Normal_Func_Lambda.main_sqrt
-
-    try:
-        os.mkdir("files_runs/normal_local_lambda")
-    except FileExistsError:
-        pass
-    funcs["Normal_Default_Local_Lambda"] = Prime_Normal_Loc_Lambda.main_def
-    funcs["Normal_Half_Local_Lambda"] = Prime_Normal_Loc_Lambda.main_half
-    funcs["Normal_Sqrt_Local_Lambda"] = Prime_Normal_Loc_Lambda.main_sqrt
-    #
     # try:
-    #     os.mkdir("files_runs/normal_lru")
+    #     os.mkdir("files_runs/normal_function")
     # except FileExistsError:
     #     pass
-    # funcs.append(Find_Nth_Prime_Python_LRU.main_def)
-    # funcs.append(Find_Nth_Prime_Python_LRU.main_half)
-    # funcs.append(Find_Nth_Prime_Python_LRU.main_sqrt)
+    # funcs["Normal_Default_Function"] = Prime_Normal_Func.main_def
+    # funcs["Normal_Half_Function"] = Prime_Normal_Func.main_half
+    # funcs["Normal_Sqrt_Function"] = Prime_Normal_Func.main_sqrt
+
+    # try:
+    #     os.mkdir("files_runs/normal_local")
+    # except FileExistsError:
+    #     pass
+    # funcs["Normal_Default_Local"] = Prime_Normal_Loc.main_def
+    # funcs["Normal_Half_Local"] = Prime_Normal_Loc.main_half
+    # funcs["Normal_Sqrt_Local"] = Prime_Normal_Loc.main_sqrt
+
+    # try:
+    #     os.mkdir("files_runs/normal_function_list")
+    # except FileExistsError:
+    #     pass
+    # funcs["Normal_Default_Function_List"] = Prime_Normal_Func_List.main_def
+    # funcs["Normal_Half_Function_List"] = Prime_Normal_Func_List.main_half
+    # funcs["Normal_Sqrt_Function_List"] = Prime_Normal_Func_List.main_sqrt
+    #
+    # try:
+    #     os.mkdir("files_runs/normal_local_list")
+    # except FileExistsError:
+    #     pass
+    # funcs["Normal_Default_Local_List"] = Prime_Normal_Loc_List.main_def
+    # funcs["Normal_Half_Local_List"] = Prime_Normal_Loc_List.main_half
+    # funcs["Normal_Sqrt_Local_List"] = Prime_Normal_Loc_List.main_sqrt
+    #
+    # try:
+    #     os.mkdir("files_runs/normal_function_lambda")
+    # except FileExistsError:
+    #     pass
+    # funcs["Normal_Default_Function_Lambda"] = Prime_Normal_Func_Lambda.main_def
+    # funcs["Normal_Half_Function_Lambda"] = Prime_Normal_Func_Lambda.main_half
+    # funcs["Normal_Sqrt_Function_Lambda"] = Prime_Normal_Func_Lambda.main_sqrt
+    #
+    # try:
+    #     os.mkdir("files_runs/normal_local_lambda")
+    # except FileExistsError:
+    #     pass
+    # funcs["Normal_Default_Local_Lambda"] = Prime_Normal_Loc_Lambda.main_def
+    # funcs["Normal_Half_Local_Lambda"] = Prime_Normal_Loc_Lambda.main_half
+    # funcs["Normal_Sqrt_Local_Lambda"] = Prime_Normal_Loc_Lambda.main_sqrt
+
+    ############################################################################
+
+    # try:
+    #     os.mkdir("files_runs/normal_function_lru")
+    # except FileExistsError:
+    #     pass
+    # funcs["Normal_Default_Function_LRU"] = Prime_Normal_Func_LRU.main_def
+    # funcs["Normal_Half_Function_LRU"] = Prime_Normal_Func_LRU.main_half
+    # funcs["Normal_Sqrt_Function_LRU"] = Prime_Normal_Func_LRU.main_sqrt
+
+    # try:
+    #     os.mkdir("files_runs/normal_function_lambda_lru")
+    # except FileExistsError:
+    #     pass
+    # funcs["Normal_Default_Function_Lambda_LRU"] = Prime_Normal_Func_Lambda_LRU.main_def
+    # funcs["Normal_Half_Function_Lambda_LRU"] = Prime_Normal_Func_Lambda_LRU.main_half
+    # funcs["Normal_Sqrt_Function_Lambda_LRU"] = Prime_Normal_Func_Lambda_LRU.main_sqrt
 
     # NUMPY
     # try:
@@ -172,7 +201,7 @@ if __name__ == "__main__":
     # funcs.append(Find_Nth_Prime_Python_Numpy.main_def)
     # funcs.append(Find_Nth_Prime_Python_Numpy.main_half)
     # funcs.append(Find_Nth_Prime_Python_Numpy.main_sqrt)
-    #
+
     # try:
     #     os.mkdir("files_runs/normal_numpy_lambda")
     # except FileExistsError:
@@ -180,7 +209,7 @@ if __name__ == "__main__":
     # funcs.append(Find_Nth_Prime_Python_Numpy_Lambda.main_def)
     # funcs.append(Find_Nth_Prime_Python_Numpy_Lambda.main_half)
     # funcs.append(Find_Nth_Prime_Python_Numpy_Lambda.main_sqrt)
-    #
+
     # funcs.append(Find_Nth_Prime_Python_Numpy_LRU.main_def)
     # funcs.append(Find_Nth_Prime_Python_Numpy_LRU.main_half)
     # funcs.append(Find_Nth_Prime_Python_Numpy_LRU.main_sqrt)
@@ -240,3 +269,21 @@ if __name__ == "__main__":
 
     print("-" * 80)
     print("Total Run Time was {0}H:{1}M:{2:0.2f}S".format(int(testing_total / 3600), int(testing_total / 60), testing_total))
+
+    # with open("files_runs/normal_local_lambda/default_primes.txt", "r") as main:
+    #     with open("files_runs/normal_local_lambda/map_primes.txt", "r") as map:
+    #         main_list = []
+    #         for line in main:
+    #             main_list.append(line.strip())
+    #
+    #         map_list = []
+    #         for line in map:
+    #             map_list.append(line.strip())
+    #
+    #         set_main = set(main_list)
+    #         set_map = set(map_list)
+    #         same = set_main.difference(set_map)
+    #         same.discard('\n')
+    #         print("file diff:")
+    #         for line in same:
+    #             print(line)
