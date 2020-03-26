@@ -1,6 +1,0 @@
-Normal Sqrt (Local List) Pass 1 took 5.54317831993103 seconds.
-Normal Sqrt (Local List) Pass 2 took 5.31957745552063 seconds.
-Normal Sqrt (Local List) Pass 3 took 4.873584747314453 seconds.
-Normal Sqrt (Local List) Pass 4 took 5.477060556411743 seconds.
-Normal Sqrt (Local List) Pass 5 took 4.862759828567505 seconds.
-Average time it took to calculate 5 normal sqrt-bound (Local List) passes was 4.862759828567505 seconds.

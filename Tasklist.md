@@ -23,6 +23,11 @@
     - (Local) Should remove any function-call overhead
     - (Maps) Further lower functional-call overhead
 
+  - [x] Lambdas & Maps (Local)
+    - (Lambdas) Trade lower mathematical calculation time for more function calls
+    - (Local) Should remove any function-call overhead
+    - (Maps) Further lower functional-call overhead
+
   - [ ] LRU Caching (Function)
     - (LRU Caching) Should reduce value access time in functions
 

@@ -105,5 +105,5 @@ ENV/
 .mypy_cache/
 
 # Custom
-files_runs/*.txt
-files_compile/*.txt
+src/files_runs/
+src/files_compile/

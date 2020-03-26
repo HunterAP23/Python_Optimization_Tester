@@ -1,6 +1,0 @@
-Normal Sqrt (Function List) Pass 1 took 0.2259984016418457 seconds.
-Normal Sqrt (Function List) Pass 2 took 0.2090010643005371 seconds.
-Normal Sqrt (Function List) Pass 3 took 0.20000076293945312 seconds.
-Normal Sqrt (Function List) Pass 4 took 0.22299957275390625 seconds.
-Normal Sqrt (Function List) Pass 5 took 0.2259993553161621 seconds.
-Average time it took to calculate 5 normal sqrt-bound (Function List) passes was 0.2259993553161621 seconds.

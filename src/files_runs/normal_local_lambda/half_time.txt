@@ -1,6 +1,0 @@
-Normal Half (Local Lambda) Pass 670 took 3.9563772678375244 seconds.
-Normal Half (Local Lambda) Pass 670 took 2.8265628814697266 seconds.
-Normal Half (Local Lambda) Pass 670 took 3.003221273422241 seconds.
-Normal Half (Local Lambda) Pass 670 took 3.385694980621338 seconds.
-Normal Half (Local Lambda) Pass 670 took 3.111643075942993 seconds.
-Average time it took to calculate 5 normal half-bound (Local Lambda) passes was 3.111643075942993 seconds.
