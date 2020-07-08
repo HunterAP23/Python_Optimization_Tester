@@ -5,13 +5,6 @@
   - [x] Default (Local)
     - (Local) Should remove any function-call overhead
 
-  - [x] Lists (Function)
-    - (Lists) Should reduce mathematical calculations done
-
-  - [x] Lists (Local)
-    - (Lists) Should reduce mathematical calculations done
-    - (Local) Should remove any function-call overhead
-
   - [x] Lambdas (Function)
     - (Lambdas) Trade lower mathematical calculation time for more function calls
 
@@ -19,8 +12,19 @@
     - (Lambdas) Trade lower mathematical calculation time for more function calls
     - (Local) Should remove any function-call overhead
 
+  - [x] Lists (Function)
+    - (Lists) Should reduce mathematical calculations done
+
+  - [x] Lists (Local)
+    - (Lists) Should reduce mathematical calculations done
+    - (Local) Should remove any function-call overhead
+
   - [x] Maps (Local)
     - (Local) Should remove any function-call overhead
+    - (Maps) Further lower functional-call overhead
+
+  - [x] Lambdas & Maps (Function)
+    - (Lambdas) Trade lower mathematical calculation time for more function calls
     - (Maps) Further lower functional-call overhead
 
   - [x] Lambdas & Maps (Local)
@@ -28,14 +32,18 @@
     - (Local) Should remove any function-call overhead
     - (Maps) Further lower functional-call overhead
 
-  - [ ] LRU Caching (Function)
+  - [x] LRU Caching (Function)
     - (LRU Caching) Should reduce value access time in functions
 
-  - [ ] Lists & LRU Caching (Function)
+  - [x] Lambdas & LRU Caching (Function)
     - (Lambdas) Trade lower mathematical calculation time for more function calls
     - (LRU Caching) Should reduce value access time in functions
 
-  - [ ] Lambdas & LRU Caching (Function)
+  - [x] Lambdas & LRU Caching (Local)
+    - (Lambdas) Trade lower mathematical calculation time for more function calls
+    - (LRU Caching) Should reduce value access time in functions
+
+  - [x] Lists & LRU Caching (Function)
     - (Lambdas) Trade lower mathematical calculation time for more function calls
     - (LRU Caching) Should reduce value access time in functions
 

@@ -2,15 +2,43 @@
 import argparse as argp
 import multiprocessing as mp
 import os
+import shutil
 import time
 
 # Custom Funcs
+# Primes
+# Function
 import Primes.Find_Nth_Prime_Python_Function as Prime_Normal_Func
+# Local
 import Primes.Find_Nth_Prime_Python_Local as Prime_Normal_Loc
-import Primes.Find_Nth_Prime_Python_Function_List as Prime_Normal_Func_List
-import Primes.Find_Nth_Prime_Python_Local_List as Prime_Normal_Loc_List
+# Function - Lambdas
 import Primes.Find_Nth_Prime_Python_Function_Lambda as Prime_Normal_Func_Lambda
+# Local - Lambdas
 import Primes.Find_Nth_Prime_Python_Local_Lambda as Prime_Normal_Loc_Lambda
+# Function - Lists
+import Primes.Find_Nth_Prime_Python_Function_List as Prime_Normal_Func_List
+# Local - Lists
+import Primes.Find_Nth_Prime_Python_Local_List as Prime_Normal_Loc_List
+# Local - Maps
+import Primes.Find_Nth_Prime_Python_Local_Map as Prime_Normal_Loc_Map
+# Function - Lambdas & Maps
+import Primes.Find_Nth_Prime_Python_Function_Lambda_Map as Prime_Normal_Func_Lambda_Map
+# Local - Lambdas & Maps
+import Primes.Find_Nth_Prime_Python_Local_Lambda_Map as Prime_Normal_Loc_Lambda_Map
+# Function - LRU Caching
+import Primes.Find_Nth_Prime_Python_Function_LRU as Prime_Normal_Func_LRU
+# Function - Lambdas & LRU Caching
+import Primes.Find_Nth_Prime_Python_Function_Lambda_LRU as Prime_Normal_Func_Lambda_LRU
+# Local - Lambdas & LRU Caching
+import Primes.Find_Nth_Prime_Python_Local_Lambda_LRU as Prime_Normal_Loc_Lambda_LRU
+# Function - Lists & LRU Caching
+import Primes.Find_Nth_Prime_Python_Function_List_LRU as Prime_Normal_Func_List_LRU
+# Function - Lambdas & LRU Caching & Maps
+import Primes.Find_Nth_Prime_Python_Function_Lambda_LRU_Map as Prime_Normal_Func_Lambda_LRU_Map
+# Local - Lambdas & LRU Caching & Maps
+import Primes.Find_Nth_Prime_Python_Local_Lambda_LRU_Map as Prime_Normal_Loc_Lambda_LRU_Map
+
+
 # import Primes.Find_Nth_Prime_Python_Function_LRU as Prime_Normal_Func_LRU
 # import Primes.Find_Nth_Prime_Python_Function_Lambda_LRU as Prime_Normal_Func_Lambda_LRU
 #
@@ -127,71 +155,157 @@ if __name__ == "__main__":
     funcs = dict()
 
     # CPYTHON
+    # Function
     try:
         os.mkdir("files_runs/normal_function")
     except FileExistsError:
-        pass
+        shutil.rmtree("files_runs/normal_function")
+        os.mkdir("files_runs/normal_function")
     funcs["Normal_Default_Function"] = Prime_Normal_Func.main_def
     funcs["Normal_Half_Function"] = Prime_Normal_Func.main_half
     funcs["Normal_Sqrt_Function"] = Prime_Normal_Func.main_sqrt
 
-    try:
-        os.mkdir("files_runs/normal_local")
-    except FileExistsError:
-        pass
-    funcs["Normal_Default_Local"] = Prime_Normal_Loc.main_def
-    funcs["Normal_Half_Local"] = Prime_Normal_Loc.main_half
-    funcs["Normal_Sqrt_Local"] = Prime_Normal_Loc.main_sqrt
+    # Local
+    # try:
+    #     os.mkdir("files_runs/normal_local")
+    # except FileExistsError:
+    #     shutil.rmtree("files_runs/normal_local")
+    #     os.mkdir("files_runs/normal_local")
+    # funcs["Normal_Default_Local"] = Prime_Normal_Loc.main_def
+    # funcs["Normal_Half_Local"] = Prime_Normal_Loc.main_half
+    # funcs["Normal_Sqrt_Local"] = Prime_Normal_Loc.main_sqrt
 
-    try:
-        os.mkdir("files_runs/normal_function_list")
-    except FileExistsError:
-        pass
-    funcs["Normal_Default_Function_List"] = Prime_Normal_Func_List.main_def
-    funcs["Normal_Half_Function_List"] = Prime_Normal_Func_List.main_half
-    funcs["Normal_Sqrt_Function_List"] = Prime_Normal_Func_List.main_sqrt
+    # Function - Lambdas
+    # try:
+    #     os.mkdir("files_runs/normal_function_lambda")
+    # except FileExistsError:
+    #     shutil.rmtree("files_runs/normal_function_lambda")
+    #     os.mkdir("files_runs/normal_function_lambda")
+    # funcs["Normal_Default_Function_Lambda"] = Prime_Normal_Func_Lambda.main_def
+    # funcs["Normal_Half_Function_Lambda"] = Prime_Normal_Func_Lambda.main_half
+    # funcs["Normal_Sqrt_Function_Lambda"] = Prime_Normal_Func_Lambda.main_sqrt
 
-    try:
-        os.mkdir("files_runs/normal_local_list")
-    except FileExistsError:
-        pass
-    funcs["Normal_Default_Local_List"] = Prime_Normal_Loc_List.main_def
-    funcs["Normal_Half_Local_List"] = Prime_Normal_Loc_List.main_half
-    funcs["Normal_Sqrt_Local_List"] = Prime_Normal_Loc_List.main_sqrt
+    # Local - Lambdas
+    # try:
+    #     os.mkdir("files_runs/normal_local_lambda")
+    # except FileExistsError:
+    #     shutil.rmtree("files_runs/normal_local_lambda")
+    #     os.mkdir("files_runs/normal_local_lambda")
+    # funcs["Normal_Default_Local_Lambda"] = Prime_Normal_Loc_Lambda.main_def
+    # funcs["Normal_Half_Local_Lambda"] = Prime_Normal_Loc_Lambda.main_half
+    # funcs["Normal_Sqrt_Local_Lambda"] = Prime_Normal_Loc_Lambda.main_sqrt
 
-    try:
-        os.mkdir("files_runs/normal_function_lambda")
-    except FileExistsError:
-        pass
-    funcs["Normal_Default_Function_Lambda"] = Prime_Normal_Func_Lambda.main_def
-    funcs["Normal_Half_Function_Lambda"] = Prime_Normal_Func_Lambda.main_half
-    funcs["Normal_Sqrt_Function_Lambda"] = Prime_Normal_Func_Lambda.main_sqrt
+    # Function - Lists
+    # try:
+    #     os.mkdir("files_runs/normal_function_list")
+    # except FileExistsError:
+    #     shutil.rmtree("files_runs/normal_function_list")
+    #     os.mkdir("files_runs/normal_function_list")
+    # funcs["Normal_Default_Function_List"] = Prime_Normal_Func_List.main_def
+    # funcs["Normal_Half_Function_List"] = Prime_Normal_Func_List.main_half
+    # funcs["Normal_Sqrt_Function_List"] = Prime_Normal_Func_List.main_sqrt
 
+    # Local - Lists
+    # try:
+    #     os.mkdir("files_runs/normal_local_list")
+    # except FileExistsError:
+    #     shutil.rmtree("files_runs/normal_local_list")
+    #     os.mkdir("files_runs/normal_local_list")
+    # funcs["Normal_Default_Local_List"] = Prime_Normal_Loc_List.main_def
+    # funcs["Normal_Half_Local_List"] = Prime_Normal_Loc_List.main_half
+    # funcs["Normal_Sqrt_Local_List"] = Prime_Normal_Loc_List.main_sqrt
+
+    # Local - Maps
+    # try:
+    #     os.mkdir("files_runs/normal_local_map")
+    # except FileExistsError:
+    #     shutil.rmtree("files_runs/normal_local_map")
+    #     os.mkdir("files_runs/normal_local_map")
+    # funcs["Normal_Default_Local_Map"] = Prime_Normal_Loc_Map.main_def
+    # funcs["Normal_Half_Local_Map"] = Prime_Normal_Loc_Map.main_half
+    # funcs["Normal_Sqrt_Local_Map"] = Prime_Normal_Loc_Map.main_sqrt
+
+    # Function - Lambdas & Maps
+    # try:
+    #     os.mkdir("files_runs/normal_function_lambda_map")
+    # except FileExistsError:
+    #     shutil.rmtree("files_runs/normal_function_lambda_map")
+    #     os.mkdir("files_runs/normal_function_lambda_map")
+    # funcs["Normal_Default_Function_Lambda_Map"] = Prime_Normal_Func_Lambda_Map.main_def
+    # funcs["Normal_Half_Function_Lambda_Map"] = Prime_Normal_Func_Lambda_Map.main_half
+    # funcs["Normal_Sqrt_Function_Lambda_Map"] = Prime_Normal_Func_Lambda_Map.main_sqrt
+
+    # Local - Lambdas & Maps
+    # try:
+    #     os.mkdir("files_runs/normal_local_lambda_map")
+    # except FileExistsError:
+    #     shutil.rmtree("files_runs/normal_local_lambda_map")
+    #     os.mkdir("files_runs/normal_local_lambda_map")
+    # funcs["Normal_Default_Local_Lambda_Map"] = Prime_Normal_Loc_Lambda_Map.main_def
+    # funcs["Normal_Half_Local_Lambda_Map"] = Prime_Normal_Loc_Lambda_Map.main_half
+    # funcs["Normal_Sqrt_Local_Lambda_Map"] = Prime_Normal_Loc_Lambda_Map.main_sqrt
+
+    # Function - LRU Caching
     try:
-        os.mkdir("files_runs/normal_local_lambda")
+        os.mkdir("files_runs/normal_function_lru")
     except FileExistsError:
-        pass
-    funcs["Normal_Default_Local_Lambda"] = Prime_Normal_Loc_Lambda.main_def
-    funcs["Normal_Half_Local_Lambda"] = Prime_Normal_Loc_Lambda.main_half
-    funcs["Normal_Sqrt_Local_Lambda"] = Prime_Normal_Loc_Lambda.main_sqrt
+        shutil.rmtree("files_runs/normal_function_lru")
+        os.mkdir("files_runs/normal_function_lru")
+    funcs["Normal_Default_Function_LRU"] = Prime_Normal_Func_LRU.main_def
+    funcs["Normal_Half_Function_LRU"] = Prime_Normal_Func_LRU.main_half
+    funcs["Normal_Sqrt_Function_LRU"] = Prime_Normal_Func_LRU.main_sqrt
+
+    # Function - Lambdas & LRU Caching
+    try:
+        os.mkdir("files_runs/normal_function_lambda_lru")
+    except FileExistsError:
+        shutil.rmtree("files_runs/normal_function_lambda_lru")
+        os.mkdir("files_runs/normal_function_lambda_lru")
+    funcs["Normal_Default_Function_Lambda_LRU"] = Prime_Normal_Func_Lambda_LRU.main_def
+    funcs["Normal_Half_Function_Lambda_LRU"] = Prime_Normal_Func_Lambda_LRU.main_half
+    funcs["Normal_Sqrt_Function_Lambda_LRU"] = Prime_Normal_Func_Lambda_LRU.main_sqrt
+
+    # Local - Lambdas & LRU Caching
+    try:
+        os.mkdir("files_runs/normal_local_lambda_lru")
+    except FileExistsError:
+        shutil.rmtree("files_runs/normal_local_lambda_lru")
+        os.mkdir("files_runs/normal_local_lambda_lru")
+    funcs["Normal_Default_Local_Lambda_LRU"] = Prime_Normal_Loc_Lambda_LRU.main_def
+    funcs["Normal_Half_Local_Lambda_LRU"] = Prime_Normal_Loc_Lambda_LRU.main_half
+    funcs["Normal_Sqrt_Local_Lambda_LRU"] = Prime_Normal_Loc_Lambda_LRU.main_sqrt
+
+    # Function - Lists & LRU Caching
+    try:
+        os.mkdir("files_runs/normal_function_list_lru")
+    except FileExistsError:
+        shutil.rmtree("files_runs/normal_function_list_lru")
+        os.mkdir("files_runs/normal_function_list_lru")
+    funcs["Normal_Default_Function_List_LRU"] = Prime_Normal_Func_List_LRU.main_def
+    funcs["Normal_Half_Function_List_LRU"] = Prime_Normal_Func_List_LRU.main_half
+    funcs["Normal_Sqrt_Function_List_LRU"] = Prime_Normal_Func_List_LRU.main_sqrt
+
+    # Function - Lambdas & LRU Caching & Maps
+    try:
+        os.mkdir("files_runs/normal_function_lambda_lru_map")
+    except FileExistsError:
+        shutil.rmtree("files_runs/normal_function_lambda_lru_map")
+        os.mkdir("files_runs/normal_function_lambda_lru_map")
+    funcs["Normal_Default_Function_Lambda_LRU_Map"] = Prime_Normal_Func_Lambda_LRU_Map.main_def
+    funcs["Normal_Half_Function_Lambda_LRU_Map"] = Prime_Normal_Func_Lambda_LRU_Map.main_half
+    funcs["Normal_Sqrt_Function_Lambda_LRU_Map"] = Prime_Normal_Func_Lambda_LRU_Map.main_sqrt
+
+    # Local - Lambdas & LRU Caching & Maps
+    try:
+        os.mkdir("files_runs/normal_local_lambda_lru_map")
+    except FileExistsError:
+        shutil.rmtree("files_runs/normal_local_lambda_lru_map")
+        os.mkdir("files_runs/normal_local_lambda_lru_map")
+    funcs["Normal_Default_Local_Lambda_LRU_Map"] = Prime_Normal_Loc_Lambda_LRU_Map.main_def
+    funcs["Normal_Half_Local_Lambda_LRU_Map"] = Prime_Normal_Loc_Lambda_LRU_Map.main_half
+    funcs["Normal_Sqrt_Local_Lambda_LRU_Map"] = Prime_Normal_Loc_Lambda_LRU_Map.main_sqrt
 
     ############################################################################
-
-    # try:
-    #     os.mkdir("files_runs/normal_function_lru")
-    # except FileExistsError:
-    #     pass
-    # funcs["Normal_Default_Function_LRU"] = Prime_Normal_Func_LRU.main_def
-    # funcs["Normal_Half_Function_LRU"] = Prime_Normal_Func_LRU.main_half
-    # funcs["Normal_Sqrt_Function_LRU"] = Prime_Normal_Func_LRU.main_sqrt
-
-    # try:
-    #     os.mkdir("files_runs/normal_function_lambda_lru")
-    # except FileExistsError:
-    #     pass
-    # funcs["Normal_Default_Function_Lambda_LRU"] = Prime_Normal_Func_Lambda_LRU.main_def
-    # funcs["Normal_Half_Function_Lambda_LRU"] = Prime_Normal_Func_Lambda_LRU.main_half
-    # funcs["Normal_Sqrt_Function_Lambda_LRU"] = Prime_Normal_Func_Lambda_LRU.main_sqrt
 
     # NUMPY
     # try:
