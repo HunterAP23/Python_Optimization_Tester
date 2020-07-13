@@ -121,50 +121,50 @@ if __name__ == "__main__":
     funcs = []
 
     #CPYTHON
-    funcs.append(Find_Nth_Prime_Python.main_def)
-    funcs.append(Find_Nth_Prime_Python.main_half)
-    funcs.append(Find_Nth_Prime_Python.main_sqrt)
+    funcs.append(Find_Nth_Prime_Python.Main_Default)
+    funcs.append(Find_Nth_Prime_Python.Main_Half)
+    funcs.append(Find_Nth_Prime_Python.Main_Sqrt)
 
-    funcs.append(Find_Nth_Prime_Python_Lambda.main_def)
-    funcs.append(Find_Nth_Prime_Python_Lambda.main_half)
-    funcs.append(Find_Nth_Prime_Python_Lambda.main_sqrt)
+    funcs.append(Find_Nth_Prime_Python_Lambda.Main_Default)
+    funcs.append(Find_Nth_Prime_Python_Lambda.Main_Half)
+    funcs.append(Find_Nth_Prime_Python_Lambda.Main_Sqrt)
 
-    funcs.append(Find_Nth_Prime_Python_LRU.main_def)
-    funcs.append(Find_Nth_Prime_Python_LRU.main_half)
-    funcs.append(Find_Nth_Prime_Python_LRU.main_sqrt)
+    funcs.append(Find_Nth_Prime_Python_LRU.Main_Default)
+    funcs.append(Find_Nth_Prime_Python_LRU.Main_Half)
+    funcs.append(Find_Nth_Prime_Python_LRU.Main_Sqrt)
 
     # NUMPY
-    # funcs.append(Find_Nth_Prime_Python_Numpy.main_def)
-    # funcs.append(Find_Nth_Prime_Python_Numpy.main_half)
-    # funcs.append(Find_Nth_Prime_Python_Numpy.main_sqrt)
+    # funcs.append(Find_Nth_Prime_Python_Numpy.Main_Default)
+    # funcs.append(Find_Nth_Prime_Python_Numpy.Main_Half)
+    # funcs.append(Find_Nth_Prime_Python_Numpy.Main_Sqrt)
     #
-    # funcs.append(Find_Nth_Prime_Python_Numpy_Lambda.main_def)
-    # funcs.append(Find_Nth_Prime_Python_Numpy_Lambda.main_half)
-    # funcs.append(Find_Nth_Prime_Python_Numpy_Lambda.main_sqrt)
+    # funcs.append(Find_Nth_Prime_Python_Numpy_Lambda.Main_Default)
+    # funcs.append(Find_Nth_Prime_Python_Numpy_Lambda.Main_Half)
+    # funcs.append(Find_Nth_Prime_Python_Numpy_Lambda.Main_Sqrt)
     #
-    # funcs.append(Find_Nth_Prime_Python_Numpy_LRU.main_def)
-    # funcs.append(Find_Nth_Prime_Python_Numpy_LRU.main_half)
-    # funcs.append(Find_Nth_Prime_Python_Numpy_LRU.main_sqrt)
+    # funcs.append(Find_Nth_Prime_Python_Numpy_LRU.Main_Default)
+    # funcs.append(Find_Nth_Prime_Python_Numpy_LRU.Main_Half)
+    # funcs.append(Find_Nth_Prime_Python_Numpy_LRU.Main_Sqrt)
 
-    # funcs.append(Find_Nth_Prime1.main_def)
-    # funcs.append(Find_Nth_Prime1.main_half)
-    # funcs.append(Find_Nth_Prime1.main_sqrt)
+    # funcs.append(Find_Nth_Prime1.Main_Default)
+    # funcs.append(Find_Nth_Prime1.Main_Half)
+    # funcs.append(Find_Nth_Prime1.Main_Sqrt)
     #
-    # funcs.append(Find_Nth_Prime2.main_def)
-    # funcs.append(Find_Nth_Prime2.main_half)
-    # funcs.append(Find_Nth_Prime2.main_sqrt)
+    # funcs.append(Find_Nth_Prime2.Main_Default)
+    # funcs.append(Find_Nth_Prime2.Main_Half)
+    # funcs.append(Find_Nth_Prime2.Main_Sqrt)
     #
-    # funcs.append(Find_Nth_Prime_LRU.main_def)
-    # funcs.append(Find_Nth_Prime_LRU.main_half)
-    # funcs.append(Find_Nth_Prime_LRU.main_sqrt)
+    # funcs.append(Find_Nth_Prime_LRU.Main_Default)
+    # funcs.append(Find_Nth_Prime_LRU.Main_Half)
+    # funcs.append(Find_Nth_Prime_LRU.Main_Sqrt)
     #
-    # funcs.append(Find_Nth_Prime1_LRU.main_def)
-    # funcs.append(Find_Nth_Prime1_LRU.main_half)
-    # funcs.append(Find_Nth_Prime1_LRU.main_sqrt)
+    # funcs.append(Find_Nth_Prime1_LRU.Main_Default)
+    # funcs.append(Find_Nth_Prime1_LRU.Main_Half)
+    # funcs.append(Find_Nth_Prime1_LRU.Main_Sqrt)
     #
-    # funcs.append(Find_Nth_Prime2_LRU.main_def)
-    # funcs.append(Find_Nth_Prime2_LRU.main_half)
-    # funcs.append(Find_Nth_Prime2_LRU.main_sqrt)
+    # funcs.append(Find_Nth_Prime2_LRU.Main_Default)
+    # funcs.append(Find_Nth_Prime2_LRU.Main_Half)
+    # funcs.append(Find_Nth_Prime2_LRU.Main_Sqrt)
 
     arguments = [user_max, num_loops, return_dict]
 

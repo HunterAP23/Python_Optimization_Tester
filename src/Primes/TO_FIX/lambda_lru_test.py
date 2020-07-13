@@ -21,7 +21,7 @@ if __name__ == "__main__":
     manager = mp.Manager()
     rlock = manager.RLock()
 
-    # funcs = [func.main_def, func.main_half, func.main_sqrt, func1.main_def, func1.main_half, func1.main_sqrt]
+    # funcs = [func.Main_Default, func.Main_Half, func.Main_Sqrt, func1.Main_Default, func1.Main_Half, func1.Main_Sqrt]
 
     # proc = []
     # for func in funcs:
@@ -30,7 +30,7 @@ if __name__ == "__main__":
     #
     # for p in proc:
     #     p.start()
-    # time_function(func.main_def, 49999, 5, rlock)
-    # time_function(func.main_half, 49999, 5, rlock)
-    # time_function(func.main_sqrt, 49999, 5, rlock)
-    func.main_def(49999, 5, rlock)
+    # time_function(func.Main_Default, 49999, 5, rlock)
+    # time_function(func.Main_Half, 49999, 5, rlock)
+    # time_function(func.Main_Sqrt, 49999, 5, rlock)
+    func.Main_Default(49999, 5, rlock)

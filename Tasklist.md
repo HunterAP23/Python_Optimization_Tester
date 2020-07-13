@@ -1,99 +1,100 @@
-- [ ] CPython Variants
-  - [x] Default (Function)
-    - Baseline speed
+- [ ] Primes
+  - [ ] CPython Runtime
+    - [x] Default (Function)
+      - Baseline speed
 
-  - [x] Default (Local)
-    - (Local) Should remove any function-call overhead
+    - [x] Default (Local)
+      - (Local) Should remove any function-call overhead
 
-  - [x] Lambdas (Function)
-    - (Lambdas) Trade lower mathematical calculation time for more function calls
+    - [x] Lambda (Function)
+      - (Lambda) Trade lower mathematical calculation time for more function calls
 
-  - [x] Lambdas (Local)
-    - (Lambdas) Trade lower mathematical calculation time for more function calls
-    - (Local) Should remove any function-call overhead
+    - [x] Lambda (Local)
+      - (Lambda) Trade lower mathematical calculation time for more function calls
+      - (Local) Should remove any function-call overhead
 
-  - [x] Lists (Function)
-    - (Lists) Should reduce mathematical calculations done
+    - [x] List (Function)
+      - (List) Should reduce mathematical calculations done
 
-  - [x] Lists (Local)
-    - (Lists) Should reduce mathematical calculations done
-    - (Local) Should remove any function-call overhead
+    - [x] List (Local)
+      - (List) Should reduce mathematical calculations done
+      - (Local) Should remove any function-call overhead
 
-  - [x] Maps (Local)
-    - (Local) Should remove any function-call overhead
-    - (Maps) Further lower functional-call overhead
+    - [x] Map (Local)
+      - (Local) Should remove any function-call overhead
+      - (Map) Further lower functional-call overhead
 
-  - [x] Lambdas & Maps (Function)
-    - (Lambdas) Trade lower mathematical calculation time for more function calls
-    - (Maps) Further lower functional-call overhead
+    - [x] Lambda & Map (Function)
+      - (Lambda) Trade lower mathematical calculation time for more function calls
+      - (Map) Further lower functional-call overhead
 
-  - [x] Lambdas & Maps (Local)
-    - (Lambdas) Trade lower mathematical calculation time for more function calls
-    - (Local) Should remove any function-call overhead
-    - (Maps) Further lower functional-call overhead
+    - [x] Lambda & Map (Local)
+      - (Lambda) Trade lower mathematical calculation time for more function calls
+      - (Local) Should remove any function-call overhead
+      - (Map) Further lower functional-call overhead
 
-  - [x] LRU Caching (Function)
-    - (LRU Caching) Should reduce value access time in functions
+    - [x] LRU Caching (Function)
+      - (LRU Caching) Should reduce value access time in functions
 
-  - [x] Lambdas & LRU Caching (Function)
-    - (Lambdas) Trade lower mathematical calculation time for more function calls
-    - (LRU Caching) Should reduce value access time in functions
+    - [x] Lambda & LRU Caching (Function)
+      - (Lambda) Trade lower mathematical calculation time for more function calls
+      - (LRU Caching) Should reduce value access time in functions
 
-  - [x] Lambdas & LRU Caching (Local)
-    - (Lambdas) Trade lower mathematical calculation time for more function calls
-    - (LRU Caching) Should reduce value access time in functions
+    - [x] Lambda & LRU Caching (Local)
+      - (Lambda) Trade lower mathematical calculation time for more function calls
+      - (LRU Caching) Should reduce value access time in functions
 
-  - [x] Lists & LRU Caching (Function)
-    - (Lambdas) Trade lower mathematical calculation time for more function calls
-    - (LRU Caching) Should reduce value access time in functions
+    - [x] List & LRU Caching (Function)
+      - (Lambda) Trade lower mathematical calculation time for more function calls
+      - (LRU Caching) Should reduce value access time in functions
 
-  - [ ] Numpy Arrays (Function)
-    - (Numpy Arrays) Should improve speed of operations on primes list
+    - [ ] Numpy Arrays (Function)
+      - (Numpy Arrays) Should improve speed of operations on primes list
 
-  - [ ] Numpy Arrays (Local)
-    - (Local) Should remove any function-call overhead
-    - (Numpy Arrays) Should improve speed of operations on primes list
+    - [ ] Numpy Arrays (Local)
+      - (Local) Should remove any function-call overhead
+      - (Numpy Arrays) Should improve speed of operations on primes list
 
-  - [ ] Numpy Arrays & Lambdas (Function)
-    - (Lambdas) Trade lower mathematical calculation time for more function calls
-    - (Numpy Arrays) Should improve speed of operations on primes list
+    - [ ] Numpy Arrays & Lambda (Function)
+      - (Lambda) Trade lower mathematical calculation time for more function calls
+      - (Numpy Arrays) Should improve speed of operations on primes list
 
-  - [ ] Numpy Arrays & Lambdas (Local)
-    - (Lambdas) Trade lower mathematical calculation time for more function calls
-    - (Local) Should remove any function-call overhead
-    - (Numpy Arrays) Should improve speed of operations on primes list
+    - [ ] Numpy Arrays & Lambda (Local)
+      - (Lambda) Trade lower mathematical calculation time for more function calls
+      - (Local) Should remove any function-call overhead
+      - (Numpy Arrays) Should improve speed of operations on primes list
 
-  - [ ] Numpy Arrays & Numpy Lambdas (Function)
-    - (Numpy Arrays) Should improve speed of operations on primes list
-    - (Numpy Lambdas) Should reduce number of calculations done even further
+    - [ ] Numpy Arrays & Numpy Lambda (Function)
+      - (Numpy Arrays) Should improve speed of operations on primes list
+      - (Numpy Lambda) Should reduce number of calculations done even further
 
-  - [ ] Numpy Arrays & Numpy Lambdas (Local)
-    - (Local) Should remove any function-call overhead
-    - (Numpy Arrays) Should improve speed of operations on primes list
-    - (Numpy Lambdas) Should reduce number of calculations done even further
+    - [ ] Numpy Arrays & Numpy Lambda (Local)
+      - (Local) Should remove any function-call overhead
+      - (Numpy Arrays) Should improve speed of operations on primes list
+      - (Numpy Lambda) Should reduce number of calculations done even further
 
-  - [ ] Numpy Arrays & LRU Caching (Function)
-    - (LRU Caching) Should reduce value access time in functions
-    - (Numpy Arrays) Should improve speed of operations on primes list
+    - [ ] Numpy Arrays & LRU Caching (Function)
+      - (LRU Caching) Should reduce value access time in functions
+      - (Numpy Arrays) Should improve speed of operations on primes list
 
-  - [ ] Numpy Arrays & LRU Caching & Lambdas (Function)
-    - (Lambdas) Trade lower mathematical calculation time for more function calls
-    - (LRU Caching) Should reduce value access time in functions
-    - (Numpy Arrays) Should improve speed of operations on primes list
+    - [ ] Numpy Arrays & LRU Caching & Lambda (Function)
+      - (Lambda) Trade lower mathematical calculation time for more function calls
+      - (LRU Caching) Should reduce value access time in functions
+      - (Numpy Arrays) Should improve speed of operations on primes list
 
-  - [ ] Numpy Arrays & LRU Caching & Numpy Lambdas (Function)
-    - (LRU Caching) Should reduce value access time in functions
-    - (Numpy Arrays) Should improve speed of operations on primes list
-    - (Numpy Lambdas) Should reduce number of calculations done even further
-
-
-  - [ ] Cython (Function)
-    - (Cython) Compiled to perform better
+    - [ ] Numpy Arrays & LRU Caching & Numpy Lambda (Function)
+      - (LRU Caching) Should reduce value access time in functions
+      - (Numpy Arrays) Should improve speed of operations on primes list
+      - (Numpy Lambda) Should reduce number of calculations done even further
 
 
-  - [ ] Optimized Cython (Function)
-    - (Optimized Cython) Compiled to perform better and variables are typed
+    - [ ] Cython (Function)
+      - (Cython) Compiled to perform better
 
 
-- [ ] Anaconda Runtime
-- [ ] PyPy Runtime
+    - [ ] Optimized Cython (Function)
+      - (Optimized Cython) Compiled to perform better and variables are typed
+
+
+  - [ ] Anaconda Runtime
+  - [ ] PyPy Runtime

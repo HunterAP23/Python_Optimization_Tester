@@ -107,3 +107,4 @@ ENV/
 # Custom
 src/files_runs/
 src/files_compile/
+src/flake8_report.txt

@@ -22,7 +22,7 @@ if __name__ == "__main__":
     manager = mp.Manager()
     rlock = manager.RLock()
 
-    # funcs = [func.main_def, func.main_half, func.main_sqrt, func1.main_def, func1.main_half, func1.main_sqrt]
+    # funcs = [func.Main_Default, func.Main_Half, func.Main_Sqrt, func1.Main_Default, func1.Main_Half, func1.Main_Sqrt]
 
     # proc = []
     # for func in funcs:
@@ -31,14 +31,14 @@ if __name__ == "__main__":
     #
     # for p in proc:
     #     p.start()
-    # time_function(func.main_def, 49999, 5, rlock)
-    # time_function(func.main_half, 49999, 5, rlock)
-    # time_function(func.main_sqrt, 49999, 5, rlock)
-    # func.main_def(100000, 10, rlock)
-    func1.main_def(100000, 20, rlock)
-    func1.main_def2(100000, 20, rlock)
-    func1.main_half(100000, 20, rlock)
-    func1.main_half2(100000, 20, rlock)
-    func1.main_half3(100000, 20, rlock)
-    func1.main_half4(100000, 20, rlock)
-    func1.main_sqrt(100000, 20, rlock)
+    # time_function(func.Main_Default, 49999, 5, rlock)
+    # time_function(func.Main_Half, 49999, 5, rlock)
+    # time_function(func.Main_Sqrt, 49999, 5, rlock)
+    # func.Main_Default(100000, 10, rlock)
+    func1.Main_Default(100000, 20, rlock)
+    func1.Main_Default2(100000, 20, rlock)
+    func1.Main_Half(100000, 20, rlock)
+    func1.Main_Half2(100000, 20, rlock)
+    func1.Main_Half3(100000, 20, rlock)
+    func1.Main_Half4(100000, 20, rlock)
+    func1.Main_Sqrt(100000, 20, rlock)

@@ -1,0 +1,438 @@
+{
+	"global": {
+		"threads": "1",
+		"suites": "ALL"
+	},
+	"primes": {
+		"max": "10",
+		"loops": "6",
+		"tests": {
+			"CPython": {
+				"Interpreted": {
+					"Local": {
+						"Standard": {
+              "case": {
+                "Default": 1,
+  							"Half": 1,
+  							"Sqrt": 1
+              },
+              "package": "Primes",
+              "library": "Primes.Interpreted.Local.Standard"
+						},
+						"Lambda": {
+              "case": {
+                "Default": 1,
+  							"Half": 1,
+  							"Sqrt": 1
+              },
+              "package": "Primes",
+              "library": "Primes.Interpreted.Local.Lambda"
+						},
+						"List": {
+              "case": {
+                "Default": 1,
+  							"Half": 1,
+  							"Sqrt": 1
+              },
+              "package": "Primes",
+              "library": "Primes.Interpreted.Local.List"
+						},
+						"Map": {
+              "case": {
+                "Default": 1,
+  							"Half": 1,
+  							"Sqrt": 1
+              },
+              "package": "Primes",
+              "library": "Primes.Interpreted.Local.Map"
+						},
+						"Lambda_Map": {
+              "case": {
+                "Default": 1,
+  							"Half": 1,
+  							"Sqrt": 1
+              },
+              "package": "Primes",
+              "library": "Primes.Interpreted.Local.Lambda_Map"
+						},
+						"Lambda_LRU": {
+              "case": {
+                "Default": 1,
+  							"Half": 1,
+  							"Sqrt": 1
+              },
+              "package": "Primes",
+              "library": "Primes.Interpreted.Local.Lambda_LRU"
+						},
+						"Lambda_LRU_Map": {
+              "case": {
+                "Default": 1,
+  							"Half": 1,
+  							"Sqrt": 1
+              },
+              "package": "Primes",
+              "library": "Primes.Interpreted.Local.Lambda_LRU_Map"
+						}
+					},
+					"Function": {
+						"Standard": {
+              "case": {
+                "Default": 1,
+  							"Half": 1,
+  							"Sqrt": 1
+              },
+              "package": "Primes",
+              "library": "Primes.Interpreted.Function.Standard"
+						},
+						"Lambda": {
+              "case": {
+                "Default": 1,
+  							"Half": 1,
+  							"Sqrt": 1
+              },
+              "package": "Primes",
+              "library": "Primes.Interpreted.Function.Lambda"
+						},
+						"List": {
+              "case": {
+                "Default": 1,
+  							"Half": 1,
+  							"Sqrt": 1
+              },
+              "package": "Primes",
+              "library": "Primes.Interpreted.Function.List"
+						},
+						"Lambda_Map": {
+              "case": {
+                "Default": 1,
+  							"Half": 1,
+  							"Sqrt": 1
+              },
+              "package": "Primes",
+              "library": "Primes.Interpreted.Function.Lambda_Map"
+						},
+						"LRU": {
+              "case": {
+                "Default": 1,
+  							"Half": 1,
+  							"Sqrt": 1
+              },
+              "package": "Primes",
+              "library": "Primes.Interpreted.Function.LRU"
+						},
+						"Lambda_LRU": {
+              "case": {
+                "Default": 1,
+  							"Half": 1,
+  							"Sqrt": 1
+              },
+              "package": "Primes",
+              "library": "Primes.Interpreted.Function.Lambda_LRU"
+						},
+						"Lambda_LRU_Map": {
+              "case": {
+                "Default": 1,
+  							"Half": 1,
+  							"Sqrt": 1
+              },
+              "package": "Primes",
+              "library": "Primes.Interpreted.Function.Lambda_LRU_Map"
+						},
+						"List_LRU": {
+              "case": {
+                "Default": 1,
+  							"Half": 1,
+  							"Sqrt": 1
+              },
+              "package": "Primes",
+              "library": "Primes.Interpreted.Function.List_LRU"
+						}
+					}
+				},
+				"Cython": {
+          "Local": {
+						"Standard": {
+              "case": {
+                "Default": 0,
+  							"Half": 0,
+  							"Sqrt": 0
+              },
+              "package": "Primes",
+              "library": "Primes.Cython.Local.Standard"
+						},
+						"Lambda": {
+              "case": {
+                "Default": 0,
+  							"Half": 0,
+  							"Sqrt": 0
+              },
+              "package": "Primes",
+              "library": "Primes.Cython.Local.Lambda"
+						},
+						"List": {
+              "case": {
+                "Default": 0,
+  							"Half": 0,
+  							"Sqrt": 0
+              },
+              "package": "Primes",
+              "library": "Primes.Cython.Local.List"
+						},
+						"Map": {
+              "case": {
+                "Default": 0,
+  							"Half": 0,
+  							"Sqrt": 0
+              },
+              "package": "Primes",
+              "library": "Primes.Cython.Local.Map"
+						},
+						"Lambda_Map": {
+              "case": {
+                "Default": 0,
+  							"Half": 0,
+  							"Sqrt": 0
+              },
+              "package": "Primes",
+              "library": "Primes.Cython.Local.Lambda_Map"
+						},
+						"Lambda_LRU": {
+              "case": {
+                "Default": 0,
+  							"Half": 0,
+  							"Sqrt": 0
+              },
+              "package": "Primes",
+              "library": "Primes.Cython.Local.Lambda_LRU"
+						},
+						"Lambda_LRU_Map": {
+              "case": {
+                "Default": 0,
+  							"Half": 0,
+  							"Sqrt": 0
+              },
+              "package": "Primes",
+              "library": "Primes.Cython.Local.Lambda_LRU_Map"
+						}
+					},
+					"Function": {
+						"Standard": {
+              "case": {
+                "Default": 0,
+  							"Half": 0,
+  							"Sqrt": 0
+              },
+              "package": "Primes",
+              "library": "Primes.Cython.Function.Standard"
+						},
+						"Lambda": {
+              "case": {
+                "Default": 0,
+  							"Half": 0,
+  							"Sqrt": 0
+              },
+              "package": "Primes",
+              "library": "Primes.Cython.Function.Lambda"
+						},
+						"List": {
+              "case": {
+                "Default": 0,
+  							"Half": 0,
+  							"Sqrt": 0
+              },
+              "package": "Primes",
+              "library": "Primes.Cython.Function.List"
+						},
+						"Lambda_Map": {
+              "case": {
+                "Default": 0,
+  							"Half": 0,
+  							"Sqrt": 0
+              },
+              "package": "Primes",
+              "library": "Primes.Cython.Function.Lambda_Map"
+						},
+						"LRU": {
+              "case": {
+                "Default": 0,
+  							"Half": 0,
+  							"Sqrt": 0
+              },
+              "package": "Primes",
+              "library": "Primes.Cython.Function.LRU"
+						},
+						"Lambda_LRU": {
+              "case": {
+                "Default": 0,
+  							"Half": 0,
+  							"Sqrt": 0
+              },
+              "package": "Primes",
+              "library": "Primes.Cython.Function.Lambda_LRU"
+						},
+						"Lambda_LRU_Map": {
+              "case": {
+                "Default": 0,
+  							"Half": 0,
+  							"Sqrt": 0
+              },
+              "package": "Primes",
+              "library": "Primes.Cython.Function.Lambda_LRU_Map"
+						},
+						"List_LRU": {
+              "case": {
+                "Default": 0,
+  							"Half": 0,
+  							"Sqrt": 0
+              },
+              "package": "Primes",
+              "library": "Primes.Cython.Function.List_LRU"
+						}
+					}
+				},
+				"Optimized": {
+          "Local": {
+						"Standard": {
+              "case": {
+                "Default": 0,
+  							"Half": 0,
+  							"Sqrt": 0
+              },
+              "package": "Primes",
+              "library": "Primes.Optimized.Local.Standard"
+						},
+						"Lambda": {
+              "case": {
+                "Default": 0,
+  							"Half": 0,
+  							"Sqrt": 0
+              },
+              "package": "Primes",
+              "library": "Primes.Optimized.Local.Lambda"
+						},
+						"List": {
+              "case": {
+                "Default": 0,
+  							"Half": 0,
+  							"Sqrt": 0
+              },
+              "package": "Primes",
+              "library": "Primes.Optimized.Local.List"
+						},
+						"Map": {
+              "case": {
+                "Default": 0,
+  							"Half": 0,
+  							"Sqrt": 0
+              },
+              "package": "Primes",
+              "library": "Primes.Optimized.Local.Map"
+						},
+						"Lambda_Map": {
+              "case": {
+                "Default": 0,
+  							"Half": 0,
+  							"Sqrt": 0
+              },
+              "package": "Primes",
+              "library": "Primes.Optimized.Local.Lambda_Map"
+						},
+						"Lambda_LRU": {
+              "case": {
+                "Default": 0,
+  							"Half": 0,
+  							"Sqrt": 0
+              },
+              "package": "Primes",
+              "library": "Primes.Optimized.Local.Lambda_LRU"
+						},
+						"Lambda_LRU_Map": {
+              "case": {
+                "Default": 0,
+  							"Half": 0,
+  							"Sqrt": 0
+              },
+              "package": "Primes",
+              "library": "Primes.Optimized.Local.Lambda_LRU_Map"
+						}
+					},
+					"Function": {
+						"Standard": {
+              "case": {
+                "Default": 0,
+  							"Half": 0,
+  							"Sqrt": 0
+              },
+              "package": "Primes",
+              "library": "Primes.Interpreted.Function.Standard"
+						},
+						"Lambda": {
+              "case": {
+                "Default": 0,
+  							"Half": 0,
+  							"Sqrt": 0
+              },
+              "package": "Primes",
+              "library": "Primes.Interpreted.Function.Lambda"
+						},
+						"List": {
+              "case": {
+                "Default": 0,
+  							"Half": 0,
+  							"Sqrt": 0
+              },
+              "package": "Primes",
+              "library": "Primes.Interpreted.Function.List"
+						},
+						"Lambda_Map": {
+              "case": {
+                "Default": 0,
+  							"Half": 0,
+  							"Sqrt": 0
+              },
+              "package": "Primes",
+              "library": "Primes.Interpreted.Function.Lambda_Map"
+						},
+						"LRU": {
+              "case": {
+                "Default": 0,
+  							"Half": 0,
+  							"Sqrt": 0
+              },
+              "package": "Primes",
+              "library": "Primes.Interpreted.Function.LRU"
+						},
+						"Lambda_LRU": {
+              "case": {
+                "Default": 0,
+  							"Half": 0,
+  							"Sqrt": 0
+              },
+              "package": "Primes",
+              "library": "Primes.Interpreted.Function.Lambda_LRU"
+						},
+						"Lambda_LRU_Map": {
+              "case": {
+                "Default": 0,
+  							"Half": 0,
+  							"Sqrt": 0
+              },
+              "package": "Primes",
+              "library": "Primes.Interpreted.Function.Lambda_LRU_Map"
+						},
+						"List_LRU": {
+              "case": {
+                "Default": 0,
+  							"Half": 0,
+  							"Sqrt": 0
+              },
+              "package": "Primes",
+              "library": "Primes.Interpreted.Function.List_LRU"
+						}
+					}
+				}
+			}
+
+		}
+	}
+}

@@ -51,7 +51,7 @@ def is_prime_sqrt(n, table):
     return (True, checks)
 
 
-def main_def(my_max, num_loops, rlock):
+def Main_Default(my_max, num_loops, rlock):
     msg = ("-" * 80) + "\n"
     overall_start = dt.datetime.now()
     msg += "Normal Default (Function) started at {0}/{1}/{2} {3}:{4}:{5}:{6}".format(overall_start.year, overall_start.month, overall_start.day, overall_start.hour, overall_start.minute, overall_start.second, overall_start.microsecond)
@@ -61,7 +61,7 @@ def main_def(my_max, num_loops, rlock):
     div_list = []
     primes_list = []
 
-    time_output = open("files_runs/normal_function/default_time.txt", "w")
+    time_output = open("files_runs/cpython_interpreted_function_standard/default_time.txt", "w")
 
     for i in range(num_loops):
         # Clear the lists before a run
@@ -82,11 +82,11 @@ def main_def(my_max, num_loops, rlock):
         time_output.write("Normal Default (Function) Pass {0} took {1} seconds.\n\n".format(i + 1, tmp_time_total))
         time_list.append(tmp_time_total)
 
-    with open("files_runs/normal_function/default_divisions.txt", "w") as div_output:
+    with open("files_runs/cpython_interpreted_function_standard/default_divisions.txt", "w") as div_output:
         for div in div_list:
             div_output.write(div)
 
-    with open("files_runs/normal_function/default_primes.txt", "w") as primes_output:
+    with open("files_runs/cpython_interpreted_function_standard/default_primes.txt", "w") as primes_output:
         for prime in primes_list:
             primes_output.write("{0}\n".format(prime))
 
@@ -102,7 +102,7 @@ def main_def(my_max, num_loops, rlock):
     time_output.close()
 
 
-def main_half(my_max, num_loops, rlock):
+def Main_Half(my_max, num_loops, rlock):
     msg = ("-" * 80) + "\n"
     overall_start = dt.datetime.now()
     msg += "Normal Half (Function) started at {0}/{1}/{2} {3}:{4}:{5}:{6}".format(overall_start.year, overall_start.month, overall_start.day, overall_start.hour, overall_start.minute, overall_start.second, overall_start.microsecond)
@@ -112,7 +112,7 @@ def main_half(my_max, num_loops, rlock):
     div_list = []
     primes_list = []
 
-    time_output = open("files_runs/normal_function/half_time.txt", "w")
+    time_output = open("files_runs/cpython_interpreted_function_standard/half_time.txt", "w")
 
     for i in range(num_loops):
         # Clear the lists before a run
@@ -133,11 +133,11 @@ def main_half(my_max, num_loops, rlock):
         time_output.write("Normal Half (Function) Pass {0} took {1} seconds.\n".format(i + 1, tmp_time_total))
         time_list.append(tmp_time_total)
 
-    with open("files_runs/normal_function/half_divisions.txt", "w") as div_output:
+    with open("files_runs/cpython_interpreted_function_standard/half_divisions.txt", "w") as div_output:
         for div in div_list:
             div_output.write(div)
 
-    with open("files_runs/normal_function/half_primes.txt", "w") as primes_output:
+    with open("files_runs/cpython_interpreted_function_standard/half_primes.txt", "w") as primes_output:
         for prime in primes_list:
             primes_output.write("{0}\n".format(prime))
 
@@ -153,7 +153,7 @@ def main_half(my_max, num_loops, rlock):
     time_output.close()
 
 
-def main_sqrt(my_max, num_loops, rlock):
+def Main_Sqrt(my_max, num_loops, rlock):
     msg = ("-" * 80) + "\n"
     overall_start = dt.datetime.now()
     msg += "Normal Sqrt (Function) started at {0}/{1}/{2} {3}:{4}:{5}:{6}".format(overall_start.year, overall_start.month, overall_start.day, overall_start.hour, overall_start.minute, overall_start.second, overall_start.microsecond)
@@ -163,7 +163,7 @@ def main_sqrt(my_max, num_loops, rlock):
     div_list = []
     primes_list = []
 
-    time_output = open("files_runs/normal_function/sqrt_time.txt", "w")
+    time_output = open("files_runs/cpython_interpreted_function_standard/sqrt_time.txt", "w")
 
     for i in range(num_loops):
         # Clear the lists before a run
@@ -184,11 +184,11 @@ def main_sqrt(my_max, num_loops, rlock):
         time_output.write("Normal Sqrt (Function) Pass {0} took {1} seconds.\n".format(i + 1, tmp_time_total))
         time_list.append(tmp_time_total)
 
-    with open("files_runs/normal_function/sqrt_divisions.txt", "w") as div_output:
+    with open("files_runs/cpython_interpreted_function_standard/sqrt_divisions.txt", "w") as div_output:
         for div in div_list:
             div_output.write(div)
 
-    with open("files_runs/normal_function/sqrt_primes.txt", "w") as primes_output:
+    with open("files_runs/cpython_interpreted_function_standard/sqrt_primes.txt", "w") as primes_output:
         for prime in primes_list:
             primes_output.write("{0}\n".format(prime))
 

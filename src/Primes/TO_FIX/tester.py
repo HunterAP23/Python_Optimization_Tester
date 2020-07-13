@@ -99,29 +99,29 @@ if __name__ == "__main__":
     testing_start = time.time()
 
     funcs = []
-    funcs.append(Find_Nth_Prime.main_def)
-    funcs.append(Find_Nth_Prime.main_half)
-    funcs.append(Find_Nth_Prime.main_sqrt)
+    funcs.append(Find_Nth_Prime.Main_Default)
+    funcs.append(Find_Nth_Prime.Main_Half)
+    funcs.append(Find_Nth_Prime.Main_Sqrt)
 
-    funcs.append(Find_Nth_Prime1.main_def)
-    funcs.append(Find_Nth_Prime1.main_half)
-    funcs.append(Find_Nth_Prime1.main_sqrt)
+    funcs.append(Find_Nth_Prime1.Main_Default)
+    funcs.append(Find_Nth_Prime1.Main_Half)
+    funcs.append(Find_Nth_Prime1.Main_Sqrt)
 
-    funcs.append(Find_Nth_Prime2.main_def)
-    funcs.append(Find_Nth_Prime2.main_half)
-    funcs.append(Find_Nth_Prime2.main_sqrt)
+    funcs.append(Find_Nth_Prime2.Main_Default)
+    funcs.append(Find_Nth_Prime2.Main_Half)
+    funcs.append(Find_Nth_Prime2.Main_Sqrt)
 
-    funcs.append(Find_Nth_Prime_LRU.main_def)
-    funcs.append(Find_Nth_Prime_LRU.main_half)
-    funcs.append(Find_Nth_Prime_LRU.main_sqrt)
+    funcs.append(Find_Nth_Prime_LRU.Main_Default)
+    funcs.append(Find_Nth_Prime_LRU.Main_Half)
+    funcs.append(Find_Nth_Prime_LRU.Main_Sqrt)
 
-    funcs.append(Find_Nth_Prime1_LRU.main_def)
-    funcs.append(Find_Nth_Prime1_LRU.main_half)
-    funcs.append(Find_Nth_Prime1_LRU.main_sqrt)
+    funcs.append(Find_Nth_Prime1_LRU.Main_Default)
+    funcs.append(Find_Nth_Prime1_LRU.Main_Half)
+    funcs.append(Find_Nth_Prime1_LRU.Main_Sqrt)
 
-    funcs.append(Find_Nth_Prime2_LRU.main_def)
-    funcs.append(Find_Nth_Prime2_LRU.main_half)
-    funcs.append(Find_Nth_Prime2_LRU.main_sqrt)
+    funcs.append(Find_Nth_Prime2_LRU.Main_Default)
+    funcs.append(Find_Nth_Prime2_LRU.Main_Half)
+    funcs.append(Find_Nth_Prime2_LRU.Main_Sqrt)
 
     arguments = [user_max, num_loops, return_dict]
 

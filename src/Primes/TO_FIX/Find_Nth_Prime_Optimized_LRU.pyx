@@ -77,7 +77,7 @@ def is_prime_sqrt(num):
         return (True, checks)
 
 
-cdef void main_def(int my_max, int num_loops, rlock):
+cdef void Main_Default(int my_max, int num_loops, rlock):
     msg = ("-" * 80) + "\n"
     msg += "Optimized Default LRU started."
     print_lock(msg, rlock)
@@ -129,7 +129,7 @@ cdef void main_def(int my_max, int num_loops, rlock):
     txt_output.close()
 
 
-cdef void main_half(int my_max, int num_loops, rlock):
+cdef void Main_Half(int my_max, int num_loops, rlock):
     msg = ("-" * 80) + "\n"
     msg += "Optimized Half started."
     print_lock(msg, rlock)
@@ -181,7 +181,7 @@ cdef void main_half(int my_max, int num_loops, rlock):
     txt_output.close()
 
 
-cdef void main_sqrt(int my_max, int num_loops, rlock):
+cdef void Main_Sqrt(int my_max, int num_loops, rlock):
     msg = ("-" * 80) + "\n"
     msg += "Optimized Sqrt LRU started."
     print_lock(msg, rlock)

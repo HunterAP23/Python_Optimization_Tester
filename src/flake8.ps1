@@ -1,3 +1,4 @@
-flake8.exe --ignore E501 . | Where-Object { $_ -NotMatch "EK_Subprocess.py"} | Where-Object{ $_ -NotMatch "compare[0-9]*.py"} 
+Remove-Item –path ./flake8_report.txt
+flake8.exe --ignore E501,E731 --output-file ./flake8_report.txt
 
 pause
