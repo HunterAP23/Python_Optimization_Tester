@@ -8,105 +8,61 @@ import shutil
 import sys
 import time
 
-# import Tester_Standard as TS
 
-# # Function - Lists
-# import Primes.Python_Normal_Function_List as CPy_Norm_Function_List
-# # Function - Lambdas & Maps
-# import Primes.Python_Normal_Function_Lambda_Map as CPy_Norm_Function_Lambda_Map
-# # Function - LRU Caching
-# import Primes.Python_Normal_Function_LRU as CPy_Norm_Function_LRU
-# # Function - Lambdas & LRU Caching
-# import Primes.Python_Normal_Function_Lambda_LRU as CPy_Norm_Function_Lambda_LRU
-# # Function - Lists & LRU Caching
-# import Primes.Python_Normal_Function_List_LRU as CPy_Norm_Function_List_LRU
-# # Function - Lambdas & LRU Caching & Maps
-# import Primes.Python_Normal_Function_Lambda_LRU_Map as CPy_Norm_Function_Lambda_LRU_Map
-
-
-# import Primes.Python_Normal_Function_LRU as CPy_Norm_Function_LRU
-# import Primes.Python_Normal_Function_Lambda_LRU as CPy_Norm_Function_Lambda_LRU
-
-# import Python_Normal_Numpy
-# import Python_Normal_Numpy_Lambda
-# import Python_Normal_Numpy_LRU
-
-# import Find_Nth_Prime_Cython
-# import Find_Nth_Prime_Cython_Lambda
-# import Find_Nth_Prime_Cython_LRU
-
-# import Find_Nth_Prime_Cython_Numpy
-# import Find_Nth_Prime_Cython_Numpy_Lambda
-# import Find_Nth_Prime_Cython_Numpy_LRU
-
-# import Find_Nth_Prime_Optimized
-# import Find_Nth_Prime_Optimized_Lambda
-# import Find_Nth_Prime_Optimized_LRU
-
-# import Find_Nth_Prime_Optimized_Numpy
-# import Find_Nth_Prime_Optimized_Numpy_Lambda
-# import Find_Nth_Prime_Optimized_Numpy_LRU
-
-
-def time_function(func, args, name, sema, rlock):
+def time_function(func, ret_dict, args, name, sema, rlock):
     sema.acquire()
     start = time.time()
-    func(int(args[0]), int(args[1]), rlock)
+    # func(
+    #     int(args[name]["value_max"]),
+    #     int(args[name]["num_loops"]),
+    #     rlock,
+    #     args[name]["runtime"],
+    #     args[name]["compilation"],
+    #     args[name]["call_type"],
+    #     args[name]["subcall"],
+    #     args[name]["case"])
+    do_func(func, ret_dict, args, name, sema, rlock)
     total = time.time() - start
-    args[2][name] = total
+    ret_dict[name] = total
     sema.release()
 
 
-def run_in_parallel(fns, args, sema, rlock):
+def do_func(func, ret_dict, args, name, sema, rlock):
+    func(
+        int(args[name]["value_max"]),
+        int(args[name]["num_loops"]),
+        rlock,
+        args[name]["runtime"],
+        args[name]["compilation"],
+        args[name]["call_type"],
+        args[name]["subcall"],
+        args[name]["case"])
+
+
+def run_in_parallel(fns, ret_dict, threads, args, sema, rlock):
     proc = []
     # i = 0
-    for name, fn in fns.items():
-        # if i == 0:
-        #     namer = "Normal_Default_Function"
-        # elif i == 1:
-        #     namer = "Normal_Half_Function"
-        # elif i == 2:
-        #     namer = "Normal_Sqrt_Function"
-        # elif i == 3:
-        #     namer = "Compiled_Default_Function"
-        # elif i == 4:
-        #     namer = "Compiled_Half_Function"
-        # elif i == 5:
-        #     namer = "Compiled_Sqrt_Function"
-        # elif i == 6:
-        #     namer = "Optimized_Default_Function"
-        # elif i == 7:
-        #     namer = "Optimized_Half_Function"
-        # elif i == 8:
-        #     namer = "Optimized_Sqrt_Function"
-        # elif i == 9:
-        #     namer = "Normal_Default_Function_LRU"
-        # elif i == 10:
-        #     namer = "Normal_Half_Function_LRU"
-        # elif i == 11:
-        #     namer = "Normal_Sqrt_Function_LRU"
-        # elif i == 12:
-        #     namer = "Compiled_Default_LRU"
-        # elif i == 13:
-        #     namer = "Compiled_Half_Function_LRU"
-        # elif i == 14:
-        #     namer = "Compiled_Sqrt_Function_LRU"
-        # elif i == 15:
-        #     namer = "Optimized_Default_Function_LRU"
-        # elif i == 16:
-        #     namer = "Optimized_Half_Function_LRU"
-        # else:
-        #     namer = "Optimized_Sqrt_Function_LRU"
-        # namer = "{0}_{1}".format(fn.__module__, fn.__name__)
-        p = mp.Process(target=time_function, args=(fn, args, name, sema, rlock))
-        proc.append(p)
-        # i += 1
+    # for name, fn in fns.items():
+    #     p = mp.Process(target=time_function, args=(fn, ret_dict, args, name, sema, rlock))
+    #     proc.append(p)
+    #
+    # for p in proc:
+    #     p.start()
+    #
+    # for p in proc:
+    #     try:
+    #         p.join()
+    #     except Exception as x:
+    #         print("EXCEPTION")
 
-    for p in proc:
-        p.start()
+    for group in args.keys():
+        lib = ".".join(["Primes", args[group]["compilation"], args[group]["call_type"], args[group]["subcall"]])
+        importlib.import_module(lib, package="Primes")
 
-    for p in proc:
-        p.join()
+    with mp.Pool(threads) as pool:
+        rets = dict()
+        for name, fn in fns.items():
+            rets[name] = pool.apply(func=time_function, args=(fn, ret_dict, args, name, sema, rlock))
 
 
 def validate_primes(config):
@@ -189,9 +145,10 @@ def main(args):
     testing_start = time.time()
 
     funcs = dict()
+    arguments = dict()
 
     # TS.ValueError_Handler(1, 1, int)
-    if "primes" in suites:
+    if suites is None or "primes" in suites:
         primes = config["primes"]
         if "tests" in primes:
             tests = primes["tests"]
@@ -199,7 +156,7 @@ def main(args):
             # compilation = [normal, cython, optimized]
             for runtime, compilation in tests.items():
                 # comp = compilation
-                # call_type = [local, function]
+                # call_type = [local, function, function_separated]
                 for comp, call_type in compilation.items():
                     # call = call_type
                     # subcall = any of the test cases for the given call_type
@@ -214,8 +171,8 @@ def main(args):
                                     if info["library"] in sys.modules:
                                         print("{0} module has already been loaded.".format(info["library"]))
                                     else:
-                                        print("Loaded module '{0}'.".format(info["library"]))
                                         lib = importlib.import_module(info["library"], package=info["package"])
+                                        print("Loaded module '{0}'.".format(info["library"]))
                                     import_status = 0
                                 except ModuleNotFoundError:
                                     print("ERROR: Could not find module '{0}'.".format(info["library"]))
@@ -231,8 +188,26 @@ def main(args):
 
                                     for cs, enabled in info["case"].items():
                                         if enabled == 1:
-                                            # print("{0}_{1}_{2}_{3}_{4}_{5}".format(runtime, comp, call, sb, cs, "Main_{0}".format(cs)))
-                                            funcs["{0}_{1}_{2}_{3}".format(runtime, comp, call, sb)] = vars(lib)["Main_{0}".format(cs)]
+                                            group = "{0}_{1}_{2}_{3}_{4}".format(runtime, comp, call, sb, cs)
+                                            try:
+                                                if "Function" in call:
+                                                    funcs[group] = vars(lib)["Main"]
+                                                else:
+                                                    funcs[group] = vars(lib)["Main_{0}".format(cs)]
+                                            except KeyError as ke:
+                                                print("{0} is not a valid function inside '{1}'".format(ke, lib.__name__))
+                                                exit(1)
+                                            # print("dir of {0}".format(lib))
+                                            # print(dir(lib))
+                                            # funcs[group] = vars(lib)["Main_Default"]
+                                            arguments[group] = dict()
+                                            arguments[group]["value_max"] = value_max
+                                            arguments[group]["num_loops"] = num_loops
+                                            arguments[group]["runtime"] = runtime
+                                            arguments[group]["compilation"] = comp
+                                            arguments[group]["call_type"] = call
+                                            arguments[group]["subcall"] = sb
+                                            arguments[group]["case"] = cs
 
         ############################################################################
 
@@ -261,9 +236,14 @@ def main(args):
     #     print("{0}: {1}".format(str(k), str(v)))
     # exit()
 
-    arguments = [value_max, num_loops, return_dict]
+    # arguments = [value_max, num_loops, return_dict]
+    # for group, key in arguments.items():
+    #     print("group: {0}".format(group))
+    #     for k, v in key.items():
+    #         print("key: {0}".format(k))
+    #         print("value: {0}\n".format(v))
 
-    run_in_parallel(funcs, arguments, sema, rlock)
+    run_in_parallel(funcs, return_dict, threads, arguments, sema, rlock)
 
     testing_total = time.time() - testing_start
 
@@ -277,21 +257,3 @@ def main(args):
 
     print("-" * 80)
     print("Total Run Time was {0}H:{1}M:{2:0.2f}S".format(int(testing_total / 3600), int(testing_total / 60), testing_total))
-
-    # with open("files_runs/normal_local_lambda/default_primes.txt", "r") as main:
-    #     with open("files_runs/normal_local_lambda/map_primes.txt", "r") as map:
-    #         main_list = []
-    #         for line in main:
-    #             main_list.append(line.strip())
-    #
-    #         map_list = []
-    #         for line in map:
-    #             map_list.append(line.strip())
-    #
-    #         set_main = set(main_list)
-    #         set_map = set(map_list)
-    #         same = set_main.difference(set_map)
-    #         same.discard('\n')
-    #         print("file diff:")
-    #         for line in same:
-    #             print(line)

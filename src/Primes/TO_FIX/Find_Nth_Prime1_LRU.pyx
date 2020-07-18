@@ -18,7 +18,7 @@ def print_lock(msg, rlock):
 
 
 @ft.lru_cache(maxsize=None)
-def is_prime(num):
+def is_prime_default(num):
     global table
     checks = 0
 
@@ -78,7 +78,7 @@ def is_prime_sqrt(num):
         return [True, checks]
 
 
-def Main_Default(my_max, num_loops, rlock):
+def Main_Default(value_max, num_loops, rlock):
     msg = ("-" * 80) + "\n"
     msg += "Compiled Default LRU started."
     print_lock(msg, rlock)
@@ -93,8 +93,8 @@ def Main_Default(my_max, num_loops, rlock):
     for i in range(num_loops):
         tmp_time_start = time.time()
         table = []
-        for i in range(my_max):
-            tmp = is_prime(j)
+        for i in range(value_max):
+            tmp = is_prime_default(j)
             if tmp[0] == True:
                 divisions_list.append("{0} took {1} divisions by previous primes to complete!\n\n".format(i, tmp[1]))
 
@@ -109,7 +109,7 @@ def Main_Default(my_max, num_loops, rlock):
 
     time_now = dt.datetime.now()
     msg = ("-" * 80) + "\n"
-    msg += "Compiled Default LRU Finished at {0}/{1}/{2} {3}:{4}:{5}:{6}".format(time_now.year, time_now.month, time_now.day, time_now.hour, time_now.minute, time_now.second, time_now.microsecond)
+    msg += "Compiled Default LRU finished at {0}/{1}/{2} {3}:{4}:{5}:{6}".format(time_now.year, time_now.month, time_now.day, time_now.hour, time_now.minute, time_now.second, time_now.microsecond)
     # msg += "Compiled is_prime.cache_info(): {0}".format(is_prime.cache_info())
 
     print_lock(msg, rlock)
@@ -119,7 +119,7 @@ def Main_Default(my_max, num_loops, rlock):
     txt_output.close()
 
 
-def Main_Half(my_max, num_loops, rlock):
+def Main_Half(value_max, num_loops, rlock):
     msg = ("-" * 80) + "\n"
     msg += "Compiled Half LRU started."
     print_lock(msg, rlock)
@@ -134,7 +134,7 @@ def Main_Half(my_max, num_loops, rlock):
     for i in range(num_loops):
         tmp_time_start = time.time()
         table = []
-        for i in range(my_max):
+        for i in range(value_max):
             tmp = is_prime_half(j)
             if tmp[0] == True:
                 divisions_list.append("{0} took {1} divisions by previous primes to complete!\n\n".format(i, tmp[1]))
@@ -150,7 +150,7 @@ def Main_Half(my_max, num_loops, rlock):
 
     time_now = dt.datetime.now()
     msg = ("-" * 80) + "\n"
-    msg += "Normal Half LRU Finished at {0}/{1}/{2} {3}:{4}:{5}:{6}".format(time_now.year, time_now.month, time_now.day, time_now.hour, time_now.minute, time_now.second, time_now.microsecond)
+    msg += "Normal Half LRU finished at {0}/{1}/{2} {3}:{4}:{5}:{6}".format(time_now.year, time_now.month, time_now.day, time_now.hour, time_now.minute, time_now.second, time_now.microsecond)
     # msg += "Compiled is_prime_half.cache_info(): {0}".format(is_prime_half.cache_info())
 
     print_lock(msg, rlock)
@@ -160,7 +160,7 @@ def Main_Half(my_max, num_loops, rlock):
     txt_output.close()
 
 
-def Main_Sqrt(my_max, num_loops, rlock):
+def Main_Sqrt(value_max, num_loops, rlock):
     msg = ("-" * 80) + "\n"
     msg += "Normal Sqrt LRU started."
     print_lock(msg, rlock)
@@ -175,7 +175,7 @@ def Main_Sqrt(my_max, num_loops, rlock):
     for i in range(num_loops):
         tmp_time_start = time.time()
         table = []
-        for i in range(my_max):
+        for i in range(value_max):
             tmp = is_prime_sqrt(j)
             if tmp[0] == True:
                 divisions_list.append("{0} took {1} divisions by previous primes to complete!\n\n".format(i, tmp[1]))
@@ -191,7 +191,7 @@ def Main_Sqrt(my_max, num_loops, rlock):
 
     time_now = dt.datetime.now()
     msg = ("-" * 80) + "\n"
-    msg += "Compiled Sqrt LRU Finished at {0}/{1}/{2} {3}:{4}:{5}:{6}".format(time_now.year, time_now.month, time_now.day, time_now.hour, time_now.minute, time_now.second, time_now.microsecond)
+    msg += "Compiled Sqrt LRU finished at {0}/{1}/{2} {3}:{4}:{5}:{6}".format(time_now.year, time_now.month, time_now.day, time_now.hour, time_now.minute, time_now.second, time_now.microsecond)
     # msg += "Compiled is_prime_sqrt.cache_info(): {0}".format(is_prime_sqrt.cache_info())
 
     print_lock(msg, rlock)

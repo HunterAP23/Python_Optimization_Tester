@@ -16,7 +16,7 @@ def print_lock(msg, rlock):
     rlock.release()
 
 
-def is_prime(n):
+def is_prime_default(n):
     if n % 2 == 0 and n > 2:
         return False
     return all(n % i for i in range(3, n, 2))
@@ -34,7 +34,7 @@ def is_prime_sqrt(n):
     return all(n % i for i in range(3, math.floor(math.sqrt(n)), 2))
 
 
-def Main_Default(my_max, num_loops, rlock):
+def Main_Default(value_max, num_loops, rlock):
     msg = ("-" * 80) + "\n"
     msg += "Normal Default Numpy started."
     print_lock(msg, rlock)
@@ -49,7 +49,7 @@ def Main_Default(my_max, num_loops, rlock):
 
     for i in range(num_loops):
         tmp_time_start = time.time()
-        vals = np.arange(1, my_max)
+        vals = np.arange(1, value_max)
         foo = np.vectorize(is_prime)
         pbools = foo(vals)
         primes = np.extract(pbools, vals)
@@ -71,7 +71,7 @@ def Main_Default(my_max, num_loops, rlock):
 
     time_now = dt.datetime.now()
     msg = ("-" * 80) + "\n"
-    msg += "Normal Default Numpy Finished at {0}/{1}/{2} {3}:{4}:{5}:{6}".format(time_now.year, time_now.month, time_now.day, time_now.hour, time_now.minute, time_now.second, time_now.microsecond)
+    msg += "Normal Default Numpy finished at {0}/{1}/{2} {3}:{4}:{5}:{6}".format(time_now.year, time_now.month, time_now.day, time_now.hour, time_now.minute, time_now.second, time_now.microsecond)
     print_lock(msg, rlock)
 
     average_time = ft.reduce(lambda a, b: a + b, time_list) / len(time_list)
@@ -81,7 +81,7 @@ def Main_Default(my_max, num_loops, rlock):
     txt_output.close()
 
 
-def Main_Half(my_max, num_loops, rlock):
+def Main_Half(value_max, num_loops, rlock):
     msg = ("-" * 80) + "\n"
     msg += "Normal Half Numpy started."
     print_lock(msg, rlock)
@@ -96,7 +96,7 @@ def Main_Half(my_max, num_loops, rlock):
 
     for i in range(num_loops):
         tmp_time_start = time.time()
-        vals = np.arange(1, my_max)
+        vals = np.arange(1, value_max)
         foo = np.vectorize(is_prime_half)
         pbools = foo(vals)
         primes = np.extract(pbools, vals)
@@ -117,7 +117,7 @@ def Main_Half(my_max, num_loops, rlock):
 
     time_now = dt.datetime.now()
     msg = ("-" * 80) + "\n"
-    msg += "Normal Half Numpy Finished at {0}/{1}/{2} {3}:{4}:{5}:{6}".format(time_now.year, time_now.month, time_now.day, time_now.hour, time_now.minute, time_now.second, time_now.microsecond)
+    msg += "Normal Half Numpy finished at {0}/{1}/{2} {3}:{4}:{5}:{6}".format(time_now.year, time_now.month, time_now.day, time_now.hour, time_now.minute, time_now.second, time_now.microsecond)
     print_lock(msg, rlock)
 
     average_time = ft.reduce(lambda a, b: a + b, time_list) / len(time_list)
@@ -127,7 +127,7 @@ def Main_Half(my_max, num_loops, rlock):
     txt_output.close()
 
 
-def Main_Sqrt(my_max, num_loops, rlock):
+def Main_Sqrt(value_max, num_loops, rlock):
     msg = ("-" * 80) + "\n"
     msg += "Normal Sqrt Numpy started."
     print_lock(msg, rlock)
@@ -142,7 +142,7 @@ def Main_Sqrt(my_max, num_loops, rlock):
 
     for i in range(num_loops):
         tmp_time_start = time.time()
-        vals = np.arange(1, my_max)
+        vals = np.arange(1, value_max)
         foo = np.vectorize(is_prime_sqrt)
         pbools = foo(vals)
         primes = np.extract(pbools, vals)
@@ -163,7 +163,7 @@ def Main_Sqrt(my_max, num_loops, rlock):
 
     time_now = dt.datetime.now()
     msg = ("-" * 80) + "\n"
-    msg += "Normal Sqrt Numpy Finished at {0}/{1}/{2} {3}:{4}:{5}:{6}".format(time_now.year, time_now.month, time_now.day, time_now.hour, time_now.minute, time_now.second, time_now.microsecond)
+    msg += "Normal Sqrt Numpy finished at {0}/{1}/{2} {3}:{4}:{5}:{6}".format(time_now.year, time_now.month, time_now.day, time_now.hour, time_now.minute, time_now.second, time_now.microsecond)
     print_lock(msg, rlock)
 
     average_time = ft.reduce(lambda a, b: a + b, time_list) / len(time_list)

@@ -3,13 +3,14 @@ import functools as ft
 from math import sqrt, floor
 import time
 
+
 def print_lock(msg, rlock):
     rlock.acquire()
     print(msg)
     rlock.release()
 
 
-def is_prime(n, table):
+def is_prime_default(n: int, table):
     if n % 2 == 0 and n > 2:
         return False
     else:
@@ -20,7 +21,7 @@ def is_prime(n, table):
             return True
 
 
-def Main_Default(my_max, num_loops, rlock):
+def Main_Default(value_max, num_loops, rlock):
     msg = ("-" * 80) + "\n"
     overall_start = dt.datetime.now()
     msg += "Normal Default Lambda started at {0}/{1}/{2} {3}:{4}:{5}:{6}".format(overall_start.year, overall_start.month, overall_start.day, overall_start.hour, overall_start.minute, overall_start.second, overall_start.microsecond)
@@ -39,7 +40,7 @@ def Main_Default(my_max, num_loops, rlock):
 
     for i in range(num_loops):
         tmp_time_start = time.time()
-        for n in range(2, my_max):
+        for n in range(2, value_max):
             if n % 2 == 0 and n > 2:
                 continue
             else:
@@ -67,7 +68,7 @@ def Main_Default(my_max, num_loops, rlock):
 
     overall_end = dt.datetime.now()
     msg = ("-" * 80) + "\n"
-    msg += "Normal Default Lambda Finished at {0}/{1}/{2} {3}:{4}:{5}:{6}".format(overall_end.year, overall_end.month, overall_end.day, overall_end.hour, overall_end.minute, overall_end.second, overall_end.microsecond)
+    msg += "Normal Default Lambda finished at {0}/{1}/{2} {3}:{4}:{5}:{6}".format(overall_end.year, overall_end.month, overall_end.day, overall_end.hour, overall_end.minute, overall_end.second, overall_end.microsecond)
     print_lock(msg, rlock)
 
     average_time = ft.reduce(lambda a, b: a + b, time_list) / len(time_list)
@@ -77,7 +78,7 @@ def Main_Default(my_max, num_loops, rlock):
     txt_output.close()
 
 
-def Main_Default2(my_max, num_loops, rlock):
+def Main_Default2(value_max, num_loops, rlock):
     msg = ("-" * 80) + "\n"
     overall_start = dt.datetime.now()
     msg += "Normal Default Lambda2 started at {0}/{1}/{2} {3}:{4}:{5}:{6}".format(overall_start.year, overall_start.month, overall_start.day, overall_start.hour, overall_start.minute, overall_start.second, overall_start.microsecond)
@@ -98,7 +99,7 @@ def Main_Default2(my_max, num_loops, rlock):
         table = []
         table.append(2)
         tmp_time_start = time.time()
-        for n in range(3, my_max, 2):
+        for n in range(3, value_max, 2):
             if all(n % i for i in table):
                 table.append(n)
         # for i in tmp:
@@ -120,7 +121,7 @@ def Main_Default2(my_max, num_loops, rlock):
 
     overall_end = dt.datetime.now()
     msg = ("-" * 80) + "\n"
-    msg += "Normal Default Lambda2 Finished at {0}/{1}/{2} {3}:{4}:{5}:{6}".format(overall_end.year, overall_end.month, overall_end.day, overall_end.hour, overall_end.minute, overall_end.second, overall_end.microsecond)
+    msg += "Normal Default Lambda2 finished at {0}/{1}/{2} {3}:{4}:{5}:{6}".format(overall_end.year, overall_end.month, overall_end.day, overall_end.hour, overall_end.minute, overall_end.second, overall_end.microsecond)
     print_lock(msg, rlock)
 
     average_time = ft.reduce(lambda a, b: a + b, time_list) / len(time_list)
@@ -130,7 +131,7 @@ def Main_Default2(my_max, num_loops, rlock):
     txt_output.close()
 
 
-def Main_Half(my_max, num_loops, rlock):
+def Main_Half(value_max, num_loops, rlock):
     msg = ("-" * 80) + "\n"
     overall_start = dt.datetime.now()
     msg += "Normal Half Lambda started at {0}/{1}/{2} {3}:{4}:{5}:{6}".format(overall_start.year, overall_start.month, overall_start.day, overall_start.hour, overall_start.minute, overall_start.second, overall_start.microsecond)
@@ -148,7 +149,7 @@ def Main_Half(my_max, num_loops, rlock):
 
     for i in range(num_loops):
         tmp_time_start = time.time()
-        for n in range(2, my_max):
+        for n in range(2, value_max):
             if n % 2 == 0 and n > 2:
                 continue
             else:
@@ -179,7 +180,7 @@ def Main_Half(my_max, num_loops, rlock):
 
     overall_end = dt.datetime.now()
     msg = ("-" * 80) + "\n"
-    msg += "Normal Half Lambda Finished at {0}/{1}/{2} {3}:{4}:{5}:{6}".format(overall_end.year, overall_end.month, overall_end.day, overall_end.hour, overall_end.minute, overall_end.second, overall_end.microsecond)
+    msg += "Normal Half Lambda finished at {0}/{1}/{2} {3}:{4}:{5}:{6}".format(overall_end.year, overall_end.month, overall_end.day, overall_end.hour, overall_end.minute, overall_end.second, overall_end.microsecond)
     print_lock(msg, rlock)
 
     average_time = ft.reduce(lambda a, b: a + b, time_list) / len(time_list)
@@ -189,7 +190,7 @@ def Main_Half(my_max, num_loops, rlock):
     txt_output.close()
 
 
-def Main_Half2(my_max, num_loops, rlock):
+def Main_Half2(value_max, num_loops, rlock):
     msg = ("-" * 80) + "\n"
     overall_start = dt.datetime.now()
     msg += "Normal Half Lambda Floor started at {0}/{1}/{2} {3}:{4}:{5}:{6}".format(overall_start.year, overall_start.month, overall_start.day, overall_start.hour, overall_start.minute, overall_start.second, overall_start.microsecond)
@@ -207,7 +208,7 @@ def Main_Half2(my_max, num_loops, rlock):
 
     for i in range(num_loops):
         tmp_time_start = time.time()
-        for n in range(2, my_max):
+        for n in range(2, value_max):
             if n % 2 == 0 and n > 2:
                 continue
             else:
@@ -238,7 +239,7 @@ def Main_Half2(my_max, num_loops, rlock):
 
     overall_end = dt.datetime.now()
     msg = ("-" * 80) + "\n"
-    msg += "Normal Half Lambda Floor Finished at {0}/{1}/{2} {3}:{4}:{5}:{6}".format(overall_end.year, overall_end.month, overall_end.day, overall_end.hour, overall_end.minute, overall_end.second, overall_end.microsecond)
+    msg += "Normal Half Lambda Floor finished at {0}/{1}/{2} {3}:{4}:{5}:{6}".format(overall_end.year, overall_end.month, overall_end.day, overall_end.hour, overall_end.minute, overall_end.second, overall_end.microsecond)
     print_lock(msg, rlock)
 
     average_time = ft.reduce(lambda a, b: a + b, time_list) / len(time_list)
@@ -248,7 +249,7 @@ def Main_Half2(my_max, num_loops, rlock):
     txt_output.close()
 
 
-def Main_Half3(my_max, num_loops, rlock):
+def Main_Half3(value_max, num_loops, rlock):
     msg = ("-" * 80) + "\n"
     overall_start = dt.datetime.now()
     msg += "Normal Half Lambda FloorDiv started at {0}/{1}/{2} {3}:{4}:{5}:{6}".format(overall_start.year, overall_start.month, overall_start.day, overall_start.hour, overall_start.minute, overall_start.second, overall_start.microsecond)
@@ -266,7 +267,7 @@ def Main_Half3(my_max, num_loops, rlock):
 
     for i in range(num_loops):
         tmp_time_start = time.time()
-        for n in range(2, my_max):
+        for n in range(2, value_max):
             if n % 2 == 0 and n > 2:
                 continue
             else:
@@ -297,7 +298,7 @@ def Main_Half3(my_max, num_loops, rlock):
 
     overall_end = dt.datetime.now()
     msg = ("-" * 80) + "\n"
-    msg += "Normal Half Lambda FloorDiv Finished at {0}/{1}/{2} {3}:{4}:{5}:{6}".format(overall_end.year, overall_end.month, overall_end.day, overall_end.hour, overall_end.minute, overall_end.second, overall_end.microsecond)
+    msg += "Normal Half Lambda FloorDiv finished at {0}/{1}/{2} {3}:{4}:{5}:{6}".format(overall_end.year, overall_end.month, overall_end.day, overall_end.hour, overall_end.minute, overall_end.second, overall_end.microsecond)
     print_lock(msg, rlock)
 
     average_time = ft.reduce(lambda a, b: a + b, time_list) / len(time_list)
@@ -307,7 +308,7 @@ def Main_Half3(my_max, num_loops, rlock):
     txt_output.close()
 
 
-def Main_Half4(my_max, num_loops, rlock):
+def Main_Half4(value_max, num_loops, rlock):
     msg = ("-" * 80) + "\n"
     overall_start = dt.datetime.now()
     msg += "Normal Half Lambda RShift started at {0}/{1}/{2} {3}:{4}:{5}:{6}".format(overall_start.year, overall_start.month, overall_start.day, overall_start.hour, overall_start.minute, overall_start.second, overall_start.microsecond)
@@ -325,7 +326,7 @@ def Main_Half4(my_max, num_loops, rlock):
 
     for i in range(num_loops):
         tmp_time_start = time.time()
-        for n in range(2, my_max):
+        for n in range(2, value_max):
             if n % 2 == 0 and n > 2:
                 continue
             else:
@@ -356,7 +357,7 @@ def Main_Half4(my_max, num_loops, rlock):
 
     overall_end = dt.datetime.now()
     msg = ("-" * 80) + "\n"
-    msg += "Normal Half Lambda RShift Finished at {0}/{1}/{2} {3}:{4}:{5}:{6}".format(overall_end.year, overall_end.month, overall_end.day, overall_end.hour, overall_end.minute, overall_end.second, overall_end.microsecond)
+    msg += "Normal Half Lambda RShift finished at {0}/{1}/{2} {3}:{4}:{5}:{6}".format(overall_end.year, overall_end.month, overall_end.day, overall_end.hour, overall_end.minute, overall_end.second, overall_end.microsecond)
     print_lock(msg, rlock)
 
     average_time = ft.reduce(lambda a, b: a + b, time_list) / len(time_list)
@@ -366,7 +367,7 @@ def Main_Half4(my_max, num_loops, rlock):
     txt_output.close()
 
 
-def Main_Sqrt(my_max, num_loops, rlock):
+def Main_Sqrt(value_max, num_loops, rlock):
     msg = ("-" * 80) + "\n"
     msg += "Normal Sqrt Lambda started."
     print_lock(msg, rlock)
@@ -383,7 +384,7 @@ def Main_Sqrt(my_max, num_loops, rlock):
 
     for i in range(num_loops):
         tmp_time_start = time.time()
-        for n in range(2, my_max):
+        for n in range(2, value_max):
             if n % 2 == 0 and n > 2:
                 continue
             else:
@@ -414,7 +415,7 @@ def Main_Sqrt(my_max, num_loops, rlock):
 
     overall_end = dt.datetime.now()
     msg = ("-" * 80) + "\n"
-    msg += "Normal Sqrt Lambda Finished at {0}/{1}/{2} {3}:{4}:{5}:{6}".format(overall_end.year, overall_end.month, overall_end.day, overall_end.hour, overall_end.minute, overall_end.second, overall_end.microsecond)
+    msg += "Normal Sqrt Lambda finished at {0}/{1}/{2} {3}:{4}:{5}:{6}".format(overall_end.year, overall_end.month, overall_end.day, overall_end.hour, overall_end.minute, overall_end.second, overall_end.microsecond)
     print_lock(msg, rlock)
 
     average_time = ft.reduce(lambda a, b: a + b, time_list) / len(time_list)

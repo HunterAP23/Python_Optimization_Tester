@@ -16,7 +16,7 @@ cdef void print_lock(msg, rlock):
     rlock.release()
 
 
-cdef (bint, int) is_prime(jnt num):
+cdef (bint, int) is_prime_default(jnt num):
     global table
     cdef int checks = 0
 
@@ -74,7 +74,7 @@ cdef (bint, int) is_prime_sqrt(jnt num):
         return (True, checks)
 
 
-cdef void Main_Default(int my_max, int num_loops, rlock):
+cdef void Main_Default(int value_max, int num_loops, rlock):
     msg = ("-" * 80) + "\n"
     msg += "Optimized Default started."
     print_lock(msg, rlock)
@@ -94,8 +94,8 @@ cdef void Main_Default(int my_max, int num_loops, rlock):
         global table
         table = []
         tmp_time_start = time.time()
-        for i in range(my_max):
-            tmp = is_prime(j)
+        for i in range(value_max):
+            tmp = is_prime_default(j)
             if tmp[0]:
                 divisions_list.append("{0} took {1} divisions by previous primes to complete!\n\n".format(i, tmp[1]))
                 primes.append(i)
@@ -115,7 +115,7 @@ cdef void Main_Default(int my_max, int num_loops, rlock):
 
     time_now = dt.datetime.now()
     msg = ("-" * 80) + "\n"
-    msg += "Optimized Default Finished at {0}/{1}/{2} {3}:{4}:{5}:{6}".format(time_now.year, time_now.month, time_now.day, time_now.hour, time_now.minute, time_now.second, time_now.microsecond)
+    msg += "Optimized Default finished at {0}/{1}/{2} {3}:{4}:{5}:{6}".format(time_now.year, time_now.month, time_now.day, time_now.hour, time_now.minute, time_now.second, time_now.microsecond)
     print_lock(msg, rlock)
 
     cdef double average_time = ft.reduce(lambda a, b: a + b, time_list) / len(time_list)
@@ -125,7 +125,7 @@ cdef void Main_Default(int my_max, int num_loops, rlock):
     txt_output.close()
 
 
-cdef void Main_Half(int my_max, int num_loops, rlock):
+cdef void Main_Half(int value_max, int num_loops, rlock):
     msg = ("-" * 80) + "\n"
     msg += "Optimized Half started."
     print_lock(msg, rlock)
@@ -145,7 +145,7 @@ cdef void Main_Half(int my_max, int num_loops, rlock):
         global table2
         table2 = []
         tmp_time_start = time.time()
-        for i in range(my_max):
+        for i in range(value_max):
             tmp = is_prime_half(j)
             if tmp[0]:
                 divisions_list.append("{0} took {1} divisions by previous primes to complete!\n\n".format(i, tmp[1]))
@@ -166,7 +166,7 @@ cdef void Main_Half(int my_max, int num_loops, rlock):
 
     time_now = dt.datetime.now()
     msg = ("-" * 80) + "\n"
-    msg += "Optimized Half Finished at {0}/{1}/{2} {3}:{4}:{5}:{6}".format(time_now.year, time_now.month, time_now.day, time_now.hour, time_now.minute, time_now.second, time_now.microsecond)
+    msg += "Optimized Half finished at {0}/{1}/{2} {3}:{4}:{5}:{6}".format(time_now.year, time_now.month, time_now.day, time_now.hour, time_now.minute, time_now.second, time_now.microsecond)
     print_lock(msg, rlock)
 
     cdef double average_time = ft.reduce(lambda a, b: a + b, time_list) / len(time_list)
@@ -176,7 +176,7 @@ cdef void Main_Half(int my_max, int num_loops, rlock):
     txt_output.close()
 
 
-cdef void Main_Sqrt(int my_max, int num_loops, rlock):
+cdef void Main_Sqrt(int value_max, int num_loops, rlock):
     msg = ("-" * 80) + "\n"
     msg += "Optimized Sqrt started."
     print_lock(msg, rlock)
@@ -196,7 +196,7 @@ cdef void Main_Sqrt(int my_max, int num_loops, rlock):
         global table3
         table3 = []
         tmp_time_start = time.time()
-        for i in range(my_max):
+        for i in range(value_max):
             tmp = is_prime_sqrt(j)
             if tmp[0]:
                 divisions_list.append("{0} took {1} divisions by previous primes to complete!\n\n".format(i, tmp[1]))
@@ -218,7 +218,7 @@ cdef void Main_Sqrt(int my_max, int num_loops, rlock):
 
     time_now = dt.datetime.now()
     msg = ("-" * 80) + "\n"
-    msg += "Optimized Sqrt Finished at {0}/{1}/{2} {3}:{4}:{5}:{6}".format(time_now.year, time_now.month, time_now.day, time_now.hour, time_now.minute, time_now.second, time_now.microsecond)
+    msg += "Optimized Sqrt finished at {0}/{1}/{2} {3}:{4}:{5}:{6}".format(time_now.year, time_now.month, time_now.day, time_now.hour, time_now.minute, time_now.second, time_now.microsecond)
     print_lock(msg, rlock)
 
     cdef double average_time = ft.reduce(lambda a, b: a + b, time_list) / len(time_list)

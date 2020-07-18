@@ -35,7 +35,7 @@
 1. Download the newest version of PyPy (skip if you're not planning on using PyPy).
 2. Download the newest version of Anaconda (skip if you're not planning on using Anaconda).
 3. Download or clone the repository.
-4. Install the pip requirements with `pip install requirements.txt`
+4. Install the pip requirements with `pip install -r requirements.txt -U`
 5. Run the program! I included the related `.bat` and `.sh` files for running
 the different runtimes as needed.
   * <b>Windows</b>:
@@ -71,7 +71,7 @@ the different runtimes as needed.
   [default test method](#default).
 
 # Implementations
-### Cpython Variants
+### CPython Variants
 #### CPython through Functions
   * Defined in [Find_Nth_Prime_Python.py](Find_Nth_Prime_Python.py)
   * Loops over all numbers from `0` to `max_num` as variable `N`, calls
