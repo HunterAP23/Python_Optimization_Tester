@@ -2,26 +2,20 @@ import datetime as dt
 import functools as ft
 import math
 import time
+cimport cython
 
 
-def print_lock(msg, rlock):
+cdef void print_lock(str msg, rlock):
     rlock.acquire()
     print(msg)
     rlock.release()
 
 
-def is_prime_default(n, y):
-    try:
-        if n == 0:
-            raise ZeroDivisionError()
-        return n % y
-    except ZeroDivisionError:
-        print("n: {0}".format(n))
-        print("y: {0}".format(y))
-        exit()
+cdef int is_prime_default(int n, int y):
+    return n % y
 
 
-def Main_Default(value_max: int, num_loops: int, rlock, runtime, compilation, call_type, subcall, case):
+cdef void Main_Default(int value_max, int num_loops, rlock, str runtime, str compilation, str call_type, str subcall, str case):
     group = " ".join([runtime, compilation, call_type, subcall])
     msg = ("-" * 80) + "\n"
     overall_start = dt.datetime.now()

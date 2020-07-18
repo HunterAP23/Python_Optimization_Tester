@@ -11,7 +11,7 @@ cdef void print_lock(msg, rlock):
     rlock.release()
 
 
-def is_prime_default(n, y):
+cdef int is_prime_default(int n, int y):
     return n % y
 
 

@@ -22,3 +22,9 @@ Get-ChildItem -Path "Primes/Compiled" -File -Recurse -Filter Compiler_*.py | For
      Write-Output $_.FullName
      python37 $_.FullName build_ext --inplace
 }
+
+Write-Output "Compiling Optimized objects"
+Get-ChildItem -Path "Primes/Optimized" -File -Recurse -Filter Compiler_*.py | Foreach-Object {
+     Write-Output $_.FullName
+     python37 $_.FullName build_ext --inplace
+}

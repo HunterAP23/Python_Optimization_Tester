@@ -10,7 +10,7 @@ def print_lock(msg, rlock):
     rlock.release()
 
 
-def Main_Default(value_max: int, num_loops: int, rlock, runtime, compilation, call_type, subcall, case):
+def Main_Default(value_max: int, num_loops: int, rlock, runtime: str, compilation: str, call_type: str, subcall: str, case: str):
     group = " ".join([runtime, compilation, call_type, subcall])
     msg = ("-" * 80) + "\n"
     overall_start = dt.datetime.now()

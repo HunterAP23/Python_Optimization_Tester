@@ -12,9 +12,9 @@
 					"Local": {
 						"Standard": {
               "case": {
-								"Default": 0,
-  							"Half": 0,
-  							"Sqrt": 0
+								"Default": 1,
+  							"Half": 1,
+  							"Sqrt": 1
               },
               "package": "Primes",
               "library": "Primes.Interpreted.Local.Standard"
@@ -39,18 +39,18 @@
 						},
 						"Map": {
               "case": {
-								"Default": 1,
-  							"Half": 1,
-  							"Sqrt": 1
+								"Default": 0,
+  							"Half": 0,
+  							"Sqrt": 0
               },
               "package": "Primes",
               "library": "Primes.Interpreted.Local.Map"
 						},
 						"Lambda_Map": {
               "case": {
-								"Default": 1,
-  							"Half": 1,
-  							"Sqrt": 1
+								"Default": 0,
+  							"Half": 0,
+  							"Sqrt": 0
               },
               "package": "Primes",
               "library": "Primes.Interpreted.Local.Lambda_Map"
@@ -66,9 +66,9 @@
 						},
 						"Lambda_LRU_Map": {
               "case": {
-								"Default": 1,
-  							"Half": 1,
-  							"Sqrt": 1
+								"Default": 0,
+  							"Half": 0,
+  							"Sqrt": 0
               },
               "package": "Primes",
               "library": "Primes.Interpreted.Local.Lambda_LRU_Map"
