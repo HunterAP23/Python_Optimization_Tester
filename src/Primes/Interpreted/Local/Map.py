@@ -12,6 +12,8 @@ def print_lock(msg, rlock):
 
 def is_prime_default(n, y):
     try:
+        if n == 0:
+            raise ZeroDivisionError()
         return n % y
     except ZeroDivisionError:
         print("n: {0}".format(n))
@@ -19,9 +21,8 @@ def is_prime_default(n, y):
         exit()
 
 
-def Main_Default(value_max, num_loops, rlock, runtime, compilation, call_type, subcall, case):
+def Main_Default(value_max: int, num_loops: int, rlock, runtime, compilation, call_type, subcall, case):
     group = " ".join([runtime, compilation, call_type, subcall])
-    print_lock(group, rlock)
     msg = ("-" * 80) + "\n"
     overall_start = dt.datetime.now()
     msg += "{0} {1} started at {2}/{3}/{4} {5}:{6}:{7}:{8}".format(group, case, overall_start.year, overall_start.month, overall_start.day, overall_start.hour, overall_start.minute, overall_start.second, overall_start.microsecond)
@@ -42,9 +43,8 @@ def Main_Default(value_max, num_loops, rlock, runtime, compilation, call_type, s
 
         tmp_time_start = time.time()
         for n in range(3, value_max, 2):
-            # n_list = [j + 1 for j in range(len(primes_list))]
             n_list = [n] * len(primes_list)
-            ret = list(map(is_prime_default, n_list, tuple(j for j in range(len(primes_list)))))
+            ret = list(map(is_prime_default, n_list, tuple(j for j in primes_list)))
 
             if all(ret):
                 div_list.append("Primality Test for {0} took {1} divisions.\n\n".format(n, sum(ret)))
@@ -75,9 +75,8 @@ def Main_Default(value_max, num_loops, rlock, runtime, compilation, call_type, s
     time_output.close()
 
 
-def Main_Half(value_max, num_loops, rlock, runtime, compilation, call_type, subcall, case):
+def Main_Half(value_max: int, num_loops: int, rlock, runtime, compilation, call_type, subcall, case):
     group = " ".join([runtime, compilation, call_type, subcall])
-    print_lock(group, rlock)
     msg = ("-" * 80) + "\n"
     overall_start = dt.datetime.now()
     msg += "{0} {1} started at {2}/{3}/{4} {5}:{6}:{7}:{8}".format(group, case, overall_start.year, overall_start.month, overall_start.day, overall_start.hour, overall_start.minute, overall_start.second, overall_start.microsecond)
@@ -99,8 +98,9 @@ def Main_Half(value_max, num_loops, rlock, runtime, compilation, call_type, subc
         tmp_time_start = time.time()
         for n in range(3, value_max, 2):
             boundary = math.floor(n / 2)
-            n_list = [n for j in range(len(primes_list)) if tuple(primes_list)[j] <= boundary]
-            ret = list(map(is_prime_default, n_list, tuple(j for j in range(len(primes_list)) if tuple(primes_list)[j] <= boundary)))
+            n_list = [n] * len(primes_list)
+            y_list = tuple(j for j in primes_list if j <= boundary)
+            ret = list(map(is_prime_default, n_list, y_list))
 
             if all(ret):
                 div_list.append("Primality Test for {0} took {1} divisions.\n\n".format(n, sum(ret)))
@@ -131,9 +131,8 @@ def Main_Half(value_max, num_loops, rlock, runtime, compilation, call_type, subc
     time_output.close()
 
 
-def Main_Sqrt(value_max, num_loops, rlock, runtime, compilation, call_type, subcall, case):
+def Main_Sqrt(value_max: int, num_loops: int, rlock, runtime, compilation, call_type, subcall, case):
     group = " ".join([runtime, compilation, call_type, subcall])
-    print_lock(group, rlock)
     msg = ("-" * 80) + "\n"
     overall_start = dt.datetime.now()
     msg += "{0} {1} started at {2}/{3}/{4} {5}:{6}:{7}:{8}".format(group, case, overall_start.year, overall_start.month, overall_start.day, overall_start.hour, overall_start.minute, overall_start.second, overall_start.microsecond)
@@ -155,8 +154,9 @@ def Main_Sqrt(value_max, num_loops, rlock, runtime, compilation, call_type, subc
         tmp_time_start = time.time()
         for n in range(3, value_max, 2):
             boundary = math.floor(math.sqrt(n))
-            n_list = [n for j in range(len(primes_list)) if tuple(primes_list)[j] <= boundary]
-            ret = list(map(is_prime_default, n_list, tuple(j for j in range(len(primes_list)) if tuple(primes_list)[j] <= boundary)))
+            n_list = [n] * len(primes_list)
+            y_list = tuple(j for j in primes_list if j <= boundary)
+            ret = list(map(is_prime_default, n_list, y_list))
 
             if all(ret):
                 div_list.append("Primality Test for {0} took {1} divisions.\n\n".format(n, sum(ret)))

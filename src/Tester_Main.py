@@ -45,7 +45,16 @@ def run_in_parallel(fns, ret_dict, threads, args, sema, rlock):
     with mp.Pool(threads) as pool:
         rets = dict()
         for name, fn in fns.items():
-            rets[name] = pool.apply(func=time_function, args=(fn, ret_dict, args, name, sema, rlock))
+            rets[name] = pool.apply_async(func=time_function, args=(fn, ret_dict, args, name, sema, rlock))
+
+        try:
+            pool.close()
+            pool.join()
+        except KeyboardInterrupt:
+            print("Caught KeyboardInterrupt, terminating all child processes.")
+            pool.terminate()
+            pool.join()
+            exit(1)
 
 
 def validate_primes(config):
@@ -173,7 +182,7 @@ def main(args):
                                         if enabled == 1:
                                             group = "{0}_{1}_{2}_{3}_{4}".format(runtime, comp, call, sb, cs)
                                             try:
-                                                if "Function" in call:
+                                                if call == "Function" or call == "Function_Separated":
                                                     funcs[group] = vars(lib)["Main"]
                                                 else:
                                                     funcs[group] = vars(lib)["Main_{0}".format(cs)]

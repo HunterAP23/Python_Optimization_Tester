@@ -21,7 +21,7 @@ def is_prime_default(n: int, table):
             return True
 
 
-def Main_Default(value_max, num_loops, rlock):
+def Main_Default(value_max: int, num_loops: int, rlock):
     msg = ("-" * 80) + "\n"
     overall_start = dt.datetime.now()
     msg += "Normal Default Lambda started at {0}/{1}/{2} {3}:{4}:{5}:{6}".format(overall_start.year, overall_start.month, overall_start.day, overall_start.hour, overall_start.minute, overall_start.second, overall_start.microsecond)
@@ -78,7 +78,7 @@ def Main_Default(value_max, num_loops, rlock):
     txt_output.close()
 
 
-def Main_Default2(value_max, num_loops, rlock):
+def Main_Default2(value_max: int, num_loops: int, rlock):
     msg = ("-" * 80) + "\n"
     overall_start = dt.datetime.now()
     msg += "Normal Default Lambda2 started at {0}/{1}/{2} {3}:{4}:{5}:{6}".format(overall_start.year, overall_start.month, overall_start.day, overall_start.hour, overall_start.minute, overall_start.second, overall_start.microsecond)
@@ -131,7 +131,7 @@ def Main_Default2(value_max, num_loops, rlock):
     txt_output.close()
 
 
-def Main_Half(value_max, num_loops, rlock):
+def Main_Half(value_max: int, num_loops: int, rlock):
     msg = ("-" * 80) + "\n"
     overall_start = dt.datetime.now()
     msg += "Normal Half Lambda started at {0}/{1}/{2} {3}:{4}:{5}:{6}".format(overall_start.year, overall_start.month, overall_start.day, overall_start.hour, overall_start.minute, overall_start.second, overall_start.microsecond)
@@ -190,7 +190,7 @@ def Main_Half(value_max, num_loops, rlock):
     txt_output.close()
 
 
-def Main_Half2(value_max, num_loops, rlock):
+def Main_Half2(value_max: int, num_loops: int, rlock):
     msg = ("-" * 80) + "\n"
     overall_start = dt.datetime.now()
     msg += "Normal Half Lambda Floor started at {0}/{1}/{2} {3}:{4}:{5}:{6}".format(overall_start.year, overall_start.month, overall_start.day, overall_start.hour, overall_start.minute, overall_start.second, overall_start.microsecond)
@@ -249,7 +249,7 @@ def Main_Half2(value_max, num_loops, rlock):
     txt_output.close()
 
 
-def Main_Half3(value_max, num_loops, rlock):
+def Main_Half3(value_max: int, num_loops: int, rlock):
     msg = ("-" * 80) + "\n"
     overall_start = dt.datetime.now()
     msg += "Normal Half Lambda FloorDiv started at {0}/{1}/{2} {3}:{4}:{5}:{6}".format(overall_start.year, overall_start.month, overall_start.day, overall_start.hour, overall_start.minute, overall_start.second, overall_start.microsecond)
@@ -308,7 +308,7 @@ def Main_Half3(value_max, num_loops, rlock):
     txt_output.close()
 
 
-def Main_Half4(value_max, num_loops, rlock):
+def Main_Half4(value_max: int, num_loops: int, rlock):
     msg = ("-" * 80) + "\n"
     overall_start = dt.datetime.now()
     msg += "Normal Half Lambda RShift started at {0}/{1}/{2} {3}:{4}:{5}:{6}".format(overall_start.year, overall_start.month, overall_start.day, overall_start.hour, overall_start.minute, overall_start.second, overall_start.microsecond)
@@ -367,7 +367,7 @@ def Main_Half4(value_max, num_loops, rlock):
     txt_output.close()
 
 
-def Main_Sqrt(value_max, num_loops, rlock):
+def Main_Sqrt(value_max: int, num_loops: int, rlock):
     msg = ("-" * 80) + "\n"
     msg += "Normal Sqrt Lambda started."
     print_lock(msg, rlock)

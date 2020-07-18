@@ -16,7 +16,7 @@ cdef void print_lock(msg, rlock):
     rlock.release()
 
 
-cdef (bint, int) is_prime_default(jnt num):
+cdef (bint, int) is_prime_default(int num):
     global table
     cdef int checks = 0
 
@@ -34,7 +34,7 @@ cdef (bint, int) is_prime_default(jnt num):
         return (True, checks)
 
 
-cdef (bint, int) is_prime_half(jnt num):
+cdef (bint, int) is_prime_half(int num):
     global table2
     cdef int checks = 0
 
@@ -54,7 +54,7 @@ cdef (bint, int) is_prime_half(jnt num):
         return (True, checks)
 
 
-cdef (bint, int) is_prime_sqrt(jnt num):
+cdef (bint, int) is_prime_sqrt(int num):
     global table3
     cdef int checks = 0
 

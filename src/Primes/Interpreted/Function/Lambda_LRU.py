@@ -50,7 +50,6 @@ def is_prime_sqrt(n: int, table):
 
 def Main(value_max: int, num_loops: int, rlock, runtime, compilation, call_type, subcall, case):
     group = " ".join([runtime, compilation, call_type, subcall])
-    print_lock(group, rlock)
     msg = ("-" * 80) + "\n"
     overall_start = dt.datetime.now()
     msg += "{0} {1} started at {2}/{3}/{4} {5}:{6}:{7}:{8}".format(group, case, overall_start.year, overall_start.month, overall_start.day, overall_start.hour, overall_start.minute, overall_start.second, overall_start.microsecond)
@@ -104,7 +103,7 @@ def Main(value_max: int, num_loops: int, rlock, runtime, compilation, call_type,
     time_output.close()
 
 
-# def Main_Default(value_max, num_loops, rlock, runtime, compilation, call_type, subcall, case):
+# def Main_Default(value_max: int, num_loops: int, rlock, runtime, compilation, call_type, subcall, case):
 #     msg = ("-" * 80) + "\n"
 #     overall_start = dt.datetime.now()
 #     msg += "CPython Interpreted (Function Lambda LRU) started at {0}/{1}/{2} {3}:{4}:{5}:{6}".format(overall_start.year, overall_start.month, overall_start.day, overall_start.hour, overall_start.minute, overall_start.second, overall_start.microsecond)
@@ -155,7 +154,7 @@ def Main(value_max: int, num_loops: int, rlock, runtime, compilation, call_type,
 #     time_output.close()
 #
 #
-# def Main_Half(value_max, num_loops, rlock, runtime, compilation, call_type, subcall, case):
+# def Main_Half(value_max: int, num_loops: int, rlock, runtime, compilation, call_type, subcall, case):
 #     msg = ("-" * 80) + "\n"
 #     overall_start = dt.datetime.now()
 #     msg += "Normal Half (Function Lambda LRU) started at {0}/{1}/{2} {3}:{4}:{5}:{6}".format(overall_start.year, overall_start.month, overall_start.day, overall_start.hour, overall_start.minute, overall_start.second, overall_start.microsecond)
@@ -206,7 +205,7 @@ def Main(value_max: int, num_loops: int, rlock, runtime, compilation, call_type,
 #     time_output.close()
 #
 #
-# def Main_Sqrt(value_max, num_loops, rlock, runtime, compilation, call_type, subcall, case):
+# def Main_Sqrt(value_max: int, num_loops: int, rlock, runtime, compilation, call_type, subcall, case):
 #     msg = ("-" * 80) + "\n"
 #     overall_start = dt.datetime.now()
 #     msg += "Normal Sqrt (Function Lambda LRU) started at {0}/{1}/{2} {3}:{4}:{5}:{6}".format(overall_start.year, overall_start.month, overall_start.day, overall_start.hour, overall_start.minute, overall_start.second, overall_start.microsecond)

@@ -53,7 +53,7 @@ def is_prime_sqrt(n):
     return all(n % i for i in range(3, math.floor(math.sqrt(n)), 2))
 
 
-def Main_Default(value_max, num_loops, rlock):
+def Main_Default(value_max: int, num_loops: int, rlock):
     msg = ("-" * 80) + "\n"
     msg += "Normal Default Numpy started."
     print_lock(msg, rlock)
@@ -105,7 +105,7 @@ def Main_Default(value_max, num_loops, rlock):
     txt_output.close()
 
 
-def Main_Half(value_max, num_loops, rlock):
+def Main_Half(value_max: int, num_loops: int, rlock):
     msg = ("-" * 80) + "\n"
     msg += "Normal Half Numpy started."
     print_lock(msg, rlock)
@@ -151,7 +151,7 @@ def Main_Half(value_max, num_loops, rlock):
     txt_output.close()
 
 
-def Main_Sqrt(value_max, num_loops, rlock):
+def Main_Sqrt(value_max: int, num_loops: int, rlock):
     msg = ("-" * 80) + "\n"
     msg += "Normal Sqrt Numpy started."
     print_lock(msg, rlock)
