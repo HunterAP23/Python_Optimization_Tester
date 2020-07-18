@@ -55,10 +55,6 @@ def run_in_parallel(fns, ret_dict, threads, args, sema, rlock):
     #     except Exception as x:
     #         print("EXCEPTION")
 
-    for group in args.keys():
-        lib = ".".join(["Primes", args[group]["compilation"], args[group]["call_type"], args[group]["subcall"]])
-        importlib.import_module(lib, package="Primes")
-
     with mp.Pool(threads) as pool:
         rets = dict()
         for name, fn in fns.items():
