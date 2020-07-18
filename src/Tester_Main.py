@@ -12,22 +12,6 @@ import time
 def time_function(func, ret_dict, args, name, sema, rlock):
     sema.acquire()
     start = time.time()
-    # func(
-    #     int(args[name]["value_max"]),
-    #     int(args[name]["num_loops"]),
-    #     rlock,
-    #     args[name]["runtime"],
-    #     args[name]["compilation"],
-    #     args[name]["call_type"],
-    #     args[name]["subcall"],
-    #     args[name]["case"])
-    do_func(func, ret_dict, args, name, sema, rlock)
-    total = time.time() - start
-    ret_dict[name] = total
-    sema.release()
-
-
-def do_func(func, ret_dict, args, name, sema, rlock):
     func(
         int(args[name]["value_max"]),
         int(args[name]["num_loops"]),
@@ -37,6 +21,9 @@ def do_func(func, ret_dict, args, name, sema, rlock):
         args[name]["call_type"],
         args[name]["subcall"],
         args[name]["case"])
+    total = time.time() - start
+    ret_dict[name] = total
+    sema.release()
 
 
 def run_in_parallel(fns, ret_dict, threads, args, sema, rlock):
