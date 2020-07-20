@@ -18,12 +18,7 @@ cdef int is_prime_default(int n, int y):
 cpdef Main_Default(int value_max, int num_loops, rlock, str runtime, str compilation, str call_type, str subcall, str case):
     Main_Default_Sub(value_max, num_loops, rlock, runtime, compilation, call_type, subcall, case)
 
-
-# cpdef void Main_Default(int value_max, int num_loops, rlock, str runtime, str compilation, str call_type, str subcall, str case):
-@cython.cfunc
-@cython.locals(value_max=cython.int, num_loops=cython.int, i=cython.int, n=cython.int, j=cython.int, average_time=cython.double)
-@ft.lru_cache(maxsize=None)
-def Main_Default_Sub(value_max: int, num_loops: int, rlock, runtime: str, compilation: str, call_type: str, subcall: str, case: str):
+cdef void Main_Default_Sub(int value_max, int num_loops, rlock, str runtime, str compilation, str call_type, str subcall, str case):
     cdef str group = " ".join([runtime, compilation, call_type, subcall])
     cdef str msg = str(("-" * 80) + "\n")
     overall_start = dt.datetime.now()
@@ -83,11 +78,11 @@ def Main_Default_Sub(value_max: int, num_loops: int, rlock, runtime: str, compil
     time_output.close()
 
 
-# cpdef void Main_Half(int value_max, int num_loops, rlock, str runtime, str compilation, str call_type, str subcall, str case):
-@cython.cfunc
-@cython.locals(value_max=cython.int, num_loops=cython.int, i=cython.int, n=cython.int, j=cython.int, boundary=cython.int, average_time=cython.double)
-@ft.lru_cache(maxsize=None)
-def Main_Half_Sub(value_max: int, num_loops: int, rlock, runtime: str, compilation: str, call_type: str, subcall: str, case: str):
+cpdef Main_Half(int value_max, int num_loops, rlock, str runtime, str compilation, str call_type, str subcall, str case):
+    Main_Half_Sub(value_max, num_loops, rlock, runtime, compilation, call_type, subcall, case)
+
+
+cdef void Main_Half_Sub(int value_max, int num_loops, rlock, str runtime, str compilation, str call_type, str subcall, str case):
     cdef str group = " ".join([runtime, compilation, call_type, subcall])
     cdef str msg = str(("-" * 80) + "\n")
     overall_start = dt.datetime.now()
@@ -149,11 +144,11 @@ def Main_Half_Sub(value_max: int, num_loops: int, rlock, runtime: str, compilati
     time_output.close()
 
 
-# cpdef void Main_Sqrt(int value_max, int num_loops, rlock, str runtime, str compilation, str call_type, str subcall, str case):
-@cython.cfunc
-@cython.locals(value_max=cython.int, num_loops=cython.int, i=cython.int, n=cython.int, j=cython.int, boundary=cython.int, average_time=cython.double)
-@ft.lru_cache(maxsize=None)
-def Main_Sqrt(value_max: int, num_loops: int, rlock, runtime: str, compilation: str, call_type: str, subcall: str, case: str):
+cpdef Main_Sqrt(int value_max, int num_loops, rlock, str runtime, str compilation, str call_type, str subcall, str case):
+    Main_Sqrt_Sub(value_max, num_loops, rlock, runtime, compilation, call_type, subcall, case)
+
+
+cdef void Main_Sqrt_Sub(int value_max, int num_loops, rlock, str runtime, str compilation, str call_type, str subcall, str case):
     cdef str group = " ".join([runtime, compilation, call_type, subcall])
     cdef str msg = str(("-" * 80) + "\n")
     overall_start = dt.datetime.now()
