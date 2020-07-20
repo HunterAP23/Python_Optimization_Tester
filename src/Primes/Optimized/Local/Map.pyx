@@ -18,6 +18,7 @@ cdef int is_prime_default(int n, int y):
 cpdef Main_Default(int value_max, int num_loops, rlock, str runtime, str compilation, str call_type, str subcall, str case):
     Main_Default_Sub(value_max, num_loops, rlock, runtime, compilation, call_type, subcall, case)
 
+
 cdef void Main_Default_Sub(int value_max, int num_loops, rlock, str runtime, str compilation, str call_type, str subcall, str case):
     cdef str group = " ".join([runtime, compilation, call_type, subcall])
     cdef str msg = str(("-" * 80) + "\n")

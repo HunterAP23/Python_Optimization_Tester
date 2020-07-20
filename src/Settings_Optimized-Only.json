@@ -469,9 +469,9 @@
 						},
 						"Map": {
               "case": {
-								"Default": 0,
-  							"Half": 0,
-  							"Sqrt": 0
+								"Default": 1,
+  							"Half": 1,
+  							"Sqrt": 1
               },
               "package": "Primes",
               "library": "Primes.Optimized.Local.Map"
@@ -480,7 +480,7 @@
               "case": {
 								"Default": 1,
   							"Half": 1,
-  							"Sqrt": 0
+  							"Sqrt": 1
               },
               "package": "Primes",
               "library": "Primes.Optimized.Local.Lambda_Map"
@@ -498,7 +498,7 @@
               "case": {
 								"Default": 1,
   							"Half": 1,
-  							"Sqrt": 0
+  							"Sqrt": 1
               },
               "package": "Primes",
               "library": "Primes.Optimized.Local.Lambda_LRU_Map"

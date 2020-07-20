@@ -15,11 +15,6 @@ cpdef Main_Default(int value_max, int num_loops, rlock, str runtime, str compila
     Main_Default_Sub(value_max, num_loops, rlock, runtime, compilation, call_type, subcall, case)
 
 
-# cpdef void Main_Default(int value_max, int num_loops, rlock, str runtime, str compilation, str call_type, str subcall, str case):
-# @cython.cfunc
-# @cython.locals(value_max=cython.int, num_loops=cython.int, i=cython.int, n=cython.int, j=cython.int, checks=cython.int, average_time=cython.double)
-# @ft.lru_cache(maxsize=None)
-# def Main_Default_Sub(value_max: int, num_loops: int, rlock, runtime: str, compilation: str, call_type: str, subcall: str, case: str):
 cdef void Main_Default_Sub(int value_max, int num_loops, rlock, str runtime, str compilation, str call_type, str subcall, str case):
     cdef str group = " ".join([runtime, compilation, call_type, subcall])
     cdef str msg = str(("-" * 80) + "\n")
@@ -78,11 +73,6 @@ cpdef Main_Half(int value_max, int num_loops, rlock, str runtime, str compilatio
     Main_Half_Sub(value_max, num_loops, rlock, runtime, compilation, call_type, subcall, case)
 
 
-# cpdef void Main_Half(int value_max, int num_loops, rlock, str runtime, str compilation, str call_type, str subcall, str case):
-# @cython.cfunc
-# @cython.locals(value_max=cython.int, num_loops=cython.int, i=cython.int, n=cython.int, j=cython.int, checks=cython.int, boundary=cython.int, average_time=cython.double)
-# @ft.lru_cache(maxsize=None)
-# def Main_Half_Sub(value_max: int, num_loops: int, rlock, runtime: str, compilation: str, call_type: str, subcall: str, case: str):
 cdef void Main_Half_Sub(int value_max, int num_loops, rlock, str runtime, str compilation, str call_type, str subcall, str case):
     cdef str group = " ".join([runtime, compilation, call_type, subcall])
     cdef str msg = str(("-" * 80) + "\n")
@@ -142,11 +132,6 @@ cpdef Main_Sqrt(int value_max, int num_loops, rlock, str runtime, str compilatio
     Main_Sqrt_Sub(value_max, num_loops, rlock, runtime, compilation, call_type, subcall, case)
 
 
-# cpdef void Main_Sqrt(int value_max, int num_loops, rlock, str runtime, str compilation, str call_type, str subcall, str case):
-# @cython.cfunc
-# @cython.locals(value_max=cython.int, num_loops=cython.int, i=cython.int, n=cython.int, j=cython.int, checks=cython.int, boundary=cython.int, average_time=cython.double)
-# @ft.lru_cache(maxsize=None)
-# def Main_Sqrt_Sub(value_max: int, num_loops: int, rlock, runtime: str, compilation: str, call_type: str, subcall: str, case: str):
 cdef void Main_Sqrt_Sub(int value_max, int num_loops, rlock, str runtime, str compilation, str call_type, str subcall, str case):
     cdef str group = " ".join([runtime, compilation, call_type, subcall])
     cdef str msg = str(("-" * 80) + "\n")
