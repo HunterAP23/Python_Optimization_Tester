@@ -1,28 +1,38 @@
 import functools as ft
 import math
+cimport cython
 
 
-def print_lock(msg, rlock):
+cdef print_lock(str msg, rlock):
     rlock.acquire()
     print(msg)
     rlock.release()
 
 
-def is_prime_default(n: int, table):
+@cython.cfunc
+@cython.locals(n=cython.int)
+@ft.lru_cache(maxsize=None)
+def is_prime_default(n: int, table: list):
     my_lam = ft.lru_cache()(lambda y: n % y)
-    ret = list(map(my_lam, table))
+    cdef list ret = list(map(my_lam, table))
     return (all(ret), sum(ret),)
 
 
-def is_prime_half(n: int, table):
+@cython.cfunc
+@cython.locals(n=cython.int, boundary=cython.int)
+@ft.lru_cache(maxsize=None)
+def is_prime_half(n: int, table: list):
     boundary = math.floor(n / 2)
     my_lam = ft.lru_cache()(lambda y: n % y if y <= boundary else 0)
-    ret = list(map(my_lam, table))
+    cdef list ret = list(map(my_lam, table))
     return (all(ret), sum(ret),)
 
 
-def is_prime_sqrt(n: int, table):
+@cython.cfunc
+@cython.locals(n=cython.int, boundary=cython.int)
+@ft.lru_cache(maxsize=None)
+def is_prime_sqrt(n: int, table: list):
     boundary = math.floor(math.sqrt(n))
     my_lam = ft.lru_cache()(lambda y: n % y if y <= boundary else 0)
-    ret = list(map(my_lam, table))
+    cdef list ret = list(map(my_lam, table))
     return (all(ret), sum(ret),)

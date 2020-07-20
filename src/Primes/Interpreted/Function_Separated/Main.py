@@ -10,7 +10,7 @@ def print_lock(msg, rlock):
     rlock.release()
 
 
-def Main(value_max: int, num_loops: int, rlock, runtime, compilation, call_type, subcall, case):
+def Main(value_max: int, num_loops: int, rlock, runtime: str, compilation: str, call_type: str, subcall: str, case: str):
     group = " ".join([runtime, compilation, call_type, subcall])
     msg = ("-" * 80) + "\n"
     overall_start = dt.datetime.now()
@@ -60,7 +60,8 @@ def Main(value_max: int, num_loops: int, rlock, runtime, compilation, call_type,
     msg += "{0} {1} finished at {2}/{3}/{4} {5}:{6}:{7}:{8}".format(group, case, time_now.year, time_now.month, time_now.day, time_now.hour, time_now.minute, time_now.second, time_now.microsecond)
     print_lock(msg, rlock)
 
-    average_time = ft.reduce(lambda a, b: a + b, time_list) / len(time_list)
+    # average_time = ft.reduce(lambda a, b: a + b, time_list) / len(time_list)
+    average_time = math.fsum(time_list)
     msg = "Average time it took to calculate {0} passes of {1} {2} was {3} seconds.".format(num_loops, group, case, average_time)
     time_output.write(msg)
     print_lock(msg, rlock)

@@ -5,15 +5,19 @@ import time
 cimport cython
 
 
-cpdef void print_lock(str msg, rlock):
+cdef void print_lock(str msg, rlock):
     rlock.acquire()
     print(msg)
     rlock.release()
 
 
+# cpdef void Main_Default(int value_max, int num_loops, rlock, str runtime, str compilation, str call_type, str subcall, str case):
+@cython.ccall
+@cython.locals(value_max=cython.int, num_loops=cython.int, i=cython.int, n=cython.int, j=cython.int, checks=cython.int, average_time=cython.double)
+@ft.lru_cache(maxsize=None)
 def Main_Default(value_max: int, num_loops: int, rlock, runtime: str, compilation: str, call_type: str, subcall: str, case: str):
     cdef str group = " ".join([runtime, compilation, call_type, subcall])
-    msg = ("-" * 80) + "\n"
+    cdef str msg = str(("-" * 80) + "\n")
     overall_start = dt.datetime.now()
     msg += "{0} {1} started at {2}/{3}/{4} {5}:{6}:{7}:{8}".format(group, case, overall_start.year, overall_start.month, overall_start.day, overall_start.hour, overall_start.minute, overall_start.second, overall_start.microsecond)
     print_lock(msg, rlock)
@@ -24,10 +28,6 @@ def Main_Default(value_max: int, num_loops: int, rlock, runtime: str, compilatio
 
     time_output = open("files_runs/{0}/time_{1}.txt".format(group.replace(" ", "_"), case).lower(), "w")
 
-    cdef int i
-    cdef int n
-    cdef int j
-    cdef int checks
     for i in range(num_loops):
         # Clear the lists before a run
         time_list = []
@@ -61,27 +61,31 @@ def Main_Default(value_max: int, num_loops: int, rlock, runtime: str, compilatio
             primes_output.write("{0}\n".format(prime))
 
     time_now = dt.datetime.now()
-    msg = ("-" * 80) + "\n"
+    msg = str(("-" * 80) + "\n")
     msg += "{0} {1} finished at {2}/{3}/{4} {5}:{6}:{7}:{8}".format(group, case, time_now.year, time_now.month, time_now.day, time_now.hour, time_now.minute, time_now.second, time_now.microsecond)
     print_lock(msg, rlock)
 
-    cdef double average_time = ft.reduce(lambda a, b: a + b, time_list) / len(time_list)
+    average_time = math.fsum(time_list)
     msg = "Average time it took to calculate {0} passes of {1} {2} was {3} seconds.".format(num_loops, group, case, average_time)
     time_output.write(msg)
     print_lock(msg, rlock)
     time_output.close()
 
 
-def Main_Half(value_max: int, num_loops: int, rlock, runtime, compilation, call_type, subcall, case):
-    group = " ".join([runtime, compilation, call_type, subcall])
-    msg = ("-" * 80) + "\n"
+# cpdef void Main_Half(int value_max, int num_loops, rlock, str runtime, str compilation, str call_type, str subcall, str case):
+@cython.ccall
+@cython.locals(value_max=cython.int, num_loops=cython.int, i=cython.int, n=cython.int, j=cython.int, checks=cython.int, boundary=cython.int, average_time=cython.double)
+@ft.lru_cache(maxsize=None)
+def Main_Half(value_max: int, num_loops: int, rlock, runtime: str, compilation: str, call_type: str, subcall: str, case: str):
+    cdef str group = " ".join([runtime, compilation, call_type, subcall])
+    cdef str msg = str(("-" * 80) + "\n")
     overall_start = dt.datetime.now()
     msg += "{0} {1} started at {2}/{3}/{4} {5}:{6}:{7}:{8}".format(group, case, overall_start.year, overall_start.month, overall_start.day, overall_start.hour, overall_start.minute, overall_start.second, overall_start.microsecond)
     print_lock(msg, rlock)
 
-    time_list = []
-    div_list = []
-    primes_list = []
+    cdef list time_list = []
+    cdef list div_list = []
+    cdef list primes_list = []
 
     time_output = open("files_runs/{0}/time_{1}.txt".format(group.replace(" ", "_"), case).lower(), "w")
 
@@ -122,27 +126,31 @@ def Main_Half(value_max: int, num_loops: int, rlock, runtime, compilation, call_
             primes_output.write("{0}\n".format(prime))
 
     time_now = dt.datetime.now()
-    msg = ("-" * 80) + "\n"
+    msg = str(("-" * 80) + "\n")
     msg += "{0} {1} finished at {2}/{3}/{4} {5}:{6}:{7}:{8}".format(group, case, time_now.year, time_now.month, time_now.day, time_now.hour, time_now.minute, time_now.second, time_now.microsecond)
     print_lock(msg, rlock)
 
-    average_time = ft.reduce(lambda a, b: a + b, time_list) / len(time_list)
+    average_time = math.fsum(time_list)
     msg = "Average time it took to calculate {0} passes of {1} {2} was {3} seconds.".format(num_loops, group, case, average_time)
     time_output.write(msg)
     print_lock(msg, rlock)
     time_output.close()
 
 
-def Main_Sqrt(value_max: int, num_loops: int, rlock, runtime, compilation, call_type, subcall, case):
-    group = " ".join([runtime, compilation, call_type, subcall])
-    msg = ("-" * 80) + "\n"
+# cpdef void Main_Sqrt(int value_max, int num_loops, rlock, str runtime, str compilation, str call_type, str subcall, str case):
+@cython.ccall
+@cython.locals(value_max=cython.int, num_loops=cython.int, i=cython.int, n=cython.int, j=cython.int, checks=cython.int, boundary=cython.int, average_time=cython.double)
+@ft.lru_cache(maxsize=None)
+def Main_Sqrt(value_max: int, num_loops: int, rlock, runtime: str, compilation: str, call_type: str, subcall: str, case: str):
+    cdef str group = " ".join([runtime, compilation, call_type, subcall])
+    cdef str msg = str(("-" * 80) + "\n")
     overall_start = dt.datetime.now()
     msg += "{0} {1} started at {2}/{3}/{4} {5}:{6}:{7}:{8}".format(group, case, overall_start.year, overall_start.month, overall_start.day, overall_start.hour, overall_start.minute, overall_start.second, overall_start.microsecond)
     print_lock(msg, rlock)
 
-    time_list = []
-    div_list = []
-    primes_list = []
+    cdef list time_list = []
+    cdef list div_list = []
+    cdef list primes_list = []
 
     time_output = open("files_runs/{0}/time_{1}.txt".format(group.replace(" ", "_"), case).lower(), "w")
 
@@ -183,11 +191,11 @@ def Main_Sqrt(value_max: int, num_loops: int, rlock, runtime, compilation, call_
             primes_output.write("{0}\n".format(prime))
 
     time_now = dt.datetime.now()
-    msg = ("-" * 80) + "\n"
+    msg = str(("-" * 80) + "\n")
     msg += "{0} {1} finished at {2}/{3}/{4} {5}:{6}:{7}:{8}".format(group, case, time_now.year, time_now.month, time_now.day, time_now.hour, time_now.minute, time_now.second, time_now.microsecond)
     print_lock(msg, rlock)
 
-    average_time = ft.reduce(lambda a, b: a + b, time_list) / len(time_list)
+    average_time = math.fsum(time_list)
     msg = "Average time it took to calculate {0} passes of {1} {2} was {3} seconds.".format(num_loops, group, case, average_time)
     time_output.write(msg)
     print_lock(msg, rlock)

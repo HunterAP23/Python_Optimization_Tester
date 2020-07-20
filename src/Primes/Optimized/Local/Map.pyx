@@ -15,16 +15,27 @@ cdef int is_prime_default(int n, int y):
     return n % y
 
 
-cdef void Main_Default(int value_max, int num_loops, rlock, str runtime, str compilation, str call_type, str subcall, str case):
-    group = " ".join([runtime, compilation, call_type, subcall])
-    msg = ("-" * 80) + "\n"
+cpdef Main_Default(int value_max, int num_loops, rlock, str runtime, str compilation, str call_type, str subcall, str case):
+    Main_Default_Sub(value_max, num_loops, rlock, runtime, compilation, call_type, subcall, case)
+
+
+# cpdef void Main_Default(int value_max, int num_loops, rlock, str runtime, str compilation, str call_type, str subcall, str case):
+@cython.cfunc
+@cython.locals(value_max=cython.int, num_loops=cython.int, i=cython.int, n=cython.int, j=cython.int, average_time=cython.double)
+@ft.lru_cache(maxsize=None)
+def Main_Default_Sub(value_max: int, num_loops: int, rlock, runtime: str, compilation: str, call_type: str, subcall: str, case: str):
+    cdef str group = " ".join([runtime, compilation, call_type, subcall])
+    cdef str msg = str(("-" * 80) + "\n")
     overall_start = dt.datetime.now()
     msg += "{0} {1} started at {2}/{3}/{4} {5}:{6}:{7}:{8}".format(group, case, overall_start.year, overall_start.month, overall_start.day, overall_start.hour, overall_start.minute, overall_start.second, overall_start.microsecond)
     print_lock(msg, rlock)
 
-    time_list = []
-    div_list = []
-    primes_list = []
+    cdef list time_list = []
+    cdef list div_list = []
+    cdef list primes_list = []
+    cdef list ret
+    cdef list n_list
+    cdef list y_list
 
     time_output = open("files_runs/{0}/time_{1}.txt".format(group.replace(" ", "_"), case).lower(), "w")
 
@@ -38,7 +49,10 @@ cdef void Main_Default(int value_max, int num_loops, rlock, str runtime, str com
         tmp_time_start = time.time()
         for n in range(3, value_max, 2):
             n_list = [n] * len(primes_list)
-            ret = list(map(is_prime_default, n_list, tuple(j for j in primes_list)))
+            y_list = []
+            for j in primes_list:
+                y_list.append(j)
+            ret = list(map(is_prime_default, n_list, tuple(y_list)))
 
             if all(ret):
                 div_list.append("Primality Test for {0} took {1} divisions.\n\n".format(n, sum(ret)))
@@ -58,27 +72,34 @@ cdef void Main_Default(int value_max, int num_loops, rlock, str runtime, str com
             primes_output.write("{0}\n".format(prime))
 
     time_now = dt.datetime.now()
-    msg = ("-" * 80) + "\n"
+    msg = str(("-" * 80) + "\n")
     msg += "{0} {1} finished at {2}/{3}/{4} {5}:{6}:{7}:{8}".format(group, case, time_now.year, time_now.month, time_now.day, time_now.hour, time_now.minute, time_now.second, time_now.microsecond)
     print_lock(msg, rlock)
 
-    average_time = ft.reduce(lambda a, b: a + b, time_list) / len(time_list)
+    average_time = math.fsum(time_list)
     msg = "Average time it took to calculate {0} passes of {1} {2} was {3} seconds.".format(num_loops, group, case, average_time)
     time_output.write(msg)
     print_lock(msg, rlock)
     time_output.close()
 
 
-def Main_Half(value_max: int, num_loops: int, rlock, runtime, compilation, call_type, subcall, case):
-    group = " ".join([runtime, compilation, call_type, subcall])
-    msg = ("-" * 80) + "\n"
+# cpdef void Main_Half(int value_max, int num_loops, rlock, str runtime, str compilation, str call_type, str subcall, str case):
+@cython.cfunc
+@cython.locals(value_max=cython.int, num_loops=cython.int, i=cython.int, n=cython.int, j=cython.int, boundary=cython.int, average_time=cython.double)
+@ft.lru_cache(maxsize=None)
+def Main_Half_Sub(value_max: int, num_loops: int, rlock, runtime: str, compilation: str, call_type: str, subcall: str, case: str):
+    cdef str group = " ".join([runtime, compilation, call_type, subcall])
+    cdef str msg = str(("-" * 80) + "\n")
     overall_start = dt.datetime.now()
     msg += "{0} {1} started at {2}/{3}/{4} {5}:{6}:{7}:{8}".format(group, case, overall_start.year, overall_start.month, overall_start.day, overall_start.hour, overall_start.minute, overall_start.second, overall_start.microsecond)
     print_lock(msg, rlock)
 
-    time_list = []
-    div_list = []
-    primes_list = []
+    cdef list time_list = []
+    cdef list div_list = []
+    cdef list primes_list = []
+    cdef list ret
+    cdef list n_list
+    cdef list y_list
 
     time_output = open("files_runs/{0}/time_{1}.txt".format(group.replace(" ", "_"), case).lower(), "w")
 
@@ -93,8 +114,11 @@ def Main_Half(value_max: int, num_loops: int, rlock, runtime, compilation, call_
         for n in range(3, value_max, 2):
             boundary = math.floor(n / 2)
             n_list = [n] * len(primes_list)
-            y_list = tuple(j for j in primes_list if j <= boundary)
-            ret = list(map(is_prime_default, n_list, y_list))
+            y_list = []
+            for j in primes_list:
+                if j <= boundary:
+                    y_list.append(j)
+            ret = list(map(is_prime_default, n_list, tuple(y_list)))
 
             if all(ret):
                 div_list.append("Primality Test for {0} took {1} divisions.\n\n".format(n, sum(ret)))
@@ -114,27 +138,34 @@ def Main_Half(value_max: int, num_loops: int, rlock, runtime, compilation, call_
             primes_output.write("{0}\n".format(prime))
 
     time_now = dt.datetime.now()
-    msg = ("-" * 80) + "\n"
+    msg = str(("-" * 80) + "\n")
     msg += "{0} {1} finished at {2}/{3}/{4} {5}:{6}:{7}:{8}".format(group, case, time_now.year, time_now.month, time_now.day, time_now.hour, time_now.minute, time_now.second, time_now.microsecond)
     print_lock(msg, rlock)
 
-    average_time = ft.reduce(lambda a, b: a + b, time_list) / len(time_list)
+    average_time = math.fsum(time_list)
     msg = "Average time it took to calculate {0} passes of {1} {2} was {3} seconds.".format(num_loops, group, case, average_time)
     time_output.write(msg)
     print_lock(msg, rlock)
     time_output.close()
 
 
-def Main_Sqrt(value_max: int, num_loops: int, rlock, runtime, compilation, call_type, subcall, case):
-    group = " ".join([runtime, compilation, call_type, subcall])
-    msg = ("-" * 80) + "\n"
+# cpdef void Main_Sqrt(int value_max, int num_loops, rlock, str runtime, str compilation, str call_type, str subcall, str case):
+@cython.cfunc
+@cython.locals(value_max=cython.int, num_loops=cython.int, i=cython.int, n=cython.int, j=cython.int, boundary=cython.int, average_time=cython.double)
+@ft.lru_cache(maxsize=None)
+def Main_Sqrt(value_max: int, num_loops: int, rlock, runtime: str, compilation: str, call_type: str, subcall: str, case: str):
+    cdef str group = " ".join([runtime, compilation, call_type, subcall])
+    cdef str msg = str(("-" * 80) + "\n")
     overall_start = dt.datetime.now()
     msg += "{0} {1} started at {2}/{3}/{4} {5}:{6}:{7}:{8}".format(group, case, overall_start.year, overall_start.month, overall_start.day, overall_start.hour, overall_start.minute, overall_start.second, overall_start.microsecond)
     print_lock(msg, rlock)
 
-    time_list = []
-    div_list = []
-    primes_list = []
+    cdef list time_list = []
+    cdef list div_list = []
+    cdef list primes_list = []
+    cdef list ret
+    cdef list n_list
+    cdef list y_list
 
     time_output = open("files_runs/{0}/time_{1}.txt".format(group.replace(" ", "_"), case).lower(), "w")
 
@@ -149,8 +180,11 @@ def Main_Sqrt(value_max: int, num_loops: int, rlock, runtime, compilation, call_
         for n in range(3, value_max, 2):
             boundary = math.floor(math.sqrt(n))
             n_list = [n] * len(primes_list)
-            y_list = tuple(j for j in primes_list if j <= boundary)
-            ret = list(map(is_prime_default, n_list, y_list))
+            y_list = []
+            for j in primes_list:
+                if j <= boundary:
+                    y_list.append(j)
+            ret = list(map(is_prime_default, n_list, tuple(y_list)))
 
             if all(ret):
                 div_list.append("Primality Test for {0} took {1} divisions.\n\n".format(n, sum(ret)))
@@ -170,11 +204,11 @@ def Main_Sqrt(value_max: int, num_loops: int, rlock, runtime, compilation, call_
             primes_output.write("{0}\n".format(prime))
 
     time_now = dt.datetime.now()
-    msg = ("-" * 80) + "\n"
+    msg = str(("-" * 80) + "\n")
     msg += "{0} {1} finished at {2}/{3}/{4} {5}:{6}:{7}:{8}".format(group, case, time_now.year, time_now.month, time_now.day, time_now.hour, time_now.minute, time_now.second, time_now.microsecond)
     print_lock(msg, rlock)
 
-    average_time = ft.reduce(lambda a, b: a + b, time_list) / len(time_list)
+    average_time = math.fsum(time_list)
     msg = "Average time it took to calculate {0} passes of {1} {2} was {3} seconds.".format(num_loops, group, case, average_time)
     time_output.write(msg)
     print_lock(msg, rlock)

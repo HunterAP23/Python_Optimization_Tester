@@ -165,6 +165,9 @@ def main(args):
                                     if info["library"] in sys.modules:
                                         print("{0} module has already been loaded.".format(info["library"]))
                                     else:
+                                        # if "optimized" in comp.lower():
+                                        #     lib = cimport info["library"]
+                                        # else:
                                         lib = importlib.import_module(info["library"], package=info["package"])
                                         print("Loaded module '{0}'.".format(info["library"]))
                                     import_status = 0

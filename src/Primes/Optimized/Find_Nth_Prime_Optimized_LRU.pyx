@@ -78,7 +78,7 @@ def is_prime_sqrt(num):
 
 
 cdef void Main_Default(int value_max, int num_loops, rlock):
-    msg = ("-" * 80) + "\n"
+    cdef str msg = str(("-" * 80) + "\n")
     msg += "Optimized Default LRU started."
     print_lock(msg, rlock)
 
@@ -117,12 +117,13 @@ cdef void Main_Default(int value_max, int num_loops, rlock):
     txt_output3.close()
 
     time_now = dt.datetime.now()
-    msg = ("-" * 80) + "\n"
+    cdef str msg = str(("-" * 80) + "\n")
     msg += "Optimized Default LRU finished at {0}/{1}/{2} {3}:{4}:{5}:{6}".format(time_now.year, time_now.month, time_now.day, time_now.hour, time_now.minute, time_now.second, time_now.microsecond)
     # msg += "Optimized is_prime.cache_info(): {0}".format(is_prime.cache_info())
     print_lock(msg, rlock)
 
-    cdef double average_time = ft.reduce(lambda a, b: a + b, time_list) / len(time_list)
+    # cdef double average_time = ft.reduce(lambda a, b: a + b, time_list) / len(time_list)
+    cdef double average_time = math.fsum(time_list)
     msg = "Average time it took to calculate {0} optimized LRU normal passes was {1} seconds.".format(num_loops, average_time)
     txt_output.write(msg)
     print_lock(msg, rlock)
@@ -130,7 +131,7 @@ cdef void Main_Default(int value_max, int num_loops, rlock):
 
 
 cdef void Main_Half(int value_max, int num_loops, rlock):
-    msg = ("-" * 80) + "\n"
+    cdef str msg = str(("-" * 80) + "\n")
     msg += "Optimized Half started."
     print_lock(msg, rlock)
 
@@ -169,12 +170,13 @@ cdef void Main_Half(int value_max, int num_loops, rlock):
     txt_output3.close()
 
     time_now = dt.datetime.now()
-    msg = ("-" * 80) + "\n"
+    cdef str msg = str(("-" * 80) + "\n")
     msg += "Optimized Half LRU finished at {0}/{1}/{2} {3}:{4}:{5}:{6}".format(time_now.year, time_now.month, time_now.day, time_now.hour, time_now.minute, time_now.second, time_now.microsecond)
     # msg += "Optimized is_prime_half.cache_info(): {0}".format(is_prime_half.cache_info())
     print_lock(msg, rlock)
 
-    cdef double average_time = ft.reduce(lambda a, b: a + b, time_list) / len(time_list)
+    # cdef double average_time = ft.reduce(lambda a, b: a + b, time_list) / len(time_list)
+    cdef double average_time = math.fsum(time_list)
     msg = "Average time it took to calculate {0} optimized half LRU passes was {1} seconds.".format(num_loops, average_time)
     txt_output.write(msg)
     print_lock(msg, rlock)
@@ -182,7 +184,7 @@ cdef void Main_Half(int value_max, int num_loops, rlock):
 
 
 cdef void Main_Sqrt(int value_max, int num_loops, rlock):
-    msg = ("-" * 80) + "\n"
+    cdef str msg = str(("-" * 80) + "\n")
     msg += "Optimized Sqrt LRU started."
     print_lock(msg, rlock)
 
@@ -221,12 +223,13 @@ cdef void Main_Sqrt(int value_max, int num_loops, rlock):
     txt_output3.close()
 
     time_now = dt.datetime.now()
-    msg = ("-" * 80) + "\n"
+    cdef str msg = str(("-" * 80) + "\n")
     msg += "Optimized Sqrt LRU finished at {0}/{1}/{2} {3}:{4}:{5}:{6}".format(time_now.year, time_now.month, time_now.day, time_now.hour, time_now.minute, time_now.second, time_now.microsecond)
     # msg += "Optimized is_prime_sqrt.cache_info(): {0}".format(is_prime_sqrt.cache_info())
     print_lock(msg, rlock)
 
-    cdef double average_time = ft.reduce(lambda a, b: a + b, time_list) / len(time_list)
+    # cdef double average_time = ft.reduce(lambda a, b: a + b, time_list) / len(time_list)
+    cdef double average_time = math.fsum(time_list)
     msg = "Average time it took to calculate {0} optimized LRU sqrt-bound passes was {1} seconds.".format(num_loops, average_time)
     txt_output.write(msg)
     print_lock(msg, rlock)

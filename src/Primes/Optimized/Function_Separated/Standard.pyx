@@ -1,16 +1,18 @@
 import functools as ft
 import math
+cimport cython
 
 
-def print_lock(msg, rlock):
+cdef print_lock(str msg, rlock):
     rlock.acquire()
     print(msg)
     rlock.release()
 
 
-def is_prime_default(n: int, table):
-    checks = 0
+cdef is_prime__default(int n, list table):
+    cdef int checks = 0
 
+    cdef int i
     for i in range(len(table)):
         if n % table[i] == 0:
             return (False, 1)
@@ -19,10 +21,11 @@ def is_prime_default(n: int, table):
     return (True, checks)
 
 
-def is_prime_half(n: int, table):
-    checks = 0
+cdef is_prime__half(int n, list table):
+    cdef int checks = 0
 
-    boundary = math.floor(n / 2)
+    cdef int boundary = math.floor(n / 2)
+    cdef int i
     for i in range(len(table)):
         if table[i] <= boundary:
             if n % table[i] == 0:
@@ -34,10 +37,11 @@ def is_prime_half(n: int, table):
     return (True, checks)
 
 
-def is_prime_sqrt(n: int, table):
-    checks = 0
+cdef is_prime__sqrt(int n, list table):
+    cdef int checks = 0
 
-    boundary = math.floor(math.sqrt(n))
+    cdef int boundary = math.floor(math.sqrt(n))
+    cdef int i
     for i in range(len(table)):
         if table[i] <= boundary:
             if n % table[i] == 0:

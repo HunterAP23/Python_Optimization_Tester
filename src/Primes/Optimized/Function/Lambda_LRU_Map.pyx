@@ -2,44 +2,54 @@ import datetime as dt
 import functools as ft
 import math
 import time
+cimport cython
 
 
-def print_lock(msg, rlock):
+cdef print_lock(str msg, rlock):
     rlock.acquire()
     print(msg)
     rlock.release()
 
 
-def is_prime_default(n: int, table):
+@cython.cfunc
+@cython.locals(n=cython.int)
+@ft.lru_cache(maxsize=None)
+def is_prime_default(n: int, table: list):
     my_lam = ft.lru_cache()(lambda y: n % y)
-    ret = list(map(my_lam, table))
+    cdef list ret = list(map(my_lam, table))
     return (all(ret), sum(ret),)
 
 
-def is_prime_half(n: int, table):
+@cython.cfunc
+@cython.locals(n=cython.int, boundary=cython.int)
+@ft.lru_cache(maxsize=None)
+def is_prime_half(n: int, table: list):
     boundary = math.floor(n / 2)
     my_lam = ft.lru_cache()(lambda y: n % y if y <= boundary else 0)
-    ret = list(map(my_lam, table))
+    cdef list ret = list(map(my_lam, table))
     return (all(ret), sum(ret),)
 
 
-def is_prime_sqrt(n: int, table):
+@cython.cfunc
+@cython.locals(n=cython.int, boundary=cython.int)
+@ft.lru_cache(maxsize=None)
+def is_prime_sqrt(n: int, table: list):
     boundary = math.floor(math.sqrt(n))
     my_lam = ft.lru_cache()(lambda y: n % y if y <= boundary else 0)
-    ret = list(map(my_lam, table))
+    cdef list ret = list(map(my_lam, table))
     return (all(ret), sum(ret),)
 
 
-def Main(value_max: int, num_loops: int, rlock, runtime, compilation, call_type, subcall, case):
-    group = " ".join([runtime, compilation, call_type, subcall])
-    msg = ("-" * 80) + "\n"
+cpdef void Main(int value_max, int num_loops, rlock, str runtime, str compilation, str call_type, str subcall, str case):
+    cdef str group = " ".join([runtime, compilation, call_type, subcall])
+    cdef str msg = str(("-" * 80) + "\n")
     overall_start = dt.datetime.now()
     msg += "{0} {1} started at {2}/{3}/{4} {5}:{6}:{7}:{8}".format(group, case, overall_start.year, overall_start.month, overall_start.day, overall_start.hour, overall_start.minute, overall_start.second, overall_start.microsecond)
     print_lock(msg, rlock)
 
-    time_list = []
-    div_list = []
-    primes_list = []
+    cdef list time_list = []
+    cdef list div_list = []
+    cdef list primes_list = []
 
     time_output = open("files_runs/{0}/time_{1}.txt".format(group.replace(" ", "_"), case).lower(), "w")
 
@@ -74,11 +84,12 @@ def Main(value_max: int, num_loops: int, rlock, runtime, compilation, call_type,
             primes_output.write("{0}\n".format(prime))
 
     time_now = dt.datetime.now()
-    msg = ("-" * 80) + "\n"
+    msg = str(("-" * 80) + "\n")
     msg += "{0} {1} finished at {2}/{3}/{4} {5}:{6}:{7}:{8}".format(group, case, time_now.year, time_now.month, time_now.day, time_now.hour, time_now.minute, time_now.second, time_now.microsecond)
     print_lock(msg, rlock)
 
-    average_time = ft.reduce(lambda a, b: a + b, time_list) / len(time_list)
+    # average_time = ft.reduce(lambda a, b: a + b, time_list) / len(time_list)
+    cdef double average_time = math.fsum(time_list)
     msg = "Average time it took to calculate {0} passes of {1} {2} was {3} seconds.".format(num_loops, group, case, average_time)
     time_output.write(msg)
     print_lock(msg, rlock)

@@ -1,13 +1,16 @@
 import functools as ft
 import math
+cimport cython
 
 
-def print_lock(msg, rlock):
+cdef print_lock(str msg, rlock):
     rlock.acquire()
     print(msg)
     rlock.release()
 
 
+@cython.cfunc
+@cython.locals(n=cython.int, checks=cython.int, boundary=cython.int, i=cython.int)
 @ft.lru_cache(maxsize=None)
 def is_prime_default(n: int, table: list):
     checks = 0
@@ -20,6 +23,8 @@ def is_prime_default(n: int, table: list):
     return (True, checks)
 
 
+@cython.cfunc
+@cython.locals(n=cython.int, checks=cython.int, boundary=cython.int, i=cython.int)
 @ft.lru_cache(maxsize=None)
 def is_prime_half(n: int, table: list):
     checks = 0
@@ -36,6 +41,8 @@ def is_prime_half(n: int, table: list):
     return (True, checks)
 
 
+@cython.cfunc
+@cython.locals(n=cython.int, checks=cython.int, boundary=cython.int, i=cython.int)
 @ft.lru_cache(maxsize=None)
 def is_prime_sqrt(n: int, table: list):
     checks = 0

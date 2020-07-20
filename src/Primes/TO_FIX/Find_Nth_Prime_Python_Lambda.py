@@ -10,7 +10,7 @@ def print_lock(msg, rlock):
     rlock.release()
 
 
-def is_prime_default(n: int, table):
+def is_prime_default(n: int, table: list):
     if n % 2 == 0 and n > 2:
         return False
     else:
