@@ -3,36 +3,32 @@ import math
 cimport cython
 
 
-cdef print_lock(str msg, rlock):
+cdef void print_lock(str msg, rlock):
     rlock.acquire()
     print(msg)
     rlock.release()
 
 
-@cython.cfunc
-@cython.locals(n=cython.int, checks=cython.int, boundary=cython.int, i=cython.int)
-@ft.lru_cache(maxsize=None)
-def is_prime_default(n: int, table: list):
-    checks = 0
+cdef(bint, int) is_prime_default(int n, int table):
+    cdef int checks = 0
 
-    for i in range(len(table)):
-        if n % table[i] == 0:
+    cdef int i
+    for i in table:
+        if n % i == 0:
             return (False, 1)
         else:
             checks += 1
     return (True, checks)
 
 
-@cython.cfunc
-@cython.locals(n=cython.int, checks=cython.int, boundary=cython.int, i=cython.int)
-@ft.lru_cache(maxsize=None)
-def is_prime_half(n: int, table: list):
-    checks = 0
+cdef(bint, int) is_prime_half(int n, int table):
+    cdef int checks = 0
 
-    boundary = math.floor(n / 2)
-    for i in range(len(table)):
-        if table[i] <= boundary:
-            if n % table[i] == 0:
+    cdef int boundary = math.floor(n / 2)
+    cdef int i
+    for i in table:
+        if i <= boundary:
+            if n % i == 0:
                 return (False, 1)
             else:
                 checks += 1
@@ -41,16 +37,14 @@ def is_prime_half(n: int, table: list):
     return (True, checks)
 
 
-@cython.cfunc
-@cython.locals(n=cython.int, checks=cython.int, boundary=cython.int, i=cython.int)
-@ft.lru_cache(maxsize=None)
-def is_prime_sqrt(n: int, table: list):
-    checks = 0
+cdef(bint, int) is_prime_sqrt(int n, int table):
+    cdef int checks = 0
 
-    boundary = math.floor(math.sqrt(n))
-    for i in range(len(table)):
-        if table[i] <= boundary:
-            if n % table[i] == 0:
+    cdef int boundary = math.floor(math.sqrt(n))
+    cdef int i
+    for i in table:
+        if i <= boundary:
+            if n % i == 0:
                 return (False, 1)
             else:
                 checks += 1

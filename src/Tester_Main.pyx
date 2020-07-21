@@ -164,9 +164,6 @@ def main(args):
                                     if info["library"] in sys.modules:
                                         print("{0} module has already been loaded.".format(info["library"]))
                                     else:
-                                        # if "optimized" in comp.lower():
-                                        #     lib = cimport info["library"]
-                                        # else:
                                         lib = importlib.import_module(info["library"], package=info["package"])
                                         print("Loaded module '{0}'.".format(info["library"]))
                                     import_status = 0
@@ -193,9 +190,6 @@ def main(args):
                                             except KeyError as ke:
                                                 print("{0} is not a valid function inside '{1}'".format(ke, lib.__name__))
                                                 exit(1)
-                                            # print("dir of {0}".format(lib))
-                                            # print(dir(lib))
-                                            # funcs[group] = vars(lib)["Main_Default"]
                                             arguments[group] = dict()
                                             arguments[group]["value_max"] = value_max
                                             arguments[group]["num_loops"] = num_loops
@@ -231,13 +225,6 @@ def main(args):
     # for k, v in funcs.items():
     #     print("{0}: {1}".format(str(k), str(v)))
     # exit()
-
-    # arguments = [value_max, num_loops, return_dict]
-    # for group, key in arguments.items():
-    #     print("group: {0}".format(group))
-    #     for k, v in key.items():
-    #         print("key: {0}".format(k))
-    #         print("value: {0}\n".format(v))
 
     run_in_parallel(funcs, return_dict, threads, arguments, sema, rlock)
 

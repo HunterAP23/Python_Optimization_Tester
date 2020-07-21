@@ -5,7 +5,7 @@ import time
 cimport cython
 
 
-cdef print_lock(str msg, rlock):
+cdef void print_lock(str msg, rlock):
     rlock.acquire()
     print(msg)
     rlock.release()
@@ -15,11 +15,6 @@ cpdef Main_Default(int value_max, int num_loops, rlock, str runtime, str compila
     Main_Default_Sub(value_max, num_loops, rlock, runtime, compilation, call_type, subcall, case)
 
 
-# cpdef void Main_Default(int value_max, int num_loops, rlock, str runtime, str compilation, str call_type, str subcall, str case):
-# @cython.cfunc
-# @cython.locals(value_max=cython.int, num_loops=cython.int, i=cython.int, n=cython.int, j=cython.int, average_time=cython.double)
-# @ft.lru_cache(maxsize=None)
-# def Main_Default_Sub(value_max: int, num_loops: int, rlock, runtime: str, compilation: str, call_type: str, subcall: str, case: str):
 cdef void Main_Default_Sub(int value_max, int num_loops, rlock, str runtime, str compilation, str call_type, str subcall, str case):
     cdef str group = " ".join([runtime, compilation, call_type, subcall])
     cdef str msg = str(("-" * 80) + "\n")
@@ -27,13 +22,16 @@ cdef void Main_Default_Sub(int value_max, int num_loops, rlock, str runtime, str
     msg += "{0} {1} started at {2}/{3}/{4} {5}:{6}:{7}:{8}".format(group, case, overall_start.year, overall_start.month, overall_start.day, overall_start.hour, overall_start.minute, overall_start.second, overall_start.microsecond)
     print_lock(msg, rlock)
 
-    cdef list time_list = []
-    cdef list div_list = []
-    cdef list primes_list = []
-    cdef list ret
-
     time_output = open("files_runs/{0}/time_{1}.txt".format(group.replace(" ", "_"), case).lower(), "w")
 
+    cdef list time_list
+    cdef list div_list
+    cdef list primes_list
+    cdef list ret
+    cdef int i
+    cdef int n
+    cdef int y
+    cdef int j
     for i in range(num_loops):
         # Clear the lists before a run
         time_list = []
@@ -57,10 +55,12 @@ cdef void Main_Default_Sub(int value_max, int num_loops, rlock, str runtime, str
         time_output.write("{0} {1} Pass {2} took {3} seconds.\n\n".format(group, case, i + 1, tmp_time_total))
         time_list.append(tmp_time_total)
 
+    cdef str div
     with open("files_runs/{0}/divisions_{1}.txt".format(group.replace(" ", "_"), case).lower(), "w") as div_output:
         for div in div_list:
             div_output.write(div)
 
+    cdef str prime
     with open("files_runs/{0}/primes_{1}.txt".format(group.replace(" ", "_"), case).lower(), "w") as primes_output:
         for prime in primes_list:
             primes_output.write("{0}\n".format(prime))
@@ -81,11 +81,6 @@ cpdef Main_Half(int value_max, int num_loops, rlock, str runtime, str compilatio
     Main_Half_Sub(value_max, num_loops, rlock, runtime, compilation, call_type, subcall, case)
 
 
-# cpdef void Main_Half(int value_max, int num_loops, rlock, str runtime, str compilation, str call_type, str subcall, str case):
-# @cython.cfunc
-# @cython.locals(value_max=cython.int, num_loops=cython.int, i=cython.int, n=cython.int, j=cython.int, boundary=cython.int, average_time=cython.double)
-# @ft.lru_cache(maxsize=None)
-# def Main_Half_Sub(value_max: int, num_loops: int, rlock, runtime: str, compilation: str, call_type: str, subcall: str, case: str):
 cdef void Main_Half_Sub(int value_max, int num_loops, rlock, str runtime, str compilation, str call_type, str subcall, str case):
     cdef str group = " ".join([runtime, compilation, call_type, subcall])
     cdef str msg = str(("-" * 80) + "\n")
@@ -93,13 +88,17 @@ cdef void Main_Half_Sub(int value_max, int num_loops, rlock, str runtime, str co
     msg += "{0} {1} started at {2}/{3}/{4} {5}:{6}:{7}:{8}".format(group, case, overall_start.year, overall_start.month, overall_start.day, overall_start.hour, overall_start.minute, overall_start.second, overall_start.microsecond)
     print_lock(msg, rlock)
 
-    cdef list time_list = []
-    cdef list div_list = []
-    cdef list primes_list = []
-    cdef list ret
-
     time_output = open("files_runs/{0}/time_{1}.txt".format(group.replace(" ", "_"), case).lower(), "w")
 
+    cdef list time_list
+    cdef list div_list
+    cdef list primes_list
+    cdef list ret
+    cdef int i
+    cdef int n
+    cdef int boundary
+    cdef int y
+    cdef int j
     for i in range(num_loops):
         # Clear the lists before a run
         time_list = []
@@ -127,10 +126,12 @@ cdef void Main_Half_Sub(int value_max, int num_loops, rlock, str runtime, str co
         time_output.write("{0} {1} Pass {2} took {3} seconds.\n\n".format(group, case, i + 1, tmp_time_total))
         time_list.append(tmp_time_total)
 
+    cdef str div
     with open("files_runs/{0}/divisions_{1}.txt".format(group.replace(" ", "_"), case).lower(), "w") as div_output:
         for div in div_list:
             div_output.write(div)
 
+    cdef str prime
     with open("files_runs/{0}/primes_{1}.txt".format(group.replace(" ", "_"), case).lower(), "w") as primes_output:
         for prime in primes_list:
             primes_output.write("{0}\n".format(prime))
@@ -151,11 +152,6 @@ cpdef Main_Sqrt(int value_max, int num_loops, rlock, str runtime, str compilatio
     Main_Sqrt_Sub(value_max, num_loops, rlock, runtime, compilation, call_type, subcall, case)
 
 
-# cpdef void Main_Sqrt(int value_max, int num_loops, rlock, str runtime, str compilation, str call_type, str subcall, str case):
-# @cython.cfunc
-# @cython.locals(value_max=cython.int, num_loops=cython.int, i=cython.int, n=cython.int, j=cython.int, boundary=cython.int, average_time=cython.double)
-# @ft.lru_cache(maxsize=None)
-# def Main_Sqrt_Sub(value_max: int, num_loops: int, rlock, runtime: str, compilation: str, call_type: str, subcall: str, case: str):
 cdef void Main_Sqrt_Sub(int value_max, int num_loops, rlock, str runtime, str compilation, str call_type, str subcall, str case):
     cdef str group = " ".join([runtime, compilation, call_type, subcall])
     cdef str msg = str(("-" * 80) + "\n")
@@ -163,13 +159,17 @@ cdef void Main_Sqrt_Sub(int value_max, int num_loops, rlock, str runtime, str co
     msg += "{0} {1} started at {2}/{3}/{4} {5}:{6}:{7}:{8}".format(group, case, overall_start.year, overall_start.month, overall_start.day, overall_start.hour, overall_start.minute, overall_start.second, overall_start.microsecond)
     print_lock(msg, rlock)
 
-    cdef list time_list = []
-    cdef list div_list = []
-    cdef list primes_list = []
-    cdef list ret
-
     time_output = open("files_runs/{0}/time_{1}.txt".format(group.replace(" ", "_"), case).lower(), "w")
 
+    cdef list time_list
+    cdef list div_list
+    cdef list primes_list
+    cdef list ret
+    cdef int i
+    cdef int n
+    cdef int boundary
+    cdef int y
+    cdef int j
     for i in range(num_loops):
         # Clear the lists before a run
         time_list = []
@@ -197,10 +197,12 @@ cdef void Main_Sqrt_Sub(int value_max, int num_loops, rlock, str runtime, str co
         time_output.write("{0} {1} Pass {2} took {3} seconds.\n\n".format(group, case, i + 1, tmp_time_total))
         time_list.append(tmp_time_total)
 
+    cdef str div
     with open("files_runs/{0}/divisions_{1}.txt".format(group.replace(" ", "_"), case).lower(), "w") as div_output:
         for div in div_list:
             div_output.write(div)
 
+    cdef str prime
     with open("files_runs/{0}/primes_{1}.txt".format(group.replace(" ", "_"), case).lower(), "w") as primes_output:
         for prime in primes_list:
             primes_output.write("{0}\n".format(prime))

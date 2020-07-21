@@ -4,7 +4,7 @@
 		"suites": "ALL"
 	},
 	"primes": {
-		"max": "100000",
+		"max": "10000",
 		"loops": "5",
 		"tests": {
 			"CPython": {
@@ -469,9 +469,9 @@
 						},
 						"Map": {
               "case": {
-								"Default": 0,
-  							"Half": 0,
-  							"Sqrt": 0
+								"Default": 1,
+  							"Half": 1,
+  							"Sqrt": 1
               },
               "package": "Primes",
               "library": "Primes.Optimized.Local.Map"
@@ -487,18 +487,18 @@
 						},
 						"Lambda_LRU": {
               "case": {
-								"Default": 0,
-  							"Half": 0,
-  							"Sqrt": 0
+								"Default": 1,
+  							"Half": 1,
+  							"Sqrt": 1
               },
               "package": "Primes",
               "library": "Primes.Optimized.Local.Lambda_LRU"
 						},
 						"Lambda_LRU_Map": {
               "case": {
-								"Default": 0,
-  							"Half": 0,
-  							"Sqrt": 0
+								"Default": 1,
+  							"Half": 1,
+  							"Sqrt": 1
               },
               "package": "Primes",
               "library": "Primes.Optimized.Local.Lambda_LRU_Map"

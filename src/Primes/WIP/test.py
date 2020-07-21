@@ -2,8 +2,8 @@ import time
 
 
 def is_prime_default(n:int, table):
-    ret = [n % table[i] for i in range(len(table))]
-    return (all(ret), sum([bool(i) for i in ret]))
+    ret = [n % i for i in table]
+    return (all(ret), sum(ret),)
 
 primes_list = []
 primes_list.append(2)
@@ -21,7 +21,7 @@ primes_list = []
 primes_list.append(2)
 start = time.time()
 for n in range(3, 50000, 2):
-    ret = [n % primes_list[j] for j in range(len(primes_list))]
+    ret = [n % primes_list[j] for j in primes_list]
     tmp = (all(ret), sum([bool(i) for i in ret]))
     if tmp[0]:
         primes_list.append(j)

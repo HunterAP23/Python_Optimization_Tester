@@ -3,7 +3,7 @@ import math
 cimport cython
 
 
-cdef print_lock(str msg, rlock):
+cdef void print_lock(str msg, rlock):
     rlock.acquire()
     print(msg)
     rlock.release()

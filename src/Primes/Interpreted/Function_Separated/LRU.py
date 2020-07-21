@@ -12,8 +12,8 @@ def print_lock(msg, rlock):
 def is_prime_default(n: int, table: list):
     checks = 0
 
-    for i in range(len(table)):
-        if n % table[i] == 0:
+    for i in table:
+        if n % i == 0:
             return (False, 1)
         else:
             checks += 1
@@ -25,9 +25,9 @@ def is_prime_half(n: int, table: list):
     checks = 0
 
     boundary = math.floor(n / 2)
-    for i in range(len(table)):
-        if table[i] <= boundary:
-            if n % table[i] == 0:
+    for i in table:
+        if i <= boundary:
+            if n % i == 0:
                 return (False, 1)
             else:
                 checks += 1
@@ -41,9 +41,9 @@ def is_prime_sqrt(n: int, table: list):
     checks = 0
 
     boundary = math.floor(math.sqrt(n))
-    for i in range(len(table)):
-        if table[i] <= boundary:
-            if n % table[i] == 0:
+    for i in table:
+        if i <= boundary:
+            if n % i == 0:
                 return (False, 1)
             else:
                 checks += 1

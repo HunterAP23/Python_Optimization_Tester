@@ -3,51 +3,41 @@ import math
 cimport cython
 
 
-cdef print_lock(str msg, rlock):
+cdef void print_lock(str msg, rlock):
     rlock.acquire()
     print(msg)
     rlock.release()
 
 
-@cython.cfunc
-@cython.locals(n=cython.int, i=cython.int)
-@ft.lru_cache(maxsize=None)
-def is_prime_default(n: int, table: list):
+cdef(bint, int) is_prime_default(int n, int table):
     my_lam = ft.lru_cache(maxsize=None)(lambda y: n % y)
     cdef list ret = []
-    for i in range(len(table)):
-        ret.append(my_lam(table[i]))
-    # return (all(ret), sum([bool(i) for i in ret]))
-    return (all(ret), lambda x, y: sum(bool(x), bool(y)), ret)
+    cdef int i
+    for i in table:
+        ret.append(my_lam(i))
+    return (all(ret), sum(ret),)
 
 
-@cython.cfunc
-@cython.locals(n=cython.int, boundary=cython.int, i=cython.int)
-@ft.lru_cache(maxsize=None)
-def is_prime_half(n: int, table: list):
-    boundary = math.floor(n / 2)
+cdef(bint, int) is_prime_half(int n, int table):
+    cdef int boundary = math.floor(n / 2)
     my_lam = ft.lru_cache(maxsize=None)(lambda y: n % y)
     cdef list ret = []
-    for i in range(len(table)):
-        if table[i] <= boundary:
-            ret.append(my_lam(table[i]))
+    for i in table:
+        if i <= boundary:
+            ret.append(my_lam(i))
         else:
             break
-    # return (all(ret), sum([bool(i) for i in ret]))
-    return (all(ret), lambda x, y: sum(bool(x), bool(y)), ret)
+    return (all(ret), sum(ret),)
 
 
-@cython.cfunc
-@cython.locals(n=cython.int, boundary=cython.int, i=cython.int)
-@ft.lru_cache(maxsize=None)
-def is_prime_sqrt(n: int, table: list):
-    boundary = math.floor(math.sqrt(n))
+cdef(bint, int) is_prime_swrt(int n, int table):
+    cdef int boundary = math.floor(math.sqrt(n))
     my_lam = ft.lru_cache(maxsize=None)(lambda y: n % y)
     cdef list ret = []
-    for i in range(len(table)):
-        if table[i] <= boundary:
-            ret.append(my_lam(table[i]))
+    cdef int i
+    for i in table:
+        if i <= boundary:
+            ret.append(my_lam(i))
         else:
             break
-    # return (all(ret), sum([bool(i) for i in ret]))
-    return (all(ret), lambda x, y: sum(bool(x), bool(y)), ret)
+    return (all(ret), sum(ret),)

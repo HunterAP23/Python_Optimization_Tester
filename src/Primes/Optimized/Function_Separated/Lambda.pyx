@@ -3,45 +3,42 @@ import math
 cimport cython
 
 
-cdef print_lock(str msg, rlock):
+cdef void print_lock(str msg, rlock):
     rlock.acquire()
     print(msg)
     rlock.release()
 
 
-cdef is_prime__default(int n, list table):
+cdef(bint, int) is_prime_default(int n, list table):
     my_lam = lambda y: n % y
     cdef list ret = []
     cdef int i
-    for i in range(len(table)):
-        ret.append(my_lam(table[i]))
-    # return (all(ret), sum([bool(i) for i in ret]))
-    return (all(ret), lambda x, y: sum(bool(x), bool(y)), ret)
+    for i in table:
+        ret.append(my_lam(i))
+    return (all(ret), sum(ret),)
 
 
-cdef is_prime__half(int n, list table):
+cdef(bint, int) is_prime_half(int n, list table):
     cdef int boundary = math.floor(n / 2)
     my_lam = lambda y: n % y
     cdef list ret = []
     cdef int i
-    for i in range(len(table)):
-        if table[i] <= boundary:
-            ret.append(my_lam(table[i]))
+    for i in table:
+        if i <= boundary:
+            ret.append(my_lam(i))
         else:
             break
-    # return (all(ret), sum([bool(i) for i in ret]))
-    return (all(ret), lambda x, y: sum(bool(x), bool(y)), ret)
+    return (all(ret), sum(ret),)
 
 
-cdef is_prime__sqrt(int n, list table):
+cdef(bint, int) is_prime_sqrt(int n, list table):
     cdef int boundary = math.floor(math.sqrt(n))
     my_lam = lambda y: n % y
     cdef list ret = []
     cdef int i
-    for i in range(len(table)):
-        if table[i] <= boundary:
-            ret.append(my_lam(table[i]))
+    for i in table:
+        if i <= boundary:
+            ret.append(my_lam(i))
         else:
             break
-    # return (all(ret), sum([bool(i) for i in ret]))
-    return (all(ret), lambda x, y: sum(bool(x), bool(y)), ret)
+    return (all(ret), sum(ret),)

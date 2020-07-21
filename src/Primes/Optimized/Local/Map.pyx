@@ -26,15 +26,16 @@ cdef void Main_Default_Sub(int value_max, int num_loops, rlock, str runtime, str
     msg += "{0} {1} started at {2}/{3}/{4} {5}:{6}:{7}:{8}".format(group, case, overall_start.year, overall_start.month, overall_start.day, overall_start.hour, overall_start.minute, overall_start.second, overall_start.microsecond)
     print_lock(msg, rlock)
 
-    cdef list time_list = []
-    cdef list div_list = []
-    cdef list primes_list = []
-    cdef list ret
-    cdef list n_list
-    cdef list y_list
-
     time_output = open("files_runs/{0}/time_{1}.txt".format(group.replace(" ", "_"), case).lower(), "w")
 
+    cdef list time_list
+    cdef list div_list
+    cdef list primes_list
+    cdef int n
+    cdef list n_list
+    cdef list y_list
+    cdef list ret
+    cdef int j
     for i in range(num_loops):
         # Clear the lists before a run
         time_list = []
@@ -48,7 +49,7 @@ cdef void Main_Default_Sub(int value_max, int num_loops, rlock, str runtime, str
             y_list = []
             for j in primes_list:
                 y_list.append(j)
-            ret = list(map(is_prime_default, n_list, tuple(y_list)))
+            ret = list(map(is_prime_default, n_list, y_list))
 
             if all(ret):
                 div_list.append("Primality Test for {0} took {1} divisions.\n\n".format(n, sum(ret)))
@@ -59,10 +60,12 @@ cdef void Main_Default_Sub(int value_max, int num_loops, rlock, str runtime, str
         time_output.write("{0} {1} Pass {2} took {3} seconds.\n\n".format(group, case, i + 1, tmp_time_total))
         time_list.append(tmp_time_total)
 
+    cdef str div
     with open("files_runs/{0}/divisions_{1}.txt".format(group.replace(" ", "_"), case).lower(), "w") as div_output:
         for div in div_list:
             div_output.write(div)
 
+    cdef str prime
     with open("files_runs/{0}/primes_{1}.txt".format(group.replace(" ", "_"), case).lower(), "w") as primes_output:
         for prime in primes_list:
             primes_output.write("{0}\n".format(prime))
@@ -90,15 +93,17 @@ cdef void Main_Half_Sub(int value_max, int num_loops, rlock, str runtime, str co
     msg += "{0} {1} started at {2}/{3}/{4} {5}:{6}:{7}:{8}".format(group, case, overall_start.year, overall_start.month, overall_start.day, overall_start.hour, overall_start.minute, overall_start.second, overall_start.microsecond)
     print_lock(msg, rlock)
 
-    cdef list time_list = []
-    cdef list div_list = []
-    cdef list primes_list = []
-    cdef list ret
-    cdef list n_list
-    cdef list y_list
-
     time_output = open("files_runs/{0}/time_{1}.txt".format(group.replace(" ", "_"), case).lower(), "w")
 
+    cdef list time_list
+    cdef list div_list
+    cdef list primes_list
+    cdef int n
+    cdef int boundary
+    cdef list n_list
+    cdef list y_list
+    cdef list ret
+    cdef int j
     for i in range(num_loops):
         # Clear the lists before a run
         time_list = []
@@ -114,7 +119,7 @@ cdef void Main_Half_Sub(int value_max, int num_loops, rlock, str runtime, str co
             for j in primes_list:
                 if j <= boundary:
                     y_list.append(j)
-            ret = list(map(is_prime_default, n_list, tuple(y_list)))
+            ret = list(map(is_prime_default, n_list, y_list))
 
             if all(ret):
                 div_list.append("Primality Test for {0} took {1} divisions.\n\n".format(n, sum(ret)))
@@ -125,10 +130,12 @@ cdef void Main_Half_Sub(int value_max, int num_loops, rlock, str runtime, str co
         time_output.write("{0} {1} Pass {2} took {3} seconds.\n\n".format(group, case, i + 1, tmp_time_total))
         time_list.append(tmp_time_total)
 
+    cdef str div
     with open("files_runs/{0}/divisions_{1}.txt".format(group.replace(" ", "_"), case).lower(), "w") as div_output:
         for div in div_list:
             div_output.write(div)
 
+    cdef str prime
     with open("files_runs/{0}/primes_{1}.txt".format(group.replace(" ", "_"), case).lower(), "w") as primes_output:
         for prime in primes_list:
             primes_output.write("{0}\n".format(prime))
@@ -156,15 +163,17 @@ cdef void Main_Sqrt_Sub(int value_max, int num_loops, rlock, str runtime, str co
     msg += "{0} {1} started at {2}/{3}/{4} {5}:{6}:{7}:{8}".format(group, case, overall_start.year, overall_start.month, overall_start.day, overall_start.hour, overall_start.minute, overall_start.second, overall_start.microsecond)
     print_lock(msg, rlock)
 
-    cdef list time_list = []
-    cdef list div_list = []
-    cdef list primes_list = []
-    cdef list ret
-    cdef list n_list
-    cdef list y_list
-
     time_output = open("files_runs/{0}/time_{1}.txt".format(group.replace(" ", "_"), case).lower(), "w")
 
+    cdef list time_list
+    cdef list div_list
+    cdef list primes_list
+    cdef int n
+    cdef int boundary
+    cdef list n_list
+    cdef list y_list
+    cdef list ret
+    cdef int j
     for i in range(num_loops):
         # Clear the lists before a run
         time_list = []
@@ -180,7 +189,7 @@ cdef void Main_Sqrt_Sub(int value_max, int num_loops, rlock, str runtime, str co
             for j in primes_list:
                 if j <= boundary:
                     y_list.append(j)
-            ret = list(map(is_prime_default, n_list, tuple(y_list)))
+            ret = list(map(is_prime_default, n_list, y_list))
 
             if all(ret):
                 div_list.append("Primality Test for {0} took {1} divisions.\n\n".format(n, sum(ret)))
@@ -191,10 +200,12 @@ cdef void Main_Sqrt_Sub(int value_max, int num_loops, rlock, str runtime, str co
         time_output.write("{0} {1} Pass {2} took {3} seconds.\n\n".format(group, case, i + 1, tmp_time_total))
         time_list.append(tmp_time_total)
 
+    cdef str div
     with open("files_runs/{0}/divisions_{1}.txt".format(group.replace(" ", "_"), case).lower(), "w") as div_output:
         for div in div_list:
             div_output.write(div)
 
+    cdef str prime
     with open("files_runs/{0}/primes_{1}.txt".format(group.replace(" ", "_"), case).lower(), "w") as primes_output:
         for prime in primes_list:
             primes_output.write("{0}\n".format(prime))

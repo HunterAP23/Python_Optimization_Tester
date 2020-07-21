@@ -24,7 +24,7 @@ cdef (bint, int) is_prime_default(int num):
         return (False, 0)
     else:
         checks = checks + 1
-        for i in range(len(table)):
+        for i in table:
             checks = checks + 1
             if num % table[i] == 0:
                 return (False, checks)
@@ -44,7 +44,7 @@ cdef (bint, int) is_prime_half(int num):
         checks = checks + 1
         boundary = math.floor(num / 2)
         for i in range(len(table2)):
-            if table[i] <= boundary:
+            if i <= boundary:
                 checks = checks + 1
                 if num % table[i] == 0:
                     return (False, checks)
@@ -64,7 +64,7 @@ cdef (bint, int) is_prime_sqrt(int num):
         checks = checks + 1
         boundary = math.floor(math.sqrt(num))
         for i in range(len(table3)):
-            if table[i] <= boundary:
+            if i <= boundary:
                 checks = checks + 1
                 if num % table[i] == 0:
                     return (False, checks)
@@ -86,7 +86,7 @@ cdef void Main_Default(int value_max, int num_loops, rlock):
     my_file3 = "files_runs/optimized_default_primes.txt"
     txt_output3 = open(my_file3, "a")
 
-    cdef list time_list = []
+    cdef list time_list
     cdef list divisions_list = []
     cdef list primes = []
 
@@ -138,7 +138,7 @@ cdef void Main_Half(int value_max, int num_loops, rlock):
     my_file3 = "files_runs/optimized_half_primes.txt"
     txt_output3 = open(my_file3, "a")
 
-    cdef list time_list = []
+    cdef list time_list
     cdef list divisions_list = []
     cdef list primes = []
 
@@ -190,7 +190,7 @@ cdef void Main_Sqrt(int value_max, int num_loops, rlock):
     my_file3 = "files_runs/optimized_sqrt_primes.txt"
     txt_output3 = open(my_file3, "a")
 
-    cdef list time_list = []
+    cdef list time_list
     cdef list divisions_list = []
     cdef list primes = []
 

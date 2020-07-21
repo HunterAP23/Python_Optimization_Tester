@@ -26,7 +26,7 @@ def is_prime_default(num):
         return [False, 0]
     else:
         checks = checks + 1
-        for i in range(len(table)):
+        for i in table:
             checks = checks + 1
             if num % table[i] == 0:
                 return [False, checks]
@@ -47,7 +47,7 @@ def is_prime_half(num):
         checks = checks + 1
         boundary = math.floor(num / 2)
         for i in range(len(table2)):
-            if table[i] <= boundary:
+            if i <= boundary:
                 checks = checks + 1
                 if num % table[i] == 0:
                     return [False, checks]
@@ -68,7 +68,7 @@ def is_prime_sqrt(num):
         checks = checks + 1
         boundary = int(math.floor(math.sqrt(num)))
         for i in range(len(table3)):
-            if table[i] <= boundary:
+            if i <= boundary:
                 checks = checks + 1
                 if num % table[i] == 0:
                     return [False, checks]
