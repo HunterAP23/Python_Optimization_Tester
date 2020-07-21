@@ -32,7 +32,7 @@ def Main_Default(value_max: int, num_loops: int, rlock, runtime: str, compilatio
 
         tmp_time_start = time.time()
         for n in range(3, value_max, 2):
-            my_lam = ft.lru_cache()(lambda y: n % y)
+            my_lam = ft.lru_cache(maxsize=None)(lambda y: n % y)
             ret = []
             for j in range(len(primes_list)):
                 ret.append(my_lam(primes_list[j]))
@@ -90,7 +90,7 @@ def Main_Half(value_max: int, num_loops: int, rlock, runtime: str, compilation: 
         tmp_time_start = time.time()
         for n in range(3, value_max, 2):
             boundary = math.floor(n / 2)
-            my_lam = ft.lru_cache()(lambda y: n % y)
+            my_lam = ft.lru_cache(maxsize=None)(lambda y: n % y)
             ret = []
             for j in range(len(primes_list)):
                 if tuple(primes_list)[j] <= boundary:
@@ -150,7 +150,7 @@ def Main_Sqrt(value_max: int, num_loops: int, rlock, runtime: str, compilation: 
         tmp_time_start = time.time()
         for n in range(3, value_max, 2):
             boundary = math.floor(math.sqrt(n))
-            my_lam = ft.lru_cache()(lambda y: n % y)
+            my_lam = ft.lru_cache(maxsize=None)(lambda y: n % y)
             ret = []
             for j in range(len(primes_list)):
                 if tuple(primes_list)[j] <= boundary:

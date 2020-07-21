@@ -30,33 +30,32 @@ def time_function(func, ret_dict, args, name, sema, rlock):
 
 def run_in_parallel(fns, ret_dict, threads, args, sema, rlock):
     proc = []
-    # i = 0
-    # for name, fn in fns.items():
-    #     p = mp.Process(target=time_function, args=(fn, ret_dict, args, name, sema, rlock))
-    #     proc.append(p)
-    #
-    # for p in proc:
-    #     p.start()
-    #
-    # for p in proc:
-    #     try:
-    #         p.join()
-    #     except Exception as x:
-    #         print("EXCEPTION")
+    for name, fn in fns.items():
+        p = mp.Process(target=time_function, args=(fn, ret_dict, args, name, sema, rlock))
+        proc.append(p)
 
-    with mp.Pool(threads) as pool:
-        rets = dict()
-        for name, fn in fns.items():
-            rets[name] = pool.apply_async(func=time_function, args=(fn, ret_dict, args, name, sema, rlock))
+    for p in proc:
+        p.start()
 
+    for p in proc:
         try:
-            pool.close()
-            pool.join()
-        except KeyboardInterrupt:
-            print("Caught KeyboardInterrupt, terminating all child processes.")
-            pool.terminate()
-            pool.join()
-            exit(1)
+            p.join()
+        except Exception as x:
+            print("EXCEPTION")
+
+    # with mp.Pool(threads) as pool:
+    #     rets = dict()
+    #     for name, fn in fns.items():
+    #         rets[name] = pool.apply_async(func=time_function, args=(fn, ret_dict, args, name, sema, rlock))
+    #
+    #     try:
+    #         pool.close()
+    #         pool.join()
+    #     except KeyboardInterrupt:
+    #         print("Caught KeyboardInterrupt, terminating all child processes.")
+    #         pool.terminate()
+    #         # pool.join()
+    #         exit(1)
 
 
 def validate_primes(config):

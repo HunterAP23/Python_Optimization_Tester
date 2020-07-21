@@ -43,7 +43,7 @@ cdef void Main_Default_Sub(int value_max, int num_loops, rlock, str runtime, str
 
         tmp_time_start = time.time()
         for n in range(3, value_max, 2):
-            my_lam = ft.lru_cache()(lambda y: n % y)
+            my_lam = ft.lru_cache(maxsize=None)(lambda y: n % y)
             ret = []
             for j in range(len(primes_list)):
                 ret.append(my_lam(primes_list[j]))
@@ -111,7 +111,7 @@ cdef void Main_Half_Sub(int value_max, int num_loops, rlock, str runtime, str co
         tmp_time_start = time.time()
         for n in range(3, value_max, 2):
             boundary = math.floor(n / 2)
-            my_lam = ft.lru_cache()(lambda y: n % y)
+            my_lam = ft.lru_cache(maxsize=None)(lambda y: n % y)
             ret = []
             for j in range(len(primes_list)):
                 if tuple(primes_list)[j] <= boundary:
@@ -180,7 +180,7 @@ cdef void Main_Sqrt_Sub(int value_max, int num_loops, rlock, str runtime, str co
         tmp_time_start = time.time()
         for n in range(3, value_max, 2):
             boundary = math.floor(math.sqrt(n))
-            my_lam = ft.lru_cache()(lambda y: n % y)
+            my_lam = ft.lru_cache(maxsize=None)(lambda y: n % y)
             ret = []
             for j in range(len(primes_list)):
                 if tuple(primes_list)[j] <= boundary:

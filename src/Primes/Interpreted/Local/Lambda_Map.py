@@ -87,7 +87,7 @@ def Main_Half(value_max: int, num_loops: int, rlock, runtime: str, compilation: 
         tmp_time_start = time.time()
         for n in range(3, value_max, 2):
             boundary = math.floor(n / 2)
-            ret = list(map(lambda y: n % y if y <= boundary else 0, primes_list))
+            ret = list(map(lambda y: n % y if y <= boundary else 1, primes_list))
 
             if all(ret):
                 div_list.append("Primality Test for {0} took {1} divisions.\n\n".format(n, sum(ret)))
@@ -142,7 +142,7 @@ def Main_Sqrt(value_max: int, num_loops: int, rlock, runtime: str, compilation: 
         tmp_time_start = time.time()
         for n in range(3, value_max, 2):
             boundary = math.floor(math.sqrt(n))
-            ret = list(map(lambda y: n % y if y <= boundary else 0, primes_list))
+            ret = list(map(lambda y: n % y if y <= boundary else 1, primes_list))
 
             if all(ret):
                 div_list.append("Primality Test for {0} took {1} divisions.\n\n".format(n, sum(ret)))

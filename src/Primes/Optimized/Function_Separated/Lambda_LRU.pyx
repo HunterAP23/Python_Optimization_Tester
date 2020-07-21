@@ -13,7 +13,7 @@ cdef print_lock(str msg, rlock):
 @cython.locals(n=cython.int, i=cython.int)
 @ft.lru_cache(maxsize=None)
 def is_prime_default(n: int, table: list):
-    my_lam = ft.lru_cache()(lambda y: n % y)
+    my_lam = ft.lru_cache(maxsize=None)(lambda y: n % y)
     cdef list ret = []
     for i in range(len(table)):
         ret.append(my_lam(table[i]))
@@ -26,7 +26,7 @@ def is_prime_default(n: int, table: list):
 @ft.lru_cache(maxsize=None)
 def is_prime_half(n: int, table: list):
     boundary = math.floor(n / 2)
-    my_lam = ft.lru_cache()(lambda y: n % y)
+    my_lam = ft.lru_cache(maxsize=None)(lambda y: n % y)
     cdef list ret = []
     for i in range(len(table)):
         if table[i] <= boundary:
@@ -42,7 +42,7 @@ def is_prime_half(n: int, table: list):
 @ft.lru_cache(maxsize=None)
 def is_prime_sqrt(n: int, table: list):
     boundary = math.floor(math.sqrt(n))
-    my_lam = ft.lru_cache()(lambda y: n % y)
+    my_lam = ft.lru_cache(maxsize=None)(lambda y: n % y)
     cdef list ret = []
     for i in range(len(table)):
         if table[i] <= boundary:
