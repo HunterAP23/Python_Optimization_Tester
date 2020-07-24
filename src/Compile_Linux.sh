@@ -13,4 +13,4 @@ for pyx in $(find "Primes/Optimized" -type f -name "Compiler_*.py"); do
      python3 $pyx build_ext --inplace
 done
 
-python3 "Compiler_Tester.py" build_ext --inplace
+# python3 "Compiler_Tester.py" build_ext --inplace

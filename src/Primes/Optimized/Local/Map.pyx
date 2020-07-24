@@ -65,7 +65,7 @@ cdef void Main_Default_Sub(int value_max, int num_loops, rlock, str runtime, str
         for div in div_list:
             div_output.write(div)
 
-    cdef str prime
+    cdef int prime
     with open("files_runs/{0}/primes_{1}.txt".format(group.replace(" ", "_"), case).lower(), "w") as primes_output:
         for prime in primes_list:
             primes_output.write("{0}\n".format(prime))
@@ -135,7 +135,7 @@ cdef void Main_Half_Sub(int value_max, int num_loops, rlock, str runtime, str co
         for div in div_list:
             div_output.write(div)
 
-    cdef str prime
+    cdef int prime
     with open("files_runs/{0}/primes_{1}.txt".format(group.replace(" ", "_"), case).lower(), "w") as primes_output:
         for prime in primes_list:
             primes_output.write("{0}\n".format(prime))
@@ -205,7 +205,7 @@ cdef void Main_Sqrt_Sub(int value_max, int num_loops, rlock, str runtime, str co
         for div in div_list:
             div_output.write(div)
 
-    cdef str prime
+    cdef int prime
     with open("files_runs/{0}/primes_{1}.txt".format(group.replace(" ", "_"), case).lower(), "w") as primes_output:
         for prime in primes_list:
             primes_output.write("{0}\n".format(prime))

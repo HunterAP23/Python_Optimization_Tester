@@ -13,7 +13,7 @@ def print_lock(msg, rlock):
     rlock.release()
 
 
-def is_prime_default(n: int, table: list):
+def is_prime_default(n: int, table: tuple):
     """Interpeted Function Lambda Default."""
     my_lam = lambda y: n % y
     ret = []
@@ -22,7 +22,7 @@ def is_prime_default(n: int, table: list):
     return (all(ret), sum(ret),)
 
 
-def is_prime_half(n: int, table: list):
+def is_prime_half(n: int, table: tuple):
     """Interpeted Function Lambda Half."""
     boundary = math.floor(n / 2)
     my_lam = lambda y: n % y
@@ -35,7 +35,7 @@ def is_prime_half(n: int, table: list):
     return (all(ret), sum(ret),)
 
 
-def is_prime_sqrt(n: int, table: list):
+def is_prime_sqrt(n: int, table: tuple):
     """Interpeted Function Lambda Square Root."""
     boundary = math.floor(math.sqrt(n))
     my_lam = lambda y: n % y

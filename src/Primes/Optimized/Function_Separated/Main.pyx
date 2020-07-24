@@ -44,7 +44,7 @@ cdef void Main_Sub(int value_max, int num_loops, rlock, str runtime, str compila
 
         tmp_time_start = time.time()
         for n in range(3, value_max, 2):
-            ret = func(n, primes_list)
+            ret = func(n, tuple(primes_list))
 
             if ret[0]:
                 div_list.append("Primality Test for {0} took {1} divisions.\n\n".format(n, ret[1]))
@@ -60,7 +60,7 @@ cdef void Main_Sub(int value_max, int num_loops, rlock, str runtime, str compila
         for div in div_list:
             div_output.write(div)
 
-    cdef str prime
+    cdef int prime
     with open("files_runs/{0}/primes_{1}.txt".format(group.replace(" ", "_"), case).lower(), "w") as primes_output:
         for prime in primes_list:
             primes_output.write("{0}\n".format(prime))

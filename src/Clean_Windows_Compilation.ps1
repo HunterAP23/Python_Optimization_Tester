@@ -10,6 +10,14 @@ Get-ChildItem -Path "." -File -Recurse -Filter *.pyd | Foreach-Object {
     rm $_.FullName
 }
 
-Write-Output "Cleaning up *.txt objects in Compiled folder"
+Write-Output "Cleaning up *.pyc objects"
+Get-ChildItem -Path "." -File -Recurse -Filter *.pyc | Foreach-Object {
+    Write-Output $_.Name
+    rm $_.FullName
+}
 
-Remove-Item -Path "./files_runs" -Include *.txt -Recurse -Force
+Write-Output "Cleaning up *.so objects"
+Get-ChildItem -Path "." -File -Recurse -Filter *.so | Foreach-Object {
+    Write-Output $_.Name
+    rm $_.FullName
+}

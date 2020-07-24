@@ -9,7 +9,7 @@ cdef void print_lock(str msg, rlock):
     rlock.release()
 
 
-cdef(bint, int) is_prime_default(int n, int table):
+cdef(bint, int) is_prime_default(int n, tuple table):
     cdef int checks = 0
 
     cdef int i
@@ -21,7 +21,7 @@ cdef(bint, int) is_prime_default(int n, int table):
     return (True, checks)
 
 
-cdef(bint, int) is_prime_half(int n, int table):
+cdef(bint, int) is_prime_half(int n, tuple table):
     cdef int checks = 0
 
     cdef int boundary = math.floor(n / 2)
@@ -37,7 +37,7 @@ cdef(bint, int) is_prime_half(int n, int table):
     return (True, checks)
 
 
-cdef(bint, int) is_prime_sqrt(int n, int table):
+cdef(bint, int) is_prime_sqrt(int n, tuple table):
     cdef int checks = 0
 
     cdef int boundary = math.floor(math.sqrt(n))

@@ -8,7 +8,7 @@ import shutil
 import sys
 import time
 from typing import *
-cimport cython
+# cimport cython
 
 
 def time_function(func, ret_dict, args, name, sema, rlock):

@@ -11,20 +11,32 @@ cdef void print_lock(str msg, rlock):
     rlock.release()
 
 
-cdef(bint, int) is_prime_default(int n, list table):
+cpdef (cython.bint, cython.int) is_prime_default(int n, tuple table):
+    return is_prime_default_sub(n, table)
+
+
+cdef (cython.bint, cython.int) is_prime_default_sub(n: int, table: tuple):
     my_lam = lambda y: n % y
     cdef list ret = list(map(my_lam, table))
     return (all(ret), sum(ret),)
 
 
-cdef(bint, int) is_prime_half(int n, list table):
+cpdef (cython.bint, cython.int) is_prime_half(int n, tuple table):
+    return is_prime_half_sub(n, table)
+
+
+cdef (cython.bint, cython.int) is_prime_half_sub(int n, tuple table):
     cdef int boundary = math.floor(n / 2)
     my_lam = lambda y: n % y if y <= boundary else 1
     cdef list ret = list(map(my_lam, table))
     return (all(ret), sum(ret),)
 
 
-cdef(bint, int) is_prime_sqrt(int n, list table):
+cpdef (cython.bint, cython.int) is_prime_sqrt(int n, tuple table):
+    return is_prime_sqrt_sub(n, table)
+
+
+cdef (cython.bint, cython.int) is_prime_sqrt_sub(n: int, table: tuple):
     cdef int boundary = math.floor(math.sqrt(n))
     my_lam = lambda y: n % y if y <= boundary else 1
     cdef list ret = list(map(my_lam, table))
@@ -61,7 +73,7 @@ cdef void Main_Sub(int value_max, int num_loops, rlock, str runtime, str compila
 
         tmp_time_start = time.time()
         for n in range(3, value_max, 2):
-            ret = func(n, primes_list)
+            ret = func(n, tuple(primes_list))
 
             if ret[0]:
                 div_list.append("Primality Test for {0} took {1} divisions.\n\n".format(n, ret[1]))
@@ -77,7 +89,7 @@ cdef void Main_Sub(int value_max, int num_loops, rlock, str runtime, str compila
         for div in div_list:
             div_output.write(div)
 
-    cdef str prime
+    cdef int prime
     with open("files_runs/{0}/primes_{1}.txt".format(group.replace(" ", "_"), case).lower(), "w") as primes_output:
         for prime in primes_list:
             primes_output.write("{0}\n".format(prime))

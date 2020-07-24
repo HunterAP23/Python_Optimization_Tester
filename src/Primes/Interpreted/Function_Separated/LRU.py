@@ -9,7 +9,7 @@ def print_lock(msg, rlock):
 
 
 @ft.lru_cache(maxsize=None)
-def is_prime_default(n: int, table: list):
+def is_prime_default(n: int, table: tuple):
     checks = 0
 
     for i in table:
@@ -21,7 +21,7 @@ def is_prime_default(n: int, table: list):
 
 
 @ft.lru_cache(maxsize=None)
-def is_prime_half(n: int, table: list):
+def is_prime_half(n: int, table: tuple):
     checks = 0
 
     boundary = math.floor(n / 2)
@@ -37,7 +37,7 @@ def is_prime_half(n: int, table: list):
 
 
 @ft.lru_cache(maxsize=None)
-def is_prime_sqrt(n: int, table: list):
+def is_prime_sqrt(n: int, table: tuple):
     checks = 0
 
     boundary = math.floor(math.sqrt(n))

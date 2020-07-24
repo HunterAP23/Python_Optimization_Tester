@@ -29,4 +29,4 @@ Get-ChildItem -Path "Primes/Optimized" -File -Recurse -Filter Compiler_*.py | Fo
      python37 $_.FullName build_ext --inplace
 }
 
-python37 "Compiler_Tester.py" build_ext --inplace
+# python37 "Compiler_Tester.py" build_ext --inplace

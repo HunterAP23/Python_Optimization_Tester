@@ -12,7 +12,7 @@ cdef void print_lock(str msg, rlock):
 @cython.cfunc
 @cython.locals(n=cython.int, i=cython.int)
 @ft.lru_cache(maxsize=None)
-def is_prime_default(int n, list table):
+def is_prime_default(int n, tuple table):
     cdef list ret
     ret = [n % i for i in table]
     return (all(ret), sum(ret),)
@@ -21,7 +21,7 @@ def is_prime_default(int n, list table):
 @cython.cfunc
 @cython.locals(n=cython.int, boundary=cython.int, i=cython.int)
 @ft.lru_cache(maxsize=None)
-def is_prime_half(int n, list table):
+def is_prime_half(int n, tuple table):
     boundary = math.floor(n / 2)
     cdef list ret
     ret = [n % i for i in table if i <= boundary]
@@ -31,7 +31,7 @@ def is_prime_half(int n, list table):
 @cython.cfunc
 @cython.locals(n=cython.int, boundary=cython.int, i=cython.int)
 @ft.lru_cache(maxsize=None)
-def is_prime_sqrt(int n, list table):
+def is_prime_sqrt(int n, tuple table):
     boundary = math.floor(math.sqrt(n))
     cdef list ret
     ret = [n % i for i in table if i <= boundary]
