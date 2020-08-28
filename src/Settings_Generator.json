@@ -4,8 +4,8 @@
 		"suites": "ALL"
 	},
 	"primes": {
-		"max": "10000",
-		"loops": "5",
+		"max": "100000",
+		"loops": "10",
 		"tests": {
 			"CPython": {
 				"Interpreted": {
@@ -36,6 +36,15 @@
               },
               "package": "Primes",
               "library": "Primes.Interpreted.Local.List"
+						},
+						"Generator": {
+              "case": {
+								"Default": 0,
+  							"Half": 0,
+  							"Sqrt": 0
+              },
+              "package": "Primes",
+              "library": "Primes.Interpreted.Local.Generator"
 						},
 						"Map": {
               "case": {
@@ -101,6 +110,15 @@
               },
               "package": "Primes",
               "library": "Primes.Interpreted.Function.List"
+						},
+						"Generator_Lambda": {
+              "case": {
+								"Default": 0,
+  							"Half": 0,
+  							"Sqrt": 0
+              },
+              "package": "Primes",
+              "library": "Primes.Interpreted.Function.Generator_Lambda"
 						},
 						"Lambda_Map": {
               "case": {
@@ -321,36 +339,36 @@
 						},
 						"Map": {
               "case": {
-								"Default": 1,
-  							"Half": 1,
-  							"Sqrt": 1
+								"Default": 0,
+  							"Half": 0,
+  							"Sqrt": 0
               },
               "package": "Primes",
               "library": "Primes.Optimized.Local.Map"
 						},
 						"Lambda_Map": {
               "case": {
-								"Default": 1,
-  							"Half": 1,
-  							"Sqrt": 1
+								"Default": 0,
+  							"Half": 0,
+  							"Sqrt": 0
               },
               "package": "Primes",
               "library": "Primes.Optimized.Local.Lambda_Map"
 						},
 						"Lambda_LRU": {
               "case": {
-								"Default": 1,
-  							"Half": 1,
-  							"Sqrt": 1
+								"Default": 0,
+  							"Half": 0,
+  							"Sqrt": 0
               },
               "package": "Primes",
               "library": "Primes.Optimized.Local.Lambda_LRU"
 						},
 						"Lambda_LRU_Map": {
               "case": {
-								"Default": 1,
-  							"Half": 1,
-  							"Sqrt": 1
+								"Default": 0,
+  							"Half": 0,
+  							"Sqrt": 0
               },
               "package": "Primes",
               "library": "Primes.Optimized.Local.Lambda_LRU_Map"
