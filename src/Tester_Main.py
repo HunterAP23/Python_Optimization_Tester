@@ -149,7 +149,7 @@ def main(args):
             # compilation = [normal, cython, optimized]
             for runtime, compilation in tests.items():
                 # comp = compilation
-                # call_type = [local, function, function_separated]
+                # call_type = [local, function]
                 for comp, call_type in compilation.items():
                     # call = call_type
                     # subcall = any of the test cases for the given call_type
