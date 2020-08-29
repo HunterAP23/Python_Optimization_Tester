@@ -36,7 +36,7 @@ def Main_Default(value_max: int, num_loops: int, rlock, runtime: str, compilatio
 
         tmp_time_start = time.time()
         for n in range(3, value_max, 2):
-            ret = (n % j for j in primes_list)
+            ret = (n % j for j in primes_list if j < n)
 
             if all(ret):
                 div_list.append("Primality Test for {0} took {1} divisions.\n\n".format(n, sum(ret)))

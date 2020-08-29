@@ -33,9 +33,7 @@ def Main_Default(value_max: int, num_loops: int, rlock, runtime: str, compilatio
         tmp_time_start = time.time()
         for n in range(3, value_max, 2):
             my_lam = ft.lru_cache(maxsize=None)(lambda y: n % y)
-            ret = []
-            for j in primes_list:
-                ret.append(my_lam(j))
+            ret = (my_lam(j) for j in primes_list if j < n)
 
             if all(ret):
                 div_list.append("Primality Test for {0} took {1} divisions.\n\n".format(n, sum(ret)))
@@ -91,12 +89,8 @@ def Main_Half(value_max: int, num_loops: int, rlock, runtime: str, compilation: 
         for n in range(3, value_max, 2):
             boundary = math.floor(n / 2)
             my_lam = ft.lru_cache(maxsize=None)(lambda y: n % y)
-            ret = []
-            for j in primes_list:
-                if j <= boundary:
-                    ret.append(my_lam(j))
-                else:
-                    break
+            ret = (my_lam(j) for j in primes_list if j <= boundary)
+
             if all(ret):
                 div_list.append("Primality Test for {0} took {1} divisions.\n\n".format(n, sum(ret)))
                 primes_list.append(n)
@@ -151,12 +145,7 @@ def Main_Sqrt(value_max: int, num_loops: int, rlock, runtime: str, compilation: 
         for n in range(3, value_max, 2):
             boundary = math.floor(math.sqrt(n))
             my_lam = ft.lru_cache(maxsize=None)(lambda y: n % y)
-            ret = []
-            for j in primes_list:
-                if j <= boundary:
-                    ret.append(my_lam(j))
-                else:
-                    break
+            ret = (my_lam(j) for j in primes_list if j <= boundary)
 
             if all(ret):
                 div_list.append("Primality Test for {0} took {1} divisions.\n\n".format(n, sum(ret)))
