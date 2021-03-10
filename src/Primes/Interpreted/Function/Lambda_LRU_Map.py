@@ -16,7 +16,7 @@ def is_prime_default(n: int, table: tuple):
 def is_prime_half(n: int, table: tuple):
     boundary = math.floor(n / 2)
     my_lam = ft.lru_cache(maxsize=None)(lambda y: n % y if y <= boundary else 1)
-    return = list(map(my_lam, table))
+    return list(map(my_lam, table))
 
 
 def is_prime_sqrt(n: int, table: tuple):

@@ -7,7 +7,7 @@ import os
 import shutil
 import sys
 import time
-from typing import *
+# from typing import *
 # cimport cython
 
 
@@ -40,8 +40,8 @@ def run_in_parallel(fns, ret_dict, threads, args, sema, rlock):
     for p in proc:
         try:
             p.join()
-        except Exception as x:
-            print("EXCEPTION")
+        except Exception as e:
+            print("EXCEPTION: {}".format(e))
 
     # with mp.Pool(threads) as pool:
     #     rets = dict()

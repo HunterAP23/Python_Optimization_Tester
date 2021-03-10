@@ -9,41 +9,47 @@ def print_lock(msg, rlock):
 
 
 def is_prime_default(n: int, table: tuple):
-    checks = 0
+    checks = []
 
     for i in table:
         if n % i == 0:
-            return (False, 1)
+            checks.append(1)
+            checks.append(0)
+            return checks
         else:
-            checks += 1
-    return (True, checks)
+            checks.append(1)
+    return checks
 
 
 def is_prime_half(n: int, table: tuple):
-    checks = 0
+    checks = []
 
     boundary = math.floor(n / 2)
     for i in table:
         if i <= boundary:
             if n % i == 0:
-                return (False, 1)
+                checks.append(1)
+                checks.append(0)
+                return checks
             else:
-                checks += 1
+                checks.append(1)
         else:
             break
-    return (True, checks)
+    return checks
 
 
 def is_prime_sqrt(n: int, table: tuple):
-    checks = 0
+    checks = []
 
     boundary = math.floor(math.sqrt(n))
     for i in table:
         if i <= boundary:
             if n % i == 0:
-                return (False, 1)
+                checks.append(1)
+                checks.append(0)
+                return checks
             else:
-                checks += 1
+                checks.append(1)
         else:
             break
-    return (True, checks)
+    return checks

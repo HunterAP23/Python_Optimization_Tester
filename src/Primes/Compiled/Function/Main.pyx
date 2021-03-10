@@ -39,8 +39,8 @@ def Main(value_max: int, num_loops: int, rlock, runtime: str, compilation: str, 
         for n in range(3, value_max, 2):
             ret = func(n, tuple(primes_list))
 
-            if ret[0]:
-                div_list.append("Primality Test for {0} took {1} divisions.\n\n".format(n, ret[1]))
+            if all(ret):
+                div_list.append("Primality Test for {0} took {1} divisions.\n\n".format(n, sum(ret)))
                 primes_list.append(n)
 
         tmp_time_total = time.time() - tmp_time_start

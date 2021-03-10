@@ -1,5 +1,5 @@
 import cProfile
 import re
-import Threader
+# import Threader
 
 cProfile.run("re.compile(\"threader\")")

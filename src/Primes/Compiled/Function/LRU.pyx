@@ -10,43 +10,46 @@ def print_lock(msg, rlock):
 
 @ft.lru_cache(maxsize=None)
 def is_prime_default(n: int, table: tuple):
-    checks = 0
+    checks = []
 
     for i in table:
         if n % i == 0:
-            return (False, 1)
+            checks.append(False)
+            return checks
         else:
-            checks += 1
-    return (True, checks)
+            checks.append(True)
+    return checks
 
 
 @ft.lru_cache(maxsize=None)
 def is_prime_half(n: int, table: tuple):
-    checks = 0
+    checks = []
 
     boundary = math.floor(n / 2)
     for i in table:
         if i <= boundary:
             if n % i == 0:
-                return (False, 1)
+                checks.append(False)
+                return checks
             else:
-                checks += 1
+                checks.append(True)
         else:
             break
-    return (True, checks)
+    return checks
 
 
 @ft.lru_cache(maxsize=None)
 def is_prime_sqrt(n: int, table: tuple):
-    checks = 0
+    checks = []
 
     boundary = math.floor(math.sqrt(n))
     for i in table:
         if i <= boundary:
             if n % i == 0:
-                return (False, 1)
+                checks.append(False)
+                return checks
             else:
-                checks += 1
+                checks.append(True)
         else:
             break
-    return (True, checks)
+    return checks

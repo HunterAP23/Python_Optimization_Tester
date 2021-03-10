@@ -12,17 +12,17 @@ import Tester_Main as TM
 def validate_file(args):
     config_file = None
     if args.File:
-        file_path = os.path.join(os.getcwd(), args.File)
+        file_path = os.path.join(__file__, args.File)
         if os.path.exists(file_path):
             config_file = open(file_path, "r")
         else:
-            print("ERROR: Settings file '{}' does not exist.".format(file_path))
+            print("ERROR: Settings file \"{}\" does not exist.".format(file_path))
     else:
-        file_path = os.path.join(os.getcwd(), "Settings.json")
+        file_path = os.path.join(__file__, "Settings.json")
         if os.path.exists(file_path):
             config_file = open(file_path, "r")
         else:
-            print("ERROR: Settings file '{}' does not exist.".format(file_path))
+            print("ERROR: Settings file \"{}\" does not exist.".format(file_path))
     config = json.load(config_file)
     config_file.close()
     return config
@@ -36,11 +36,11 @@ def validate_threads(threads, config):
             threads = mp.cpu_count()
     else:
         if "global" not in config:
-            print("ERROR: 'global' key does not exist in the configuration file. Manually asking user for input...")
+            print("ERROR: \"global\" key does not exist in the configuration file. Manually asking user for input...")
             threads = mp.cpu_count()
         else:
             if "threads" not in config["global"]:
-                print("ERROR: 'threads' key does not exist in the 'global' section of the configuration file. Goign with default value of all threads ({})".format(mp.cpu_count()))
+                print("ERROR: \"threads\" key does not exist in the \"global\" section of the configuration file. Goign with default value of all threads ({})".format(mp.cpu_count()))
                 threads = mp.cpu_count()
             else:
                 try:
@@ -52,7 +52,7 @@ def validate_threads(threads, config):
                     else:
                         threads = threads_int
                 except ValueError:
-                    print("ERROR: Value ({0}) for 'threads' key is not an integer. Defaulting to all CPU threads ({1}).".format(config["global"]["threads"], mp.cpu_count()))
+                    print("ERROR: Value ({0}) for \"threads\" key is not an integer. Defaulting to all CPU threads ({1}).".format(config["global"]["threads"], mp.cpu_count()))
                     threads = mp.cpu_count()
 
     return threads
@@ -63,7 +63,7 @@ def validate_suites(suites, config):
     if suites:
         for test in suites:
             if test.lower() not in suites_choices:
-                print("ERROR: '{}' is not a valid test suite, removing this from the user input.".format(test))
+                print("ERROR: \"{}\" is not a valid test suite, removing this from the user input.".format(test))
                 suites.remove(test)
     return suites
 
