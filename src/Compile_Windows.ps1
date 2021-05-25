@@ -1,3 +1,7 @@
+Remove-Item -Path "./build" -Include *.pyd -Recurse -Force
+Remove-Item -Path "./files_compile_windows" -Include *.txt -Recurse -Force
+Remove-Item -Path "./files_runs_windows" -Include *.txt -Recurse -Force
+
 Write-Output "Cleaning up *.c objects"
 Get-ChildItem -Path "." -File -Recurse -Filter *.c | Foreach-Object {
     Write-Output $_.Name
@@ -11,7 +15,6 @@ Get-ChildItem -Path "." -File -Recurse -Filter *.pyc | Foreach-Object {
 }
 
 Write-Output "Cleaning up *.pyd objects"
-Remove-Item -Path "./build" -Include *.pyd -Recurse -Force
 Get-ChildItem -Path "." -File -Recurse -Filter *.pyd | Foreach-Object {
     Write-Output $_.Name
     rm $_.FullName
@@ -24,11 +27,13 @@ Get-ChildItem -Path "." -File -Recurse -Filter *.so | Foreach-Object {
 }
 
 Write-Output "Cleaning up *.txt files"
-Remove-Item -Path "./files_runs" -Include *.txt -Recurse -Force
 Get-ChildItem -Path "." -File -Recurse -Filter *.txt | Foreach-Object {
     Write-Output $_.Name
     rm $_.FullName
 }
+
+New-Item -path "." -name "files_compile_windows" -type directory
+New-Item -path "." -name "files_runs_windows" -type directory
 
 # Compile
 Write-Output "Compiling Cython objects"

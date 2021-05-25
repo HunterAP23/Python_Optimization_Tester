@@ -1,7 +1,8 @@
 {
 	"global": {
 		"threads": "8",
-		"suites": "ALL"
+		"suites": "ALL",
+		"OS": "N/A"
 	},
 	"primes": {
 		"max": "100000",

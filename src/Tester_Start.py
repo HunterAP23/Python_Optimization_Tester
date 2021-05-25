@@ -9,7 +9,7 @@ import os
 import Tester_Main as TM
 
 
-def validate_file(args):
+def _validate_file(args):
     config_file = None
     if args.File:
         file_path = os.path.join(__file__, args.File)
@@ -28,7 +28,7 @@ def validate_file(args):
     return config
 
 
-def validate_threads(threads, config):
+def _validate_threads(threads, config):
     if threads:
         if threads > mp.cpu_count():
             msg = "ERROR: User specified {0} threads which is more than the number the system supports ({1}), clamping the value to the available number of threads on this system."
@@ -58,7 +58,7 @@ def validate_threads(threads, config):
     return threads
 
 
-def validate_suites(suites, config):
+def _validate_suites(suites, config):
     suites_choices = ["primes"]
     if suites:
         for test in suites:
@@ -68,6 +68,12 @@ def validate_suites(suites, config):
     return suites
 
 
+def _validate_os(my_OS, config):
+    options = ["Linux", "MacOS_ARM", "MacOS_x86", "Windows"]
+    if my_os not in options:
+
+
+
 def parse_args():
     parser = argp.ArgumentParser(description="Run benchmarking test suite for combinations of CPython, Cython, Anaconda, and PyPy.", formatter_class=argp.RawTextHelpFormatter, add_help=False)
 
@@ -75,6 +81,7 @@ def parse_args():
     optional_args.add_argument("-s", "--suites", dest="Suites", metavar="SUITES", nargs="+", required=False, help="Override the list of test suites specified in the settings.json file with space/comma separated ones.\n")
     optional_args.add_argument("-t", "--threads", dest="Threads", metavar="THREADS", type=int, required=False, help="Number of CPU threads to utilize in the benchmarks (defaults to all threads).\n")
     optional_args.add_argument("-f", "--file", dest="File", metavar="FILE", default="Settings.json", required=False, help="Specify different JSON file for getting settings.\n")
+    optional_args.add_argument("-o", "--os", dest="OS", metavar="OS", options=["Linux", "MacOS_ARM", "MacOS_x86", "Windows"], required=False, help="Specify the OS & architecture to compile for. If not specified, the program wil lattempt to autodetect it for you.\n")
 
     misc_args = parser.add_argument_group("Miscellaneous arguments")
     misc_args.add_argument("-d", "--debug", dest="Debug", action="store_true", required=False, help="Print verbose statements.\n")
@@ -83,11 +90,11 @@ def parse_args():
 
     args = parser.parse_args()
 
-    config = validate_file(args)
+    config = _validate_file(args)
 
-    args.Threads = validate_threads(args.Threads, config)
+    args.Threads = _validate_threads(args.Threads, config)
 
-    args.Suites = validate_suites(args.Suites, config)
+    args.Suites = _validate_suites(args.Suites, config)
 
     print("{}".format(args))
 
