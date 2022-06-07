@@ -9,9 +9,9 @@
 - [Implementations](#implementations)
   - [CPython Variants](#cpython-variants)
     - [Default through function calls](#cpython-through-functions)
-    - [Default locally](#cpython-locally)
+    - [Default inline](#cpython-inline)
     - [Lambdas within function calls](#cpython-with-lambdas-through-functions)
-    - [Lambdas locally](#cpython-with-lambdas-through-functions)
+    - [Lambdas inline](#cpython-with-lambdas-inline)
     - [Function Calls with LRU Caching](#cpython-with-lru-caching)
     - [Numpy Arrays](#cpython-with-numpy-arrays)
     - [Numpy Arrays & Lambdas](#cpython-with-numpy-arrays-and-lambdas)
@@ -79,8 +79,8 @@ the different runtimes as needed.
   * Since we're calling the each test method functions `N` times each, this means
   we have function call overhead of `max_num` calls per test method.
 
-#### CPython Locally
-  * Defined in [Find_Nth_Prime_Python_Local.py](Find_Nth_Prime_Python_Local.py)
+#### CPython Inline
+  * Defined in [Find_Nth_Prime_Python_Inline.py](Find_Nth_Prime_Python_Inline.py)
   * Loops over all numbers from `0` to `max_num` as variable `N`, calls
   the test method functions for each of those numbers.
   * Since we're calling the each test method functions `N` times each, this means
@@ -94,7 +94,7 @@ the different runtimes as needed.
   savings.
 
 #### CPython through Functions with Lambdas
-  * Defined in [Find_Nth_Prime_Python_Local_Lambda.py](Find_Nth_Prime_Python_Local_Lambda.py)
+  * Defined in [Find_Nth_Prime_Python_Inline_Lambda.py](Find_Nth_Prime_Python_Inline_Lambda.py)
   * Only calls the calculation function once with a `max_num` as a parameter.
   * The calculation function handles all the logic that `Find_Nth_Prime_Python.py`'s the calculation functions have, but all using a single lambda function inside the calculation function.
   * This reduces the function call overhead, which can lead to significant time

@@ -1,4 +1,3 @@
-import functools as ft
 import math
 
 

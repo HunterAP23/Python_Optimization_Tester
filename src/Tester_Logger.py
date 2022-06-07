@@ -2,8 +2,8 @@
 
 # Native Libraries
 import logging as lg
-import sys
 import os
+import sys
 
 # Levels:
 # 0 -> DEBUG
@@ -17,7 +17,7 @@ def create_log(the_date, debug=False):
     log_file = os.path.join(os.getcwd(), str(the_date) + ".log")
     try:
         if not os.path.exists(log_file):
-            open(log_file, 'a').close()
+            open(log_file, "a").close()
             os.chmod(log_file, 0o777)
     except OSError as ose:
         print("Could not create log file " + str(log_file))
@@ -37,8 +37,8 @@ def create_log(the_date, debug=False):
         c_handler.setLevel(lg.INFO)
     f_handler.setLevel(lg.DEBUG)
 
-    c_format = lg.Formatter('%(asctime)s %(threadName)s [%(levelname)s]: %(message)s')
-    f_format = lg.Formatter('%(asctime)s %(threadName)s [%(levelname)s]: %(message)s')
+    c_format = lg.Formatter("%(asctime)s %(threadName)s [%(levelname)s]: %(message)s")
+    f_format = lg.Formatter("%(asctime)s %(threadName)s [%(levelname)s]: %(message)s")
     c_handler.setFormatter(c_format)
     f_handler.setFormatter(f_format)
 

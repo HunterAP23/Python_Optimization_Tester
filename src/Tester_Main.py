@@ -7,13 +7,14 @@ import os
 import shutil
 import sys
 import time
+
 # from typing import *
 # cimport cython
 
 
 def time_function(func, ret_dict, args, name, sema, rlock):
     sema.acquire()
-    start = time.time()
+    start = time.perf_counter()
     func(
         int(args[name]["value_max"]),
         int(args[name]["num_loops"]),
@@ -22,8 +23,9 @@ def time_function(func, ret_dict, args, name, sema, rlock):
         args[name]["compilation"],
         args[name]["call_type"],
         args[name]["subcall"],
-        args[name]["case"])
-    total = time.time() - start
+        args[name]["case"],
+    )
+    total = time.perf_counter() - start
     ret_dict[name] = total
     sema.release()
 
@@ -67,25 +69,37 @@ def validate_primes(config):
         should_ask_loops = True
     else:
         if "max" not in config["primes"]:
-            print("ERROR: 'max' key does not exist in the 'primes' section of the configuration file. Manually asking user for input...")
+            print(
+                "ERROR: 'max' key does not exist in the 'primes' section of the configuration file. Manually asking user for input..."
+            )
             should_ask_max = True
         else:
             try:
                 value_int = int(config["primes"]["max"])
                 value_max = value_int
             except ValueError:
-                print("ERROR: Value ({0}) for 'max' in 'primes' category is not an integer. Asking for user input...".format(config["primes"]["max"]))
+                print(
+                    "ERROR: Value ({0}) for 'max' in 'primes' category is not an integer. Asking for user input...".format(
+                        config["primes"]["max"]
+                    )
+                )
                 should_ask_max = True
 
         if "loops" not in config["primes"]:
-            print("ERROR: 'loops' key does not exist in the 'primes' section of the configuration file. Manually asking user for input...")
+            print(
+                "ERROR: 'loops' key does not exist in the 'primes' section of the configuration file. Manually asking user for input..."
+            )
             should_ask_loops = True
         else:
             try:
                 loops_int = int(config["primes"]["loops"])
                 num_loops = loops_int
             except ValueError:
-                print("ERROR: Value ({0}) for 'loops' in 'primes' category is not an integer. Asking for user input...".format(config["primes"]["loops"]))
+                print(
+                    "ERROR: Value ({0}) for 'loops' in 'primes' category is not an integer. Asking for user input...".format(
+                        config["primes"]["loops"]
+                    )
+                )
                 should_ask_loops = True
 
     if should_ask_max:
@@ -115,7 +129,10 @@ def validate_primes(config):
         if tries_left == 0:
             exit(1)
 
-    return (value_max, num_loops,)
+    return (
+        value_max,
+        num_loops,
+    )
 
 
 def main(args):
@@ -135,7 +152,7 @@ def main(args):
     except FileExistsError:
         pass
 
-    testing_start = time.time()
+    testing_start = time.perf_counter()
 
     funcs = dict()
     arguments = dict()
@@ -149,7 +166,7 @@ def main(args):
             # compilation = [normal, cython, optimized]
             for runtime, compilation in tests.items():
                 # comp = compilation
-                # call_type = [local, function]
+                # call_type = [inline, function]
                 for comp, call_type in compilation.items():
                     # call = call_type
                     # subcall = any of the test cases for the given call_type
@@ -188,7 +205,9 @@ def main(args):
                                                 else:
                                                     funcs[group] = vars(lib)["Main_{0}".format(cs)]
                                             except KeyError as ke:
-                                                print("{0} is not a valid function inside '{1}'".format(ke, lib.__name__))
+                                                print(
+                                                    "{0} is not a valid function inside '{1}'".format(ke, lib.__name__)
+                                                )
                                                 exit(1)
                                             arguments[group] = dict()
                                             arguments[group]["value_max"] = value_max
@@ -228,7 +247,7 @@ def main(args):
 
     run_in_parallel(funcs, return_dict, threads, arguments, sema, rlock)
 
-    testing_total = time.time() - testing_start
+    testing_total = time.perf_counter() - testing_start
 
     for k, v in return_dict.items():
         result_file = open("files_runs/{0}.txt".format(k), "w")
@@ -239,4 +258,8 @@ def main(args):
         print(str(k) + " took {0}H:{1}M:{2:0.2f}S".format(int(v / 3600), int(v / 60), v))
 
     print("-" * 80)
-    print("Total Run Time was {0}H:{1}M:{2:0.2f}S".format(int(testing_total / 3600), int(testing_total / 60), testing_total))
+    print(
+        "Total Run Time was {0}H:{1}M:{2:0.2f}S".format(
+            int(testing_total / 3600), int(testing_total / 60), testing_total
+        )
+    )

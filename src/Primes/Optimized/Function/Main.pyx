@@ -42,7 +42,7 @@ cdef void Main_Sub(int value_max, int num_loops, rlock, str runtime, str compila
         primes_list = []
         primes_list.append(2)
 
-        tmp_time_start = time.time()
+        tmp_time_start = time.perf_counter()
         for n in range(3, value_max, 2):
             ret = func(n, tuple(primes_list))
 
@@ -50,7 +50,7 @@ cdef void Main_Sub(int value_max, int num_loops, rlock, str runtime, str compila
                 div_list.append("Primality Test for {0} took {1} divisions.\n\n".format(n, ret[1]))
                 primes_list.append(n)
 
-        tmp_time_total = time.time() - tmp_time_start
+        tmp_time_total = time.perf_counter() - tmp_time_start
 
         time_output.write("{0} {1} Pass {2} took {3} seconds.\n\n".format(group, case, i + 1, tmp_time_total))
         time_list.append(tmp_time_total)

@@ -10,7 +10,7 @@
 		"tests": {
 			"CPython": {
 				"Interpreted": {
-					"Local": {
+					"Inline": {
 						"Standard": {
               "case": {
 								"Default": 0,
@@ -18,7 +18,7 @@
   							"Sqrt": 0
               },
               "package": "Primes",
-              "library": "Primes.Interpreted.Local.Standard"
+              "library": "Primes.Interpreted.Inline.Standard"
 						},
 						"Lambda": {
               "case": {
@@ -27,7 +27,7 @@
   							"Sqrt": 0
               },
               "package": "Primes",
-              "library": "Primes.Interpreted.Local.Lambda"
+              "library": "Primes.Interpreted.Inline.Lambda"
 						},
 						"List": {
               "case": {
@@ -36,7 +36,7 @@
   							"Sqrt": 0
               },
               "package": "Primes",
-              "library": "Primes.Interpreted.Local.List"
+              "library": "Primes.Interpreted.Inline.List"
 						},
 						"Map": {
               "case": {
@@ -45,7 +45,7 @@
   							"Sqrt": 0
               },
               "package": "Primes",
-              "library": "Primes.Interpreted.Local.Map"
+              "library": "Primes.Interpreted.Inline.Map"
 						},
 						"Lambda_Map": {
               "case": {
@@ -54,7 +54,7 @@
   							"Sqrt": 0
               },
               "package": "Primes",
-              "library": "Primes.Interpreted.Local.Lambda_Map"
+              "library": "Primes.Interpreted.Inline.Lambda_Map"
 						},
 						"Lambda_LRU": {
               "case": {
@@ -63,7 +63,7 @@
   							"Sqrt": 0
               },
               "package": "Primes",
-              "library": "Primes.Interpreted.Local.Lambda_LRU"
+              "library": "Primes.Interpreted.Inline.Lambda_LRU"
 						},
 						"Lambda_LRU_Map": {
               "case": {
@@ -72,7 +72,7 @@
   							"Sqrt": 0
               },
               "package": "Primes",
-              "library": "Primes.Interpreted.Local.Lambda_LRU_Map"
+              "library": "Primes.Interpreted.Inline.Lambda_LRU_Map"
 						}
 					},
 					"Function": {
@@ -151,7 +151,7 @@
 					}
 				},
 				"Compiled": {
-					"Local": {
+					"Inline": {
 						"Standard": {
               "case": {
 								"Default": 0,
@@ -159,7 +159,7 @@
   							"Sqrt": 0
               },
               "package": "Primes",
-              "library": "Primes.Compiled.Local.Standard"
+              "library": "Primes.Compiled.Inline.Standard"
 						},
 						"Lambda": {
               "case": {
@@ -168,7 +168,7 @@
   							"Sqrt": 0
               },
               "package": "Primes",
-              "library": "Primes.Compiled.Local.Lambda"
+              "library": "Primes.Compiled.Inline.Lambda"
 						},
 						"List": {
               "case": {
@@ -177,7 +177,7 @@
   							"Sqrt": 0
               },
               "package": "Primes",
-              "library": "Primes.Compiled.Local.List"
+              "library": "Primes.Compiled.Inline.List"
 						},
 						"Map": {
               "case": {
@@ -186,7 +186,7 @@
   							"Sqrt": 0
               },
               "package": "Primes",
-              "library": "Primes.Compiled.Local.Map"
+              "library": "Primes.Compiled.Inline.Map"
 						},
 						"Lambda_Map": {
               "case": {
@@ -195,7 +195,7 @@
   							"Sqrt": 0
               },
               "package": "Primes",
-              "library": "Primes.Compiled.Local.Lambda_Map"
+              "library": "Primes.Compiled.Inline.Lambda_Map"
 						},
 						"Lambda_LRU": {
               "case": {
@@ -204,7 +204,7 @@
   							"Sqrt": 0
               },
               "package": "Primes",
-              "library": "Primes.Compiled.Local.Lambda_LRU"
+              "library": "Primes.Compiled.Inline.Lambda_LRU"
 						},
 						"Lambda_LRU_Map": {
               "case": {
@@ -213,7 +213,7 @@
   							"Sqrt": 0
               },
               "package": "Primes",
-              "library": "Primes.Compiled.Local.Lambda_LRU_Map"
+              "library": "Primes.Compiled.Inline.Lambda_LRU_Map"
 						}
 					},
 					"Function": {
@@ -292,7 +292,7 @@
 					}
 				},
 				"Optimized": {
-					"Local": {
+					"Inline": {
 						"Standard": {
               "case": {
 								"Default": 0,
@@ -300,7 +300,7 @@
   							"Sqrt": 0
               },
               "package": "Primes",
-              "library": "Primes.Optimized.Local.Standard"
+              "library": "Primes.Optimized.Inline.Standard"
 						},
 						"Lambda": {
               "case": {
@@ -309,7 +309,7 @@
   							"Sqrt": 0
               },
               "package": "Primes",
-              "library": "Primes.Optimized.Local.Lambda"
+              "library": "Primes.Optimized.Inline.Lambda"
 						},
 						"List": {
               "case": {
@@ -318,7 +318,7 @@
   							"Sqrt": 0
               },
               "package": "Primes",
-              "library": "Primes.Optimized.Local.List"
+              "library": "Primes.Optimized.Inline.List"
 						},
 						"Map": {
               "case": {
@@ -327,7 +327,7 @@
   							"Sqrt": 0
               },
               "package": "Primes",
-              "library": "Primes.Optimized.Local.Map"
+              "library": "Primes.Optimized.Inline.Map"
 						},
 						"Lambda_Map": {
               "case": {
@@ -336,7 +336,7 @@
   							"Sqrt": 0
               },
               "package": "Primes",
-              "library": "Primes.Optimized.Local.Lambda_Map"
+              "library": "Primes.Optimized.Inline.Lambda_Map"
 						},
 						"Lambda_LRU": {
               "case": {
@@ -345,7 +345,7 @@
   							"Sqrt": 0
               },
               "package": "Primes",
-              "library": "Primes.Optimized.Local.Lambda_LRU"
+              "library": "Primes.Optimized.Inline.Lambda_LRU"
 						},
 						"Lambda_LRU_Map": {
               "case": {
@@ -354,7 +354,7 @@
   							"Sqrt": 0
               },
               "package": "Primes",
-              "library": "Primes.Optimized.Local.Lambda_LRU_Map"
+              "library": "Primes.Optimized.Inline.Lambda_LRU_Map"
 						}
 					},
 					"Function": {

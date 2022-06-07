@@ -7,22 +7,25 @@ import uuid
 
 # Custom Funcs
 import Find_Nth_Prime_Python
+
 # import Find_Nth_Prime1
 # import Find_Nth_Prime2
 # import Find_Nth_Prime_LRU
 # import Find_Nth_Prime1_LRU
 # import Find_Nth_Prime2_LRU
 
+
 def time_function(func, argoos, name, sema, rlock):
     sema.acquire()
-    start = time.time()
+    start = time.perf_counter()
     func(int(argoos[0]), int(argoos[1]), rlock)
-    total = time.time() - start
+    total = time.perf_counter() - start
     argoos[2][name] = total
     sema.release()
 
+
 def run_in_parallel(fns, args, sema, rlock):
-    proc  = []
+    proc = []
     i = 0
     for fn in fns:
         if i == 0:
@@ -71,13 +74,23 @@ def run_in_parallel(fns, args, sema, rlock):
     for p in proc:
         p.join()
 
+
 def parse_arguments():
     parser = argp.ArgumentParser(description="Cython & LRU Cache Tester", add_help=False)
 
     optional_args = parser.add_argument_group("optional arguments")
-    optional_args.add_argument("-t", "--threads", default=mp.cpu_count(), type=int, required=False, help="send the email report, skip email prompts.", dest="Threads")
+    optional_args.add_argument(
+        "-t",
+        "--threads",
+        default=mp.cpu_count(),
+        type=int,
+        required=False,
+        help="send the email report, skip email prompts.",
+        dest="Threads",
+    )
 
     return parser.parse_args()
+
 
 if __name__ == "__main__":
     args = parse_arguments()
@@ -96,7 +109,7 @@ if __name__ == "__main__":
     except FileExistsError as fee:
         pass
 
-    testing_start = time.time()
+    testing_start = time.perf_counter()
 
     funcs = []
     funcs.append(Find_Nth_Prime.Main_Default)
@@ -127,7 +140,7 @@ if __name__ == "__main__":
 
     run_in_parallel(funcs, arguments, sema, rlock)
 
-    testing_total = time.time() - testing_start
+    testing_total = time.perf_counter() - testing_start
 
     for k, v in return_dict.items():
         result_file = None
@@ -171,8 +184,12 @@ if __name__ == "__main__":
 
         result_file.write("{0} took {1}H:{2}M:{3:0.2f}S".format(k, int(v / 3600), int(v / 60), v))
         result_file.close()
-        print("-"*80)
+        print("-" * 80)
         print(str(k) + " took {0}H:{1}M:{2:0.2f}S".format(int(v / 3600), int(v / 60), v))
 
-    print("-"*80)
-    print("Total Run Time was {0}H:{1}M:{2:0.2f}S".format(int(testing_total / 3600), int(testing_total / 60), testing_total))
+    print("-" * 80)
+    print(
+        "Total Run Time was {0}H:{1}M:{2:0.2f}S".format(
+            int(testing_total / 3600), int(testing_total / 60), testing_total
+        )
+    )

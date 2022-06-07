@@ -1,8 +1,13 @@
-from setuptools import Extension, setup
 from Cython.Build import cythonize
+from setuptools import Extension, setup
 
-extensions = [Extension("Primes.Compiled.Function.List", ["Primes/Compiled/Function/List.pyx"])]
+extensions = [Extension("Primes.Compiled.Function.Generator", ["src/Primes/Interpreted/Function/Generator.py"])]
 
 setup(
-    ext_modules=cythonize(extensions, language_level=3),
+    ext_modules=cythonize(
+        extensions,
+        build_dir="build",
+        language_level=3,
+    ),
+    options={"build": {"build_lib": "src/"}},
 )

@@ -7,11 +7,13 @@ import Find_Nth_Prime_Numpy as func1
 
 times = dict()
 
+
 def time_function(func, max_num, num_loops, rlock):
-    start = time.time()
+    start = time.perf_counter()
     func(max_num, num_loops, rlock)
-    total = time.time() - start
+    total = time.perf_counter() - start
     times[str(func)] = total
+
 
 if __name__ == "__main__":
     try:
