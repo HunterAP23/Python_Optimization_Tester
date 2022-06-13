@@ -1,15 +1,9 @@
 import datetime as dt
-import functools as ft
 import importlib
 import math
 import time
+
 cimport cython
-
-
-cdef void print_lock(str msg, rlock):
-    rlock.acquire()
-    print(msg)
-    rlock.release()
 
 
 cpdef void Main(int value_max, int num_loops, rlock, str runtime, str compilation, str call_type, str subcall, str case):

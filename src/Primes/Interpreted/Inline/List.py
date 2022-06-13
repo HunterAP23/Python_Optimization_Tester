@@ -1,5 +1,4 @@
 import datetime as dt
-import functools as ft
 import math
 import time
 
@@ -8,10 +7,6 @@ def print_lock(msg, rlock):
     rlock.acquire()
     print(msg)
     rlock.release()
-
-
-def is_prime_default(n, y):
-    return n % y
 
 
 def Main_Default(

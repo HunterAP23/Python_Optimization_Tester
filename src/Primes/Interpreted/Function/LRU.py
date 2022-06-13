@@ -1,11 +1,4 @@
-import functools as ft
 import math
-
-
-def print_lock(msg, rlock):
-    rlock.acquire()
-    print(msg)
-    rlock.release()
 
 
 @ft.lru_cache(maxsize=None)

@@ -3,12 +3,6 @@ import math
 cimport cython
 
 
-cdef void print_lock(str msg, rlock):
-    rlock.acquire()
-    print(msg)
-    rlock.release()
-
-
 @cython.cfunc
 @cython.locals(n=cython.int, i=cython.int)
 @ft.lru_cache(maxsize=None)

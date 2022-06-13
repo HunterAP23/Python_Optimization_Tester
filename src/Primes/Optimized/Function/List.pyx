@@ -1,12 +1,6 @@
 import math
+
 cimport cython
-
-
-cdef void print_lock(str msg, rlock):
-    rlock.acquire()
-    print(msg)
-    rlock.release()
-
 
 cdef(bint, int) is_prime_default(int n, tuple table):
     cdef list ret

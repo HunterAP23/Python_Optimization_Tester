@@ -1,12 +1,7 @@
 import functools as ft
 import math
+
 cimport cython
-
-
-cdef void print_lock(str msg, rlock):
-    rlock.acquire()
-    print(msg)
-    rlock.release()
 
 
 @cython.cfunc

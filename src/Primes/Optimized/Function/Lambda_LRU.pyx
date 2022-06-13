@@ -1,13 +1,7 @@
 import functools as ft
 import math
+
 cimport cython
-
-
-cdef void print_lock(str msg, rlock):
-    rlock.acquire()
-    print(msg)
-    rlock.release()
-
 
 cdef(bint, int) is_prime_default(int n, tuple table):
     my_lam = ft.lru_cache(maxsize=None)(lambda y: n % y)
