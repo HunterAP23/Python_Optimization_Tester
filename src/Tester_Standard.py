@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+import psutil
 
 
 def ValueError_Handler(var, exp, var_type):
@@ -26,9 +27,16 @@ def ValueError_Handler(var, exp, var_type):
         return None
 
 
-def dict_printer(dic):
-    for k, v in dic.items():
-        if isinstance(v, dict):
-            dict_printer(v)
-        else:
-            print("{0} : {1}".format(k, v))
+def measure_memory_usage(func):
+    def process_memory():
+        process = psutil.Process()
+        mem_info = process.memory_info()
+        return mem_info.rss
+
+    def wrapper(*args, **kwargs):
+        mem_before = process_memory()
+        result = func(*args, **kwargs)
+        mem_after = process_memory()
+        return result, mem_after - mem_before
+
+    return wrapper

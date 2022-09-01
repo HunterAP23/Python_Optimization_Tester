@@ -1,15 +1,11 @@
-import math
+cimport cython  # noqa: E999
 
 
-def is_prime_default(n: int, table: tuple):
-    return (n % i for i in table if i < n)
-
-
-def is_prime_half(n: int, table: tuple):
-    boundary = math.floor(n / 2)
-    return (n % i for i in table if i <= boundary)
-
-
-def is_prime_sqrt(n: int, table: tuple):
-    boundary = math.floor(math.sqrt(n))
-    return (n % i for i in table if i <= boundary)
+# ! Can not compile generator functions with cdef / cfunc
+@cython.locals(i=cython.int)
+def is_prime(n: cython.int, primes: (cython.int,...), boundary: cython.int):
+    for i in primes:
+        if i < boundary:
+            yield n % i
+        else:
+            break

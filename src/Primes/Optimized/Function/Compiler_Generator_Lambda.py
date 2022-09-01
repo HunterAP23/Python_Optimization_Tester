@@ -1,7 +1,9 @@
 from Cython.Build import cythonize
 from setuptools import Extension, setup
 
-extensions = [Extension("Primes.Optimized.Function.Generator", ["src/Primes/Optimized/Function/Generator.pyx"])]
+extensions = [
+    Extension("Primes.Optimized.Function.Generator_Lambda", ["src/Primes/Optimized/Function/Generator_Lambda.pyx"])
+]
 
 setup(
     ext_modules=cythonize(

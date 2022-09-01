@@ -1,0 +1,8 @@
+cimport cython  # noqa: E999
+
+
+@cython.cfunc
+@cython.returns(list)
+@cython.locals(i=cython.int)
+def is_prime(n: cython.int, primes: (cython.int,...), boundary: cython.int) -> tuple:
+    return tuple(n % i for i in primes if i <= boundary)

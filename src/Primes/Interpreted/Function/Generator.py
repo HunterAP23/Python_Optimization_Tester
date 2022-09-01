@@ -1,15 +1,6 @@
-import math
-
-
-def is_prime_default(n: int, table: tuple):
-    return (n % i for i in table if i < n)
-
-
-def is_prime_half(n: int, table: tuple):
-    boundary = math.floor(n / 2)
-    return (n % i for i in table if i <= boundary)
-
-
-def is_prime_sqrt(n: int, table: tuple):
-    boundary = math.floor(math.sqrt(n))
-    return (n % i for i in table if i <= boundary)
+def is_prime(n: int, primes: tuple, boundary: int):
+    for i in primes:
+        if i < boundary:
+            yield n % i
+        else:
+            break

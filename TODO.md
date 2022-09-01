@@ -32,10 +32,9 @@
     - [ ] Add Cython compile steps
     - [ ] Add Pyinstaller build steps
     - [ ] Add release steps
-- [ ] Migrate off of `pipenv` and onto `poetry`
 
 ### Done ✓
 - [x] Add Cython Compilation
-  - Build app with `python .\src\setup.py build_ext --inplace`
-  - Cython version of app is run by moving the compiled `FPS_Graph_Maker.cp39-win_amd64` file (be it `.so` or `.pyd`) into the `src` folder, then running `python src/main.py`
-  - The `fps_2_chart.pyx` file can still be run natively without cython with `python src/fps_2_chart.py`
+  - Build app with `python .\src\setup.py build_ext`
+  - Fix build locations
+- [x] Migrate off of `pipenv` and onto `poetry`

@@ -1,7 +1,7 @@
 from Cython.Build import cythonize
 from setuptools import Extension, setup
 
-extensions = [Extension("Primes.Compiled.Inline.List", ["src/Primes/Compiled/Inline/List.pyx"])]
+extensions = [Extension("Primes.Compiled.Inline.List", ["src/Primes/Interpreted/Inline/List.py"])]
 
 setup(
     ext_modules=cythonize(

@@ -1,63 +1,19 @@
 #!/usr/bin/env python
 
 # Native Libs
+import concurrent.futures as cf
 import importlib
+import math
 import multiprocessing as mp
 import os
 import shutil
+import statistics as stat
 import sys
-import time
+from datetime import timedelta as td
+from itertools import chain
+from traceback import print_exc
 
 # from typing import *
-# cimport cython
-
-
-def time_function(func, ret_dict, args, name, sema, rlock):
-    sema.acquire()
-    start = time.perf_counter()
-    func(
-        int(args[name]["value_max"]),
-        int(args[name]["num_loops"]),
-        rlock,
-        args[name]["runtime"],
-        args[name]["compilation"],
-        args[name]["call_type"],
-        args[name]["subcall"],
-        args[name]["case"],
-    )
-    total = time.perf_counter() - start
-    ret_dict[name] = total
-    sema.release()
-
-
-def run_in_parallel(fns, ret_dict, threads, args, sema, rlock):
-    proc = []
-    for name, fn in fns.items():
-        p = mp.Process(target=time_function, args=(fn, ret_dict, args, name, sema, rlock))
-        proc.append(p)
-
-    for p in proc:
-        p.start()
-
-    for p in proc:
-        try:
-            p.join()
-        except Exception as e:
-            print("EXCEPTION: {}".format(e))
-
-    # with mp.Pool(threads) as pool:
-    #     rets = dict()
-    #     for name, fn in fns.items():
-    #         rets[name] = pool.apply_async(func=time_function, args=(fn, ret_dict, args, name, sema, rlock))
-    #
-    #     try:
-    #         pool.close()
-    #         pool.join()
-    #     except KeyboardInterrupt:
-    #         print("Caught KeyboardInterrupt, terminating all child processes.")
-    #         pool.terminate()
-    #         # pool.join()
-    #         exit(1)
 
 
 def validate_primes(config):
@@ -130,19 +86,108 @@ def validate_primes(config):
             exit(1)
 
     return (
-        value_max,
-        num_loops,
+        int(value_max),
+        int(num_loops),
     )
 
 
-def main(args):
-    config = dict(args[0])
-    threads = args[1]
-    suites = args[2]
+def calculate_primes(func, group, boundary, value_max, num_loops, runtime, compilation, call_type, subcall):
+    data_list = func(value_max, num_loops, boundary, runtime, compilation, call_type, subcall)
+
+    for i in range(num_loops):
+        time_total = math.fsum(data_list[i]["times"])
+        time_average = stat.fmean(data_list[i]["times"])
+        time_median = stat.median(data_list[i]["times"])
+        with open("files_runs/{0}/time_{1}.txt".format(group.replace(" ", "_"), boundary).lower(), "w") as time_output:
+            msg = ""
+            for i, v in enumerate(data_list[i]["times"]):
+                msg += "{0} {1} Pass {2} took {3} seconds.\n".format(group, boundary, i + 1, v)
+            msg = "Total time it took to calculate {0} passes of {1} {2} was {3} seconds.\n".format(
+                num_loops, group, boundary, time_total
+            )
+
+            msg += "Average time it took to calculate {0} passes of {1} {2} was {3} seconds.".format(
+                num_loops, group, boundary, time_average
+            )
+
+            msg += "Median time it took to calculate {0} passes of {1} {2} was {3} seconds.".format(
+                num_loops, group, boundary, time_median
+            )
+
+            time_output.write(msg)
+
+        with open(
+            "files_runs/{0}/divisions_{1}.txt".format(group.replace(" ", "_"), boundary).lower(), "w"
+        ) as div_output:
+            for n, div in data_list[i]["divisions"].items():
+                msg = "Primality Test for {0} took {1} divisions.\n\n".format(n, div)
+                div_output.write(msg)
+
+        with open(
+            "files_runs/{0}/primes_{1}.txt".format(group.replace(" ", "_"), boundary).lower(), "w"
+        ) as primes_output:
+            for prime in data_list[i]["primes"]:
+                primes_output.write("{0}\n".format(prime))
+
+    times = list(chain.from_iterable(data_list["times"]))
+    divs = list(chain.from_iterable(data_list["divisions"]))
+    primes = list(chain.from_iterable(data_list["primes"]))
+
+    return (
+        times,
+        divs,
+        primes,
+    )
+
+
+def run_in_parallel(mapping, value_max, num_loops, threads, sema):
+    procs = dict()
+    cf_handler = cf.ThreadPoolExecutor(max_workers=threads)
+    try:
+        for group, data in mapping.items():
+            # p = mp.Process(target=calculate_primes, args=(fn, ret_dict, args, name))
+            sema.acquire()
+            procs[
+                cf_handler.submit(
+                    calculate_primes,
+                    func=data["func"],
+                    group=group,
+                    runtime=data["runtime"],
+                    compilation=data["compilation"],
+                    call_type=data["call_type"],
+                    subcall=data["subcall"],
+                    boundary=data["boundary"],
+                    value_max=value_max,
+                    num_loops=num_loops,
+                )
+            ] = {
+                "group": group,
+            }
+            sema.release()
+    except (KeyboardInterrupt, cf.CancelledError, Exception) as e:
+        if type(e) in [KeyboardInterrupt, cf.CancelledError]:
+            print("KeyboardInterrupt detected, working on shutting down pool...")
+        else:
+            print_exc()
+        cf_handler.shutdown(wait=False, cancel_futures=True)
+        exit(1)
+
+    results = dict()
+    for task in cf.as_completed(procs):
+        times, divs, primes = task.result()
+        group = procs[task]
+        results[group] = {
+            "times": times,
+            "divisions": divs,
+            "primes": primes,
+        }
+    cf_handler.shutdown()
+    return results
+
+
+def main(config=dict(), threads=0, suites=dict()):
     manager = mp.Manager()
-    return_dict = manager.dict()
     sema = manager.Semaphore(threads)
-    rlock = manager.RLock()
 
     value_max, num_loops = validate_primes(config)
 
@@ -152,16 +197,12 @@ def main(args):
     except FileExistsError:
         pass
 
-    testing_start = time.perf_counter()
-
-    funcs = dict()
-    arguments = dict()
+    mapping = dict()
 
     # TS.ValueError_Handler(1, 1, int)
     if suites is None or "primes" in suites:
-        primes = config["primes"]
-        if "tests" in primes:
-            tests = primes["tests"]
+        if "tests" in config["primes"]:
+            tests = config["primes"]["tests"]
             # runtime = [cpython, anaconda, pypy]
             # compilation = [normal, cython, optimized]
             for runtime, compilation in tests.items():
@@ -169,23 +210,23 @@ def main(args):
                 # call_type = [inline, function]
                 for comp, call_type in compilation.items():
                     # call = call_type
-                    # subcall = any of the test cases for the given call_type
+                    # subcall = any of the test boundaries for the given call_type
                     # subcalls include std, lambda, list, map, etc.
                     for call, subcall in call_type.items():
                         # sb = subcall
-                        # info = [case, package, library]
-                        for sb, info in subcall.items():
-                            if any([enabled for cs, enabled in info["case"].items() if enabled == 1]):
+                        # data = [boundary, package, library]
+                        for sb, data in subcall.items():
+                            if any([enabled for enabled in data["boundary"].values() if enabled == 1]):
                                 import_status = None
                                 try:
-                                    if info["library"] in sys.modules:
-                                        print("{0} module has already been loaded.".format(info["library"]))
+                                    if data["library"] in sys.modules:
+                                        print("{0} module has already been loaded.".format(data["library"]))
                                     else:
-                                        lib = importlib.import_module(info["library"], package=info["package"])
-                                        print("Loaded module '{0}'.".format(info["library"]))
+                                        lib = importlib.import_module(data["library"], package=data["package"])
+                                        print("Loaded module '{0}'.".format(data["library"]))
                                     import_status = 0
                                 except ModuleNotFoundError:
-                                    print("ERROR: Could not find module '{0}'.".format(info["library"]))
+                                    print("ERROR: Could not find module '{0}'.".format(data["library"]))
                                     import_status = 1
 
                                 if import_status == 0:
@@ -196,27 +237,25 @@ def main(args):
                                         shutil.rmtree("files_runs/{0}".format(results_dir))
                                         os.mkdir("files_runs/{0}".format(results_dir))
 
-                                    for cs, enabled in info["case"].items():
+                                    for bound, enabled in data["boundary"].items():
                                         if enabled == 1:
-                                            group = "{0}_{1}_{2}_{3}_{4}".format(runtime, comp, call, sb, cs)
+                                            group = "{0}_{1}_{2}_{3}_{4}".format(runtime, comp, call, sb, bound)
                                             try:
-                                                if call == "Function" or call == "Function_Separated":
-                                                    funcs[group] = vars(lib)["Main"]
+                                                mapping[group] = dict()
+                                                if call == "Function":
+                                                    mapping[group]["func"] = vars(lib)["Main"]
                                                 else:
-                                                    funcs[group] = vars(lib)["Main_{0}".format(cs)]
+                                                    mapping[group]["func"] = vars(lib)["Main_{0}".format(bound)]
                                             except KeyError as ke:
                                                 print(
                                                     "{0} is not a valid function inside '{1}'".format(ke, lib.__name__)
                                                 )
                                                 exit(1)
-                                            arguments[group] = dict()
-                                            arguments[group]["value_max"] = value_max
-                                            arguments[group]["num_loops"] = num_loops
-                                            arguments[group]["runtime"] = runtime
-                                            arguments[group]["compilation"] = comp
-                                            arguments[group]["call_type"] = call
-                                            arguments[group]["subcall"] = sb
-                                            arguments[group]["case"] = cs
+                                            mapping[group]["runtime"] = runtime
+                                            mapping[group]["compilation"] = comp
+                                            mapping[group]["call_type"] = call
+                                            mapping[group]["subcall"] = sb
+                                            mapping[group]["boundary"] = bound
 
         ############################################################################
 
@@ -245,21 +284,40 @@ def main(args):
     #     print("{0}: {1}".format(str(k), str(v)))
     # exit()
 
-    run_in_parallel(funcs, return_dict, threads, arguments, sema, rlock)
+    results_dict = run_in_parallel(mapping, value_max, num_loops, threads, sema)
 
-    testing_total = time.perf_counter() - testing_start
+    time_program_total = td(seconds=0)
 
-    for k, v in return_dict.items():
-        result_file = open("files_runs/{0}.txt".format(k), "w")
+    for group, results in results_dict.items():
+        times = results["times"]
+        divs = results["divisions"]
+        result_file = open(f"files_runs/{group}.txt", "w")
 
-        result_file.write("{0} took {1}H:{2}M:{3:0.2f}S".format(k, int(v / 3600), int(v / 60), v))
-        result_file.close()
+        time_total = td(seconds=math.fsum(times))
+        time_mean = td(seconds=stat.fmean(times))
+        time_median = td(seconds=stat.median(times))
+        time_worst = td(seconds=max(times))
+        time_best = td(seconds=min(times))
+
+        divs_total = sum(divs)
+
+        time_program_total += time_total
+
+        # result_file.write("{0} took {a1}H:{2}M:{3:0.2f}S".format(group, stat.fmean(times) / 3600, stat.fmean(times) / 60, stat.fmean(times)))
+        msg = f"{group} total time: {time_total}\n"
+        msg += f"{group} mean time: {time_mean}\n"
+        msg += f"{group} median time: {time_median}\n"
+        msg += f"{group} fastest calculation: {time_best}\n"
+        msg += f"{group} slowest calculation: {time_worst}\n"
+        msg += f"{group} total number of divisions: {divs_total}\n"
+        result_file.write(msg)
         print("-" * 80)
-        print(str(k) + " took {0}H:{1}M:{2:0.2f}S".format(int(v / 3600), int(v / 60), v))
+        print(msg)
 
     print("-" * 80)
-    print(
-        "Total Run Time was {0}H:{1}M:{2:0.2f}S".format(
-            int(testing_total / 3600), int(testing_total / 60), testing_total
-        )
-    )
+    # print(
+    #     "Total Run Time was {0}H:{1}M:{2:0.2f}S".format(
+    #         int(testing_total / 3600), int(testing_total / 60), testing_total
+    #     )
+    # )
+    print(f"Total CPU time spent finding prime numbers was {time_program_total}")

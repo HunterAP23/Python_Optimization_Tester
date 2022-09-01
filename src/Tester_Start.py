@@ -23,7 +23,7 @@ def _validate_file(args):
             config_file = open(file_path, "r")
         else:
             print('ERROR: Settings file "{}" does not exist.'.format(file_path))
-    config = json.load(config_file)
+    config = dict(json.load(config_file))
     config_file.close()
     return config
 
@@ -35,13 +35,13 @@ def _validate_threads(threads, config):
             print(msg.format(threads, mp.cpu_count()))
             threads = mp.cpu_count()
     else:
-        if "global" not in config:
+        if "global" not in config.keys():
             print('ERROR: "global" key does not exist in the configuration file. Manually asking user for input...')
             threads = mp.cpu_count()
         else:
             if "threads" not in config["global"]:
                 print(
-                    'ERROR: "threads" key does not exist in the "global" section of the configuration file. Goign with default value of all threads ({})'.format(
+                    'ERROR: "threads" key does not exist in the "global" section of the configuration file. Going with default value of all threads ({})'.format(
                         mp.cpu_count()
                     )
                 )
@@ -124,7 +124,7 @@ def parse_args():
         metavar="OS",
         options=["Linux", "MacOS_ARM", "MacOS_x86", "Windows"],
         required=False,
-        help="Specify the OS & architecture to compile for. If not specified, the program wil lattempt to autodetect it for you.\n",
+        help="Specify the OS & architecture to compile for. If not specified, the program will attempt to autodetect it for you.\n",
     )
 
     misc_args = parser.add_argument_group("Miscellaneous arguments")
@@ -138,24 +138,20 @@ def parse_args():
 
     args = parser.parse_args()
 
-    config = _validate_file(args)
+    args.File = _validate_file(args)
 
-    args.Threads = _validate_threads(args.Threads, config)
+    args.Threads = _validate_threads(args.Threads, args.File)
 
-    args.Suites = _validate_suites(args.Suites, config)
+    args.Suites = _validate_suites(args.Suites, args.File)
 
     print("{}".format(args))
 
-    return (
-        config,
-        args.Threads,
-        args.Suites,
-    )
+    return args
 
 
 def main():
     args = parse_args()
-    TM.main(args)
+    TM.main(args.File, args.Threads, args.Suites)
 
 
 if __name__ == "__main__":

@@ -1,25 +1,8 @@
-import math
-
-cimport cython
-
-cdef(bint, int) is_prime_default(int n, tuple table):
-    cdef list ret
-    cdef int i
-    ret = [n % i for i in table]
-    return (all(ret), sum(ret),)
+cimport cython  # noqa: E999
 
 
-cdef(bint, int) is_prime_half(int n, tuple table):
-    cdef int boundary = math.floor(n / 2)
-    cdef list ret
-    cdef int i
-    ret = [n % i for i in table if i <= boundary]
-    return (all(ret), sum(ret),)
-
-
-cdef(bint, int) is_prime_sqrt(int n, tuple table):
-    cdef int boundary = math.floor(math.sqrt(n))
-    cdef list ret
-    cdef int i
-    ret = [n % i for i in table if i <= boundary]
-    return (all(ret), sum(ret),)
+@cython.cfunc
+@cython.returns(list)
+@cython.locals(i=cython.int)
+def is_prime(n: cython.int, primes: (cython.int,...), boundary: cython.int) -> list:
+    return [n % i for i in primes if i <= boundary]
