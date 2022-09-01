@@ -14,11 +14,10 @@
 ### In Progress
 
 - [ ] Update GitHub Actions
-  - [ ] Add `venv` installation step
-    - [ ] Create virtual environment with `python -m venv --upgrade-deps .venv`
+  - [ ] Set up Poetry
   - [ ] Add Cython compilation step
-    - [ ] Check if file `src/setup.py` exists - if yes then compile, else skip this job
-    - [ ] Compile with `python src/setup.py build_ext --inplace`
+    - [ ] Check if individual compiler scripts exist - if yes then compile, else skip this job
+    - [ ] Compile with `python src/setup.py build_ext`
   - [ ] Update pyinstaller steps to include compiled code
     - [ ] Check for and include compiled code
       - [ ] `*.pyd` for Windows
@@ -32,6 +31,19 @@
     - [ ] Add Cython compile steps
     - [ ] Add Pyinstaller build steps
     - [ ] Add release steps
+- [ ] Create OS-agnostic Python script to handle compilation
+  - [ ] Handle PYD and SO files depending on OS (Windows OR Linux / MacOS)
+  - [ ] Multithreaded compiling
+    - Need to work on performance cores only, if the system has heterogeneous core layout (performance / efficiency cores)
+  - [ ] Time the compilation with `timeit` library
+  - [ ] Support arguments:
+    - [ ] Clean: delete existing C / C++ / PYD / SO files before compiling
+    - [ ] Force: compile the files even if the PYD/SO files already exist and the code is unchanged
+    - [ ] Threads: limit the number of threads that can used for compiling individual scripts (1 thread per compile)
+    - [ ] Measure Time: whether or not to measure the time it takes to compile the individual scripts
+    - [ ] Loops: Number of compilations loops to use for measuring compilation time (requires `Measure Time` to be true)
+  -
+  
 
 ### Done ✓
 - [x] Add Cython Compilation
