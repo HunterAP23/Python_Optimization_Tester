@@ -3,7 +3,6 @@ import time
 
 cimport cython  # noqa: E999
 
-
 @cython.cfunc
 @cython.returns(cython.int)
 def is_prime_mapped(n: cython.int, y: cython.int):
