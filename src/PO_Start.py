@@ -3,23 +3,24 @@
 import argparse as argp
 import json
 import multiprocessing as mp
-import os
+from pathlib import Path
 
 # import Tester_Logger as log
-import Tester_Main as TM
+import PO_Main as TM
 
 
 def _validate_file(args):
     config_file = None
+    file_path = Path(__file__)
     if args.File:
-        file_path = os.path.join(__file__, args.File)
-        if os.path.exists(file_path):
+        file_path = file_path.joinpath(args.File)
+        if file_path.exists():
             config_file = open(file_path, "r")
         else:
             print('ERROR: Settings file "{}" does not exist.'.format(file_path))
     else:
-        file_path = os.path.join(__file__, "Settings.json")
-        if os.path.exists(file_path):
+        file_path = file_path.joinpath("Settings.json")
+        if file_path.exists():
             config_file = open(file_path, "r")
         else:
             print('ERROR: Settings file "{}" does not exist.'.format(file_path))

@@ -42,8 +42,98 @@
     - [ ] Threads: limit the number of threads that can used for compiling individual scripts (1 thread per compile)
     - [ ] Measure Time: whether or not to measure the time it takes to compile the individual scripts
     - [ ] Loops: Number of compilations loops to use for measuring compilation time (requires `Measure Time` to be true)
-  -
-  
+- [ ] Add memory usage measurements for each test
+- [ ] Move to using cli2gui for a GUI and CLI fallback
+- [ ] Add Nvidia CUDA tests for prime number calculations
+  - [ ] Have check to see if CUDA compatible GPU is in the system
+  - [ ] Inline
+    - [ ] Lambda
+    - [ ] LRU Caching
+      - [ ] Internal
+      - [ ] External
+      - [ ] Both
+    - [ ] Lambda + LRU Caching
+      - [ ] Internal
+      - [ ] External
+      - [ ] Both
+    - [ ] Numpy Lambda + LRU Caching
+      - [ ] Internal
+      - [ ] External
+      - [ ] Both
+  - [ ] Function
+    - [ ] Lambda
+    - [ ] LRU Caching
+      - [ ] Internal
+      - [ ] External
+      - [ ] Both
+    - [ ] Lambda + LRU Caching
+      - [ ] Internal
+      - [ ] External
+      - [ ] Both
+    - [ ] Numpy Lambda + LRU Caching
+      - [ ] Internal
+      - [ ] External
+      - [ ] Both
+- [ ] Add Numpy array tests for prime number calculations
+  - [ ] Inline
+    - [ ] Lambda
+    - [ ] LRU Caching
+      - [ ] Internal
+      - [ ] External
+      - [ ] Both
+    - [ ] Lambda + LRU Caching
+      - [ ] Internal
+      - [ ] External
+      - [ ] Both
+    - [ ] Numpy Lambda + LRU Caching
+      - [ ] Internal
+      - [ ] External
+      - [ ] Both
+  - [ ] Function
+    - [ ] Lambda
+    - [ ] Numpy Lambda (`numpy.fromfunction(lambda i: n % i)`)
+    - [ ] LRU Caching
+      - [ ] Internal
+      - [ ] External
+      - [ ] Both
+    - [ ] Lambda + LRU Caching
+      - [ ] Internal
+      - [ ] External
+      - [ ] Both
+    - [ ] Numpy Lambda + LRU Caching
+      - [ ] Internal
+      - [ ] External
+      - [ ] Both
+  - [ ] Add Numba JIT tests for prime number calculations
+    - [ ] Inline
+    - [ ] Lambda
+    - [ ] LRU Caching
+      - [ ] Internal
+      - [ ] External
+      - [ ] Both
+    - [ ] Lambda + LRU Caching
+      - [ ] Internal
+      - [ ] External
+      - [ ] Both
+    - [ ] Numpy Lambda + LRU Caching
+      - [ ] Internal
+      - [ ] External
+      - [ ] Both
+  - [ ] Function
+    - [ ] Lambda
+    - [ ] Numpy Lambda (`numpy.fromfunction(lambda i: n % i)`)
+    - [ ] LRU Caching
+      - [ ] Internal
+      - [ ] External
+      - [ ] Both
+    - [ ] Lambda + LRU Caching
+      - [ ] Internal
+      - [ ] External
+      - [ ] Both
+    - [ ] Numpy Lambda + LRU Caching
+      - [ ] Internal
+      - [ ] External
+      - [ ] Both
 
 ### Done ✓
 - [x] Add Cython Compilation
