@@ -28,7 +28,7 @@ def is_prime(
                 boundary = math.floor(n / 2)
             elif bounding == "Sqrt":
                 boundary = math.floor(math.sqrt(n))
-            ret = [lambda j: n % j for j in data["primes"][i] if j <= boundary]
+            ret = [(lambda j: n % j)(j) for j in data["primes"][i] if j <= boundary]
             tmp_time_end = time.perf_counter()
             data["times"][i].append(tmp_time_end - tmp_time_start)
 

@@ -8,7 +8,7 @@ def is_prime(n: cython.int, primes: (cython.int,...), boundary: cython.int) -> l
     ret = []
     for i in primes:
         if i <= boundary:
-            ret.append(lambda i: n % i)
+            ret.append((lambda y: n % y)(i))
         else:
             break
     return ret

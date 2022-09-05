@@ -10,10 +10,7 @@ def is_prime(
     **kwargs,
 ):
     def is_prime_mapped(n, y):
-        try:
-            return n % y
-        except ZeroDivisionError:
-            return 0
+        return n % y
 
     data = {
         "divisions": dict(),

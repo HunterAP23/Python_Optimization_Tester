@@ -12,10 +12,7 @@ def is_prime(
 ):
     @ft.lru_cache(maxsize=None)
     def is_prime_mapped(n, y):
-        try:
-            return n % y
-        except ZeroDivisionError:
-            return 0
+        return n % y
 
     data = {
         "divisions": dict(),

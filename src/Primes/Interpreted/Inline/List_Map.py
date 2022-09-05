@@ -10,10 +10,7 @@ def is_prime(
     **kwargs,
 ):
     def is_prime_mapped(n, y):
-        try:
-            return n % y
-        except ZeroDivisionError:
-            return 0
+        return n % y
 
     data = {
         "divisions": dict(),
@@ -36,7 +33,7 @@ def is_prime(
                 boundary = math.floor(math.sqrt(n))
             n_list = list([n] * len(data["primes"][i]))
             j_list = [j for j in data["primes"][i] if j <= boundary]
-            ret = tuple(map(is_prime_mapped, n_list, j_list))
+            ret = list(map(is_prime_mapped, n_list, j_list))
             tmp_time_end = time.perf_counter()
             data["times"][i].append(tmp_time_end - tmp_time_start)
 

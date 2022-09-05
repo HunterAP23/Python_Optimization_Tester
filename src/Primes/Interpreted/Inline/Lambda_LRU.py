@@ -29,7 +29,7 @@ def is_prime(
                 boundary = math.floor(n / 2)
             elif bounding == "Sqrt":
                 boundary = math.floor(math.sqrt(n))
-            ret = (ft.lru_cache(maxsize=None)(lambda y: n % y) for j in data["primes"][i] if j <= boundary)
+            ret = [ft.lru_cache(maxsize=None)(lambda y: n % y)(j) for j in data["primes"][i] if j <= boundary]
             tmp_time_end = time.perf_counter()
             data["times"][i].append(tmp_time_end - tmp_time_start)
 
