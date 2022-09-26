@@ -1,7 +1,7 @@
 from Cython.Build import cythonize
 from setuptools import Extension, setup
 
-extensions = [Extension("Primes.Compiled.Inline.LRU_Map", ["src/Primes/Interpreted/Inline/LRU_Map.py"])]
+extensions = [Extension("Primes.Compiled.Inline.Tuple_LRU_Map", ["src/Primes/Interpreted/Inline/Tuple_LRU_Map.py"])]
 
 setup(
     ext_modules=cythonize(

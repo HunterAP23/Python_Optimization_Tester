@@ -1,0 +1,34 @@
+### Tests to Add
+- [ ] Add Nvidia CUDA tests for prime number calculations (requires Numba)
+  - [ ] Have check to see if CUDA compatible GPU is in the system
+  - [ ] Inline
+    - [ ] Lambda
+    - [ ] LRU Caching
+      - [ ] Internal
+      - [ ] External
+      - [ ] Both
+    - [ ] Lambda + LRU Caching
+      - [ ] Internal
+      - [ ] External
+      - [ ] Both
+    - [ ] Numpy Lambda + LRU Caching
+      - [ ] Internal
+      - [ ] External
+      - [ ] Both
+  - [ ] Function
+    - [ ] Lambda
+    - [ ] LRU Caching
+      - [ ] Internal
+      - [ ] External
+      - [ ] Both
+    - [ ] Lambda + LRU Caching
+      - [ ] Internal
+      - [ ] External
+      - [ ] Both
+    - [ ] Numpy Lambda + LRU Caching
+      - [ ] Internal
+      - [ ] External
+      - [ ] Both
+- [ ] 
+
+### Done ✓

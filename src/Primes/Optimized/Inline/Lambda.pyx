@@ -5,14 +5,14 @@ cimport cython  # noqa: E999
 
 
 @cython.ccall
-def is_prime(value_max: cython.int, num_loops: cython.int, bounding: str, runtime: str, compilation: str, call_type: str, subcall: str) -> dict:
-    return is_prime_cython(value_max, num_loops, bounding, runtime, compilation, call_type, subcall)
+def is_prime(value_max: cython.int, num_loops: cython.int, bounding: str, Resource_Measurer, kwargs) -> dict:
+    return is_prime_cython(value_max, num_loops, bounding, Resource_Measurer, kwargs)
 
 
 @cython.cfunc
 @cython.returns(dict)
-@cython.locals(i=cython.int, ret=list, j=cython.int, tmp_time_start=cython.double, tmp_time_end=cython.double)
-def is_prime_cython(value_max: cython.int, num_loops: cython.int, bounding: str, runtime: str, compilation: str, call_type: str, subcall: str) -> dict:
+@cython.locals(i=cython.int, ret=list, j=cython.int)
+def is_prime_cython(value_max: cython.int, num_loops: cython.int, bounding: str, Resource_Measurer, kwargs) -> dict:
     cdef dict data = {
         "divisions": dict(),
         "primes": dict(),
@@ -28,7 +28,7 @@ def is_prime_cython(value_max: cython.int, num_loops: cython.int, bounding: str,
         data["primes"][i].append(2)
         for n in range(3, value_max, 2):
             ret = []
-            tmp_time_start = time.perf_counter()
+            measurer = Resource_Measurer()
             boundary = n
             if bounding == "Half":
                 boundary = math.floor(n / 2)

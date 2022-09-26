@@ -11,7 +11,9 @@ import statistics as stat
 import sys
 from datetime import timedelta as td
 from itertools import chain
-from traceback import print_exc
+from traceback import format_exc
+
+from PO_Standard import Resource_Measurer
 
 # from typing import *
 
@@ -92,7 +94,16 @@ def validate_primes(config):
 
 
 def calculate_primes(func, group, boundary, value_max, num_loops, runtime, compilation, call_type, subcall):
-    data_list = func(value_max, num_loops, boundary, runtime, compilation, call_type, subcall)
+    data_list = func(
+        value_max=value_max,
+        num_loops=num_loops,
+        bounding=boundary,
+        runtime=runtime,
+        compilation=compilation,
+        call_type=call_type,
+        subcall=subcall,
+        Resource_Measurer=Resource_Measurer,
+    )
 
     for i in range(num_loops):
         time_total = math.fsum(data_list[i]["times"])
@@ -168,7 +179,7 @@ def run_in_parallel(mapping, value_max, num_loops, threads, sema):
         if type(e) in [KeyboardInterrupt, cf.CancelledError]:
             print("KeyboardInterrupt detected, working on shutting down pool...")
         else:
-            print_exc()
+            format_exc()
         cf_handler.shutdown(wait=False, cancel_futures=True)
         exit(1)
 

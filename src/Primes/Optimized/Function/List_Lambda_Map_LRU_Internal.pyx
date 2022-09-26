@@ -7,4 +7,4 @@ cimport cython  # noqa: E999
 @cython.returns(list)
 @cython.locals(i=cython.int)
 def is_prime(n: cython.int, primes: (cython.int,...), boundary: cython.int) -> list:
-    return list(map(ft.lru_cache(maxsize=None)(lambda y: n % y if y <= boundary else 1), primes))
+    return list(map(ft.lru_cache(maxsize=None)(lambda j: n % j if j <= boundary else 1), primes))

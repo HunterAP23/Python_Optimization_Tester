@@ -9,6 +9,6 @@ cimport cython  # noqa: E999
 def is_prime(n: cython.int, primes: (cython.int,...), boundary: cython.int):
     for i in primes:
         if i < boundary:
-            yield (lambda y: n % y)(i)
+            yield (lambda j: n % j)(i)
         else:
             break
