@@ -1,0 +1,61 @@
+### Tests to Add
+- [ ] Add [Numpy array tests]() for prime number calculations
+- [ ] Add Numba tests for prime number calculations
+- [ ] Add Nvidia CUDA tests for prime number calculations (requires Numba)
+
+
+### Done ✓
+- [x] Interpreted
+  - [x] Inline
+    - [x] Local
+      - [x] Standard
+      - [x] List comprehension
+      - [x] Tuple comprehension
+      - [x] Lambda
+      - [x] LRU Caching + Map
+      - [x] Lambda + LRU Caching
+      - [x] Lambda + LRU Caching + Map
+      - [x] List comprehension + Lambda
+      - [x] List comprehension + Map
+      - [x] List comprehension + Lambda + Map
+      - [x] Tuple comprehension + Lambda
+      - [x] Tuple comprehension + Map
+      - [x] Tuple comprehension + Lambda + Map
+  - [x] Function
+    - [x] Standard
+    - [x] List
+    - [x] Tuple
+    - [x] Lambda
+    - [x] LRU Caching
+    - [x] Generator
+    - [x] Generator + Lambda
+    - [x] Generator + LRU Caching
+      - [x] Internal
+      - [x] External
+      - [x] Both
+    - [x] Generator + Lambda + LRU Caching
+      - [x] Internal
+      - [x] External
+      - [x] Both
+    - [x] Lambda + LRU Caching
+      - [x] Internal
+      - [x] External
+      - [x] Both
+    - [x] List + Lambda + Map
+    - [x] List + LRU Caching
+      - [x] Internal
+      - [x] External
+      - [x] Both
+    - [x] List + Lambda + Map + LRU Caching
+      - [x] Internal
+      - [x] External
+      - [x] Both
+    - [x] Tuple + Lambda + Map
+    - [x] Tuple + LRU Caching
+      - [x] Internal
+      - [x] External
+      - [x] Both
+    - [x] Tuple + Lambda + Map + LRU Caching
+      - [x] Internal
+      - [x] External
+      - [x] Both

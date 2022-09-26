@@ -9,7 +9,6 @@ __pycache__/
 # Cython Generated Files
 *.c
 *.pyd
-*.txt
 
 # Distribution / packaging
 .Python
@@ -104,3 +103,13 @@ ENV/
 
 # mypy
 .mypy_cache/
+
+# Custom
+src/files_runs/
+src/files_runs_linux/
+src/files_runs_macos_arm/
+src/files_runs_macos_x86/
+src/files_runs_windows/
+src/files_compile/
+src/flake8_report.txt
+poetry.lock
